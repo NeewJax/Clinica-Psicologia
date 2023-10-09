@@ -1,0 +1,217 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+
+header {
+    background-color: #020c66;
+    color: #fff;
+    padding: 8px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 10px;
+}
+
+.main-cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.center-tela {
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card-cadastro {
+    background: #0f0f0f;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #1b1a1a;
+    text-align: center;
+    margin-top: -10px;
+}
+
+.card-cadastro > h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 24px;
+}
+
+.textfield {
+    margin: 10px 0;
+}
+
+.textfield-1,
+.textfield-2 {
+    flex: 1;
+    max-width: calc(50% - 5px);
+}
+
+.textfield-1 {
+    margin-bottom: 20px;
+}
+
+.textfield-2 {
+    margin-top: 20px;
+}
+
+.textfield > input,
+.textfield-1 > input,
+.textfield-2 > input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background: #1b1a1a;
+    padding: 10px;
+    color: antiquewhite;
+    font-size: 14px;
+    box-shadow: #1b1a1a;
+    box-sizing: border-box;
+}
+
+.textfield > label,
+.textfield-1 > label,
+.textfield-2 > label {
+    color: antiquewhite;
+    margin-bottom: 10px;
+}
+
+.btn-cadastro {
+    width: 100%;
+    background: #020c66;
+    border-radius: 8px;
+    border: none;
+    margin-top: 25px;
+    padding: 10px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #130b61;
+}
+
+.textfield-group-1,
+.textfield-group-2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.textfield-group-1 .textfield-1,
+.textfield-group-2 .textfield-2 {
+    flex: 1;
+    max-width: calc(50% - 5px);
+}
+
+.textfield-group-1 .textfield-1 {
+    margin-bottom: 10px;
+    max-width: calc(33.33% - 10px);
+}
+
+.textfield-group-2 .textfield-2 {
+    margin-top: 10px;
+    max-width: calc(33.33% - 10px);
+}
+
+.textfield-group-3 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.textfield-group-3 .textfield-3 {
+    flex: 1;
+    max-width: calc(33.33% - 10px); /* Três elementos por linha com espaço entre eles */
+    display: flex;
+    flex-direction: column; /* Coloca a label acima do input */
+}
+
+.textfield-group-3 .textfield-3 label {
+    color: antiquewhite;
+    margin-bottom: 5px; /* Espaçamento entre a label e o input */
+}
+
+.textfield-group-3 .textfield-3 input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background: #1b1a1a;
+    padding: 10px;
+    color: antiquewhite;
+    font-size: 14px;
+    box-shadow: #1b1a1a;
+    box-sizing: border-box;
+    margin-left: 5px;
+}
+
+.textfield-group-4{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+/*  dois elementos juntos */
+.textfield-group-4 .textfield-4 {
+    flex: 1;
+    max-width: calc(50% - 10px); /* 10px de espaço entre os elementos */
+    display: flex;
+    flex-direction: column; /* Coloca a label acima do input */
+}
+
+.textfield-group-4 .textfield-4 label {
+    color: antiquewhite;
+    margin-bottom: 5px; /* Espaçamento entre a label e o input */
+}
+.textfield-group-4 .textfield-4 input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background: #1b1a1a;
+    padding: 10px;
+    color: antiquewhite;
+    font-size: 14px;
+    box-shadow: #1b1a1a;
+    box-sizing: border-box;
+    margin-left: 5px;
+}
+
+.textfield-group-5 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.textfield-group-5 .textfield-5 {
+    flex: 1;
+    max-width: calc(33.33% - 10px); /* Três elementos por linha com espaço entre eles */
+    display: flex;
+    flex-direction: column; /* Coloca a label acima do input */
+}
+
+.textfield-group-5 .textfield-5 label {
+    color: antiquewhite;
+    margin-bottom: 5px; /* Espaçamento entre a label e o input */
+}
+
+.textfield-group-5 .textfield-5 input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background: #1b1a1a;
+    padding: 10px;
+    color: antiquewhite;
+    font-size: 14px;
+    box-shadow: #1b1a1a;
+    box-sizing: border-box;
+    margin-left: 5px;
+}
+
+
+
