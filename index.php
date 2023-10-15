@@ -198,7 +198,7 @@
                     <div class="service-item bg-light rounded h-100 p-5">
                         <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
                             <i class="fa fa-prescription-bottle-alt text-primary fs-4"></i>
-                        </div>
+                     </div>
                         <h4 class="mb-3">Psicoterapia Individualizada</h4>
                         <p class="mb-4">Oferecemos sessões individuais com terapeutas experientes, fornecendo suporte emocional e orientação para superar dificuldades pessoais.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Leia Mais</a>
@@ -309,7 +309,7 @@
                 </div>
                 <div class="col-lg-6 pe-lg-0 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="img/feature.jpg" style="object-fit: cover;" alt="">
+                        <img class="position-absolute img-fluid w-100 h-100" src="img/reuniao_clinica.jpg" style="object-fit: cover;" alt="">
                     </div>
                 </div>
             </div>
