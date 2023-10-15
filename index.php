@@ -448,21 +448,12 @@
                         <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Services</h5>
-                    <a class="btn btn-link" href="">Cardiology</a>
-                    <a class="btn btn-link" href="">Pulmonary</a>
-                    <a class="btn btn-link" href="">Neurology</a>
-                    <a class="btn btn-link" href="">Orthopedics</a>
-                    <a class="btn btn-link" href="">Laboratory</a>
-                </div>
+                
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Quick Links</h5>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
+                    <a class="btn btn-link" href="sobre.php">Sobre nós</a>
+                    <a class="btn btn-link" href="contato.php">Nosso contato</a>
+                    <a class="btn btn-link" href="professores.php">Professores</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Newsletter</h5>
