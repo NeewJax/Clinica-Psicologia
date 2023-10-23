@@ -57,8 +57,9 @@ if (isset($_POST['enviar'])) {
 <body>
  <!-- Navbar Start -->
  <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+    <a href="index.php">
         <img id="estacio" src="img/logo-estacio.png" alt="Estácio de Sá">
-    </a>
+    </a>   
 </nav>
     
     </head>
