@@ -41,7 +41,7 @@ if (isset($_POST['enviar'])) {
 <html lang="pt-BR">
 <head>
     <meta charset="utf-8">
-    <title>Clínica de psicologia - Estácio de Sá</title>
+    <title>cadastro da clinica de Psicologia - cadastro</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
