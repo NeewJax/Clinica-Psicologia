@@ -28,10 +28,9 @@
               <i class="error error-icon fas fa-exclamation-circle"></i>
             </div>
           </div>
-          <input type="submit" value="Enviar">
-          <input type="submit" value="Voltar para o início">
+          <a href="admin/index.php"><input type="button" class="btn-estilizado" value="Enviar"></a>
+          <a href="index.php"><input type="button" class="btn-estilizado" value="Voltar para o início"></a>
         </form>
-        <input type="submit" value="Voltar para o início">
       </div>
     
     </body>

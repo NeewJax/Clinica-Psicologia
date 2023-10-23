@@ -91,19 +91,20 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index.php" class="nav-item nav-link active">Home</a>
-                <a href="sobre.php" class="nav-item nav-link">Sobre</a>
-                <a href="clinica.php" class="nav-item nav-link">Nossa clínica</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Descubra</a>
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                        <a href="feature.php" class="dropdown-item">Feature</a>
-                        <a href="team.php" class="dropdown-item">Our Doctor</a>
-                        <a href="appointment.php" class="dropdown-item">Appointment</a>
-                        <a href="testimonial.php" class="dropdown-item">Testimonial</a>
-                        <a href="404.php" class="dropdown-item">404 Page</a>
+                        <!-- <a href="feature.php" class="dropdown-item">Feature</a> -->
+                        <a href="#sobre" class="dropdown-item">Sobre</a>
+                        <a href="#nossa_clinica" class="dropdown-item">Nossa clínica</a>
+                        <a href="#nossos_professores" class="dropdown-item">Nossos professores</a>
+                        <!-- <a href="appointment.php" class="dropdown-item">Appointment</a> -->
+                        <a href="#relatos" class="dropdown-item">Relátos</a>
+                        <!-- <a href="404.php" class="dropdown-item">404 Page</a> -->
+                        <a href="#contato" class="dropdown-item">contato</a>
                     </div>
                 </div>
-                <a href="contato.php" class="nav-item nav-link">contato</a>
+                <a href="login.php" class="nav-item nav-link">Login</a>
             </div>
         
             <a href="agendar.php" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">AGENDE SUA CONSULTA<i class="fa fa-arrow-right ms-3"></i></a>
@@ -113,7 +114,7 @@
 
 
     <!-- Header Start -->
-    <div class="container-fluid header bg-primary p-0 mb-5">
+    <div class="container-fluid header bg-primary p-0 mb-5" id="nossa_clinica">
         <div class="row g-0 align-items-center flex-column-reverse flex-lg-row">
             <div class="col-lg-6 p-5 wow fadeIn" data-wow-delay="0.1s">
                 <h1 class="display-4 text-white mb-5">Transformando Vidas, Cultivando Saúde Mental.</h1>
@@ -152,7 +153,7 @@
 
 
     <!-- About Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-5" id="sobre">
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
@@ -251,7 +252,7 @@
 
 
     <!-- Feature Start -->
-    <div class="container-fluid bg-primary overflow-hidden my-5 px-lg-0">
+    <div class="container-fluid bg-primary overflow-hidden my-5 px-lg-0" id="nossa_clinica">
         <div class="container feature px-lg-0">
             <div class="row g-0 mx-lg-0">
                 <div class="col-lg-6 feature-text py-5 wow fadeIn" data-wow-delay="0.1s">
@@ -319,11 +320,11 @@
 
 
     <!-- Team Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-5" id="nossos_professores">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <p class="d-inline-block border rounded-pill py-1 px-4">Professores</p>
-                <h1>Our Experience Doctors</h1>
+                <h1>Nossos Professores</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -396,10 +397,10 @@
     <!-- Team End -->
 
     <!-- Testimonial Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-5" id="relatos">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <p class="d-inline-block border rounded-pill py-1 px-4">Testimonial</p>
+                <p class="d-inline-block border rounded-pill py-1 px-4">Relátos</p>
                 <h1>What Say Our Patients!</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
@@ -434,7 +435,7 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s" id="contato">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
