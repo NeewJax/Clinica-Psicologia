@@ -50,7 +50,7 @@ if (isset($_POST['enviar'])) {
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Template Stylesheet -->
-    <link href="style-tela.css" rel="stylesheet">
+    <link href="cadastro.css" rel="stylesheet">
 </head>
 
 </head>
