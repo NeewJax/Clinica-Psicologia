@@ -1,18 +1,12 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #ffffff;
+    background-color: #696bfd;
     margin: 0;
     padding: 0;
 }
 
 
-header {
-    background-color: #020c66;
-    color: #fff;
-    padding: 8px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 10px;
-}
+
 
 .main-cadastro {
     display: flex;
@@ -30,7 +24,7 @@ header {
 }
 
 .card-cadastro {
-    background: #0f0f0f;
+    background: #0a0a0a;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0px 10px 40px #1b1a1a;
@@ -96,6 +90,7 @@ header {
     letter-spacing: 3px;
     cursor: pointer;
     box-shadow: 0px 10px 40px -12px #130b61;
+    color: #ffffff;
 }
 
 .textfield-group-1,
@@ -214,4 +209,18 @@ header {
 }
 
 
+/* Estilizando a tag <nav> */
+nav {
+    background-color: #ffffff; /* Azul fraco */
+    color: #ffffff; /* Branco para o texto */
+    padding: 20px; /* Espaçamento interno superior e inferior */
+    max-height: 50px; /* Altura máxima da nav */
+}
+
+/* Estilizando a imagem (logotipo) */
+#estacio {
+    width: 200px; /* Largura da imagem */
+    max-height: 70px; /* Altura máxima da imagem */
+    cursor: pointer;
+}
 

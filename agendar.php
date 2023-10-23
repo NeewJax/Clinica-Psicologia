@@ -39,173 +39,138 @@ if (isset($_POST['enviar'])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="cadastro.css">
-    <title>Cadastro de Clínica de Psicologia</title>
+    <meta charset="utf-8">
+    <title>Clínica de psicologia - Estácio de Sá</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Template Stylesheet -->
+    <link href="style-tela.css" rel="stylesheet">
 </head>
 
+</head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1 class="cabecalho">Clínica de Psicologia</h1>
-            <a href=""></a>
-        </div>
-    </header>
+ <!-- Navbar Start -->
+ <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+        <img id="estacio" src="logo-estacio.png" alt="Estácio de Sá">
+    </a>
+</nav>
+    
+    </head>
     <div class="main-cadastro">
         <div class="center-tela">
-
-            <form method="post">
-                <div class="card-cadastro">
-                    <h1>Cadastro</h1>
-
-                    <div class="textfield">
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome" placeholder="Nome">
+            <div class="card-cadastro">
+                <h1>Cadastro</h1>
+                <div class="textfield">
+                    <label for="nome">Nome</label> 
+                    <input type="email" name="nome" placeholder="Nome">
+                </div>
+                <div class="textfield-group-1">
+                    <div class="textfield-1">
+                        <label for="sexo">Sexo</label>
+                        <input type="text" name="sexo" placeholder="Sexo">
                     </div>
-
-                    <div class="textfield-group-1">
-                        <div class="textfield-1">
-                            <label for="sexo">Sexo</label>
-                            <input type="text" id="sexo" name="sexo" placeholder="Sexo">
-                        </div>
-
-                        <div class="textfield-1">
-                            <label for="idade">Idade</label>
-                            <input type="number" id="idade" name="idade" placeholder="Idade">
-                        </div>
-
-                        <div class="textfield-1">
-                            <label for="nascimento">Nascimento</label>
-                            <input type="date" id="nascimento" name="nascimento" placeholder="Nascimento">
-                        </div>
+                    <div class="textfield-1">
+                        <label for="idade">Idade</label>
+                        <input type="number" name="idade" placeholder="Idade">
                     </div>
-
-
-                    <div class="textfield-group-2">
-                        <div class="textfield-2">
-                            <label for="localidade">Localidade</label>
-                            <input type="text" id="localidade" name="localidade" placeholder="Localidade">
-                        </div>
-
-                        <div class="textfield-2">
-                            <label for="escolaridade">Escolaridade</label>
-                            <input type="text" id="escolaridade" name="escolaridade" placeholder="Escolaridade">
-                        </div>
-
-                        <div class="textfield-2">
-                            <label for="profissão">Profissão</label>
-                            <input type="text" id="profissao" name="profissao" placeholder="Profissão">
-                        </div>
+                    <div class="textfield-1">
+                        <label for="nascimento">Nascimento</label>
+                        <input type="month" name="nascimento" placeholder="Nascimento">
                     </div>
-
-
-                    <div class="textfield-group-3">
-                        <div class="textfield-3">
-                            <label for="renda familiar">Renda Familiar</label>
-                            <input type="number" id="renda_familiar" name="renda_familiar" placeholder="Renda Familiar">
-                        </div>
-
-                        <div class="textfield-3">
-                            <label for="rg/orgão expedidor">RG Orgão Expedidor</label>
-                            <input type="number" id="rg" name="rg" placeholder="RG ORGÃO EXPEDIDOR">
-                        </div>
-
-                        <div class="textfield-3">
-                            <label for="cpf">CPF</label>
-                            <input type="number" id="cpf" name="cpf" placeholder="CPF">
-                        </div>
+                </div>
+                <div class="textfield-group-2">
+                    <div class="textfield-2">
+                        <label for="localidade">Localidade</label>
+                        <input type="text" name="localidade" placeholder="Localidade">
                     </div>
-
-                    
+                    <div class="textfield-2">
+                        <label for="escolaridade">Escolaridade</label>
+                        <input type="text" name="escolaridade" placeholder="Escolaridade">
+                    </div>
+                    <div class="textfield-2">
+                        <label for="profissão">Profissão</label>
+                        <input type="text" name="profissão" placeholder="Profissão">
+                    </div>
+                </div>
+                <div class="textfield-group-3">
+                    <div class="textfield-3">
+                        <label for="renda familiar">Renda Familiar</label>
+                        <input type="tel" name="renda familiar" placeholder="Renda Familiar">
+                    </div>
+                    <div class="textfield-3">
+                        <label for="rg/orgão expedidor">RG Orgão Expedidor</label>
+                        <input type="tel" name="rg/orgão expedidor" placeholder="RG ORGÃO EXPEDIDOR">
+                    </div>
+                    <div class="textfield-3">
+                        <label for="cpf">CPF</label>
+                        <input type="tel" name="cpf" placeholder="CPF">
+                    </div>
+                </div>
                     <Div class="textfield">
                         <Label for="composição familiar">Composição Familiar</Label>
-                        <input type="text" id="composicao_familiar" name="composicao_familiar" placeholder="Composição familiar">
+                        <input type="text"name="composição familiar" placeholder="Composição Familiar">
                     </Div>
-
-
-                    <div class="textfield-group-4">
-                        <div class="textfield-4">
-                            <Label for="estado civil">Estado Civil</Label>
-                            <input type="text" id="estado_civil" name="estado_civil" placeholder="Estado civil">
-                        </div>
-
-                        <div class="textfield-4">
-                            <Label for=" mora com quem?">Mora Com Quem?</Label>
-                            <input type="text" id="mora_com" name="mora_com" placeholder="Mora Com Quem?">
-                        </div>
+                <div class="textfield-group-4">
+                    <div class="textfield-4">
+                        <Label for="estado civil">Estado Civil</Label>
+                        <input type="text"name="estado civil" placeholder="Estado Civil">  
                     </div>
-
-
-                    <Div class="textfield">
-                        <Label for="endereço">Endereço</Label>
-                        <input type="text" id="endereco" name="endereco" placeholder="Endereço">
-                    </Div>
-
-
-                    <div class="textfield-group-5">
-                        <div class="textfield-5">
-                            <label for="bairro">Bairro</label>
-                            <input type="text" id="bairro" name="bairro" placeholder="Bairro">
-                        </div>
-
-                        <div class="textfield-5">
-                            <label for="cidade">Cidade</label>
-                            <input type="text" id="cidade" name="cidade" placeholder="Cidade">
-                        </div>
-
-                        <div class="textfield-5">
-                            <label for="cep">CEP</label>
-                            <input type="text" id="cep" name="cep" placeholder="CEP">
-                        </div>
+                    <div class="textfield-4">
+                        <Label for=" mora com quem?">Mora Com Quem?</Label>
+                        <input type="text"name="mora com quem?" placeholder="Mora Com Quem?">  
                     </div>
-
-
-                    <div class="textfield-group-5">
-                        <div class="textfield-5">
-                            <label for="tel(residencial)">Tel(Residencial)</label>
-                            <input type="tel" 
-                            id="telefone_residencial" 
-                            name="telefone_residencial" 
-                            placeholder="Tel(Residencial)">
-                        </div>
-
-                        <div class="textfield-5">
-                            <label for="tel(recado)">Tel(Recado)</label>
-                            <input type="tel" 
-                            id="telefone_recado" 
-                            name="telefone_recado" placeholder="Tel(Residencial)">
-                        </div>
-
-                        <div class="textfield-5">
-                            <label for="celular">celular</label>
-                            <input type="tel" 
-                            id="celular" 
-                            name="celular" 
-                            placeholder="celular">
-                        </div>
-                    </div>
-
-
-                    <Div class="textfield">
-                        <Label for="email">Email</Label>
-                        <input type="email" 
-                        id="email" 
-                        name="email" 
-                        placeholder="Email">
-                    </Div>
-
-                    <button type="button" id="btnCadastro" onclick="cadastrar()" class="btn-cadastro">Cadastrar</button>
-
-                    <button type="submit" id="btnEnviar" style="display:none" name="enviar"></button>
                 </div>
-            </form>
+                <Div class="textfield">
+                    <Label for="endereço">Endereço</Label>
+                    <input type="text"name="endereço" placeholder="Endereço">
+                </Div>
+
+                <div class="textfield-group-5">
+                    <div class="textfield-5">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" name="bairro" placeholder="Bairro">
+                    </div>
+                    <div class="textfield-5">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" name="cidade" placeholder="Cidade">
+                    </div>
+                    <div class="textfield-5">
+                        <label for="cep">CEP</label>
+                        <input type="tel" name="cep" placeholder="CEP">
+                    </div>
+                </div>
+                <div class="textfield-group-5">
+                    <div class="textfield-5">
+                        <label for="tel(residencial)">Tel(Residencial)</label>
+                        <input type="tel" name="tel(residencial)" placeholder="Tel(Residencial)">
+                    </div>
+                    <div class="textfield-5">
+                        <label for="tel(recado)">Tel(Recado)</label>
+                        <input type="tel" name="tel(recado)" placeholder="Tel(Residencial)">
+                    </div>
+                    <div class="textfield-5">
+                        <label for="celular">celular</label>
+                        <input type="tel" name="celular" placeholder="celular">
+                    </div>
+                </div>
+                <Div class="textfield">
+                    <Label for="email">Email</Label>
+                    <input type="email"name="email" placeholder="Email">
+                </Div>
+                <button type="submit" class="btn-cadastro">Cadastrar</button>
+            </div>  
         </div>
     </div>
     <div>
     </div>
+
+
     <script>
         var btnCadastro = document.getElementById('btnCadastro');
         var btnEnviar = document.getElementById('btnEnviar');
