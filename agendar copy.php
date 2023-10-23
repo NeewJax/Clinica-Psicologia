@@ -307,146 +307,152 @@ if (isset($_POST['enviar'])) {
     </nav>
 
     </head>
-    <div class="main-cadastro container-fluid">
+    <div class="main-cadastro">
         <div class="center-tela">
             <div class="card-cadastro">
 
                 <h1>Cadastro</h1>
                 <form method="post">
-                    
 
-                        <div class="textfield">
-                            <label for="nome">Nome</label>
-                            <input type="text" id="nome" name="nome" placeholder="Nome">
+                    <div class="textfield">
+                        <label for="nome">Nome</label>
+                        <input type="email" id="nome" name="nome" placeholder="Nome">
+                    </div>
+
+
+                    <div class="textfield-group-1">
+                        <div class="textfield-1">
+                            <label for="sexo">Sexo</label>
+                            <input type="text" id="sexo" name="sexo" placeholder="Sexo">
                         </div>
 
-                        <div class="textfield-group-1">
-                            <div class="textfield-1">
-                                <label for="sexo">Sexo</label>
-                                <input type="text" id="sexo" name="sexo" placeholder="Sexo">
-                            </div>
-
-                            <div class="textfield-1">
-                                <label for="idade">Idade</label>
-                                <input type="number" id="idade" name="idade" placeholder="Idade">
-                            </div>
-
-                            <div class="textfield-1">
-                                <label for="nascimento">Nascimento</label>
-                                <input type="date" id="nascimento" name="nascimento" placeholder="Nascimento">
-                            </div>
+                        <div class="textfield-1">
+                            <label for="idade">Idade</label>
+                            <input type="number" id="idade" name="idade" placeholder="Idade">
                         </div>
 
+                        <div class="textfield-1">
+                            <label for="nascimento">Nascimento</label>
+                            <input type="month" id="nascimento" name="nascimento" placeholder="Nascimento">
+                        </div>
+                    </div>
 
-                        <div class="textfield-group-2">
-                            <div class="textfield-2">
-                                <label for="localidade">Localidade</label>
-                                <input type="text" id="localidade" name="localidade" placeholder="Localidade">
-                            </div>
 
-                            <div class="textfield-2">
-                                <label for="escolaridade">Escolaridade</label>
-                                <input type="text" id="escolaridade" name="escolaridade" placeholder="Escolaridade">
-                            </div>
-
-                            <div class="textfield-2">
-                                <label for="profissão">Profissão</label>
-                                <input type="text" id="profissao" name="profissao" placeholder="Profissão">
-                            </div>
+                    <div class="textfield-group-2">
+                        <div class="textfield-2">
+                            <label for="localidade">Localidade</label>
+                            <input type="text" id="localidade"  name="localidade" placeholder="Localidade">
                         </div>
 
-
-                        <div class="textfield-group-3">
-                            <div class="textfield-3">
-                                <label for="renda familiar">Renda Familiar</label>
-                                <input type="number" id="renda_familiar" name="renda_familiar" placeholder="Renda Familiar">
-                            </div>
-
-                            <div class="textfield-3">
-                                <label for="rg/orgão expedidor">RG Orgão Expedidor</label>
-                                <input type="number" id="rg" name="rg" placeholder="RG ORGÃO EXPEDIDOR">
-                            </div>
-
-                            <div class="textfield-3">
-                                <label for="cpf">CPF</label>
-                                <input type="number" id="cpf" name="cpf" placeholder="CPF">
-                            </div>
+                        <div class="textfield-2">
+                            <label for="escolaridade">Escolaridade</label>
+                            <input type="text" id="escolaridade" name="escolaridade" placeholder="Escolaridade">
                         </div>
 
+                        <div class="textfield-2">
+                            <label for="profissão">Profissão</label>
+                            <input type="text" id="profissao" name="profissao" placeholder="Profissão">
+                        </div>
+                    </div>
 
-                        <Div class="textfield">
-                            <Label for="composição familiar">Composição Familiar</Label>
-                            <input type="text" id="composicao_familiar" name="composicao_familiar" placeholder="Composição familiar">
-                        </Div>
 
-
-                        <div class="textfield-group-4">
-                            <div class="textfield-4">
-                                <Label for="estado civil">Estado Civil</Label>
-                                <input type="text" id="estado_civil" name="estado_civil" placeholder="Estado civil">
-                            </div>
-
-                            <div class="textfield-4">
-                                <Label for=" mora com quem?">Mora Com Quem?</Label>
-                                <input type="text" id="mora_com" name="mora_com" placeholder="Mora Com Quem?">
-                            </div>
+                    <div class="textfield-group-3">
+                        <div class="textfield-3">
+                            <label for="renda familiar">Renda Familiar</label>
+                            <input type="tel" id="renda_familiar" name="renda_familiar" placeholder="Renda Familiar">
                         </div>
 
-
-                        <Div class="textfield">
-                            <Label for="endereço">Endereço</Label>
-                            <input type="text" id="endereco" name="endereco" placeholder="Endereço">
-                        </Div>
-
-
-                        <div class="textfield-group-5">
-                            <div class="textfield-5">
-                                <label for="bairro">Bairro</label>
-                                <input type="text" id="bairro" name="bairro" placeholder="Bairro">
-                            </div>
-
-                            <div class="textfield-5">
-                                <label for="cidade">Cidade</label>
-                                <input type="text" id="cidade" name="cidade" placeholder="Cidade">
-                            </div>
-
-                            <div class="textfield-5">
-                                <label for="cep">CEP</label>
-                                <input type="text" id="cep" name="cep" placeholder="CEP">
-                            </div>
+                        <div class="textfield-3">
+                            <label for="rg/orgão expedidor">RG Orgão Expedidor</label>
+                            <input type="tel" id="rg" name="rg" placeholder="RG ORGÃO EXPEDIDOR">
                         </div>
 
+                        <div class="textfield-3">
+                            <label for="cpf">CPF</label>
+                            <input type="tel" id="cpf" name="cpf" placeholder="CPF">
+                        </div>
+                    </div>
 
-                        <div class="textfield-group-5">
-                            <div class="textfield-5">
-                                <label for="tel(residencial)">Tel(Residencial)</label>
-                                <input type="tel" id="telefone_residencial" name="telefone_residencial" placeholder="Tel(Residencial)">
-                            </div>
 
-                            <div class="textfield-5">
-                                <label for="tel(recado)">Tel(Recado)</label>
-                                <input type="tel" id="telefone_recado" name="telefone_recado" placeholder="Tel(Residencial)">
-                            </div>
+                    <Div class="textfield">
+                        <Label for="composição familiar">Composição Familiar</Label>
+                        <input type="text" id="composicao_familiar" name="composicao_familiar" placeholder="Composição Familiar">
+                    </Div>
 
-                            <div class="textfield-5">
-                                <label for="celular">celular</label>
-                                <input type="tel" id="celular" name="celular" placeholder="celular">
-                            </div>
+                    <div class="textfield-group-4">
+                        <div class="textfield-4">
+                            <Label for="estado civil">Estado Civil</Label>
+                            <input type="text" id="estado_civil" name="estado_civil" placeholder="Estado Civil">
                         </div>
 
+                        <div class="textfield-4">
+                            <Label for=" mora com quem?">Mora Com Quem?</Label>
+                            <input type="text" id="mora_com" name="mora_com" placeholder="Mora Com Quem?">
+                        </div>
 
-                        <Div class="textfield">
-                            <Label for="email">Email</Label>
-                            <input type="email" id="email" name="email" placeholder="Email">
-                        </Div>
-
-                        <button type="button" id="btnCadastro" onclick="cadastrar()" class="btn-cadastro">Cadastrar</button>
+                    </div>
 
 
-                        <button type="submit" id="btnEnviar" style="display:none" name="enviar"></button>
-                    
+                    <Div class="textfield">
+                        <Label for="endereço">Endereço</Label>
+                        <input type="text" id="endereco" name="endereco" placeholder="Endereço">
+                    </Div>
+
+
+                    <div class="textfield-group-5">
+                        <div class="textfield-5">
+                            <label for="bairro">Bairro</label>
+                            <input type="text" id="bairro" name="bairro" placeholder="Bairro">
+                        </div>
+
+                        <div class="textfield-5">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" id="bairro" name="cidade" placeholder="Cidade">
+                        </div>
+
+                        <div class="textfield-5">
+                            <label for="cep">CEP</label>
+                            <input type="tel" id="cep" name="cep" placeholder="CEP">
+                        </div>
+                    </div>
+
+
+                    <div class="textfield-group-5">
+                        <div class="textfield-5">
+                            <label for="tel(residencial)">Tel(Residencial)</label>
+                            <input type="tel" 
+                            id="telefone_residencial" 
+                            name="telefone_residencial" placeholder="Tel(Residencial)">
+                        </div>
+
+                        <div class="textfield-5">
+                            <label for="tel(recado)">Tel(Recado)</label>
+                            <input type="tel" 
+                            id="telefone_recado" 
+                            name="telefone_recado" placeholder="Tel(Residencial)">
+                        </div>
+
+                        <div class="textfield-5">
+                            <label for="celular">celular</label>
+                            <input type="tel" id="celular" name="celular" placeholder="celular">
+                        </div>
+                    </div>
+
+
+                    <Div class="textfield">
+                        <Label for="email">Email</Label>
+                        <input type="email" id="email" name="email" placeholder="Email">
+                    </Div>
+
+
+                    <button type="submit" id="btnEnviar" style="display:none" name="enviar"></button>
+
+                    <button id="btnCadastro" class="btn-cadastro" onclick="cadastrar()" >Cadastrar</button>
+                    <a href="index.php">
+                        <button type="button" class="btn-cadastro">Voltar</button>
+                    </a>
                 </form>
-                <a href="index.php"><button class="btn-cadastro">Voltar</button></a>
+
             </div>
         </div>
     </div>

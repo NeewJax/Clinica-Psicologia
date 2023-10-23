@@ -216,8 +216,7 @@ nav {
 
 /* Estilizando a imagem (logotipo) */
 #estacio {
-    width: 200px; /* Largura da imagem */
-    max-height: 70px; /* Altura máxima da imagem */
+    width: 200%; /* Largura da imagem */
+    max-height: 70%; /* Altura máxima da imagem */
     cursor: pointer;
 }
-
