@@ -34,6 +34,8 @@ if (isset($_POST['enviar'])) {
         $estado_civil, $composicao_familiar, $mora_com, $endereco, $bairro,
         $cidade, $cep, $telefone_residencial, $telefone_recado, $celular, $email
     ));
+
+    header('Location: cadastro-sucesso.php');
 }
 ?>
 
@@ -317,23 +319,23 @@ if (isset($_POST['enviar'])) {
 
                         <div class="textfield">
                             <label for="nome">Nome</label>
-                            <input type="text" id="nome" name="nome" placeholder="Nome">
+                            <input type="text" id="nome" name="nome" placeholder="Nome" required>
                         </div>
 
                         <div class="textfield-group-1">
                             <div class="textfield-1">
                                 <label for="sexo">Sexo</label>
-                                <input type="text" id="sexo" name="sexo" placeholder="Sexo">
+                                <input type="text" id="sexo" name="sexo" placeholder="Sexo" required>
                             </div>
 
                             <div class="textfield-1">
                                 <label for="idade">Idade</label>
-                                <input type="number" id="idade" name="idade" placeholder="Idade">
+                                <input type="number" id="idade" name="idade" placeholder="Idade" required>
                             </div>
 
                             <div class="textfield-1">
                                 <label for="nascimento">Nascimento</label>
-                                <input type="date" id="nascimento" name="nascimento" placeholder="Nascimento">
+                                <input type="date" id="nascimento" name="nascimento" placeholder="Nascimento" required>
                             </div>
                         </div>
 
@@ -341,17 +343,17 @@ if (isset($_POST['enviar'])) {
                         <div class="textfield-group-2">
                             <div class="textfield-2">
                                 <label for="localidade">Localidade</label>
-                                <input type="text" id="localidade" name="localidade" placeholder="Localidade">
+                                <input type="text" id="localidade" name="localidade" placeholder="Localidade" required>
                             </div>
 
                             <div class="textfield-2">
                                 <label for="escolaridade">Escolaridade</label>
-                                <input type="text" id="escolaridade" name="escolaridade" placeholder="Escolaridade">
+                                <input type="text" id="escolaridade" name="escolaridade" placeholder="Escolaridade" required>
                             </div>
 
                             <div class="textfield-2">
                                 <label for="profissão">Profissão</label>
-                                <input type="text" id="profissao" name="profissao" placeholder="Profissão">
+                                <input type="text" id="profissao" name="profissao" placeholder="Profissão" required>
                             </div>
                         </div>
 
@@ -359,60 +361,60 @@ if (isset($_POST['enviar'])) {
                         <div class="textfield-group-3">
                             <div class="textfield-3">
                                 <label for="renda familiar">Renda Familiar</label>
-                                <input type="number" id="renda_familiar" name="renda_familiar" placeholder="Renda Familiar">
+                                <input type="number" id="renda_familiar" name="renda_familiar" placeholder="Renda Familiar" required>
                             </div>
 
                             <div class="textfield-3">
                                 <label for="rg/orgão expedidor">RG Orgão Expedidor</label>
-                                <input type="number" id="rg" name="rg" placeholder="RG ORGÃO EXPEDIDOR">
+                                <input type="number" id="rg" name="rg" placeholder="RG ORGÃO EXPEDIDOR" required>
                             </div>
 
                             <div class="textfield-3">
                                 <label for="cpf">CPF</label>
-                                <input type="number" id="cpf" name="cpf" placeholder="CPF">
+                                <input type="number" id="cpf" name="cpf" placeholder="CPF" required>
                             </div>
                         </div>
 
 
                         <Div class="textfield">
                             <Label for="composição familiar">Composição Familiar</Label>
-                            <input type="text" id="composicao_familiar" name="composicao_familiar" placeholder="Composição familiar">
+                            <input type="text" id="composicao_familiar" name="composicao_familiar" placeholder="Composição familiar" required>
                         </Div>
 
 
                         <div class="textfield-group-4">
                             <div class="textfield-4">
                                 <Label for="estado civil">Estado Civil</Label>
-                                <input type="text" id="estado_civil" name="estado_civil" placeholder="Estado civil">
+                                <input type="text" id="estado_civil" name="estado_civil" placeholder="Estado civil" required>
                             </div>
 
                             <div class="textfield-4">
                                 <Label for=" mora com quem?">Mora Com Quem?</Label>
-                                <input type="text" id="mora_com" name="mora_com" placeholder="Mora Com Quem?">
+                                <input type="text" id="mora_com" name="mora_com" placeholder="Mora Com Quem?" required>
                             </div>
                         </div>
 
 
                         <Div class="textfield">
                             <Label for="endereço">Endereço</Label>
-                            <input type="text" id="endereco" name="endereco" placeholder="Endereço">
+                            <input type="text" id="endereco" name="endereco" placeholder="Endereço" required>
                         </Div>
 
 
                         <div class="textfield-group-5">
                             <div class="textfield-5">
                                 <label for="bairro">Bairro</label>
-                                <input type="text" id="bairro" name="bairro" placeholder="Bairro">
+                                <input type="text" id="bairro" name="bairro" placeholder="Bairro" required>
                             </div>
 
                             <div class="textfield-5">
                                 <label for="cidade">Cidade</label>
-                                <input type="text" id="cidade" name="cidade" placeholder="Cidade">
+                                <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
                             </div>
 
                             <div class="textfield-5">
                                 <label for="cep">CEP</label>
-                                <input type="text" id="cep" name="cep" placeholder="CEP">
+                                <input type="text" id="cep" name="cep" placeholder="CEP" required>
                             </div>
                         </div>
 
@@ -420,24 +422,24 @@ if (isset($_POST['enviar'])) {
                         <div class="textfield-group-5">
                             <div class="textfield-5">
                                 <label for="tel(residencial)">Tel(Residencial)</label>
-                                <input type="tel" id="telefone_residencial" name="telefone_residencial" placeholder="Tel(Residencial)">
+                                <input type="tel" id="telefone_residencial" name="telefone_residencial" placeholder="Tel(Residencial)" required>
                             </div>
 
                             <div class="textfield-5">
                                 <label for="tel(recado)">Tel(Recado)</label>
-                                <input type="tel" id="telefone_recado" name="telefone_recado" placeholder="Tel(Residencial)">
+                                <input type="tel" id="telefone_recado" name="telefone_recado" placeholder="Tel(Residencial)" required>
                             </div>
 
                             <div class="textfield-5">
                                 <label for="celular">celular</label>
-                                <input type="tel" id="celular" name="celular" placeholder="celular">
+                                <input type="tel" id="celular" name="celular" placeholder="celular" required>
                             </div>
                         </div>
 
 
                         <Div class="textfield">
                             <Label for="email">Email</Label>
-                            <input type="email" id="email" name="email" placeholder="Email">
+                            <input type="email" id="email" name="email" placeholder="Email" required>
                         </Div>
 
                         <button type="button" id="btnCadastro" onclick="cadastrar()" class="btn-cadastro">Cadastrar</button>
@@ -447,6 +449,7 @@ if (isset($_POST['enviar'])) {
                     
                 </form>
                 <a href="index.php"><button class="btn-cadastro">Voltar</button></a>
+                <a href='cadastro-sucesso.php' style='display:none' id='cadastro-com-sucesso'></a>
             </div>
         </div>
     </div>
@@ -456,40 +459,41 @@ if (isset($_POST['enviar'])) {
     <script>
         var btnCadastro = document.getElementById('btnCadastro');
         var btnEnviar = document.getElementById('btnEnviar');
+        var btnCdtSucesso = document.getElementById('cadastro-com-sucesso');
 
-        var nome = document.getElementById('nome');
-        var sexo = document.getElementById('sexo');
-        var idade = document.getElementById('idade');
-        var nascimento = document.getElementById('nascimento');
-        var localidade = document.getElementById('localidade');
+        // var nome = document.getElementById('nome');
+        // var sexo = document.getElementById('sexo');
+        // var idade = document.getElementById('idade');
+        // var nascimento = document.getElementById('nascimento');
+        // var localidade = document.getElementById('localidade');
 
-        var escolaridade = document.getElementById('escolaridade');
-        var profissao = document.getElementById('profissao');
-        var renda_familiar = document.getElementById('renda_familiar');
-        var rg = document.getElementById('rg');
-        var cpf = document.getElementById('cpf');
+        // var escolaridade = document.getElementById('escolaridade');
+        // var profissao = document.getElementById('profissao');
+        // var renda_familiar = document.getElementById('renda_familiar');
+        // var rg = document.getElementById('rg');
+        // var cpf = document.getElementById('cpf');
 
-        var composicao_familiar = document.getElementById('composicao_familiar');
-        var estado_civil = document.getElementById('estado_civil');
-        var mora_com = document.getElementById('mora_com');
-        var endereco = document.getElementById('endereco');
-        var bairro = document.getElementById('bairro');
+        // var composicao_familiar = document.getElementById('composicao_familiar');
+        // var estado_civil = document.getElementById('estado_civil');
+        // var mora_com = document.getElementById('mora_com');
+        // var endereco = document.getElementById('endereco');
+        // var bairro = document.getElementById('bairro');
 
-        var cidade = document.getElementById('cidade');
-        var cep = document.getElementById('cep');
-        var telefone_residencial = document.getElementById('telefone_residencial');
-        var telefone_recado = document.getElementById('telefone_recado');
-        var celular = document.getElementById('celular');
-        var email = document.getElementById('email');
+        // var cidade = document.getElementById('cidade');
+        // var cep = document.getElementById('cep');
+        // var telefone_residencial = document.getElementById('telefone_residencial');
+        // var telefone_recado = document.getElementById('telefone_recado');
+        // var celular = document.getElementById('celular');
+        // var email = document.getElementById('email');
 
         function cadastrar() {
-            validarCamposDoCadastro();
-        }
-
-        function validarCamposDoCadastro() {
-
             btnEnviar.click();
         }
+
+        // function validarCamposDoCadastro() {
+
+        //     btnEnviar.click();
+        // }
     </script>
 </body>
 

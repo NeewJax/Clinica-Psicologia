@@ -30,6 +30,17 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .no-link-style {
+            text-decoration: none;
+            color: white;
+        }
+
+        .no-link-style:hover {
+            color: white;
+            cursor: inherit;
+        }
+    </style>
 </head>
 
 <body>
@@ -442,6 +453,7 @@
                     <h5 class="text-light mb-4">Endereço</h5>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Rua Grande, 1455 - Diamante</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(98) 3214-6455</p>
+                    <p class="mb-2">🧠<i class="fa-thin fa-paperclip"></i><a href="login.php" class="no-link-style">Boa consulta</a></p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
