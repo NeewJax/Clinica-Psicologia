@@ -56,7 +56,7 @@ if (isset($_POST['enviar'])) {
     <style>
         body {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
-            background-color: #696bfd;
+            background-color:#4169E1;
             margin: 0;
             padding: 0;
         }
@@ -273,24 +273,16 @@ if (isset($_POST['enviar'])) {
         }
 
 
-        /* Estilizando a tag <nav> */
         nav {
             background-color: #ffffff;
-            /* Azul fraco */
-            color: #ffffff;
-            /* Branco para o texto */
-            padding: 20px;
-            /* Espaçamento interno superior e inferior */
-            max-height: 30%;
-            /* Altura máxima da nav */
+            color: black;
+            padding: 10%;
+            max-height: 50%;
         }
 
-        /* Estilizando a imagem (logotipo) */
         #estacio {
-            width: 60%;
-            /* Largura da imagem */
-            max-height: 100%;
-            /* Altura máxima da imagem */
+            width: 50%;
+            max-height: 90%;
             cursor: pointer;
         }
     </style>
