@@ -10,7 +10,7 @@ include('../db/conexao.php');
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Sintracema | ADMIN</title>
+  <title>CLÍNICA | ADMIN</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -127,23 +127,21 @@ include('../db/conexao.php');
               <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li class="active"><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
+              <li class="active"><a href="../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
             </ul>
             <ul class="treeview-menu">
-              <li class=""><a href="logout.php"><i class="fa fa-dashboard"></i> Voltar</a></li>
+              <li class=""><a href="../index.php"><i class="fa fa-dashboard"></i> Voltar</a></li>
             </ul>
           </li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-gears"></i>
-              <span>Gerenciar</span>
+              <span>Consultas</span>
               <span class="label label-primary pull-right">4</span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="pages/layout/afiliados.php"><i class="fa fa-plus-square"></i> Afiliados Cadastrados</a></li>
-              <li><a href="pages/layout/afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
-              <li><a href="pages/layout/noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
-              <li><a href="pages/layout/videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li>
+              <li><a href="pages/layout/consultasFuturas.php"><i class="fa fa-plus-square"></i> Futuras Consultas</a></li>
+              
             </ul>
           </li><!--
             <li>

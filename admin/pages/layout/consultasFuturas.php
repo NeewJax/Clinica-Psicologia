@@ -1,6 +1,7 @@
 <?php
-    include('../../protect.php');
+    //include('../../protect.php');
     include('../../../db/conexao.php');
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +9,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SINTRACEMA | Afiliados Cadastrados</title>
+    <title>CLÍNICA | ADMIN</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -55,7 +56,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="../../dist/img/user.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs"><?php echo $_SESSION['nome']; ?></span>
+                  <span class="hidden-xs"><?php //echo $_SESSION['nome']; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -114,10 +115,10 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="../../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
               </ul>
               <ul class="treeview-menu">
-              <li class=""><a href="../../../index.php" target="_blank"><i class="fa fa-dashboard"></i> Voltar</a></li>
+              <li class=""><a href="../../../index.php"><i class="fa fa-dashboard"></i> Voltar</a></li>
             </ul>
             </li>
             <li class="treeview active">
@@ -127,10 +128,10 @@
                 <span class="label label-primary pull-right">4</span>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="afiliados.php"><i class="fa fa-plus-square"></i> Afiliados Cadastrados</a></li>
-                <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
+                <li class="active"><a href="consultasFuturas.php"fa fa-plus-square"></i> Consultas Futuras</a></li>
+                <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
-                <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li>
+                <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
               </ul>
             </li><!--
         </section>
@@ -147,7 +148,7 @@
             SINDICATO SINTRACEMA
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="../../../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Gerenciar</a></li>
             <li class="active">Afiliados cadastrados</li>
           </ol>
@@ -191,21 +192,22 @@
       <thead class="table-dark">
         <tr>
           <th scope="col">Nome</th>
-          <th scope="col">E-mail</th>
+          <th scope="col">CPF</th>
           <th scope="col">Telefone</th>
           <th scope="col">Ação</th>
         </tr>
       </thead>
       <tbody>
         <?php
-            $sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
+            //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
+            $sql = "SELECT * FROM tbl_cadastro";
             $result = mysqli_query($mysqli, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
         ?>
             <tr>
                 <td><?php echo $row["nome"] ?></td>
-                <td><?php echo $row["email"] ?></td>
-                <td><?php echo $row["fone"] ?></td>
+                <td><?php echo $row["cpf"] ?></td>
+                <td><?php echo $row["telefone_residencial"] ?></td>
                 <td>
                 <a href="edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
                 <a href="delete.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>

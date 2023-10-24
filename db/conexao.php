@@ -1,24 +1,17 @@
-
 <?php
-// CONFIGURAÇÕES GERAIS
-$servidor="localhost";
-$usuario="root";
-$senha="";
-$banco="db_psicologia";
-//ti1234
+    $host = 'localhost';
+    $usuario = 'root';
+    $senha = '';
+    $database = 'db_psicologia';
 
-// CONEXÃO
-try {
-    $pdo = new PDO("mysql:host=$servidor;dbname=$banco;charset=utf8", $usuario, $senha);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $erro) {
-    // Registre o erro em um arquivo de log ou sistema de monitoramento
-    error_log("Erro na conexão com o banco: " . $erro->getMessage(), 0);
-    echo "Ocorreu um erro ao se conectar com o banco de dados.";
-}
+    $mysqli = new mysqli($host, $usuario, $senha, $database);
+
+    if ($mysqli->error) {
+        die("Falha ao conectar no banco de dados: " . $mysqli->error);
+    }
 
 
 
-date_default_timezone_set ("America/Sao_Paulo");
+    date_default_timezone_set("America/Sao_Paulo");
 
 ?>
