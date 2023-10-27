@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Out-2023 às 00:21
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.2.0
+-- Tempo de geração: 27/10/2023 às 04:57
+-- Versão do servidor: 10.4.28-MariaDB
+-- Versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_cadastro`
+-- Estrutura para tabela `tbl_cadastro`
 --
 
 CREATE TABLE `tbl_cadastro` (
@@ -53,18 +53,18 @@ CREATE TABLE `tbl_cadastro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `tbl_cadastro`
+-- Despejando dados para a tabela `tbl_cadastro`
 --
 
 INSERT INTO `tbl_cadastro` (`id`, `nome`, `sexo`, `idade`, `nascimento`, `localidade`, `escolaridade`, `profissao`, `renda_familiar`, `rg`, `cpf`, `estado_civil`, `composicao_familiar`, `mora_com`, `endereco`, `bairro`, `cidade`, `cep`, `telefone_residencial`, `telefone_recado`, `celular`, `email`) VALUES
 (1, 'wilson pedro', 'masculino', 20, '1988-10-10', 'brasileiro', 'Superior', 'Estágio', 1000000000, 23123123, 12312312, 'solteiro', 'pais, avós, irmãos', 'pais', 'Rua das Goiabas', 'Bairro da Luz', 'São Lucas', 123443, 123213123, 123432432, 768768768, 'wilson@gmail.com'),
-(3, 'pedro', 'masclino', 33, '1990-10-03', 'brasileiro', 'Superior', 'Astronauta', 1000000, 2423423, 33423525, 'casado', 'esposa, filhos', 'esposa, filhos', 'Rua da Luz', 'Bairro das Goiabas', 'São Luan', 5674654, 434324354, 654635, 234235, 'pedro@gmail.com'),
-(4, 'Gabriel Bruno', 'Maculino', 60, '1957-10-04', 'são luís', 'Doutorado', 'Fiscal de Marte', 2147483647, 2147483647, 2147483647, 'Casado', 'Esposa', 'Esposa', 'Rua das Maças', 'Barro dos Limões', 'São Luís', 90900343, 78564564, 45436224, 2147483647, 'gabrielbruno@gmail.com');
+(3, 'pedro', 'masculino', 33, '1990-10-03', 'brasileiro', 'Superior', 'Astronauta', 1000000, 2423423, 33423525, 'casado', 'esposa, filhos', 'esposa, filhos', 'Rua da Luz', 'Bairro das Goiabas', 'São Luan', 5674654, 434324354, 654635, 234235, 'pedro@gmail.com'),
+(4, 'Gabriel Bruno', 'Masculino', 60, '1957-10-04', 'são luís', 'Doutorado', 'Fiscal de Marte', 2147483647, 2147483647, 2147483647, 'Casado', 'Esposa', 'Esposa', 'Rua das Maças', 'Barro dos Limões', 'São Luís', 90900343, 78564564, 45436224, 2147483647, 'gabrielbruno@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tbl_cadastro_menor`
+-- Estrutura para tabela `tbl_cadastro_menor`
 --
 
 CREATE TABLE `tbl_cadastro_menor` (
@@ -77,43 +77,76 @@ CREATE TABLE `tbl_cadastro_menor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `tbl_cadastro_menor`
+-- Despejando dados para a tabela `tbl_cadastro_menor`
 --
 
 INSERT INTO `tbl_cadastro_menor` (`id`, `nome_do_responsavel`, `parentesco`, `rg`, `celular`, `cpf`) VALUES
 (1, 'João Lucas', 'Primo', 123123, 345345, 567567);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `users`
+--
+
+INSERT INTO `users` (`id`, `nome`, `email`, `senha`, `date`) VALUES
+(1, 'admin', 'admin@gmail.com', '$2y$10$Z3w1Yd9AiDlTUIgSa.rT5eQb.4Brv3pi6f41.gaiVBOSy7zqElSau', '2023-10-27 01:05:17');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `tbl_cadastro`
+-- Índices de tabela `tbl_cadastro`
 --
 ALTER TABLE `tbl_cadastro`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `tbl_cadastro_menor`
+-- Índices de tabela `tbl_cadastro_menor`
 --
 ALTER TABLE `tbl_cadastro_menor`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- Índices de tabela `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `tbl_cadastro`
 --
 ALTER TABLE `tbl_cadastro`
-  MODIFY `id` bigint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_cadastro_menor`
 --
 ALTER TABLE `tbl_cadastro_menor`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
