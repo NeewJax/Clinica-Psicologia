@@ -1,5 +1,15 @@
 <?php
 include('db/conexao.php');
+$host = 'localhost';
+$dbname = 'db_psicologia';
+$username = 'root';
+$password = '';
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+} catch (PDOException $e) {
+    die("Error: " . $e->getMessage());
+}
 
 if (isset($_POST['enviar'])) {
     $nome = $_POST['nome'];
@@ -38,6 +48,9 @@ if (isset($_POST['enviar'])) {
     header('Location: cadastro-sucesso.php');
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">

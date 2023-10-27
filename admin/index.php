@@ -1,7 +1,7 @@
 <?php
-
-include('../db/conexao.php');
-
+  include('../db/conexao.php');
+  include('protect.php');
+  include 'contador.php';
 ?>
 
 <!DOCTYPE html>
@@ -54,9 +54,9 @@ include('../db/conexao.php');
       <!-- Logo -->
       <a href="index.php" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>SC</b></span>
+        <span class="logo-mini"><b>CL</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>SINTRA</b>CEMA</span>
+        <span class="logo-lg"><b>CLÍ</b>NICA</span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top" role="navigation">
@@ -121,22 +121,22 @@ include('../db/conexao.php');
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-          <li class="header">SINTRACEMA MENU</li>
+          <li class="header">CLÍNICA MENU</li>
           <li class="active treeview">
             <a href="#">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-              <li class="active"><a href="../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
+              <li class="active"><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
             </ul>
             <ul class="treeview-menu">
-              <li class=""><a href="../index.php"><i class="fa fa-dashboard"></i> Voltar</a></li>
+              <li class=""><a href="logout.php"><i class="fa fa-dashboard"></i> Sair</a></li>
             </ul>
           </li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-gears"></i>
-              <span>Consultas</span>
+              <span>Gerenciar</span>
               <span class="label label-primary pull-right">4</span>
             </a>
             <ul class="treeview-menu">
@@ -164,18 +164,20 @@ include('../db/conexao.php');
       <section class="content-header">
         <h1>
           Painel admin
-          <small><?php
-                  $agora = getdate();
-                  $hora = $agora['hours'];
+          <small>
+            <?php
+              $agora = getdate();
+              $hora = $agora['hours'];
 
-                  if ($hora >= 5 && $hora < 12) {
-                    echo "Bom dia!";
-                  } elseif ($hora >= 12 && $hora < 18) {
-                    echo "Boa tarde!";
-                  } else {
-                    echo "Boa noite!";
-                  }
-                  ?></small>
+              if ($hora >= 5 && $hora < 12) {
+                echo "Bom dia!";
+              } elseif ($hora >= 12 && $hora < 18) {
+                echo "Boa tarde!";
+              } else {
+                echo "Boa noite!";
+              }
+            ?>
+            </small>
         </h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -285,7 +287,7 @@ include('../db/conexao.php');
                       <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 19:02</small>
                       Jaax
                     </a>
-                    Seja bem vindo(a) ao painel administrativo SINDICATO - SINTRACEMA
+                    Seja bem vindo(a) ao painel administrativo da clinica de psicologia
                   </p>
                 </div><!-- /.item -->
                 <!-- chat item -->
@@ -300,7 +302,7 @@ include('../db/conexao.php');
       </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
     <footer class="main-footer">
-      <strong>SINDICATO - SINTRACEMA <br> Equipe de desenvolvimento da Estácio de Sá | Laboratório de Transformação Digital.</strong>
+      <strong>CLÍNICA DE PSICOLOGIA <br> Equipe de desenvolvimento da Estácio de Sá | Laboratório de Transformação Digital.</strong>
     </footer>
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>

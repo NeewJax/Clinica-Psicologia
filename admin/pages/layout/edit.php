@@ -8,45 +8,48 @@ $id = $_GET["id"];
 
 if (isset($_POST["submit"])) {
   $nome = $_POST['nome'];
-  $email = $_POST['email'];
-
-  //ENDEREÇO
-  $id_endereco = $_POST['id_endereco'];
-  $estado = $_POST['estado'];
-  $uf = $_POST['UF'];
-  $cidade = $_POST['cidade'];
+  $sexo = $_POST['sexo'];
+  $idade = $_POST['idade'];
+  $nascimento = $_POST['nascimento'];
+  $localidade = $_POST['localidade'];
+  
+  $escolaridade = $_POST['escolaridade'];
+  $profissao = $_POST['profissao'];
+  $renda_familiar = $_POST['renda_familiar'];
+  $rg = $_POST['rg'];
+  $cpf = $_POST['cpf'];
+  
+  $estado_civil = $_POST['estado_civil'];
+  $composicao_familiar = $_POST['composicao_familiar'];
+  $mora_com = $_POST['mora_com'];
+  $endereco = $_POST['endereco'];
   $bairro = $_POST['bairro'];
+  
+  $cidade = $_POST['cidade'];
+  $cep = $_POST['cep'];
+  $telefone_residencial = $_POST['telefone_residencial'];
+  $telefone_recado = $_POST['telefone_recado'];
+  $celular = $_POST['celular'];
+  $email = $_POST['email'];
+  
+  // Atualizar os dados na tabela tbl_cadastro
+  $sql = "UPDATE tbl_cadastro SET nome = '$nome', sexo = '$sexo', idade = '$idade', nascimento = '$nascimento', localidade = '$localidade', escolaridade = '$escolaridade', profissao = '$profissao', renda_familiar = '$renda_familiar', rg = '$rg', cpf = '$cpf', estado_civil = '$estado_civil', composicao_familiar = '$composicao_familiar', mora_com = '$mora_com', endereco = '$endereco', bairro = '$bairro', cidade = '$cidade', cep = '$cep', telefone_residencial = '$telefone_residencial', telefone_recado = '$telefone_recado', celular = '$celular', email = '$email' WHERE id = $id";
+  
+  $result = mysqli_query($mysqli, $sql);
+  
+  // Atualizar os dados na tabela endereco
+  $estado = $_POST['estado'];
+  $uf = $_POST['uf'];
   $rua = $_POST['rua'];
   $numero_casa = $_POST['numero_casa'];
-
-  $nacionalidade = $_POST['nacionalidade'];
-  $naturalidade = $_POST['naturalidade'];
-  $escolaridade = $_POST['escolaridade'];
-  $cursos = $_POST['curso'];
-  $estado_civil = $_POST['estado_civil'];
-  $nascimento = $_POST['nascimento'];
-  $fone = $_POST['fone'];
-  $cpf = $_POST['cpf'];
-  $rg = $_POST['rg'];
-  $nome_pai = $_POST['nome_pai'];
-  $nome_mae = $_POST['nome_mae'];
-  $nome_conjuge = $_POST['nome_conjuge'];
-  $nome_filhos = $_POST['nome_filhos'];
-  $assinatura_socio = $_POST['assinatura_socio'];
-  $numero_matricula = $_POST['matricula'];
-
-
-  // Atualizar os dados na tabela
-  $sql = "UPDATE filiais SET nome = '$nome', email = '$email', nacionalidade = '$nacionalidade', naturalidade = '$naturalidade', escolaridade = '$escolaridade', cursos = '$cursos', estado_civil = '$estado_civil', nascimento = '$nascimento', fone = '$fone', cpf = '$cpf', rg = '$rg', nome_pai = '$nome_pai', nome_mae = '$nome_mae', nome_conjuge = '$nome_conjuge', nome_filhos = '$nome_filhos', assinatura_socio = '$assinatura_socio', numero_matricula = '$numero_matricula' WHERE id = $id";
-
-  $result = mysqli_query($mysqli, $sql);
-
+  
   $sql_endereco = "UPDATE endereco SET estado = '$estado', uf = '$uf', cidade = '$cidade', bairro = '$bairro', rua = '$rua', numero_casa = '$numero_casa' WHERE id_endereco = $id_endereco";
-
+  
   $result_endereco = mysqli_query($mysqli, $sql_endereco);
+  
 
   if ($result && $result_endereco) {
-    header("Location: afiliados.php?msg=Atualização realizada com sucesso");
+    header("Location: consultasFuturas.php?msg=Atualização realizada com sucesso");
     exit;
   } else {
     echo "Falha: " . mysqli_error($mysqli);
@@ -63,7 +66,7 @@ if (isset($_POST["submit"])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SINTRACEMA | Editar Afiliados</title>
+  <title>CLINICA | EDITAR CONSULTA</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -120,9 +123,9 @@ if (isset($_POST["submit"])) {
       <!-- Logo -->
       <a href="../../index.php" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>SC</b></span>
+        <span class="logo-mini"><b>CL</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>SINTRA</b>CEMA</span>
+        <span class="logo-lg"><b>CLI</b>NICA</span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top" role="navigation">
@@ -193,7 +196,7 @@ if (isset($_POST["submit"])) {
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-          <li class="header">SINTRACEMA MENU</li>
+          <li class="header">CLINICA MENU</li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
@@ -209,10 +212,10 @@ if (isset($_POST["submit"])) {
               <span class="label label-primary pull-right">4</span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="afiliados.php"><i class="fa fa-plus-square"></i> Afiliados Cadastrados</a></li>
-              <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
-              <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
-              <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li>
+                <li class="active"><a href="consultasFuturas.php"><i class="fa fa-plus-square"></i> Futuras Consultas</a></li>
+                <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
+                <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
+                <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
             </ul>
           </li><!--
             <li>
@@ -277,7 +280,7 @@ if (isset($_POST["submit"])) {
               </div>
               <br>
               <?php
-              $sql = "SELECT * FROM filiais 
+              $sql = "SELECT * FROM tbl_cadastro 
               JOIN endereco ON filiais.id_endereco = endereco.id_endereco 
               WHERE id = $id";
               $result = mysqli_query($mysqli, $sql);

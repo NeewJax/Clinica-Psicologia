@@ -1,7 +1,3 @@
-<?php
-session_start();
-session_destroy();
-?>
 <!DOCTYPE html>
 <html lang="PT-BR">
 
@@ -116,7 +112,7 @@ session_destroy();
                         <!-- <a href="appointment.php" class="dropdown-item">Appointment</a> -->
                         <a href="#relatos" class="dropdown-item">Relátos</a>
                         <!-- <a href="404.php" class="dropdown-item">404 Page</a> -->
-                        <a href="#contato" class="dropdown-item">contato</a>
+                        <a href="#contato" class="dropdown-item">Contato</a>
                     </div>
                 </div>
                 <a href="login.php" class="nav-item nav-link">Login</a>
@@ -129,7 +125,7 @@ session_destroy();
 
 
     <!-- Header Start -->
-    <div class="container-fluid header bg-primary p-0 mb-5" id="nossa_clinica">
+    <div class="container-fluid header bg-primary p-0 mb-5">
         <div class="row g-0 align-items-center flex-column-reverse flex-lg-row">
             <div class="col-lg-6 p-5 wow fadeIn" data-wow-delay="0.1s">
                 <h1 class="display-4 text-white mb-5">Transformando Vidas, Cultivando Saúde Mental.</h1>
@@ -193,7 +189,7 @@ session_destroy();
 
 
     <!-- Service Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-5" id="nossa_clinica">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <p class="d-inline-block border rounded-pill py-1 px-4">Serviços</p>
@@ -267,9 +263,9 @@ session_destroy();
 
 
     <!-- Feature Start -->
-    <div class="container-fluid bg-primary overflow-hidden my-5 px-lg-0" id="nossa_clinica">
+    <div class="container-fluid bg-primary overflow-hidden my-5 px-lg-0">
         <div class="container feature px-lg-0">
-            <div class="row g-0 mx-lg-0">
+            <div class="row g-0 mx-lg-0" id="nossa_clinica">
                 <div class="col-lg-6 feature-text py-5 wow fadeIn" data-wow-delay="0.1s">
                     <div class="p-lg-5 ps-lg-0">
                         <p class="d-inline-block border rounded-pill text-light py-1 px-4">Benefícios</p>
@@ -348,7 +344,7 @@ session_destroy();
                             <img class="img-fluid" src="img/team-1.jpg" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
-                            <h5>Doctor Name</h5>
+                            <h5>Nome do professor</h5>
                             <p class="text-primary">Department</p>
                             <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
@@ -364,7 +360,7 @@ session_destroy();
                             <img class="img-fluid" src="img/team-2.jpg" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
-                            <h5>Doctor Name</h5>
+                            <h5>Nome do professor</h5>
                             <p class="text-primary">Department</p>
                             <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
@@ -380,7 +376,7 @@ session_destroy();
                             <img class="img-fluid" src="img/team-3.jpg" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
-                            <h5>Doctor Name</h5>
+                            <h5>Nome do professor</h5>
                             <p class="text-primary">Department</p>
                             <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
@@ -396,7 +392,7 @@ session_destroy();
                             <img class="img-fluid" src="img/team-4.jpg" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
-                            <h5>Doctor Name</h5>
+                            <h5>Nome do professor</h5>
                             <p class="text-primary">Department</p>
                             <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
@@ -416,31 +412,31 @@ session_destroy();
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <p class="d-inline-block border rounded-pill py-1 px-4">Relátos</p>
-                <h1>What Say Our Patients!</h1>
+                <h1>Relátos de pacientes!</h1>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <div class="testimonial-item text-center">
                     <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
-                        <h5 class="mb-1">Patient Name</h5>
-                        <span class="fst-italic">Profession</span>
+                        <p>Breve descrição do paciente...</p>
+                        <h5 class="mb-1">Nome do paciente</h5>
+                        <span class="fst-italic">Profissão</span>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
                     <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-2.jpg" style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
-                        <h5 class="mb-1">Patient Name</h5>
-                        <span class="fst-italic">Profession</span>
+                        <p>Breve descrição do paciente...</p>
+                        <h5 class="mb-1">Nome do paciente</h5>
+                        <span class="fst-italic">Profissão</span>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
                     <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-3.jpg" style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
-                        <h5 class="mb-1">Patient Name</h5>
-                        <span class="fst-italic">Profession</span>
+                        <p>Breve descrição do paciente...</p>
+                        <h5 class="mb-1">Nome do paciente</h5>
+                        <span class="fst-italic">Profissão</span>
                     </div>
                 </div>
             </div>
@@ -457,7 +453,7 @@ session_destroy();
                     <h5 class="text-light mb-4">Endereço</h5>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Rua Grande, 1455 - Diamante</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(98) 3214-6455</p>
-                    <p class="mb-2">🧠<i class="fa-thin fa-paperclip"></i><a href="login.php" class="no-link-style">Boa consulta</a></p>
+                    <p class="mb-2">🧠 <a href="login.php" class="no-link-style"> Boa consulta</a></p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
@@ -468,9 +464,9 @@ session_destroy();
                 
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Quick Links</h5>
-                    <a class="btn btn-link" href="sobre.php">Sobre nós</a>
-                    <a class="btn btn-link" href="contato.php">Nosso contato</a>
-                    <a class="btn btn-link" href="professores.php">Professores</a>
+                    <a class="btn btn-link" href="#sobre">Sobre nós</a>
+                    <a class="btn btn-link" href="#contato">Nosso contato</a>
+                    <a class="btn btn-link" href="#nossos_professores">Professores</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Newsletter</h5>

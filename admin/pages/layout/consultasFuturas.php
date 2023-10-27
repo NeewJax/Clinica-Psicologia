@@ -1,7 +1,8 @@
 <?php
-    //include('../../protect.php');
+    include('../../protect.php');
     include('../../../db/conexao.php');
-    session_start();
+    include('../../contador.php');
+    
 ?>
 
 <!DOCTYPE html>
@@ -36,9 +37,9 @@
         <!-- Logo -->
         <a href="../../index.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>SC</b></span>
+          <span class="logo-mini"><b>CL</b></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>SINTRA</b>CEMA</span>
+          <span class="logo-lg"><b>CLÍ</b>NICA</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -56,7 +57,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="../../dist/img/user.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs"><?php //echo $_SESSION['nome']; ?></span>
+                  <span class="hidden-xs"><?php echo $_SESSION['nome']; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -109,26 +110,26 @@
           <!-- /.search form -->
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">SINTRACEMA MENU</li>
+            <li class="header">CLINICA MENU</li>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="../../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
               </ul>
               <ul class="treeview-menu">
-              <li class=""><a href="../../../index.php"><i class="fa fa-dashboard"></i> Voltar</a></li>
+              <li class=""><a href="../../logout.php"><i class="fa fa-dashboard"></i> Sair</a></li>
             </ul>
             </li>
             <li class="treeview active">
               <a href="#">
                 <i class="fa fa-gears"></i>
                 <span>Gerenciar</span>
-                <span class="label label-primary pull-right">4</span>
+                <span class="label label-primary pull-right">1</span>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="consultasFuturas.php"fa fa-plus-square"></i> Consultas Futuras</a></li>
+                <li class="active"><a href="consultasFuturas.php"><i class="fa fa-plus-square"></i> Futuras Consultas</a></li>
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
@@ -145,12 +146,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            SINDICATO SINTRACEMA
+            CLINICA PSICOLOGIA
           </h1>
           <ol class="breadcrumb">
-            <li><a href="../../../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="../../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Gerenciar</a></li>
-            <li class="active">Afiliados cadastrados</li>
+            <li class="active">Futuras Consultas</li>
           </ol>
         </section>
 
@@ -176,7 +177,7 @@
                     echo "<h5 class='box-title' id='msg'>$mensagem</h5><br><br>";
                 }
             ?>
-              <h3 class="box-title">AFILIADOS</h3>
+              <h3 class="box-title">CONSULTAS</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
               </div>
@@ -210,7 +211,7 @@
                 <td><?php echo $row["telefone_residencial"] ?></td>
                 <td>
                 <a href="edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
-                <a href="delete.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
+                <a href="delete-consulta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
                 </td>
             </tr>
         <?php
@@ -232,7 +233,7 @@
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-        <strong>SINDICATO - SINTRACEMA <br> Equipe de desenvolvimento da Estácio de Sá | Laboratório de Transformação Digital.</strong>
+        <strong>CLÍNICA DE PSICOLOGIA <br> Equipe de desenvolvimento da Estácio de Sá | Laboratório de Transformação Digital.</strong>
       </footer>
     </div><!-- ./wrapper -->
 
