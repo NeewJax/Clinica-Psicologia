@@ -6,7 +6,7 @@
     <title>Clínica de psicologia - Estácio de Sá</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="Bem vindos a clínica de psicologia da Estácio de Sá" name="description">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
