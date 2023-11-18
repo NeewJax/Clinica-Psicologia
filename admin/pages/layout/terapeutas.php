@@ -126,10 +126,11 @@
               <a href="#">
                 <i class="fa fa-gears"></i>
                 <span>Gerenciar</span>
-                <span class="label label-primary pull-right">1</span>
+                <span class="label label-primary pull-right">2</span>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="consultasFuturas.php"><i class="fa fa-plus-square"></i> Futuras Consultas</a></li>
+                <li><a href="consultasFuturas.php"><i class="fa fa-plus-square"></i> Futuras Consultas</a></li>
+                <li class="active"><a href="pages/layout/terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->

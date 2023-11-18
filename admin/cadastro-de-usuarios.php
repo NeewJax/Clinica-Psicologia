@@ -23,11 +23,11 @@
     <body>
         Cadastramento de usuarios
         <form action="" method="POST">
-            <input type="text" placeholder="nome" name="nome"><br>
+            <input type="text" placeholder="nome" required name="nome"><br>
             <br>
-            <input type="email" placeholder="e-mail" name="email"><br>
+            <input type="email" placeholder="e-mail" required name="email"><br>
             <br>
-            <input type="password" placeholder="password" name="senha"><br>
+            <input type="password" placeholder="password" required name="senha"><br>
             <br>
             <button type="submit">Cadastrar usuario</button> 
         </form>

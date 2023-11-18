@@ -1,6 +1,8 @@
 <?php
     include('../../protect.php');
     include('../../../db/conexao.php');
+    include('../../contador.php');
+    
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +10,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SINTRACEMA | Notícias</title>
+    <title>CLÍNICA | ADMIN</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -35,9 +37,9 @@
         <!-- Logo -->
         <a href="../../index.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>SC</b></span>
+          <span class="logo-mini"><b>CL</b></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>SINTRA</b>CEMA</span>
+          <span class="logo-lg"><b>CLÍ</b>NICA</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -84,74 +86,58 @@
 
       <!-- Left side column. contains the sidebar -->
       <aside class="main-sidebar">
-      <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="../../dist/img/user.jpg" class="img-circle" alt="User Image">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="../../dist/img/user.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+              <p><?php echo $_SESSION['nome']; ?></p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
           </div>
-          <div class="pull-left info">
-            <p><?php echo $_SESSION['nome']; ?></p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-          </div>
-        </div>
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-          <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Search...">
-            <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-            </span>
-          </div>
-        </form>
-        <!-- /.search form -->
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu">
-          <li class="header">SINTRACEMA MENU</li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-            </ul>
-            <ul class="treeview-menu">
-              <li class=""><a href="../../../index.php" target="_blank"><i class="fa fa-dashboard"></i> Voltar</a></li>
-            </ul>
-          </li>
-          <li class="treeview active">
-            <a href="#">
-              <i class="fa fa-gears"></i>
-              <span>Gerenciar</span>
-              <span class="label label-primary pull-right">4</span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="afiliados.php"><i class="fa fa-plus-square"></i> Afiliados Cadastrados</a></li>
-              <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
-              <li class="active"><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
-              <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li>
-            </ul>
-          </li><!--
-            <li>
-              <a href="../widgets.html">
-                <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
-              </a>
-            </li>
+          <!-- search form -->
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </form>
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">CLINICA MENU</li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-dollar"></i>
-                <span>DarkShop</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="../layout/darkshop.php"><i class="fa fa-cart-plus"></i> Store</a></li>
+                <li><a href="../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
               </ul>
+              <ul class="treeview-menu">
+              <li class=""><a href="../../logout.php"><i class="fa fa-dashboard"></i> Sair</a></li>
+            </ul>
             </li>
-           -->
-      </section>
-      <!-- /.sidebar -->
-    </aside>
+            <li class="treeview active">
+              <a href="#">
+                <i class="fa fa-gears"></i>
+                <span>Gerenciar</span>
+                <span class="label label-primary pull-right">1</span>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
+                <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
+                <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
+                <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
+              </ul>
+            </li><!--
+        </section>
+        <!-- /.sidebar -->
+      </aside>
 
       <!-- =============================================== -->
 
@@ -160,12 +146,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            SINDICATO SINTRACEMA
+            CLINICA PSICOLOGIA
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="../../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Gerenciar</a></li>
-            <li class="active">Visulizar Notícias</li>
+            <li class="active">Pacientes</li>
           </ol>
         </section>
 
@@ -191,13 +177,10 @@
                     echo "<h5 class='box-title' id='msg'>$mensagem</h5><br><br>";
                 }
             ?>
-              <h3 class="box-title">Notícias</h3>
+              <h3 class="box-title">PACIENTES</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
               </div>
-              <br><br>
-              <a href="cadastro-de-noticias.php"><button class="btn btn-block btn-primary">Adicionar notícia</button></a>
-
             </div>
             <div class="box-body">
 
@@ -209,25 +192,26 @@
     <table class="table table-hover text-center">
       <thead class="table-dark">
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Titulo</th>
-          <th scope="col">Descrição</th>
+          <th scope="col">Nome</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Telefone</th>
           <th scope="col">Ação</th>
         </tr>
       </thead>
       <tbody>
         <?php
-            $sql = "SELECT * FROM noticias";
+            //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
+            $sql = "SELECT * FROM tbl_cadastro";
             $result = mysqli_query($mysqli, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
         ?>
             <tr>
-                <td><?php echo $row["id"] ?></td>
-                <td><?php echo $row["titulo"] ?></td>
-                <td><?php echo $row["descricao"] ?></td>
+                <td><?php echo $row["nome"] ?></td>
+                <td><?php echo $row["cpf"] ?></td>
+                <td><?php echo $row["telefone_residencial"] ?></td>
                 <td>
-                <a href="edit-noticias.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
-                <a href="delete-noticias.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
+                <a href="edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
+                <a href="delete-consulta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
                 </td>
             </tr>
         <?php
@@ -249,7 +233,7 @@
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-        <strong>SINDICATO - SINTRACEMA <br> Equipe de desenvolvimento da Estácio de Sá | Laboratório de Transformação Digital.</strong>
+        <strong>CLÍNICA DE PSICOLOGIA <br> Equipe de desenvolvimento da Estácio de Sá | Laboratório de Transformação Digital.</strong>
       </footer>
     </div><!-- ./wrapper -->
 
