@@ -8,6 +8,6 @@ include('../../../db/conexao.php');
     if ($result) {
     header("Location: consultasFuturas.php?msg=Consulta deletada com sucesso!");
     } else {
-    echo "Failed: " . mysqli_error($conn);
+        echo "Failed: " . mysqli_error($conn);
     }
 ?>
