@@ -140,7 +140,7 @@
               <span class="label label-primary pull-right">2</span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="pages/layout/consultasFuturas.php"><i class="fa fa-plus-square"></i> Futuras Consultas</a></li>
+              <li><a href="pages/layout/pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
               <li><a href="pages/layout/terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
               
             </ul>

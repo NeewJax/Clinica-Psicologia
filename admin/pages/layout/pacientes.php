@@ -126,11 +126,10 @@
               <a href="#">
                 <i class="fa fa-gears"></i>
                 <span>Gerenciar</span>
-                <span class="label label-primary pull-right">2</span>
+                <span class="label label-primary pull-right">1</span>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="consultasFuturas.php"><i class="fa fa-plus-square"></i> Futuras Consultas</a></li>
-                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
+                <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
@@ -152,7 +151,7 @@
           <ol class="breadcrumb">
             <li><a href="../../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Gerenciar</a></li>
-            <li class="active">Futuras Consultas</li>
+            <li class="active">Pacientes</li>
           </ol>
         </section>
 
@@ -178,7 +177,7 @@
                     echo "<h5 class='box-title' id='msg'>$mensagem</h5><br><br>";
                 }
             ?>
-              <h3 class="box-title">CONSULTAS</h3>
+              <h3 class="box-title">PACIENTES</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
               </div>

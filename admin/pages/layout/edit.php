@@ -7,55 +7,53 @@ include('../../../db/conexao.php');
 $id = $_GET["id"];
 
 if (isset($_POST["submit"])) {
-  $nome = $_POST['nome'];
-  $sexo = $_POST['sexo'];
-  $idade = $_POST['idade'];
-  $nascimento = $_POST['nascimento'];
-  $localidade = $_POST['localidade'];
-  
-  $escolaridade = $_POST['escolaridade'];
-  $profissao = $_POST['profissao'];
-  $renda_familiar = $_POST['renda_familiar'];
-  $rg = $_POST['rg'];
-  $cpf = $_POST['cpf'];
-  
-  $estado_civil = $_POST['estado_civil'];
-  $composicao_familiar = $_POST['composicao_familiar'];
-  $mora_com = $_POST['mora_com'];
-  $endereco = $_POST['endereco'];
-  $bairro = $_POST['bairro'];
-  
-  $cidade = $_POST['cidade'];
-  $cep = $_POST['cep'];
-  $telefone_residencial = $_POST['telefone_residencial'];
-  $telefone_recado = $_POST['telefone_recado'];
-  $celular = $_POST['celular'];
-  $email = $_POST['email'];
-  
-  // Atualizar os dados na tabela tbl_cadastro
+
+    $nome = $_POST['nome'];
+    $sexo = $_POST['sexo'];
+    $idade = $_POST['idade'];
+    $nascimento = $_POST['nascimento'];
+    $localidade = $_POST['localidade'];
+    $escolaridade = $_POST['escolaridade'];
+    $profissao = $_POST['profissao'];
+    $renda_familiar = $_POST['renda_familiar'];
+    $rg = $_POST['rg'];
+    $cpf = $_POST['cpf'];
+    $estado_civil = $_POST['estado_civil'];
+    $composicao_familiar = $_POST['composicao_familiar'];
+    $mora_com = $_POST['mora_com'];
+    $endereco = $_POST['endereco'];
+    $bairro = $_POST['bairro'];
+    $cidade = $_POST['cidade'];
+    $cep = $_POST['cep'];
+    $telefone_residencial = $_POST['telefone_residencial'];
+    $telefone_recado = $_POST['telefone_recado'];
+    $celular = $_POST['celular'];
+    $email = $_POST['email'];
+
+// Substituir os valores na query SQL
   $sql = "UPDATE tbl_cadastro SET nome = '$nome', sexo = '$sexo', idade = '$idade', nascimento = '$nascimento', localidade = '$localidade', escolaridade = '$escolaridade', profissao = '$profissao', renda_familiar = '$renda_familiar', rg = '$rg', cpf = '$cpf', estado_civil = '$estado_civil', composicao_familiar = '$composicao_familiar', mora_com = '$mora_com', endereco = '$endereco', bairro = '$bairro', cidade = '$cidade', cep = '$cep', telefone_residencial = '$telefone_residencial', telefone_recado = '$telefone_recado', celular = '$celular', email = '$email' WHERE id = $id";
   
   $result = mysqli_query($mysqli, $sql);
   
-  // Atualizar os dados na tabela endereco
-  $estado = $_POST['estado'];
-  $uf = $_POST['uf'];
-  $rua = $_POST['rua'];
-  $numero_casa = $_POST['numero_casa'];
+  // // Atualizar os dados na tabela endereco
+  // $estado = $_POST['estado'];
+  // $uf = $_POST['uf'];
+  // $rua = $_POST['rua'];
+  // $numero_casa = $_POST['numero_casa'];
   
-  $sql_endereco = "UPDATE endereco SET estado = '$estado', uf = '$uf', cidade = '$cidade', bairro = '$bairro', rua = '$rua', numero_casa = '$numero_casa' WHERE id_endereco = $id_endereco";
+  // $sql_endereco = "UPDATE endereco SET estado = '$estado', uf = '$uf', cidade = '$cidade', bairro = '$bairro', rua = '$rua', numero_casa = '$numero_casa' WHERE id_endereco = $id_endereco";
   
-  $result_endereco = mysqli_query($mysqli, $sql_endereco);
+  // $result_endereco = mysqli_query($mysqli, $sql_endereco);
   
 
-  if ($result && $result_endereco) {
-    header("Location: consultasFuturas.php?msg=Atualização realizada com sucesso");
-    exit;
-  } else {
-    echo "Falha: " . mysqli_error($mysqli);
-  }
+  // if ($result && $result_endereco) {
+  //   header("Location: pacientes.php?msg=Atualização realizada com sucesso");
+  //   exit;
+  // } else {
+  //   echo "Falha: " . mysqli_error($mysqli);
+  // }
 
-  mysqli_close($mysqli);
+  //mysqli_close($mysqli);
 }
 ?>
 
@@ -187,7 +185,7 @@ if (isset($_POST["submit"])) {
         <!-- search form -->
         <form action="#" method="get" class="sidebar-form">
           <div class="input-group">
-            <input type="text" name="q" class="form-control custom-input" placeholder="Search...">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
             <span class="input-group-btn">
               <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
             </span>
@@ -209,11 +207,10 @@ if (isset($_POST["submit"])) {
             <a href="#">
               <i class="fa fa-gears"></i>
               <span>Gerenciar</span>
-              <span class="label label-primary pull-right">2</span>
+              <span class="label label-primary pull-right">4</span>
             </a>
             <ul class="treeview-menu">
-                <li class="active"><a href="consultasFuturas.php"><i class="fa fa-plus-square"></i> Futuras Consultas</a></li>
-                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
+                <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
@@ -281,9 +278,7 @@ if (isset($_POST["submit"])) {
               </div>
               <br>
               <?php
-              $sql = "SELECT * FROM tbl_cadastro 
-              JOIN endereco ON filiais.id_endereco = endereco.id_endereco 
-              WHERE id = $id";
+              $sql = "SELECT * FROM tbl_cadastro WHERE id = $id";
               $result = mysqli_query($mysqli, $sql);
               $row = mysqli_fetch_assoc($result);
               ?>
@@ -302,90 +297,81 @@ if (isset($_POST["submit"])) {
                     <input type="text" class="form-control custom-input" name="nome" value="<?php echo $row['nome']; ?>">
 
 
-                    <label class="form-label">E-mail:</label>
-                    <input type="text" class="form-control custom-input custom-input" name="email" value="<?php echo $row['email']; ?>">
+                    <label class="form-label">Sexo:</label>
+                    <input type="text" class="form-control custom-input custom-input" name="sexo" value="<?php echo $row['sexo']; ?>">
 
 
-                    <label class="form-label">CPF:</label>
-                    <input type="text" class="form-control custom-input" name="cpf" value="<?php echo $row['cpf']; ?>">
+                    <label class="form-label">idade:</label>
+                    <input type="text" class="form-control custom-input" name="idade" value="<?php echo $row['idade']; ?>">
 
 
-                    <label class="form-label">Telefone:</label>
-                    <input type="text" class="form-control custom-input" name="fone" value="<?php echo $row['fone']; ?>">
+                    <label class="form-label">Nascimento:</label>
+                    <input type="date" class="form-control custom-input" name="nascimento" value="<?php echo $row['nascimento']; ?>">
 
 
-                    <label class="form-label">Nacionalidade:</label>
-                    <input type="text" class="form-control custom-input" name="nacionalidade" value="<?php echo $row['nacionalidade']; ?>">
-
-
-                    <label class="form-label">Naturalidade:</label>
-                    <input type="text" class="form-control custom-input" name="naturalidade" value="<?php echo $row['naturalidade']; ?>">
+                    <label class="form-label">Localidade:</label>
+                    <input type="text" class="form-control custom-input" name="localidade" value="<?php echo $row['localidade']; ?>">
 
 
                     <label class="form-label">Escolaridade:</label>
                     <input type="text" class="form-control custom-input" name="escolaridade" value="<?php echo $row['escolaridade']; ?>">
 
 
-                    <label class="form-label">Cursos:</label>
-                    <input type="text" class="form-control custom-input" name="curso" value="<?php echo $row['cursos']; ?>">
-
-                    <!-- ENDEREÇO -->
-                    <input type="text" class="id_oculto" name="id_endereco" value="<?php echo $row['id_endereco']; ?>">
-
-                    <label class="form-label">Estado:</label>
-                    <input type="text" class="form-control custom-input" name="estado" value="<?php echo $row['estado']; ?>">
-
-                    <label class="form-label">UF:</label>
-                    <input type="text" class="form-control custom-input" maxlength="2" name="UF" value="<?php echo $row['uf']; ?>">
-
-                    <label class="form-label">Cidade:</label>
-                    <input type="text" class="form-control custom-input" name="cidade" value="<?php echo $row['cidade']; ?>">
-
-                    <label class="form-label">Bairro:</label>
-                    <input type="text" class="form-control custom-input" name="bairro" value="<?php echo $row['bairro']; ?>">
-
-                    <label class="form-label">Rua:</label>
-                    <input type="text" class="form-control custom-input" name="rua" value="<?php echo $row['rua']; ?>">
-
-                    <label class="form-label">Número da Casa/Apartamento:</label>
-                    <input type="text" class="form-control custom-input" name="numero_casa" value="<?php echo $row['numero_casa']; ?>">
-                    <!-- FIM DOS CAMPOS ENDEREÇO -->
-
-                    <label class="form-label">Estado Cívil:</label>
-                    <input type="text" class="form-control custom-input" name="estado_civil" value="<?php echo $row['estado_civil']; ?>">
+                    <label class="form-label">Escolaridade:</label>
+                    <input type="text" class="form-control custom-input" name="escolaridade" value="<?php echo $row['escolaridade']; ?>">
 
 
-                    <label class="form-label">Nascimento:</label>
-                    <input type="text" class="form-control custom-input" name="nascimento" value="<?php echo $row['nascimento']; ?>">
+                    <label class="form-label">Profissão:</label>
+                    <input type="text" class="form-control custom-input" name="profissao" value="<?php echo $row['profissao']; ?>">
 
+                    <label class="form-label">Renda Familiar</label>
+                    <input type="text" class="id_oculto" name="renda_familiar" value="<?php echo $row['renda_familiar']; ?>">
 
                     <label class="form-label">RG:</label>
                     <input type="text" class="form-control custom-input" name="rg" value="<?php echo $row['rg']; ?>">
 
+                    <label class="form-label">CPF:</label>
+                    <input type="text" class="form-control custom-input" maxlength="2" name="cpf" value="<?php echo $row['cpf']; ?>">
 
-                    <label class="form-label">Nome do pai:</label>
-                    <input type="text" class="form-control custom-input" name="nome_pai" value="<?php echo $row['nome_pai']; ?>">
+                    <label class="form-label">Estado Civil:</label>
+                    <input type="text" class="form-control custom-input" name="estado_civil" value="<?php echo $row['estado_civil']; ?>">
+
+                    <label class="form-label">Composição Familiar:</label>
+                    <input type="text" class="form-control custom-input" name="composicao_familiar" value="<?php echo $row['composicao_familiar']; ?>">
+
+                    <label class="form-label">Mora com:</label>
+                    <input type="text" class="form-control custom-input" name="mora_com" value="<?php echo $row['mora_com']; ?>">
+
+                    <label class="form-label">Endereço:</label>
+                    <input type="text" class="form-control custom-input" name="endereco" value="<?php echo $row['endereco']; ?>">
+                    <!-- FIM DOS CAMPOS ENDEREÇO -->
+
+                    <label class="form-label">Bairro:</label>
+                    <input type="text" class="form-control custom-input" name="bairro" value="<?php echo $row['bairro']; ?>">
 
 
-                    <label class="form-label">Nome da mãe:</label>
-                    <input type="text" class="form-control custom-input" name="nome_mae" value="<?php echo $row['nome_mae']; ?>">
+                    <label class="form-label">Cidade:</label>
+                    <input type="text" class="form-control custom-input" name="cidade" value="<?php echo $row['cidade']; ?>">
 
 
-                    <label class="form-label">Nome cônjuge:</label>
-                    <input type="text" class="form-control custom-input" name="nome_conjuge" value="<?php echo $row['nome_conjuge']; ?>">
+                    <label class="form-label">CEP:</label>
+                    <input type="text" class="form-control custom-input" name="cep" value="<?php echo $row['cep']; ?>">
 
 
-                    <label class="form-label">Nome filhos:</label>
-                    <input type="text" class="form-control custom-input" name="nome_filhos" value="<?php echo $row['nome_filhos']; ?>">
+                    <label class="form-label">Telefone Residencial:</label>
+                    <input type="text" class="form-control custom-input" name="telefone_residencial" value="<?php echo $row['telefone_residencial']; ?>">
 
 
-                    <label class="form-label">Assinatura do Socio:</label>
-                    <input type="text" class="form-control custom-input" name="assinatura_socio" value="<?php echo $row['assinatura_socio']; ?>">
+                    <label class="form-label">Telefone Residencial:</label>
+                    <input type="text" class="form-control custom-input" name="telefone_recado" value="<?php echo $row['telefone_recado']; ?>">
 
 
-                    <label class="form-label">Número da matricula:</label>
-                    <input type="text" class="form-control custom-input" name="matricula" value="<?php echo $row['numero_matricula']; ?>">
+                    <label class="form-label">Celular:</label>
+                    <input type="text" class="form-control custom-input" name="celular" value="<?php echo $row['celular']; ?>">
 
+
+                    <label class="form-label">Email:</label>
+                    <input type="email" class="form-control custom-input" name="email" value="<?php echo $row['email']; ?>">
 
                     <br>
                     <div>
@@ -397,20 +383,20 @@ if (isset($_POST["submit"])) {
 
                 <?php
 
-                $id_aprovacao = $row['id_aprovacao'];
-                if ($id_aprovacao == 2) {
-                  echo "<form class='formAprova' action='aprovar.php' method='post'>";
-                      echo "<input style='display:none' type='number' name='id' value='" . $id . "'>";
+                // $id_aprovacao = $row['id_aprovacao'];
+                // if ($id_aprovacao == 2) {
+                //   echo "<form class='formAprova' action='aprovar.php' method='post'>";
+                //       echo "<input style='display:none' type='number' name='id' value='" . $id . "'>";
 
-                      echo "<button type='submit' class='btn btn-success'>Aprovar</button>";
-                  echo "</form>";
-                } else if ($id_aprovacao == 1){
-                  echo "<form class='formAprova' action='desaprovar.php' method='post'>";
-                      echo "<input style='display:none' type='number' name='id' value='" . $id . "'>";
+                //       echo "<button type='submit' class='btn btn-success'>Aprovar</button>";
+                //   echo "</form>";
+                // } else if ($id_aprovacao == 1){
+                //   echo "<form class='formAprova' action='desaprovar.php' method='post'>";
+                //       echo "<input style='display:none' type='number' name='id' value='" . $id . "'>";
 
-                      echo "<button type='submit' class='btn btn-danger desaprovar'>Desaprovar</button>";
-                  echo "</form>";
-                }
+                //       echo "<button type='submit' class='btn btn-danger desaprovar'>Desaprovar</button>";
+                //   echo "</form>";
+                // }
                 ?>
               </div>
             </div>
@@ -427,7 +413,7 @@ if (isset($_POST["submit"])) {
     </div><!-- /.content-wrapper -->
 
     <footer class="main-footer">
-      <strong>SINDICATO - SINTRACEMA <br> Equipe de desenvolvimento da Estácio de Sá | Laboratório de Transformação Digital.</strong>
+      <strong>CLÍNICA DE PSICOLOGIA <br> Equipe de desenvolvimento da Estácio de Sá | Laboratório de Transformação Digital.</strong>
     </footer>
   </div><!-- ./wrapper -->
 
