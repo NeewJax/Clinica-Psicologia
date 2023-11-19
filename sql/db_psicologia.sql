@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/10/2023 às 04:57
+-- Tempo de geração: 19/11/2023 às 23:00
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -86,6 +86,28 @@ INSERT INTO `tbl_cadastro_menor` (`id`, `nome_do_responsavel`, `parentesco`, `rg
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `tbl_user_terapeuta`
+--
+
+CREATE TABLE `tbl_user_terapeuta` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `usuario` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbl_user_terapeuta`
+--
+
+INSERT INTO `tbl_user_terapeuta` (`id`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
+(1, 'andre', 'andre', 'andre@gmail.com', '$2y$10$X/uQ7/vMlqcRYHB20ujmBeEfaYyRYNIle9Qy.g336hUL6HPGQNrZ6', '2023-11-19 21:50:24');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `users`
 --
 
@@ -121,6 +143,12 @@ ALTER TABLE `tbl_cadastro_menor`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `tbl_user_terapeuta`
+--
+ALTER TABLE `tbl_user_terapeuta`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `users`
 --
 ALTER TABLE `users`
@@ -141,6 +169,12 @@ ALTER TABLE `tbl_cadastro`
 --
 ALTER TABLE `tbl_cadastro_menor`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_user_terapeuta`
+--
+ALTER TABLE `tbl_user_terapeuta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `users`
