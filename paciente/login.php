@@ -234,6 +234,10 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
             cursor: pointer;
             font-size: 200%;
         }
+
+        .link_cadastro {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -257,7 +261,9 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
                 </div>
                 <div class="error error-txt">A senha não pode estar vazia!</div>
             </div>
-            <input name="enviar" type="submit" value="Enviar">
+            <input name="enviar" type="submit" value="Enviar"> <br><br>
+
+            <a class="link_cadastro" href="../cadastro.php">Faça seu cadastro caso não tenha conta</a>
             <?php 
             /*
             if (isset($quantidade)) {
