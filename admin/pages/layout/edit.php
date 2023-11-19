@@ -207,10 +207,11 @@ if (isset($_POST["submit"])) {
             <a href="#">
               <i class="fa fa-gears"></i>
               <span>Gerenciar</span>
-              <span class="label label-primary pull-right">4</span>
+              <span class="label label-primary pull-right">2</span>
             </a>
             <ul class="treeview-menu">
                 <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
+                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
@@ -248,7 +249,7 @@ if (isset($_POST["submit"])) {
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Gerenciar</a></li>
-          <li class="active">Editar Afiliados</li>
+          <li class="active">Editar Paciente</li>
         </ol>
       </section>
 
@@ -261,7 +262,7 @@ if (isset($_POST["submit"])) {
         <!-- Default box -->
         <div class="box">
           <div class="box-header with-border">
-            <h3 class="box-title">AFILIADOS</h3>
+            <h3 class="box-title">PACIENTE</h3>
             <div class="box-tools pull-right">
               <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
@@ -273,7 +274,7 @@ if (isset($_POST["submit"])) {
 
             <div class="container">
               <div class="text-center mb-4">
-                <h3>Editar cadastro de filiados</h3>
+                <h3>Editar cadastro de paciente</h3>
                 <p class="text-muted">Clique em "atualizar" para atualizar alguma informação</p>
               </div>
               <br>
@@ -376,7 +377,7 @@ if (isset($_POST["submit"])) {
                     <br>
                     <div>
                       <button type="submit" class="btn btn-success" name="submit">Atualizar</button>
-                      <a href="afiliados.php" class="btn btn-danger">Cancelar</a>
+                      <a href="pacientes.php" class="btn btn-danger">Cancelar</a>
                     </div>
                   </div>
                 </form> <br>

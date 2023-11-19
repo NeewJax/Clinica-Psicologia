@@ -1,8 +1,19 @@
 <?php
     include('../../protect.php');
     include('../../../db/conexao.php');
-    include('../../contador.php');
-    
+?>
+
+<?php
+if(isset($_POST['criar'])) {
+    $nome = $_POST['nome'];
+    $usuario = $_POST['usuario'];
+    $email = $_POST['email'];
+    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+
+    $mysqli->query("INSERT INTO tbl_user_terapeuta (id,nome,usuario,email,senha) VALUES (NULL, '$nome', '$usuario', '$email', '$senha')");
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +35,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
-     <!-- Bootstrap -->
+
     <link rel="shortcut icon" href="../../../img/favicon.png" type="image/x-icon">
-
-<!-- Font Awesome -->
-
   <body class="hold-transition skin-blue fixed sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
@@ -118,9 +126,6 @@
               <ul class="treeview-menu">
                 <li><a href="../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
               </ul>
-              <ul class="treeview-menu">
-              <li class=""><a href="../../logout.php"><i class="fa fa-dashboard"></i> Sair</a></li>
-            </ul>
             </li>
             <li class="treeview active">
               <a href="#">
@@ -130,12 +135,28 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-                <li class="active"><a href="pages/layout/terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
+                <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
-              </ul>
+            </ul>
             </li><!--
+            <li>
+              <a href="../widgets.html">
+                <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dollar"></i>
+                <span>DarkShop</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="../layout/darkshop.php"><i class="fa fa-cart-plus"></i> Store</a></li>
+              </ul>
+            </li>
+           -->
         </section>
         <!-- /.sidebar -->
       </aside>
@@ -147,12 +168,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            CLINICA PSICOLOGIA
+            Clínica de Psicologia
           </h1>
           <ol class="breadcrumb">
-            <li><a href="../../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Gerenciar</a></li>
-            <li class="active">Terapeutas</li>
+            <li class="active">Cadastrar terapeutas</li>
           </ol>
         </section>
 
@@ -165,7 +186,8 @@
           <!-- Default box -->
           <div class="box">
             <div class="box-header with-border">
-              
+
+
             <style>
                 #msg{
                     color: green;
@@ -178,52 +200,64 @@
                     echo "<h5 class='box-title' id='msg'>$mensagem</h5><br><br>";
                 }
             ?>
-              <h3 class="box-title">TERAPEUTAS</h3>
+
+
+              <h3 class="box-title">Cadastramento de terapeutas</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
               </div>
             </div>
             <div class="box-body">
-            <a href="cadastro-terapeuta.php">
-              <button class="btn btn-block btn-primary">Cadastrar terapeuta</button>
-            </a>
+
             <!-- AQUI COMEÇA SUA APLICAÇÃO -->
 
+            <form enctype="multipart/form-data" method="POST">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Preencha os dados do terapeuta</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form method="POST" class="form-horizontal">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Nome</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="nome" required id="inputEmail3" placeholder="Nome do terapeuta">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">Usuário</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="usuario" id="inputPassword3" required placeholder="Usuário">
+                      </div>
+                    </div>  
+                    <br>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">Email</label>
+                      <div class="col-sm-10">
+                        <input type="email" class="form-control" name="email" id="inputPassword3" required placeholder="Email@exemplo.com">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="inputPassword3" class="col-sm-2 control-label">Senha</label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control" name="senha" id="inputPassword3" required placeholder="Senha">
+                      </div>
+                    </div>    
+                  </div><!-- /.box-body -->
+                  <div class="box-footer">
+                    <a href="terapeutas.php">
+                        <input type="button" class="btn btn-danger" value="Voltar">
+                    </a>
 
-  <div>
-    
-    <table class="table table-hover text-center">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">Nome</th>
-          <th scope="col">E-mail</th>
-          <th scope="col">Registro</th>
-          <th scope="col">Ação</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-            //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-            $sql = "SELECT * FROM tbl_user_terapeuta";
-            $result = mysqli_query($mysqli, $sql);
-            while ($row = mysqli_fetch_assoc($result)) {
-        ?>
-            <tr>
-                <td><?php echo $row["nome"] ?></td>
-                <td><?php echo $row["email"] ?></td>
-                <td><?php echo date('d/m/Y', strtotime($row["date"])); ?></td>
-
-                <td>
-                <a href="edit-terapeuta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
-                <a href="delete-terapeuta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
-                </td>
-            </tr>
-        <?php
-            }
-        ?>
-      </tbody>
-    </table>
-  </div>
+                    <button type="submit" name="criar" class="btn btn-success pull-right">Cadastrar terapeuta</button>
+                  </div><!-- /.box-footer -->
+                </form>
+                
+              </div>
+            </form>
             
             <!--AQUI TERMINA SUA APLICAÇÃO! -->
 
@@ -253,7 +287,5 @@
     <script src="../../dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="../../dist/js/demo.js"></script>
-  
-
   </body>
 </html>

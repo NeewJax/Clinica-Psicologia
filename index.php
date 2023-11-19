@@ -118,7 +118,7 @@
                 <a href="login.php" class="nav-item nav-link">Login</a>
             </div>
         
-            <a href="agendar.php" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">AGENDE SUA CONSULTA<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="paciente/login.php" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">AGENDE SUA CONSULTA<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
