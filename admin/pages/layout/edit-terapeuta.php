@@ -8,13 +8,14 @@ $id = $_GET["id"];
 
 if (isset($_POST["submit"])) {
 
+    $id_disponibilidade = $_POST['disponibilidade'];
     $nome = $_POST['nome'];
     $usuario = $_POST['usuario'];
     $email = $_POST['email'];
 
 
 // Substituir os valores na query SQL
-  $sql = "UPDATE tbl_user_terapeuta SET nome = '$nome', usuario = '$usuario', email = '$email' WHERE id = $id";
+  $sql = "UPDATE tbl_user_terapeuta SET id_disponibilidade='$id_disponibilidade', nome = '$nome', usuario = '$usuario', email = '$email' WHERE id = $id";
   
   $result = mysqli_query($mysqli, $sql);
   
@@ -288,7 +289,11 @@ if (isset($_POST["submit"])) {
                     <label class="form-label">Email:</label>
                     <input type="email" class="form-control custom-input" name="email" value="<?php echo $row['email']; ?>">
 
-
+                    <label class="form-label">Disponibilidade:</label>
+                    <select class="form-control custom-input" name="disponibilidade" required id="inputDisponibilidade3">
+                            <option value="1">Disponível</option>
+                            <option value="2">Indisponível</option>
+                    </select>
                     
                     <br>
                     <div>

@@ -6,11 +6,12 @@
 <?php
 if(isset($_POST['criar'])) {
     $nome = $_POST['nome'];
+    $id_disponibilidade = $_POST['disponibilidade'];
     $usuario = $_POST['usuario'];
     $email = $_POST['email'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-    $mysqli->query("INSERT INTO tbl_user_terapeuta (id,nome,usuario,email,senha) VALUES (NULL, '$nome', '$usuario', '$email', '$senha')");
+    $mysqli->query("INSERT INTO tbl_user_terapeuta (id, id_disponibilidade, nome,usuario, email, senha) VALUES (NULL, '$id_disponibilidade', '$nome', '$usuario', '$email', '$senha')");
 
 }
 
@@ -245,7 +246,16 @@ if(isset($_POST['criar'])) {
                       <div class="col-sm-10">
                         <input type="password" class="form-control" name="senha" id="inputPassword3" required placeholder="Senha">
                       </div>
-                    </div>    
+                    </div>
+                    <div class="form-group">
+                      <label for="inputDisponibilidade3" class="col-sm-2 control-label">Disponibilidade</label>
+                      <div class="col-sm-10">
+                        <select class="form-control" name="disponibilidade" required id="inputDisponibilidade3">
+                            <option value="1">Disponível</option>
+                            <option value="2">Indisponível</option>
+                        </select>
+                      </div>
+                    </div> 
                   </div><!-- /.box-body -->
                   <div class="box-footer">
                     <a href="terapeutas.php">
