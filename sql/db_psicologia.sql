@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/11/2023 às 23:00
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 20-Nov-2023 às 23:55
+-- Versão do servidor: 10.6.15-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION*/ ;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tbl_cadastro`
+-- Estrutura da tabela `tbl_cadastro`
 --
 
 CREATE TABLE `tbl_cadastro` (
@@ -53,7 +53,7 @@ CREATE TABLE `tbl_cadastro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tbl_cadastro`
+-- Extraindo dados da tabela `tbl_cadastro`
 --
 
 INSERT INTO `tbl_cadastro` (`id`, `nome`, `sexo`, `idade`, `nascimento`, `localidade`, `escolaridade`, `profissao`, `renda_familiar`, `rg`, `cpf`, `estado_civil`, `composicao_familiar`, `mora_com`, `endereco`, `bairro`, `cidade`, `cep`, `telefone_residencial`, `telefone_recado`, `celular`, `email`) VALUES
@@ -64,7 +64,7 @@ INSERT INTO `tbl_cadastro` (`id`, `nome`, `sexo`, `idade`, `nascimento`, `locali
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tbl_cadastro_menor`
+-- Estrutura da tabela `tbl_cadastro_menor`
 --
 
 CREATE TABLE `tbl_cadastro_menor` (
@@ -77,7 +77,7 @@ CREATE TABLE `tbl_cadastro_menor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tbl_cadastro_menor`
+-- Extraindo dados da tabela `tbl_cadastro_menor`
 --
 
 INSERT INTO `tbl_cadastro_menor` (`id`, `nome_do_responsavel`, `parentesco`, `rg`, `celular`, `cpf`) VALUES
@@ -86,11 +86,31 @@ INSERT INTO `tbl_cadastro_menor` (`id`, `nome_do_responsavel`, `parentesco`, `rg
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tbl_user_terapeuta`
+-- Estrutura da tabela `tbl_disponibilidade`
+--
+
+CREATE TABLE `tbl_disponibilidade` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `disponibilidade` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tbl_disponibilidade`
+--
+
+INSERT INTO `tbl_disponibilidade` (`id`, `disponibilidade`) VALUES
+(1, 'Disponível'),
+(2, 'Indisponível');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tbl_user_terapeuta`
 --
 
 CREATE TABLE `tbl_user_terapeuta` (
   `id` int(11) NOT NULL,
+  `id_disponibilidade` int(11) UNSIGNED NOT NULL,
   `nome` varchar(50) NOT NULL,
   `usuario` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -99,16 +119,16 @@ CREATE TABLE `tbl_user_terapeuta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tbl_user_terapeuta`
+-- Extraindo dados da tabela `tbl_user_terapeuta`
 --
 
-INSERT INTO `tbl_user_terapeuta` (`id`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
-(1, 'andre', 'andre', 'andre@gmail.com', '$2y$10$X/uQ7/vMlqcRYHB20ujmBeEfaYyRYNIle9Qy.g336hUL6HPGQNrZ6', '2023-11-19 21:50:24');
+INSERT INTO `tbl_user_terapeuta` (`id`, `id_disponibilidade`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
+(2, 2, 'Anderson', 'Anderson', 'andersson@gemail.com', '$2y$10$uf2mzbZ78j2bBtr.eHQyse84b0bJcsVopEvUw.ynd507eYSDtVQQy', '2023-11-20 22:52:07');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `users`
+-- Estrutura da tabela `users`
 --
 
 CREATE TABLE `users` (
@@ -120,7 +140,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `users`
+-- Extraindo dados da tabela `users`
 --
 
 INSERT INTO `users` (`id`, `nome`, `email`, `senha`, `date`) VALUES
@@ -131,31 +151,38 @@ INSERT INTO `users` (`id`, `nome`, `email`, `senha`, `date`) VALUES
 --
 
 --
--- Índices de tabela `tbl_cadastro`
+-- Índices para tabela `tbl_cadastro`
 --
 ALTER TABLE `tbl_cadastro`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `tbl_cadastro_menor`
+-- Índices para tabela `tbl_cadastro_menor`
 --
 ALTER TABLE `tbl_cadastro_menor`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `tbl_user_terapeuta`
+-- Índices para tabela `tbl_disponibilidade`
 --
-ALTER TABLE `tbl_user_terapeuta`
+ALTER TABLE `tbl_disponibilidade`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `users`
+-- Índices para tabela `tbl_user_terapeuta`
+--
+ALTER TABLE `tbl_user_terapeuta`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_terapeuta_disponibilade` (`id_disponibilidade`);
+
+--
+-- Índices para tabela `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
@@ -171,16 +198,32 @@ ALTER TABLE `tbl_cadastro_menor`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de tabela `tbl_disponibilidade`
+--
+ALTER TABLE `tbl_disponibilidade`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de tabela `tbl_user_terapeuta`
 --
 ALTER TABLE `tbl_user_terapeuta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `tbl_user_terapeuta`
+--
+ALTER TABLE `tbl_user_terapeuta`
+  ADD CONSTRAINT `fk_terapeuta_disponibilade` FOREIGN KEY (`id_disponibilidade`) REFERENCES `tbl_disponibilidade` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

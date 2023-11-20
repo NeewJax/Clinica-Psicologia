@@ -212,7 +212,7 @@
                 <td><?php echo $row["nome"] ?></td>
                 <td><?php echo $row["email"] ?></td>
                 <td><?php echo date('d/m/Y', strtotime($row["date"])); ?></td>
-
+                
                 <td>
                 <a href="edit-terapeuta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
                 <a href="delete-terapeuta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
