@@ -6,7 +6,7 @@ include('../../../db/conexao.php');
     $result = mysqli_query($mysqli, $sql);
 
     if ($result) {
-    header("Location: consultasFuturas.php?msg=Consulta deletada com sucesso!");
+    header("Location: pacientes.php?msg=Paciente deletado com sucesso!");
     } else {
         echo "Failed: " . mysqli_error($conn);
     }

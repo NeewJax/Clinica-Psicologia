@@ -132,7 +132,7 @@
         .btn-login {
             width: 100%;
             padding: 16px 0;
-            margin: 25px 0;
+            margin: 15px 0;
             border: none;
             border-radius: 8px;
             outline: none;
@@ -143,6 +143,7 @@
             background: #1808ac;
             cursor: pointer;
             box-shadow: 0px 10px 40px -12px rgba(0, 0, 0, 0.34);
+            color: white;
         }
 
         @media only screen and (max-width: 950px) {
@@ -202,6 +203,7 @@
                         <input type="password" name="senha" placeholder="Senha">
                     </div>
                     <button class="btn-login">Login</button>
+                    <button class="btn-login">Voltar</button>
                 </div>
             </form>
         </div>
