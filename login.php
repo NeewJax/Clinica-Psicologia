@@ -76,8 +76,8 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
             ?>
           </div>
           <input type="submit" class="btn-estilizado" value="Enviar">
-          <input type="button" class="btn-estilizado" value="Voltar para o início">
-          <input type="button" class="btn-estilizado" value="Login de Terapeuta" onclick="redirecionarParaOutraTela()">
+          <a href="index.php"><input type="button" class="btn-estilizado" value="Voltar para o início"></a>
+          <a href="terapeuta/login.php"><input type="button" class="btn-estilizado" value="Login de Terapeuta" onclick="redirecionarParaOutraTela()"></a>
         </form>
       </div>
       <script>
