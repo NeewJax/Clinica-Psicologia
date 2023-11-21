@@ -12,83 +12,86 @@ body {
 }
 
 header {
-    background-color: #f8f8f8;
+    background-color: #ffffff;
     padding: 10px;
     text-align: center;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-}
-
-.logo-container {
     display: flex;
-    align-items: center;
     justify-content: flex-start;
-    margin-left: 20px;
+    align-items: center;
 }
 
 .logo-link {
     text-decoration: none;
     cursor: pointer;
+    margin-left: 20px; /* Adicionado para ajustar a margem da imagem */
 }
 
-img {
+.logo {
     cursor: pointer;
-    width: 150px;
-    height: auto;
-    margin: 0 auto; 
+    width: 105px; /* Ajuste conforme necessário */
+    height: 35px;
 }
 
 .card-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-    transform: scale(1.1); /* Adicionado para o efeito de aumento (aumenta em 10%) */
+    height: 65vh; /* Ajuste a altura conforme necessário */
+    width: 90%; /* Ajuste a largura conforme necessário */
+    max-width: 1200px; /* Limitando a largura máxima */
+    margin: 20px;
+    margin-top: 60px; /* Ajuste conforme a altura do header */
+    padding: 20px;
 }
 
 .card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 15px;
-    margin: 10px;
+    border: 1px solid #ffffff;
+    padding: 20px;
     text-align: center;
-    transition: box-shadow 0.3s ease-in-out;
-    background-color: #f8f8f8;
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Adicionado para o efeito de aumento */
+    width: 300px; /* Largura fixa dos cartões */
+    height: 85%; /* Ajuste a altura dos cartões conforme necessário */
+    margin: 10px;
+    transition: transform 0.2s ease-in-out;
+    background-color: #042f61;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
-    box-shadow: 0 4px 8px rgba(22, 22, 22, 0.1);
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card img {
-    max-width: 100%;
+    max-width: 75%; /* Ajuste a largura da imagem conforme necessário */
     height: auto;
     margin-bottom: 10px;
-    
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 0 auto;
 }
 
 .card button {
     display: block;
     margin-top: 5px;
-    margin-top: auto; 
-    margin-top: auto; /* Alinha no final do card */
-    margin-bottom: auto; /* Alinha no topo do card */
 }
+
 .btn-estilizado {
-     display: block;
-    margin-top: 10px;
+    margin-top: auto;
     color: #fff;
     border: none;
-     cursor: pointer;
-     font-weight: bold;
-      transition: background-color 0.3s ease-in-out; padding: 10px 10px;
-      background-color: rgb(4, 49, 97);
-     color: #fff;
-     border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+    padding: 10px;
+    background-color: rgb(4, 49, 97);
+    color: #fff;
+    border: none;
     border-radius: 10px;
     cursor: pointer;
-    align-items: center;
-    margin-top: auto; /* Alinha no final do card */
-    margin-bottom: auto; /* Alinha no topo do card */
 }
