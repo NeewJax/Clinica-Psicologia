@@ -263,7 +263,11 @@ if (isset($_POST["submit"])) {
               </div>
               <br>
               <?php
-              $sql = "SELECT * FROM tbl_user_terapeuta WHERE id = $id";
+              $sql = "SELECT tbl_user_terapeuta.*, tbl_disponibilidade.*
+              FROM  tbl_user_terapeuta
+              JOIN tbl_disponibilidade
+              ON tbl_user_terapeuta.id_disponibilidade = tbl_disponibilidade.id 
+              WHERE tbl_user_terapeuta.id = $id";
               $result = mysqli_query($mysqli, $sql);
               $row = mysqli_fetch_assoc($result);
               ?>
@@ -291,8 +295,13 @@ if (isset($_POST["submit"])) {
 
                     <label class="form-label">Disponibilidade:</label>
                     <select class="form-control custom-input" name="disponibilidade" required id="inputDisponibilidade3">
-                            <option value="1">Disponível</option>
-                            <option value="2">Indisponível</option>
+                            <option value="<?php echo $row['id_disponibilidade'] ?> ">
+                            <?php echo $row['disponibilidade'];?>
+                          </option>
+                            <option 
+                            value=" <?php echo ($row['id_disponibilidade'] == 2) ? '1' : '2' ?>">
+                              <?php echo ($row['id_disponibilidade'] == 2) ? 'Disponível' : 'Indisponível' ?>
+                            </option>
                     </select>
                     
                     <br>
