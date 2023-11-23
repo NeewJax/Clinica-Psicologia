@@ -132,7 +132,7 @@
         .btn-login {
             width: 100%;
             padding: 16px 0;
-            margin: 15px 0;
+            margin: 10px 0;
             border: none;
             border-radius: 8px;
             outline: none;
@@ -196,21 +196,26 @@
                     <h1>Login do terapeuta</h1>
                     <div class="textfield">
                         <label for="usuario">Usuário</label>
-                        <input type="text" name="usuario" placeholder="Usuário">
+                        <input type="text" name="usuario" placeholder="Usuário" require>
                     </div>
                     <div class="textfield">
                         <label for="senha">Senha</label>
-                        <input type="password" name="senha" placeholder="Senha">
+                        <input type="password" name="senha" placeholder="Senha" require>
                     </div>
                     <button class="btn-login">Login</button>
-                    <button class="btn-login">Voltar</button>
+                    <button class="btn-login" type="button" onclick="redirecionarParaOutraTela()">Voltar</button>
                 </div>
             </form>
         </div>
     </div>
-    <div>
+    <script>
+          function redirecionarParaOutraTela() {
+        window.location.href = '../tela-escolha-login/homeLogin.html';
+    }
+    </script>
+    <!-- <div>
         <script src="script.js"></script>
-    </div>
+    </div> -->
 </body>
 
 </html>

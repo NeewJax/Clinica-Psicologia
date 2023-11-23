@@ -77,15 +77,8 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
           </div>
           <input type="submit" class="btn-estilizado" value="Enviar">
           <a href="index.php"><input type="button" class="btn-estilizado" value="Voltar para o início"></a>
-          <a href="terapeuta/login.php"><input type="button" class="btn-estilizado" value="Login de Terapeuta" onclick="redirecionarParaOutraTela()"></a>
         </form>
       </div>
-      <script>
-  function redirecionarParaOutraTela() {
-    // Redireciona para a outra tela
-    window.location.href = 'tela-de-login/login.html';
-  }
-</script>
     </body>
 </html>
     
