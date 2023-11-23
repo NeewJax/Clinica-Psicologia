@@ -201,6 +201,7 @@ include('../../contador.php');
               <table class="table table-hover text-center">
                 <thead class="table-dark">
                   <tr>
+                    <th></th>
                     <th scope="col">Nome</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">Registro</th>
@@ -214,7 +215,8 @@ include('../../contador.php');
                   $result = mysqli_query($mysqli, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
                   ?>
-                    <tr <?php if($row['id_disponibilidade']==2) echo "class='indisponivel'" ?>>
+                    <tr>
+                    <td><?php echo ($row['id_disponibilidade']==2) ? "❌" : "✔️" ?></td>
                       <td><?php echo $row["nome"] ?></td>
                       <td><?php echo $row["email"] ?></td>
                       <td><?php echo date('d/m/Y', strtotime($row["date"])); ?></td>

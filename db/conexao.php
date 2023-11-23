@@ -2,7 +2,7 @@
     $host = 'localhost';
     $usuario = 'root';
     $senha = '';
-    $database = 'db_psicologia.sql';
+    $database = 'db_psicologia';
 
     $mysqli = new mysqli($host, $usuario, $senha, $database);
 
