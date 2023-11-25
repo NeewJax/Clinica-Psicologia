@@ -131,6 +131,7 @@
               <ul class="treeview-menu">
                 <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
                 <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
+                <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li>
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->

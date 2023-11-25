@@ -137,19 +137,14 @@
             <a href="#">
               <i class="fa fa-gears"></i>
               <span>Gerenciar</span>
-              <span class="label label-primary pull-right">2</span>
+              <span class="label label-primary pull-right">3</span>
             </a>
             <ul class="treeview-menu">
               <li><a href="pages/layout/pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
               <li><a href="pages/layout/terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
-              
+              <li><a href="pages/calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li>
             </ul>
-          </li><!--
-            <li>
-              <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
-              </a>
-            </li>-->
+          </li>
           <li class="treeview">
             <ul class="treeview-menu">
               <li><a href="pages/layout/darkshop.php"><i class="fa fa-cart-plus"></i> Store</a></li>
