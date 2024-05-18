@@ -131,7 +131,7 @@
               <ul class="treeview-menu">
                 <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
                 <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
-                <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li>
+                <!-- <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
@@ -208,7 +208,7 @@
             while ($row = mysqli_fetch_assoc($result)) {
         ?>
             <tr>
-                <td><?php echo $row["nome"] ?></td>
+                <td><a href="../calendar.php?id=<?php echo $row["id"] ?>" target="_blank"><?php echo $row["nome"] ?></a></td>
                 <td><?php echo $row["cpf"] ?></td>
                 <td><?php echo $row["telefone_residencial"] ?></td>
                 <td>
@@ -216,6 +216,7 @@
                 <a href="delete-consulta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
                 </td>
             </tr>
+            <!-- <a href="../calendar.php"></a> -->
         <?php
             }
         ?>

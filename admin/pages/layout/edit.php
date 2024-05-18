@@ -1,6 +1,6 @@
 <?php
-include('../../protect.php');
-include('../../../db/conexao.php');
+  include('../../protect.php');
+  include('../../../db/conexao.php');
 ?>
 
 <?php
