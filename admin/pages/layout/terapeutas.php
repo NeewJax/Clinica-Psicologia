@@ -142,9 +142,7 @@ include('../../contador.php');
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
             </ul>
-          </li><!--
-        </section>
-        <!-- /.sidebar -->
+          </li>
     </aside>
 
     <!-- =============================================== -->

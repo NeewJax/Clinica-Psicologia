@@ -1,8 +1,8 @@
 <?php
-    $host = 'bancodowill.mysql.dbaas.com.br';
-    $usuario = 'bancodowill';
-    $senha = 'MyDataBase@2';
-    $database = 'bancodowill';
+    $host = 'localhost';
+    $usuario = 'root';
+    $senha = '';
+    $database = 'db_psicologia';
 
     $mysqli = new mysqli($host, $usuario, $senha, $database);
 

@@ -8,14 +8,15 @@ $id = $_GET["id"];
 
 $sql = "SELECT * FROM tbl_cadastro WHERE id = $id";
 $result = mysqli_query($mysqli, $sql);
-$row = mysqli_fetch_assoc($result);
+$patient = mysqli_fetch_assoc($result);
 
-if(isset($_POST['add'])) {
+
+if(isset($_POST['enviar'])) {
   
   $nome_paciente = $_POST['nome_paciente'];
 
-  $sql = $mysqli->prepare("INSERT INTO tbl_consulta VALUES (NULL, ?)");
-  $sql->execute(array($nome_paciente));
+  $sql_insert = $mysqli->prepare("INSERT INTO tbl_consulta VALUES (NULL, ?)");
+  $sql_insert->execute(array($nome_paciente));
 }
 
 ?>
@@ -133,7 +134,7 @@ if(isset($_POST['add'])) {
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            <?php echo "Agender Consulta do(a) " . $row['nome'] ?>
+            <?php echo "Agender Consulta do(a) " . $patient['nome'] ?>
             <small>Control panel</small>
           </h1>
           <ol class="breadcrumb">
@@ -153,11 +154,20 @@ if(isset($_POST['add'])) {
                 <div class="box-body">
                   <!-- the events -->
                   <div id="external-events">
-                    <div class="external-event bg-green">consulta de manhã</div>
-                    <div class="external-event bg-yellow">consulta de tarde</div>
+                  <?php
+                  //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
+                    $sql = "SELECT * FROM tbl_consulta";
+                    $result = mysqli_query($mysqli, $sql);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                  ?>
+                   <div class="external-event bg-green"><?php echo $row['nome_paciente'] ?></div>
+                    <!-- <div class="external-event bg-yellow">consulta de tarde</div>
                     <div class="external-event bg-aqua">consulta de noite</div>
                     <div class="external-event bg-light-blue">consulta sei lá</div>
-                    <div class="external-event bg-red">neymar</div>
+                    <div class="external-event bg-red">neymar</div> -->
+                    <?php
+                    }
+                    ?>
                     <div class="checkbox">
                       <label for="drop-remove">
                         <input type="checkbox" id="drop-remove">
@@ -190,14 +200,14 @@ if(isset($_POST['add'])) {
                       <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
                     </ul>
                   </div><!-- /btn-group -->
-                  <form method="POST">
+                  <form method="post">
                     <div class="input-group">
-                        <input id="new-event" type="text" name="nome_paciente" class="form-control" placeholder="Nome do Paciente">
-                        <div class="input-group-btn">
-                          <button type="submit" name="add" class="btn btn-primary btn-flat" onclick="addEvent()">Add</button>
-                          <button id="add-new-event"></button>
-                        </div><!-- /btn-group -->
-                    </div><!-- /input-group -->
+                      <input id="new-event" type="text" name="nome_paciente" class="form-control" placeholder="Nome do Paciente">
+                      <div class="input-group-btn">
+                        <!-- <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button> -->
+                        <button type="submit" name="enviar" class="btn btn-primary btn-flat">Add</button>
+                      </div>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -406,8 +416,8 @@ if(isset($_POST['add'])) {
     <script src="../plugins/fullcalendar/fullcalendar.min.js"></script>
     <!-- Page specific script -->
     <script>
-      function addEvent() { 
-      }
+      var btn_submit = document.getElementById("btn-submit");
+
       $(function () {
 
         /* initialize the external events
@@ -560,6 +570,7 @@ if(isset($_POST['add'])) {
 
           //Remove event from text input
           $("#new-event").val("");
+          btn_submit.click();
         });
       });
     </script>
