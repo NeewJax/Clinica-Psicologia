@@ -25,7 +25,7 @@ if(isset($_POST['enviar'])) {
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Calendar</title>
+    <title>Calendário</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -149,7 +149,7 @@ if(isset($_POST['enviar'])) {
             <div class="col-md-3">
               <div class="box box-solid">
                 <div class="box-header with-border">
-                  <h4 class="box-title">Draggable Events</h4>
+                  <h4 class="box-title">Eventos</h4>
                 </div>
                 <div class="box-body">
                   <!-- the events -->
@@ -454,40 +454,40 @@ if(isset($_POST['enviar'])) {
                 y = date.getFullYear();
         $('#calendar').fullCalendar({
           header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
+            left: 'anterior,próximo hoje',
+            center: 'título',
+            right: 'mês,agendaWeek,agendaDay'
           },
           buttonText: {
-            today: 'today',
-            month: 'month',
-            week: 'week',
-            day: 'day'
+            today: 'hoje',
+            month: 'mês',
+            week: 'semana',
+            day: 'dia'
           },
           //Random default events
           events: [
             {
-              title: 'All Day Event',
+              title: 'Evento o dia todo',
               start: new Date(y, m, 1),
               backgroundColor: "#f56954", //red
               borderColor: "#f56954" //red
             },
             {
-              title: 'Long Event',
+              title: 'Evento Longo',
               start: new Date(y, m, d - 5),
               end: new Date(y, m, d - 2),
               backgroundColor: "#f39c12", //yellow
               borderColor: "#f39c12" //yellow
             },
             {
-              title: 'Meeting',
-              start: new Date(y, m, d, 10, 30),
+              title: 'Reunião',
+              start: new Date(y, m, d, 9, 10),
               allDay: false,
               backgroundColor: "#0073b7", //Blue
               borderColor: "#0073b7" //Blue
             },
             {
-              title: 'Lunch',
+              title: 'Almoço',
               start: new Date(y, m, d, 12, 0),
               end: new Date(y, m, d, 14, 0),
               allDay: false,
@@ -495,7 +495,7 @@ if(isset($_POST['enviar'])) {
               borderColor: "#00c0ef" //Info (aqua)
             },
             {
-              title: 'Birthday Party',
+              title: 'Data de Aniversário',
               start: new Date(y, m, d + 1, 19, 0),
               end: new Date(y, m, d + 1, 22, 30),
               allDay: false,

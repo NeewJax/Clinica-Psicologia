@@ -208,7 +208,7 @@
             while ($row = mysqli_fetch_assoc($result)) {
         ?>
             <tr>
-                <td><a href="../calendar.php?id=<?php echo $row["id"] ?>" target="_blank"><?php echo $row["nome"] ?></a></td>
+                <td><a href="../calendar.php?id=<?php echo $row["id"] ?>"><?php echo $row["nome"] ?></a></td>
                 <td><?php echo $row["cpf"] ?></td>
                 <td><?php echo $row["telefone_residencial"] ?></td>
                 <td>

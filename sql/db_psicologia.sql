@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Nov-2023 às 23:55
+-- Tempo de geração: 11-Jun-2024 às 01:10
 -- Versão do servidor: 10.6.15-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -86,6 +86,24 @@ INSERT INTO `tbl_cadastro_menor` (`id`, `nome_do_responsavel`, `parentesco`, `rg
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `tbl_consulta`
+--
+
+CREATE TABLE `tbl_consulta` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `nome_paciente` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tbl_consulta`
+--
+
+INSERT INTO `tbl_consulta` (`id`, `nome_paciente`) VALUES
+(8, 'Wilson');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `tbl_disponibilidade`
 --
 
@@ -123,7 +141,8 @@ CREATE TABLE `tbl_user_terapeuta` (
 --
 
 INSERT INTO `tbl_user_terapeuta` (`id`, `id_disponibilidade`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
-(2, 2, 'Anderson', 'Anderson', 'andersson@gemail.com', '$2y$10$uf2mzbZ78j2bBtr.eHQyse84b0bJcsVopEvUw.ynd507eYSDtVQQy', '2023-11-20 22:52:07');
+(2, 1, 'Anderson', 'Anderson', 'andersson@gemail.com', '$2y$10$uf2mzbZ78j2bBtr.eHQyse84b0bJcsVopEvUw.ynd507eYSDtVQQy', '2024-04-06 23:46:11'),
+(3, 1, 'Ana', 'Ana', 'ana@gmail.com', '$2y$10$Ilhu3M5N8ClJiY9CRD/iV.q4MKYZoKfmuf/QF1LsvJaouonpUCpbS', '2023-11-23 18:31:59');
 
 -- --------------------------------------------------------
 
@@ -163,6 +182,12 @@ ALTER TABLE `tbl_cadastro_menor`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `tbl_consulta`
+--
+ALTER TABLE `tbl_consulta`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `tbl_disponibilidade`
 --
 ALTER TABLE `tbl_disponibilidade`
@@ -198,6 +223,12 @@ ALTER TABLE `tbl_cadastro_menor`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de tabela `tbl_consulta`
+--
+ALTER TABLE `tbl_consulta`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de tabela `tbl_disponibilidade`
 --
 ALTER TABLE `tbl_disponibilidade`
@@ -207,7 +238,7 @@ ALTER TABLE `tbl_disponibilidade`
 -- AUTO_INCREMENT de tabela `tbl_user_terapeuta`
 --
 ALTER TABLE `tbl_user_terapeuta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `users`
