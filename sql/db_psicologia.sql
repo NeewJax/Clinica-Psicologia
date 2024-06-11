@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Jun-2024 às 01:10
+-- Tempo de geração: 11-Jun-2024 às 02:20
 -- Versão do servidor: 10.6.15-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -91,15 +91,18 @@ INSERT INTO `tbl_cadastro_menor` (`id`, `nome_do_responsavel`, `parentesco`, `rg
 
 CREATE TABLE `tbl_consulta` (
   `id` int(11) UNSIGNED NOT NULL,
-  `nome_paciente` varchar(255) NOT NULL
+  `nome_paciente` varchar(255) NOT NULL,
+  `data_consulta` date NOT NULL,
+  `horario` time(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `tbl_consulta`
 --
 
-INSERT INTO `tbl_consulta` (`id`, `nome_paciente`) VALUES
-(8, 'Wilson');
+INSERT INTO `tbl_consulta` (`id`, `nome_paciente`, `data_consulta`, `horario`) VALUES
+(10, 'Anderson', '0000-00-00', '23:13:00.000000'),
+(11, 'Anderson', '2024-06-30', '01:21:00.000000');
 
 -- --------------------------------------------------------
 
@@ -226,7 +229,7 @@ ALTER TABLE `tbl_cadastro_menor`
 -- AUTO_INCREMENT de tabela `tbl_consulta`
 --
 ALTER TABLE `tbl_consulta`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_disponibilidade`

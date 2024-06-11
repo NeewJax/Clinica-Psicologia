@@ -14,9 +14,11 @@ $patient = mysqli_fetch_assoc($result);
 if(isset($_POST['enviar'])) {
   
   $nome_paciente = $_POST['nome_paciente'];
+  $data_consulta = $_POST['data_consulta'];
+  $horario = $_POST['horario'];
 
-  $sql_insert = $mysqli->prepare("INSERT INTO tbl_consulta VALUES (NULL, ?)");
-  $sql_insert->execute(array($nome_paciente));
+  $sql_insert = $mysqli->prepare("INSERT INTO tbl_consulta VALUES (NULL, ?,?,?)");
+  $sql_insert->execute(array($nome_paciente, $data_consulta, $horario));
 }
 
 ?>
@@ -203,11 +205,13 @@ if(isset($_POST['enviar'])) {
                   <form method="post">
                     <div class="input-group">
                       <input id="new-event" type="text" name="nome_paciente" class="form-control" placeholder="Nome do Paciente">
+                      <input id="new-event" type="date" name="data_consulta" class="form-control" placeholder="Data Consulta">
+                      <input id="new-event" type="time" name="horario" class="form-control" placeholder="Horário da Consulta">
                       <div class="input-group-btn">
                         <!-- <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button> -->
-                        <button type="submit" name="enviar" class="btn btn-primary btn-flat">Add</button>
                       </div>
                     </div>
+                    <button type="submit" name="enviar" class="btn btn-primary btn-flat">Add</button>
                   </form>
                 </div>
               </div>
@@ -416,6 +420,7 @@ if(isset($_POST['enviar'])) {
     <script src="../plugins/fullcalendar/fullcalendar.min.js"></script>
     <!-- Page specific script -->
     <script>
+      
       var btn_submit = document.getElementById("btn-submit");
 
       $(function () {
@@ -463,9 +468,32 @@ if(isset($_POST['enviar'])) {
             month: 'mês',
             week: 'semana',
             day: 'dia'
-          },
+          }, 
           //Random default events
           events: [
+            <?php
+            //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
+            $sql = "SELECT * FROM tbl_consulta";
+            $result = mysqli_query($mysqli, $sql);
+            while ($row = mysqli_fetch_assoc($result)) {
+              $eventDate = new DateTime($row['data_consulta']);
+              $nome_paciente = $row['nome_paciente'];
+              $year = $eventDate->format('Y');
+              $month = $eventDate->format('m');
+              $day = $eventDate->format('d');
+              $horario = $row['horario'];
+
+              
+            echo "
+            {
+              title: '$nome_paciente',
+              start: new Date($year, $month, $day, 12, 30),
+              backgroundColor: 'f56954', //Cor de fundo
+              borderColor: 'f56954' //Cor da borda
+            }";
+            echo ",";
+            }
+            ?>
             {
               title: 'Evento o dia todo',
               start: new Date(y, m, 1),
@@ -481,7 +509,7 @@ if(isset($_POST['enviar'])) {
             },
             {
               title: 'Reunião',
-              start: new Date(y, m, d, 9, 10),
+              start: new Date(y, m, d, 11, 10),
               allDay: false,
               backgroundColor: "#0073b7", //Blue
               borderColor: "#0073b7" //Blue
