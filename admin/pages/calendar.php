@@ -151,43 +151,19 @@ if(isset($_POST['enviar'])) {
             <div class="col-md-3">
               <div class="box box-solid">
                 <div class="box-header with-border">
-                  <h4 class="box-title">Eventos</h4>
+                  <h4 class="box-title">Consultas</h4>
                 </div>
-                <div class="box-body">
-                  <!-- the events -->
-                  <div id="external-events">
-                  <?php
-                  //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-                    $sql = "SELECT * FROM tbl_consulta";
-                    $result = mysqli_query($mysqli, $sql);
-                    while ($row = mysqli_fetch_assoc($result)) {
-                  ?>
-                   <div class="external-event bg-green"><?php echo $row['nome_paciente'] ?></div>
-                    <!-- <div class="external-event bg-yellow">consulta de tarde</div>
-                    <div class="external-event bg-aqua">consulta de noite</div>
-                    <div class="external-event bg-light-blue">consulta sei lá</div>
-                    <div class="external-event bg-red">neymar</div> -->
-                    <?php
-                    }
-                    ?>
-                    <div class="checkbox">
-                      <label for="drop-remove">
-                        <input type="checkbox" id="drop-remove">
-                        remove after drop
-                      </label>
-                    </div>
-                  </div>
-                </div><!-- /.box-body -->
+
               </div><!-- /. box -->
               <div class="box box-solid">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Create Event</h3>
+                  <h3 class="box-title">Agnedar Consulta</h3>
                 </div>
                 <div class="box-body">
                   <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
                     <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
                     <ul class="fc-color-picker" id="color-chooser">
-                      <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
+                      <!-- <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
                       <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
                       <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a></li>
                       <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
@@ -199,7 +175,7 @@ if(isset($_POST['enviar'])) {
                       <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
                       <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
                       <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
-                      <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
+                      <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li> -->
                     </ul>
                   </div><!-- /btn-group -->
                   <form method="post">
@@ -211,7 +187,7 @@ if(isset($_POST['enviar'])) {
                         <!-- <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button> -->
                       </div>
                     </div>
-                    <button type="submit" name="enviar" class="btn btn-primary btn-flat">Add</button>
+                    <button type="submit" name="enviar" class="btn btn-primary btn-flat">Agendar</button>
                   </form>
                 </div>
               </div>
@@ -471,29 +447,28 @@ if(isset($_POST['enviar'])) {
           }, 
           //Random default events
           events: [
-            <?php
-            //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-            $sql = "SELECT * FROM tbl_consulta";
-            $result = mysqli_query($mysqli, $sql);
-            while ($row = mysqli_fetch_assoc($result)) {
-              $eventDate = new DateTime($row['data_consulta']);
-              $nome_paciente = $row['nome_paciente'];
-              $year = $eventDate->format('Y');
-              $month = $eventDate->format('m');
-              $day = $eventDate->format('d');
-              $horario = $row['horario'];
+          <?php
+          //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
+          $sql = "SELECT * FROM tbl_consulta";
+          $result = mysqli_query($mysqli, $sql);
+          while ($row = mysqli_fetch_assoc($result)) {
+            $eventDate = new DateTime($row['data_consulta']);
+            $nome_paciente = $row['nome_paciente'];
+            $year = $eventDate->format('Y');
+            $month = $eventDate->format('m') - 1; // Adjust month for JavaScript Date (0-indexed)
+            $day = $eventDate->format('d');
+            list($hour, $minute) = explode(':', $row['horario']); // Assuming 'horario' is in HH:MM format
 
-              
             echo "
             {
               title: '$nome_paciente',
-              start: new Date($year, $month, $day, 12, 30),
-              backgroundColor: 'f56954', //Cor de fundo
-              borderColor: 'f56954' //Cor da borda
+              start: new Date($year, $month, $day, $hour, $minute),
+              backgroundColor: '#f56954', //Cor de fundo
+              borderColor: '#f56954' //Cor da borda
             }";
             echo ",";
-            }
-            ?>
+          }
+          ?>
             {
               title: 'Evento o dia todo',
               start: new Date(y, m, 1),
