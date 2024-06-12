@@ -461,7 +461,7 @@ if(isset($_POST['enviar'])) {
 
             echo "
             {
-              title: '$nome_paciente',
+              title: '$nome_paciente $hour:$minute',
               start: new Date($year, $month, $day, $hour, $minute),
               backgroundColor: '#f56954', //Cor de fundo
               borderColor: '#f56954' //Cor da borda
