@@ -1,9 +1,6 @@
 <?php
-  include('../protect.php');
-  include('../../db/conexao.php');
-?>
-
-<?php
+include('../protect.php');
+include('../../db/conexao.php');
 $id = $_GET["id"];
 
 $sql = "SELECT * FROM tbl_cadastro WHERE id = $id";
@@ -21,7 +18,23 @@ if(isset($_POST['enviar'])) {
   $sql_insert->execute(array($nome_paciente, $data_consulta, $horario));
 }
 
+
+            //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
+            $sql = "SELECT * FROM tbl_consulta";
+            $result = mysqli_query($mysqli, $sql);
+            while ($row = mysqli_fetch_assoc($result)) {
+              $eventDate = new DateTime($row['data_consulta']);
+              $nome_paciente = $row['nome_paciente'];
+              $year = $eventDate->format('Y');
+              $month = $eventDate->format('m') - 1; // Adjust month for JavaScript Date (0-indexed)
+              $day = $eventDate->format('d');
+              list($hour, $minute) = explode(':', $row['horario']); // Assuming 'horario' is in HH:MM format
+              $today = date('Y-m-d');
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -136,7 +149,7 @@ if(isset($_POST['enviar'])) {
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            <?php echo "Agender Consulta do(a) " . $patient['nome'] ?>
+            <?php echo "Agendar Consulta do(a) " . $patient['nome'] ?>
             <small>Control panel</small>
           </h1>
           <ol class="breadcrumb">
@@ -157,7 +170,7 @@ if(isset($_POST['enviar'])) {
               </div><!-- /. box -->
               <div class="box box-solid">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Agnedar Consulta</h3>
+                  <h3 class="box-title">Agendar Consulta</h3>
                 </div>
                 <div class="box-body">
                   <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
@@ -180,8 +193,8 @@ if(isset($_POST['enviar'])) {
                   </div><!-- /btn-group -->
                   <form method="post">
                     <div class="input-group">
-                      <input id="new-event" type="text" name="nome_paciente" class="form-control" placeholder="Nome do Paciente">
-                      <input id="new-event" type="date" name="data_consulta" class="form-control" placeholder="Data Consulta">
+                      <input id="new-event" type="text" name="nome_paciente" class="form-control" value="<?php echo $patient['nome']; ?>">
+                      <input id="new-event" type="date" name="data_consulta" class="form-control" value="<?php echo $today; ?>">
                       <input id="new-event" type="time" name="horario" class="form-control" placeholder="Horário da Consulta">
                       <div class="input-group-btn">
                         <!-- <button id="add-new-event" type="button" class="btn btn-primary btn-flat">Add</button> -->
@@ -448,16 +461,6 @@ if(isset($_POST['enviar'])) {
           //Random default events
           events: [
           <?php
-          //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-          $sql = "SELECT * FROM tbl_consulta";
-          $result = mysqli_query($mysqli, $sql);
-          while ($row = mysqli_fetch_assoc($result)) {
-            $eventDate = new DateTime($row['data_consulta']);
-            $nome_paciente = $row['nome_paciente'];
-            $year = $eventDate->format('Y');
-            $month = $eventDate->format('m') - 1; // Adjust month for JavaScript Date (0-indexed)
-            $day = $eventDate->format('d');
-            list($hour, $minute) = explode(':', $row['horario']); // Assuming 'horario' is in HH:MM format
 
             echo "
             {
