@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Jun-2024 às 02:20
+-- Tempo de geração: 16-Jun-2024 às 02:29
 -- Versão do servidor: 10.6.15-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -102,7 +102,9 @@ CREATE TABLE `tbl_consulta` (
 
 INSERT INTO `tbl_consulta` (`id`, `nome_paciente`, `data_consulta`, `horario`) VALUES
 (10, 'Anderson', '0000-00-00', '23:13:00.000000'),
-(11, 'Anderson', '2024-06-30', '01:21:00.000000');
+(11, 'Anderson', '2024-06-30', '01:21:00.000000'),
+(12, 'Teste', '2024-06-23', '09:20:00.000000'),
+(13, 'Reus', '2024-06-13', '08:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -122,6 +124,119 @@ CREATE TABLE `tbl_disponibilidade` (
 INSERT INTO `tbl_disponibilidade` (`id`, `disponibilidade`) VALUES
 (1, 'Disponível'),
 (2, 'Indisponível');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tbl_endereco`
+--
+
+CREATE TABLE `tbl_endereco` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `cidade` varchar(80) NOT NULL,
+  `cep` int(11) NOT NULL,
+  `bairro` varchar(80) NOT NULL,
+  `rua` varchar(80) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tbl_escolaridade`
+--
+
+CREATE TABLE `tbl_escolaridade` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `escolaridade` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tbl_escolaridade`
+--
+
+INSERT INTO `tbl_escolaridade` (`id`, `escolaridade`) VALUES
+(1, 'Ensino Fundamental Incompleto'),
+(2, 'Ensino Fundamental Completo'),
+(3, 'Ensino Médio Incompleto'),
+(4, 'Ensino Médio Completo'),
+(5, 'Ensino Técnico'),
+(6, 'Ensino Superior Incompleto'),
+(7, 'Ensino Superior Completo'),
+(8, 'Pós-Graduação Incompleta'),
+(9, 'Pós-Graduação Completa'),
+(10, 'Mestrado Incompleto'),
+(11, 'Mestrado Completo'),
+(12, 'Doutorado Incompleto'),
+(13, 'Doutorado Completo');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tbl_estado_civil`
+--
+
+CREATE TABLE `tbl_estado_civil` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `estado_civil` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tbl_estado_civil`
+--
+
+INSERT INTO `tbl_estado_civil` (`id`, `estado_civil`) VALUES
+(1, 'Solteiro'),
+(2, 'Casado'),
+(3, 'Separado'),
+(4, 'Divorciado'),
+(5, 'Viúvo');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tbl_genero`
+--
+
+CREATE TABLE `tbl_genero` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `genero` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tbl_genero`
+--
+
+INSERT INTO `tbl_genero` (`id`, `genero`) VALUES
+(1, 'Masculino'),
+(2, 'Feminino'),
+(3, 'Outro');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tbl_paciente`
+--
+
+CREATE TABLE `tbl_paciente` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `sexo` varchar(20) NOT NULL,
+  `idade` int(11) NOT NULL,
+  `nascimento` date NOT NULL,
+  `localidade` varchar(50) NOT NULL,
+  `escolaridade` varchar(100) NOT NULL,
+  `profissao` varchar(100) NOT NULL,
+  `renda_familiar` int(11) NOT NULL,
+  `rg` int(11) NOT NULL,
+  `cpf` int(11) NOT NULL,
+  `estado_civil` varchar(20) NOT NULL,
+  `composicao_familiar` varchar(255) NOT NULL,
+  `mora_com` varchar(255) NOT NULL,
+  `telefone_residencial` int(11) NOT NULL,
+  `telefone_recado` int(11) NOT NULL,
+  `celular` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -197,6 +312,36 @@ ALTER TABLE `tbl_disponibilidade`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `tbl_endereco`
+--
+ALTER TABLE `tbl_endereco`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `tbl_escolaridade`
+--
+ALTER TABLE `tbl_escolaridade`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `tbl_estado_civil`
+--
+ALTER TABLE `tbl_estado_civil`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `tbl_genero`
+--
+ALTER TABLE `tbl_genero`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `tbl_paciente`
+--
+ALTER TABLE `tbl_paciente`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `tbl_user_terapeuta`
 --
 ALTER TABLE `tbl_user_terapeuta`
@@ -229,13 +374,43 @@ ALTER TABLE `tbl_cadastro_menor`
 -- AUTO_INCREMENT de tabela `tbl_consulta`
 --
 ALTER TABLE `tbl_consulta`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_disponibilidade`
 --
 ALTER TABLE `tbl_disponibilidade`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_endereco`
+--
+ALTER TABLE `tbl_endereco`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_escolaridade`
+--
+ALTER TABLE `tbl_escolaridade`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_estado_civil`
+--
+ALTER TABLE `tbl_estado_civil`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_genero`
+--
+ALTER TABLE `tbl_genero`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_paciente`
+--
+ALTER TABLE `tbl_paciente`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_user_terapeuta`
