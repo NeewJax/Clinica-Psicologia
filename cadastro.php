@@ -1,30 +1,20 @@
 <?php
 include('db/conexao.php');
-$host = 'localhost';
-$dbname = 'db_psicologia';
-$username = 'root';
-$password = '';
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-} catch (PDOException $e) {
-    die("Error: " . $e->getMessage());
-}
 
 if (isset($_POST['enviar'])) {
     $nome = $_POST['nome'];
-    $sexo = $_POST['sexo'];
+    $id_genero = $_POST['sexo'];
     $idade = $_POST['idade'];
     $nascimento = $_POST['nascimento'];
     $localidade = $_POST['localidade'];
 
-    $escolaridade = $_POST['escolaridade'];
+    $id_escolaridade = $_POST['escolaridade'];
     $profissao = $_POST['profissao'];
-    $renda_familiar = $_POST['renda_familiar'];
+    $id_renda_familiar = $_POST['renda_familiar'];
     $rg = $_POST['rg'];
     $cpf = $_POST['cpf'];
 
-    $estado_civil = $_POST['estado_civil'];
+    $id_estado_civil = $_POST['estado_civil'];
     $composicao_familiar = $_POST['composicao_familiar'];
     $mora_com = $_POST['mora_com'];
     $endereco = $_POST['endereco'];
@@ -37,14 +27,45 @@ if (isset($_POST['enviar'])) {
     $celular = $_POST['celular'];
     $email = $_POST['email'];
 
-    $sql = $pdo->prepare("INSERT INTO tbl_paciente VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $sql->execute(array(
-        $nome, $sexo, $idade, $nascimento, $localidade,
-        $escolaridade, $profissao, $renda_familiar, $rg, $cpf,
-        $estado_civil, $composicao_familiar, $mora_com, $telefone_residencial, $telefone_recado, $celular, $email
-    ));
+    $id_contato = 1;
+    $id_profissao = 1;
+    $id_endereco = 1;
 
-    header('Location: cadastro-sucesso.php');
+    try {
+        //INSERIR CONTATO
+        $mysqli->query("INSERT INTO tbl_contato (id, id_paciente, email, telefone) VALUES (NULL, 1, '$email', '$celular')");
+        $id_contato = $mysqli->insert_id;
+
+        //INSERT PROFISSAO
+        $mysqli->query("INSERT INTO tbl_profissao (id, profissao) VALUES (NULL, '$profissao')");
+        $id_profissao = $mysqli->insert_id;
+
+        //INSERT BAIRRO
+        $mysqli->query("INSERT INTO tbl_bairro (id, bairro) VALUES (NULL, '$bairro')");
+        $id_bairro = $mysqli->insert_id;
+
+        //INSERT LOGRADOURO
+        $mysqli->query("INSERT INTO tbl_logradouro (id, logradouro) VALUES (id, '$localidade')");
+        $id_logradouro = $mysqli->insert_id;
+
+        //INSERT ENDEREÇO
+        $mysqli->query("INSERT INTO tbl_endereco (id, id_paciente, id_bairro, id_logradouro, cep) VALUES (id, 1, $id_bairro, $id_logradouro, '$cep')");
+        $id_endereco = $mysqli->insert_id;
+
+        // INSERIR PACIENTE
+        $mysqli->query("INSERT INTO tbl_paciente (id, nome, nascimento, rg, cpf, id_genero, id_contato, id_escolaridade, id_profissao, id_renda_familiar, id_estado_civil, id_endereco) 
+        VALUES (NULL, '$nome', '$nascimento', $rg, $cpf, $id_genero, $id_contato, $id_escolaridade, $id_profissao, $id_renda_familiar, $id_estado_civil, $id_endereco)");
+        $id_paciente = $mysqli->insert_id;
+
+        //ATUALIZAR TABELAS
+        $mysqli->query("UPDATE tbl_contato SET id_paciente=$id_paciente WHERE id = $id_contato");
+        $mysqli->query("UPDATE tbl_endereco SET id_paciente=$id_paciente WHERE id = $id_endereco");
+
+        header('Location: cadastro-sucesso.php');
+
+    }  catch(Exception $e) {
+        echo "Error: " . $e;
+    }
 }
 ?>
 
@@ -337,12 +358,11 @@ if (isset($_POST['enviar'])) {
                                 <select id="sexo" name="sexo">
                                     <option value='' disabled selected></option>
                                     <?php
-                                        //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
                                         $sql_genero = "SELECT * FROM tbl_genero";
                                         $result_genero = mysqli_query($mysqli, $sql_genero);
                                         while ($row = mysqli_fetch_assoc($result_genero)) {
                                     ?>
-                                            <option value='<?php echo $row['id'] ?>'> <?php echo $row['genero'] ?> </option>
+                                            <option value='<?php echo $row['id'] ?>'> <?php echo $row['sexo'] ?> </option>
                                     <?php
                                         }
                                     ?>
@@ -372,7 +392,6 @@ if (isset($_POST['enviar'])) {
                                 <select id="escolaridade" name="escolaridade">
                                     <option value='' disabled selected></option>
                                     <?php
-                                        //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
                                         $sql_escolaridade = "SELECT * FROM tbl_escolaridade";
                                         $result_escolaridade = mysqli_query($mysqli, $sql_escolaridade);
                                         while ($row = mysqli_fetch_assoc($result_escolaridade)) {
@@ -392,9 +411,20 @@ if (isset($_POST['enviar'])) {
 
 
                         <div class="textfield-group-3">
-                            <div class="textfield-3">
+                            <div class="textfield-2">
                                 <label for="renda familiar">Renda Familiar</label>
-                                <input type="number" id="renda_familiar" name="renda_familiar" placeholder="Renda Familiar" required>
+                                <select id="renda_familiar" name="renda_familiar">
+                                        <option value='' disabled selected></option>
+                                        <?php
+                                            $sql_renda_familiar = "SELECT * FROM tbl_renda_familiar";
+                                            $result_renda_familiar = mysqli_query($mysqli, $sql_renda_familiar);
+                                            while($row = mysqli_fetch_assoc($result_renda_familiar)) {
+                                        ?>
+                                                <option value='<?php echo $row['id']?>'> <?php echo $row['renda'] ?> </option>
+                                        <?php
+                                            }
+                                        ?>
+                                </select>
                             </div>
 
                             <div class="textfield-3">

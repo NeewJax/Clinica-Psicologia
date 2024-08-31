@@ -27,7 +27,7 @@ if (isset($_POST["submit"])) {
     $cep = $_POST['cep'];
     $telefone_residencial = $_POST['telefone_residencial'];
     $telefone_recado = $_POST['telefone_recado'];
-    $celular = $_POST['celular'];
+    $telefone = $_POST['telefone'];
     $email = $_POST['email'];
 
 // Substituir os valores na query SQL
@@ -279,7 +279,20 @@ if (isset($_POST["submit"])) {
               </div>
               <br>
               <?php
-              $sql = "SELECT * FROM tbl_cadastro WHERE id = $id";
+              $sql = "SELECT pa.id, pa.nome, pa.nascimento, pa.rg, pa.cpf, se.sexo, en.id, en.cep, lo.logradouro, 
+                              es.escolaridade, pr.profissao, re.renda, ec.estado_civil, ba.bairro, co.telefone, co.email
+                      FROM tbl_paciente AS pa 
+                      INNER JOIN tbl_genero se ON se.id = pa.id_genero
+                      INNER JOIN tbl_endereco en ON en.id = pa.id_endereco
+                      INNER JOIN tbl_logradouro lo ON lo.id = en.id
+                      INNER JOIN tbl_escolaridade es ON es.id = pa.id_escolaridade
+                      INNER JOIN tbl_profissao pr ON pr.id = pa.id_profissao
+                      INNER JOIN tbl_renda_familiar re ON re.id = pa.id_renda_familiar
+                      INNER JOIN tbl_estado_civil ec ON ec.id = pa.id_estado_civil
+                      INNER JOIN tbl_bairro ba ON ba.id = en.id_bairro
+                      INNER JOIN tbl_contato co ON co.id = pa.id_contato
+                      WHERE pa.id = $id";
+                      
               $result = mysqli_query($mysqli, $sql);
               $row = mysqli_fetch_assoc($result);
               ?>
@@ -302,8 +315,8 @@ if (isset($_POST["submit"])) {
                     <input type="text" class="form-control custom-input custom-input" name="sexo" value="<?php echo $row['sexo']; ?>">
 
 
-                    <label class="form-label">idade:</label>
-                    <input type="text" class="form-control custom-input" name="idade" value="<?php echo $row['idade']; ?>">
+                    <!-- <label class="form-label">idade:</label>
+                    <input type="text" class="form-control custom-input" name="idade" value="<?php echo $row['idade']; ?>"> -->
 
 
                     <label class="form-label">Nascimento:</label>
@@ -311,11 +324,7 @@ if (isset($_POST["submit"])) {
 
 
                     <label class="form-label">Localidade:</label>
-                    <input type="text" class="form-control custom-input" name="localidade" value="<?php echo $row['localidade']; ?>">
-
-
-                    <label class="form-label">Escolaridade:</label>
-                    <input type="text" class="form-control custom-input" name="escolaridade" value="<?php echo $row['escolaridade']; ?>">
+                    <input type="text" class="form-control custom-input" name="localidade" value="<?php echo $row['logradouro']; ?>">
 
 
                     <label class="form-label">Escolaridade:</label>
@@ -325,50 +334,57 @@ if (isset($_POST["submit"])) {
                     <label class="form-label">Profissão:</label>
                     <input type="text" class="form-control custom-input" name="profissao" value="<?php echo $row['profissao']; ?>">
 
+
                     <label class="form-label">Renda Familiar</label>
-                    <input type="text" class="id_oculto" name="renda_familiar" value="<?php echo $row['renda_familiar']; ?>">
+                    <input type="text" class="form-control custom-input" name="renda_familiar" value="<?php echo $row['renda']; ?>">
+
 
                     <label class="form-label">RG:</label>
                     <input type="text" class="form-control custom-input" name="rg" value="<?php echo $row['rg']; ?>">
 
+
                     <label class="form-label">CPF:</label>
                     <input type="text" class="form-control custom-input" maxlength="2" name="cpf" value="<?php echo $row['cpf']; ?>">
+
 
                     <label class="form-label">Estado Civil:</label>
                     <input type="text" class="form-control custom-input" name="estado_civil" value="<?php echo $row['estado_civil']; ?>">
 
-                    <label class="form-label">Composição Familiar:</label>
-                    <input type="text" class="form-control custom-input" name="composicao_familiar" value="<?php echo $row['composicao_familiar']; ?>">
 
-                    <label class="form-label">Mora com:</label>
-                    <input type="text" class="form-control custom-input" name="mora_com" value="<?php echo $row['mora_com']; ?>">
+                    <!-- <label class="form-label">Composição Familiar:</label>
+                    <input type="text" class="form-control custom-input" name="composicao_familiar" value="<?php echo $row['composicao_familiar']; ?>"> -->
 
-                    <label class="form-label">Endereço:</label>
-                    <input type="text" class="form-control custom-input" name="endereco" value="<?php echo $row['endereco']; ?>">
-                    <!-- FIM DOS CAMPOS ENDEREÇO -->
+
+                    <!-- <label class="form-label">Mora com:</label>
+                    <input type="text" class="form-control custom-input" name="mora_com" value="<?php echo $row['mora_com']; ?>"> -->
+
+
+                    <!-- <label class="form-label">Endereço:</label>
+                    <input type="text" class="form-control custom-input" name="endereco" value="<?php echo $row['endereco']; ?>"> -->
+                    
+                    <!-- FIM DOS CAMPOS ENDEREÇO  -->
+
+                    <!-- <label class="form-label">Cidade:</label>
+                    <input type="text" class="form-control custom-input" name="cidade" value="<?php echo $row['cidade']; ?>"> -->
 
                     <label class="form-label">Bairro:</label>
                     <input type="text" class="form-control custom-input" name="bairro" value="<?php echo $row['bairro']; ?>">
-
-
-                    <label class="form-label">Cidade:</label>
-                    <input type="text" class="form-control custom-input" name="cidade" value="<?php echo $row['cidade']; ?>">
 
 
                     <label class="form-label">CEP:</label>
                     <input type="text" class="form-control custom-input" name="cep" value="<?php echo $row['cep']; ?>">
 
 
-                    <label class="form-label">Telefone Residencial:</label>
+                    <!-- <label class="form-label">Telefone Residencial:</label>
                     <input type="text" class="form-control custom-input" name="telefone_residencial" value="<?php echo $row['telefone_residencial']; ?>">
 
 
                     <label class="form-label">Telefone Residencial:</label>
-                    <input type="text" class="form-control custom-input" name="telefone_recado" value="<?php echo $row['telefone_recado']; ?>">
+                    <input type="text" class="form-control custom-input" name="telefone_recado" value="<?php echo $row['telefone_recado']; ?>"> -->
 
 
-                    <label class="form-label">Celular:</label>
-                    <input type="text" class="form-control custom-input" name="celular" value="<?php echo $row['celular']; ?>">
+                    <label class="form-label">Telefone:</label>
+                    <input type="text" class="form-control custom-input" name="telefone" value="<?php echo $row['telefone']; ?>">
 
 
                     <label class="form-label">Email:</label>

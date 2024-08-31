@@ -1,9 +1,8 @@
 <?php
 include('db/conexao.php');
-session_start();
+//session_start();
 // VALIDANDO ALGUNS PARÂMETROS DE LOGIN
 if (isset($_POST['email']) || isset($_POST['senha'])) {
-
     if (strlen($_POST['email']) == 0) {
         echo "Preencha seu e-mail";
     } else if (strlen($_POST['senha']) == 0) {
@@ -13,21 +12,23 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
         $email = $mysqli->real_escape_string($_POST['email']);
         $senha = $mysqli->real_escape_string($_POST['senha']);
 
-        $sql_code = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
+        $sql_code = "SELECT * FROM tbl_users WHERE email = '$email' LIMIT 1";
         $sql_query = $mysqli->query($sql_code) or die("Falha na execução do codigo SQL: " . $mysqli);
 
         $quantidade = $sql_query->num_rows;
         // FAZENDO A AUTENTICAÇÃO E REDIRECIONANDO PARA O PAINEL
         if ($quantidade == 1) {
             $usuario = $sql_query->fetch_assoc();
-            if (!isset($_SESSION)) {
-                session_start();
-            }
+            // if (!isset($_SESSION)) {
+            //     session_start();
+            // }
              if (password_verify($senha, $usuario['senha'])) {
+                  session_start();
                  $_SESSION['id'] = $usuario['id'];
                  $_SESSION['nome'] = $usuario['nome'];
 
                  header("Location: admin/index.php");
+                 exit();
              }
            // $_SESSION['id'] = $usuario['id'];
           //  $_SESSION['nome'] = $usuario['nome'];
