@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 31/08/2024 às 14:53
+-- Tempo de geração: 08/09/2024 às 15:31
 -- Versão do servidor: 10.6.15-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -55,7 +55,7 @@ CREATE TABLE `tbl_contato` (
   `id` int(11) UNSIGNED NOT NULL,
   `id_paciente` int(11) UNSIGNED NOT NULL,
   `email` varchar(50) NOT NULL,
-  `telefone` text NOT NULL
+  `telefone` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `tbl_contato` (
 
 INSERT INTO `tbl_contato` (`id`, `id_paciente`, `email`, `telefone`) VALUES
 (5, 6, 'wilson3@gmail.com', '23423432'),
-(6, 7, 'wilson8@gmail.com', '23423432'),
+(6, 7, 'willson@gmail.com', '98986117230'),
 (8, 8, 'andre@gmail.com', '23423432'),
 (10, 9, 'andre@gmail.com', '23423432'),
 (11, 10, 'andre@gmail.com', '23423432'),
@@ -110,7 +110,7 @@ CREATE TABLE `tbl_endereco` (
 --
 
 INSERT INTO `tbl_endereco` (`id`, `id_paciente`, `id_bairro`, `id_logradouro`, `cep`) VALUES
-(1, 1, 1, 1, '12345678'),
+(1, 1, 1, 1, '88888881'),
 (2, 1, 3, 3, '65071-14'),
 (3, 1, 4, 4, '65071-14'),
 (4, 1, 5, 5, '65071-14'),
@@ -205,7 +205,7 @@ CREATE TABLE `tbl_logradouro` (
 --
 
 INSERT INTO `tbl_logradouro` (`id`, `logradouro`) VALUES
-(1, 'logradouro'),
+(1, 'Logradouro'),
 (2, 'Localidade'),
 (3, 'Localidade'),
 (4, 'Localidade'),
@@ -239,9 +239,8 @@ CREATE TABLE `tbl_paciente` (
 --
 
 INSERT INTO `tbl_paciente` (`id`, `nome`, `nascimento`, `rg`, `cpf`, `id_genero`, `id_contato`, `id_escolaridade`, `id_profissao`, `id_renda_familiar`, `id_estado_civil`, `id_endereco`) VALUES
-(7, 'wilson', '2024-08-06', 123, 987654321, 1, 6, 6, 1, 2, 1, 1),
-(8, 'Neymar', '2024-08-04', 45, 987654321, 1, 8, 4, 2, 5, 2, 1),
-(9, 'Neymar2', '2024-08-04', 45, 987654321, 1, 10, 4, 4, 5, 2, 2),
+(7, 'Wilson', '2024-08-06', 1234, 98765, 1, 6, 5, 1, 1, 1, 1),
+(9, 'Neymar9', '2024-08-04', 45, 987654321, 1, 10, 4, 4, 5, 2, 2),
 (10, 'Neymar2', '2024-08-04', 45, 987654321, 1, 11, 4, 5, 5, 2, 3),
 (11, 'Neymar2', '2024-08-04', 45, 987654321, 1, 12, 4, 6, 5, 2, 4),
 (12, 'Neymar2', '2024-08-04', 45, 987654321, 1, 13, 4, 7, 5, 2, 5),
@@ -263,7 +262,7 @@ CREATE TABLE `tbl_profissao` (
 --
 
 INSERT INTO `tbl_profissao` (`id`, `profissao`) VALUES
-(1, 'Trabalhador'),
+(1, 'Estudante'),
 (2, 'Médico'),
 (3, 'Médico'),
 (4, 'Médico'),
@@ -337,7 +336,7 @@ CREATE TABLE `tbl_user_terapeuta` (
 
 INSERT INTO `tbl_user_terapeuta` (`id`, `id_disponibilidade`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
 (2, 1, 'Anderson', 'Anderson', 'andersson@gemail.com', '$2y$10$uf2mzbZ78j2bBtr.eHQyse84b0bJcsVopEvUw.ynd507eYSDtVQQy', '2024-04-07 02:46:11'),
-(3, 2, 'Ana', 'Ana', 'ana@gmail.com', '$2y$10$Ilhu3M5N8ClJiY9CRD/iV.q4MKYZoKfmuf/QF1LsvJaouonpUCpbS', '2024-08-31 12:49:08');
+(3, 1, 'Ana2', 'Ana', 'ana@gmail.com', '$2y$10$Ilhu3M5N8ClJiY9CRD/iV.q4MKYZoKfmuf/QF1LsvJaouonpUCpbS', '2024-09-01 12:11:52');
 
 --
 -- Índices para tabelas despejadas

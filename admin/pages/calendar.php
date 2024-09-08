@@ -3,7 +3,7 @@ include('../protect.php');
 include('../../db/conexao.php');
 $id = $_GET["id"];
 
-$sql = "SELECT * FROM tbl_cadastro WHERE id = $id";
+$sql = "SELECT * FROM tbl_paciente WHERE id = $id";
 $result = mysqli_query($mysqli, $sql);
 $patient = mysqli_fetch_assoc($result);
 
