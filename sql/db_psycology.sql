@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/09/2024 às 15:31
+-- Tempo de geração: 14/09/2024 às 15:59
 -- Versão do servidor: 10.6.15-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -44,6 +44,30 @@ INSERT INTO `tbl_bairro` (`id`, `bairro`) VALUES
 (5, 'Maças'),
 (6, 'Maças'),
 (7, 'Goiabas');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tbl_consulta`
+--
+
+CREATE TABLE `tbl_consulta` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `nome_paciente` varchar(255) NOT NULL,
+  `data_consulta` date NOT NULL,
+  `horario` time(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbl_consulta`
+--
+
+INSERT INTO `tbl_consulta` (`id`, `nome_paciente`, `data_consulta`, `horario`) VALUES
+(10, 'Anderson', '0000-00-00', '23:13:00.000000'),
+(11, 'Anderson', '2024-06-30', '01:21:00.000000'),
+(12, 'Teste', '2024-06-23', '09:20:00.000000'),
+(13, 'Reus', '2024-06-13', '08:00:00.000000'),
+(14, 'Wilson', '2024-09-12', '21:58:00.000000');
 
 -- --------------------------------------------------------
 
@@ -349,6 +373,12 @@ ALTER TABLE `tbl_bairro`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `tbl_consulta`
+--
+ALTER TABLE `tbl_consulta`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `tbl_contato`
 --
 ALTER TABLE `tbl_contato`
@@ -422,6 +452,12 @@ ALTER TABLE `tbl_renda_familiar`
 --
 ALTER TABLE `tbl_bairro`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_consulta`
+--
+ALTER TABLE `tbl_consulta`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_contato`
