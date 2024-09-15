@@ -46,11 +46,52 @@
         .highlight {
             background-color: yellow;
         }
+
+
+        .reservada {
+            background-color: yellow;
+        }
+
+        .reservada:hover {
+            background-color: rgb(152, 152, 0);
+        }
+
+
+        .livre {
+            background-color: rgb(84, 130, 53);
+        }
+
+        .livre:hover {
+            background-color: rgb(47, 72, 30);
+        }
+
+
+        .encaixe {
+            background-color: rgb(198, 89, 17);
+        }
+
+        .encaixe:hover {
+            background-color: rgb(103, 47, 9);
+        }
+
+
+        .triagem {
+            background-color: rgb(0, 176, 240);
+        }
+
+        .triagem:hover {
+            background-color: rgb(0, 109, 148);
+        }
+
+
+        .nada {
+            background-color: white;
+        }
     </style>
 </head>
 <body>
     <div class="container-fluid">
-        <h2>Grade Horária - Segunda-feira (Manhã)</h2>
+        <h2>Grade Horária - Segunda-feira</h2>
         <table class="table">
             <thead class="table-dark">
                 <tr>
@@ -61,7 +102,9 @@
             <tbody>
                 <tr>
                     <th>8H</th>
-                    <td><input type="text" name="" id="" value="Atend. Infantil"></td>
+                    <td>
+                        <input type="text" name="" id="m_8_s1" value="Atend. Infantil">
+                    </td>
                     <td><input type="text" name="" id="" value="Atend. Grupo"></td>
                     <td><input type="text" name="" id="" value="Atend. I"></td>
                     <td><input type="text" name="" id="" value="Eline de Sousa(II)"></td>
@@ -150,5 +193,10 @@
             </tbody>
         </table>
     </div>
+    <script>
+        document.getElementById("m_8_s1").addEventListener("dblclick", function() {
+            window.open("mudar-cor.html", "popupWindow", "width=400,height=600,scrollbars=no");
+        });
+    </script>
 </body>
 </html>
