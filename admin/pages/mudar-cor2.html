@@ -31,6 +31,7 @@
             border: none;
             border-radius: 10px;
             font-size: bold;
+            font-weight: bold;
         }
 
         .reservada {
@@ -92,32 +93,51 @@
         <button onclick="salaNada()" class="nada">NADA</button>
     </div>
     <script>
+
+        const element = window.opener.getElementById("m_8_s1");
+        const classesCss = element.classList;
+
         function salaReservada() {
             if(window.opener && !window.opener.closed) {
-                window.opener.document.getElementById("m_8_s1").classList.toggle("reservada");
+                window.opener.document.getElementById("m_8_s1").classList.replace("livre","reservada");
+                window.opener.document.getElementById("m_8_s1").classList.replace("encaixe","reservada");
+                window.opener.document.getElementById("m_8_s1").classList.replace("triagem","reservada");
+                window.opener.document.getElementById("m_8_s1").classList.replace("nada","reservada");
             }
         }
 
         function salaLivre() {
             if(window.opener && !window.opener.closed) {
-                window.opener.document.getElementById("m_8_s1").classList.add("livre");
+                window.opener.document.getElementById("m_8_s1").classList.replace("reservada","livre");
+                window.opener.document.getElementById("m_8_s1").classList.replace("encaixe","livre");
+                window.opener.document.getElementById("m_8_s1").classList.replace("triagem","livre");
+                window.opener.document.getElementById("m_8_s1").classList.replace("nada","livre");
             }
         }
 
         function salaEncaixe() {
             if(window.opener && !window.opener.closed) {
-                window.opener.document.getElementById("m_8_s1").classList.add("encaixe");
+                window.opener.document.getElementById("m_8_s1").classList.replace("reservada","encaixe");
+                window.opener.document.getElementById("m_8_s1").classList.replace("livre","encaixe");
+                window.opener.document.getElementById("m_8_s1").classList.replace("triagem","encaixe");
+                window.opener.document.getElementById("m_8_s1").classList.replace("nada","encaixe");
             }
         }
 
         function salaTriagem() {
             if(window.opener && !window.opener.closed) {
-                window.opener.document.getElementById("m_8_s1").classList.add("triagem");
+                window.opener.document.getElementById("m_8_s1").classList.replace("reservada","triagem");
+                window.opener.document.getElementById("m_8_s1").classList.replace("livre","triagem");
+                window.opener.document.getElementById("m_8_s1").classList.replace("encaixe","triagem");
+                window.opener.document.getElementById("m_8_s1").classList.replace("nada","triagem");
             }
         }
         function salaNada() {
             if(window.opener && !window.opener.closed) {
-                window.opener.document.getElementById("m_8_s1").classList.add("nada");
+                window.opener.document.getElementById("m_8_s1").classList.replace("reservada","nada");
+                window.opener.document.getElementById("m_8_s1").classList.replace("livre","nada");
+                window.opener.document.getElementById("m_8_s1").classList.replace("encaixe","nada");
+                window.opener.document.getElementById("m_8_s1").classList.replace("triagem","nada");
             }
         }
     </script>
