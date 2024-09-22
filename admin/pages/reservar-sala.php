@@ -1,3 +1,9 @@
+<?php
+
+include('../../db/conexao.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,17 +106,64 @@
                 </tr>
             </thead>
             <tbody>
+                <?php
+                    $horario_da_sala = 0;
+                    $sql_horario = "SELECT horario from tbl_horario_sala";
+                    $result_horario = mysqli_query($mysqli, $sql_horario);
+                    while($row_horario = mysqli_fetch_assoc($result_horario)) {
+                        $horario_da_sala = $row_horario['horario'];
+
+                ?>
                 <tr>
-                    <th>8H</th>
-                    <td><input type="text" name="" id="m_8_s1" class="nada" value="Atend. Infantil"></td>
-                    <td><input type="text" name="" id="" value="Atend. Grupo"></td>
+                    <?php 
+                        if($horario_da_sala == '14H') {
+                            echo "
+                            </tbody>
+                                <thead class='table-dark'>
+                                    <tr> 
+                                        <th></th>
+                                        <th class='tarde' colspan='8'>TARDE</th>
+                                    </tr>
+                                </thead>
+                            <tbody>
+                            ";
+                        }
+                    ?>
+                    <th><?php echo $row_horario['horario'] ?></th>
+                        <?php
+
+                            $sql_sala_reserva = "SELECT s.sala, s.sala_cod, st.status, h.horario AS hora 
+                                                FROM tbl_sala_reservada s 
+                                                INNER JOIN tbl_horario_sala h ON s.id_horario = h.id
+                                                INNER JOIN tbl_status_sala st ON s.id_status = st.id 
+                                                WHERE h.horario = '$horario_da_sala'
+                                                ";
+                            $result_reserva = mysqli_query($mysqli, $sql_sala_reserva);
+                            while($row = mysqli_fetch_assoc($result_reserva)) {
+                        ?>
+                        <td>
+                            <input type="text" 
+                                name="<?php echo $row['sala_cod'] ?>" 
+                                id="<?php echo $row['sala_cod'] ?>" 
+                                class="<?php echo $row['status'] ?>" 
+                                value="<?php echo $row['sala'] ?>"
+                            >
+                        </td>
+                        <?php
+                          }
+                        ?>
+                        <tr>
+                        <?php
+                            }
+                        ?>
+                    <!-- <td><input type="text" name="" id="" value="Atend. Grupo"></td>
                     <td><input type="text" name="" id="" value="Atend. I"></td>
                     <td><input type="text" name="" id="" value="Eline de Sousa(II)"></td>
                     <td><input type="text" name="" id="" value="Atend. III"></td>
                     <td><input type="text" name="" id="" value="Atend. IV"></td>
-                    <td><input type="text" name="" id="" value="Atend. V"></td>
+                    <td><input type="text" name="" id="" value="Atend. V"></td> -->
                 </tr>
-                <tr>
+                <!-- <tr>
                     <th>9H</th>
                     <td><input type="text" name="" id="" value="Henrique Gabriel(Infantil)"></td>
                     <td><input type="text" name="" id="" value="Atend. Grupo"></td>
@@ -139,9 +192,9 @@
                     <td><input type="text" name="" id="" value="Ildenize(III)"></td>
                     <td><input type="text" name="" id="" value="(IV)"></td>
                     <td><input type="text" name="" id="" value="Jenice(V)"></td>
-                </tr>
-            </tbody>
-            <thead class="table-dark">
+                </tr> -->
+           <!-- </tbody>
+             <thead class="table-dark">
                 <tr> 
                     <th></th>
                     <th class="tarde" colspan="8">TARDE</th>
@@ -187,14 +240,24 @@
                     <td><input type="text" name="" id="" value="Ildenize(III)"></td>
                     <td><input type="text" name="" id="" value="(IV)"></td>
                     <td><input type="text" name="" id="" value="Jenice(V)"></td>
-                </tr>
+                </tr> -->
             </tbody>
         </table> 
     </div>
     <script>
-        document.getElementById("m_8_s1").addEventListener("dblclick", function() {
-            window.open("mudar-cor.html", "popupWindow", "width=400,height=600,scrollbars=no");
-        });
+        <?php
+            $sql_sala_cod = "SELECT sala_cod FROM tbl_sala_reservada";
+            $resut_sala_cod = mysqli_query($mysqli, $sql_sala_cod);
+            while($row_sala_cod = mysqli_fetch_assoc($resut_sala_cod)) {
+        ?>
+
+            document.getElementById("<?php echo $row_sala_cod['sala_cod'] ?>").addEventListener("dblclick", function() {
+                window.open("mudar-cor.html", "popupWindow", "width=400,height=600,scrollbars=no");
+            });
+
+        <?php
+            }
+        ?>
     </script>
 </body>
 </html>
