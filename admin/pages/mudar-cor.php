@@ -11,18 +11,20 @@ if(isset($_GET['id'])) {
 
 if (isset($_POST['salvar'])) {
     $id_status = $_POST['id_status'];
+    $sala = $_POST['sala'];
 
-    $mysqli->query("UPDATE tbl_sala_reservada SET id_status = $id_status WHERE id = $id");
+    $mysqli->query("UPDATE tbl_sala_reservada SET sala = '$sala', id_status = $id_status WHERE id = $id");
 }
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" href="../../img/favicon.png" type="image/x-icon">
     <title>Mudar Cor</title>
     <style>
         body {
@@ -49,6 +51,29 @@ if (isset($_POST['salvar'])) {
             align-items: center;
             height: 100%;
             width: 100%;
+            margin-top: 10%;
+        }
+
+        input {
+            width: 90%;
+            margin-top: 5%;
+            text-align: center;
+        }
+
+        select {
+            width: 80%;
+            margin-top: 5%;
+            padding: .6%;
+            text-align: center;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 10px;
+        }
+
+        select option {
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+
         }
 
         button {
@@ -61,6 +86,15 @@ if (isset($_POST['salvar'])) {
             border-radius: 10px;
             font-size: bold;
             font-weight: bold;
+            background-color:rgb(0, 109, 148);
+            color: white;
+            transition: .5s;
+            margin-top: 30%;
+        }
+
+        button:hover {
+            background-color: rgb(0, 65, 89);
+            color: rgb(201, 200, 200);
         }
 
         .reservada {
@@ -111,13 +145,26 @@ if (isset($_POST['salvar'])) {
 <body>
     <div class="container-fluid">
         <form action="" method="post">
+
+            <?php
+                $sql = "SELECT id, sala FROM tbl_sala_reservada WHERE id = $id";
+                $result = mysqli_query($mysqli, $sql);
+                $row = mysqli_fetch_assoc($result);
+            ?>
+
+            <div>
+                <input name="sala" value="<?php echo $row['sala'] ?>">
+            </div>
+        
+
             <select name="id_status">
-                <option value="1">SALA RESERVADA</option>
-                <option value="2">SALA LIVRE</option>
-                <option value="3">SHORÁRIO DE ENCAIXE</option>
-                <option value="4">TRIAGEM</option>
-                <option value="5">DEIXAR EM BRANCO</option>
+                <option class="reservada" value="1">SALA RESERVADA</option>
+                <option class="livre" value="2">SALA LIVRE</option>
+                <option class="encaixe" value="3">HORÁRIO DE ENCAIXE</option>
+                <option class="triagem" value="4">TRIAGEM</option>
+                <option class="nada"value="5">DEIXAR EM BRANCO</option>
             </select>
+
 
             <button type="submit" name="salvar">SALVAR</button>
         </form>
