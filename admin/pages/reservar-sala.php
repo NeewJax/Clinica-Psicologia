@@ -46,8 +46,10 @@ include('../../db/conexao.php');
             padding: 8px;
             text-align: center;
         }
+
         th {
             background-color: #f2f2f2;
+            cursor: default;
         }
         .highlight {
             background-color: yellow;
@@ -161,6 +163,8 @@ include('../../db/conexao.php');
         </table> 
     </div>
     <script>
+
+        var popup;
         <?php
             $sql_sala_cod = "SELECT id, sala_cod FROM tbl_sala_reservada";
             $resut_sala_cod = mysqli_query($mysqli, $sql_sala_cod);
@@ -168,12 +172,16 @@ include('../../db/conexao.php');
         ?>
 
         document.getElementById("<?php echo $row_sala_cod['sala_cod'] ?>").addEventListener("click", function() {
-            window.open("mudar-cor.php?id=<?php echo $row_sala_cod['id'] ?>", "popupWindow", "width=400,height=600,scrollbars=no");
+            popup = window.open("mudar-cor.php?id=<?php echo $row_sala_cod['id'] ?>", "popupWindow", "width=400,height=600,scrollbars=no");
         });
 
         <?php
             }
         ?>
+        
+        // if(!popup) {
+        //     location.reload()
+        // }
     </script>
 </body>
 </html>

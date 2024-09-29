@@ -16,6 +16,8 @@ if (isset($_POST['salvar'])) {
     $mysqli->query("UPDATE tbl_sala_reservada SET sala = '$sala', id_status = $id_status WHERE id = $id");
 }
 
+//echo "<script>window.opener.loacation.reload();</script>";
+
 ?>
 
 <!DOCTYPE html>
@@ -68,12 +70,12 @@ if (isset($_POST['salvar'])) {
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             border-radius: 10px;
+            margin-bottom: 30%;
         }
 
         select option {
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
-
         }
 
         button {
@@ -89,12 +91,20 @@ if (isset($_POST['salvar'])) {
             background-color:rgb(0, 109, 148);
             color: white;
             transition: .5s;
-            margin-top: 30%;
         }
 
         button:hover {
             background-color: rgb(0, 65, 89);
             color: rgb(201, 200, 200);
+        }
+
+        .fechar {
+            background-color: rgb(238, 41, 41);
+        }
+
+        .fechar:hover {
+            color: rgb(201, 200, 200);
+            background-color: rgb(179, 30, 30);
         }
 
         .reservada {
@@ -147,7 +157,7 @@ if (isset($_POST['salvar'])) {
         <form action="" method="post">
 
             <?php
-                $sql = "SELECT id, sala FROM tbl_sala_reservada WHERE id = $id";
+                $sql = "SELECT id, sala, id_status FROM tbl_sala_reservada WHERE id = $id";
                 $result = mysqli_query($mysqli, $sql);
                 $row = mysqli_fetch_assoc($result);
             ?>
@@ -158,16 +168,31 @@ if (isset($_POST['salvar'])) {
         
 
             <select name="id_status">
+                <option value="<?php echo $row['id_status'] ?>" select>Mudar Cor</option>
                 <option class="reservada" value="1">SALA RESERVADA</option>
                 <option class="livre" value="2">SALA LIVRE</option>
                 <option class="encaixe" value="3">HORÁRIO DE ENCAIXE</option>
                 <option class="triagem" value="4">TRIAGEM</option>
                 <option class="nada"value="5">DEIXAR EM BRANCO</option>
             </select>
+            
 
-
-            <button type="submit" name="salvar">SALVAR</button>
+            <button type="submit" name="salvar"  onclick="reloadWindow()">SALVAR</button>
+            <button class="fechar" onclick="closePopup()">FECHAR</button>
         </form>
     </div>
+    <script>
+        function reloadWindow() {
+            if(window.opener) {
+                window.opener.location.reload();
+            }
+        }
+
+        function closePopup() {
+            if(window.opener) {
+                window.close();
+            }
+        }
+    </script>
 </body>
 </html>
