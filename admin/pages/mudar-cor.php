@@ -177,7 +177,7 @@ if (isset($_POST['salvar'])) {
             </select>
             
 
-            <button type="submit" name="salvar"  onclick="reloadWindow()">SALVAR</button>
+            <button type="submit" name="salvar" onclick="reloadWindow()">SALVAR</button>
             <button class="fechar" onclick="closePopup()">FECHAR</button>
         </form>
     </div>
