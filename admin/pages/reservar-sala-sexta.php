@@ -153,7 +153,7 @@ include('../../db/conexao.php');
         <div class="divVoltar">
             <a href="layout/pacientes.php"><i class="bi bi-arrow-left-circle-fill" id="iconeVoltar"></i></a>
         </div>
-        <h2>Grade Horária - Segunda-feira</h2>
+        <h2>Grade Horária - Sexta-feira</h2>
         <table class="table">
             <form action="" method="post">
                 <thead class="table-dark">
@@ -218,11 +218,11 @@ include('../../db/conexao.php');
     </div>
     <footer class="container-fluid">
         <nav>
-            <a href="reservar-sala-segunda.php" id="selected">seg</a>
+            <a href="reservar-sala-segunda.php">seg</a>
             <a href="reservar-sala-terca.php">ter</a>
             <a href="reservar-sala-quarta.php">qua</a>
             <a href="reservar-sala-quinta.php">qui</a>
-            <a href="reservar-sala-sexta.php">sex</a>
+            <a href="reservar-sala-sexta.php" id="selected">sex</a>
         </nav>
     </footer>
     <script>
