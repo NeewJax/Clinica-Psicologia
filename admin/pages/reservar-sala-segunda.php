@@ -171,7 +171,7 @@ include('../../db/conexao.php');
                             $horario_da_sala = $row_horario['horario'];
                     ?>
                     <tr>
-                        <?php
+                        <?php 
                             if($horario_da_sala == '14H') {
                                 echo "
                                 </tbody>
@@ -229,7 +229,7 @@ include('../../db/conexao.php');
 
         var popup;
         <?php
-            $sql_sala_cod = "SELECT id, sala_cod FROM tbl_sala_reservada";
+            $sql_sala_cod = "SELECT id, sala_cod FROM tbl_sala_reservada WHERE id_semana = 1";
             $resut_sala_cod = mysqli_query($mysqli, $sql_sala_cod);
             while($row_sala_cod = mysqli_fetch_assoc($resut_sala_cod)) {
         ?>

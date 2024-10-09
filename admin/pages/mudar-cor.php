@@ -57,7 +57,7 @@ if (isset($_POST['salvar'])) {
         }
 
         input {
-            width: 90%;
+            width: 100%;
             margin-top: 5%;
             text-align: center;
         }
