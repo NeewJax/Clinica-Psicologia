@@ -191,7 +191,7 @@ include('../../db/conexao.php');
                                                     FROM tbl_sala_reservada s
                                                     INNER JOIN tbl_horario_sala h ON s.id_horario = h.id
                                                     INNER JOIN tbl_status_sala st ON s.id_status = st.id
-                                                    WHERE h.horario = '$horario_da_sala' && s.id_semana = 1
+                                                    WHERE h.horario = '$horario_da_sala' && s.id_semana = 3
                                                     ORDER BY s.id;
                                                     ";
                                 $result_reserva = mysqli_query($mysqli, $sql_sala_reserva);
@@ -229,7 +229,7 @@ include('../../db/conexao.php');
 
         var popup;
         <?php
-            $sql_sala_cod = "SELECT id, sala_cod FROM tbl_sala_reservada";
+            $sql_sala_cod = "SELECT id, sala_cod FROM tbl_sala_reservada WHERE id_semana = 3";
             $resut_sala_cod = mysqli_query($mysqli, $sql_sala_cod);
             while($row_sala_cod = mysqli_fetch_assoc($resut_sala_cod)) {
         ?>

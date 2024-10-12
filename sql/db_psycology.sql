@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09/10/2024 às 16:12
+-- Tempo de geração: 12/10/2024 às 15:12
 -- Versão do servidor: 10.6.15-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -431,7 +431,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (66, 1, 2, 2, 5, 'ter_m_9_s3', 'Rafysa Mendonça(I)'),
 (67, 1, 2, 2, 5, 'ter_m_9_s4', 'Helloiza Vitória(II)'),
 (68, 1, 2, 2, 5, 'ter_m_9_s5', 'Joabe Pereira(III)'),
-(69, 1, 2, 2, 5, 'ter_m_9_s6', 'Atend. IV'),
+(69, 1, 2, 2, 1, 'ter_m_9_s6', 'Atend. IV'),
 (70, 1, 2, 2, 5, 'ter_m_9_s7', 'Denise Aroucha(V)'),
 (71, 1, 3, 2, 5, 'ter_m_10_s1', 'Atend. Infantil'),
 (72, 1, 3, 2, 5, 'ter_m_10_s2', 'Atend. Grupo'),
@@ -447,34 +447,90 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (82, 1, 4, 2, 5, 'ter_m_11_s5', 'José de Ribamar(III)'),
 (83, 1, 4, 2, 5, 'ter_m_11_s6', 'Atend. IV'),
 (84, 1, 4, 2, 5, 'ter_m_11_s7', 'Guilia Ribeiro(V)'),
-(85, 2, 5, 2, 5, 'ter_t_14_s1', 'Guilherme Santos Ribeiro ( Infantil )'),
+(85, 2, 5, 2, 5, 'ter_t_14_s1', 'Guilherme Santos Ribeiro(Infantil )'),
 (86, 2, 5, 2, 5, 'ter_t_14_s2', 'Atend. Grupo'),
 (87, 2, 5, 2, 5, 'ter_t_14_s3', 'Rosa Helena(I)'),
 (88, 2, 5, 2, 5, 'ter_t_14_s4', 'Ericka Karine(II)'),
 (89, 2, 5, 2, 5, 'ter_t_14_s5', 'Virnna(III)'),
 (90, 2, 5, 2, 5, 'ter_t_14_s6', 'Maria Luíza(IV)'),
 (91, 2, 5, 2, 5, 'ter_t_14_s7', 'Kenya Sousa(V)'),
-(92, 2, 6, 2, 5, 'ter_t_15_s1', 'Talison Michel (Infantil)'),
+(92, 2, 6, 2, 5, 'ter_t_15_s1', 'Talison Michel(Infantil)'),
 (93, 2, 6, 2, 5, 'ter_t_15_s2', 'Claúdia(Grupo)'),
-(94, 2, 6, 2, 5, 'ter_t_15_s3', 'Roseane Sousa(I)'),
+(94, 2, 6, 2, 4, 'ter_t_15_s3', 'Roseane Sousa(I)'),
 (95, 2, 6, 2, 5, 'ter_t_15_s4', 'Ingrid Gabriele(II)'),
 (96, 2, 6, 2, 5, 'ter_t_15_s5', 'Byanca(III)'),
-(97, 2, 6, 2, 5, 'ter_t_15_s6', 'Adrian Carneiro (IV)'),
+(97, 2, 6, 2, 5, 'ter_t_15_s6', 'Adrian Carneiro(IV)'),
 (98, 2, 6, 2, 5, 'ter_t_15_s7', 'Kaylane Alves(V)'),
-(99, 2, 7, 2, 5, 'ter_t_16_s1', 'Ana Beatriz (Infantil)'),
-(100, 2, 7, 2, 5, 'ter_t_16_s2', 'Maria da Conceição (Grupo)'),
+(99, 2, 7, 2, 5, 'ter_t_16_s1', 'Ana Beatriz(Infantil)'),
+(100, 2, 7, 2, 5, 'ter_t_16_s2', 'Maria da Conceição(Grupo)'),
 (101, 2, 7, 2, 5, 'ter_t_16_s3', 'Ellen Marjorie (I)'),
 (102, 2, 7, 2, 5, 'ter_t_16_s4', '(II)'),
 (103, 2, 7, 2, 5, 'ter_t_16_s5', 'Tatiane (III)'),
-(104, 2, 7, 2, 5, 'ter_t_16_s6', 'Layanny Magalhães (IV)'),
-(105, 2, 7, 2, 5, 'ter_t_16_s7', 'Luiza Corrêia (V)'),
-(106, 2, 8, 2, 5, 'ter_t_17_s1', 'Letícia (Infantil)'),
+(104, 2, 7, 2, 5, 'ter_t_16_s6', 'Layanny Magalhães(IV)'),
+(105, 2, 7, 2, 5, 'ter_t_16_s7', 'Luiza Corrêia(V)'),
+(106, 2, 8, 2, 5, 'ter_t_17_s1', 'Letícia(Infantil)'),
 (107, 2, 8, 2, 5, 'ter_t_17_s2', 'Atend. Grupo'),
 (108, 2, 8, 2, 5, 'ter_t_17_s3', '(I)'),
 (109, 2, 8, 2, 5, 'ter_t_17_s4', 'Jorsilma Silveira( II )'),
 (110, 2, 8, 2, 5, 'ter_t_17_s5', 'Carliane Sousa(III)'),
-(111, 2, 8, 2, 5, 'ter_t_17_s6', 'Terezinha de Jesus (IV)'),
-(112, 2, 8, 2, 5, 'ter_t_17_s7', 'Atend. V');
+(111, 2, 8, 2, 5, 'ter_t_17_s6', 'Terezinha de Jesus(IV)'),
+(112, 2, 8, 2, 5, 'ter_t_17_s7', 'Atend. V'),
+(113, 1, 1, 3, 5, 'qua_m_8_s1', 'Atend. Infantil'),
+(114, 1, 1, 3, 5, 'qua_m_8_s2', 'Atend. Grupo'),
+(115, 1, 1, 3, 5, 'qua_m_8_s3', '(I)'),
+(116, 1, 1, 3, 5, 'qua_m_8_s4', '(II)'),
+(117, 1, 1, 3, 5, 'qua_m_8_s5', 'Atend. (III)'),
+(118, 1, 1, 3, 5, 'qua_m_8_s6', 'Atend. (IV)'),
+(119, 1, 1, 3, 5, 'qua_m_8_s7', 'Atend. V'),
+(120, 1, 2, 3, 5, 'qua_m_9_s1', 'Atend. Infantil'),
+(121, 1, 2, 3, 5, 'qua_m_9_s2', 'Atend. Grupo'),
+(122, 1, 2, 3, 5, 'qua_m_9_s3', 'Jorge Luís(I)'),
+(123, 1, 2, 3, 4, 'qua_m_9_s4', 'Leana Michele(II)'),
+(124, 1, 2, 3, 5, 'qua_m_9_s5', 'Atend. (III)'),
+(125, 1, 2, 3, 5, 'qua_m_9_s6', 'Atend. (IV)'),
+(126, 1, 2, 3, 5, 'qua_m_9_s7', 'Maria do Socorro(V)'),
+(127, 1, 3, 3, 5, 'qua_m_10_s1', 'Atend. Infantil'),
+(128, 1, 3, 3, 5, 'qua_m_10_s2', 'Atend. Grupo'),
+(129, 1, 3, 3, 5, 'qua_m_10_s3', 'Lívia Maria(I)'),
+(130, 1, 3, 3, 5, 'qua_m_10_s4', 'Marcos Aurélio(II)'),
+(131, 1, 3, 3, 5, 'qua_m_10_s5', 'João Pedro(III)'),
+(132, 1, 3, 3, 5, 'qua_m_10_s6', 'Atend. (IV)'),
+(133, 1, 3, 3, 1, 'qua_m_10_s7', 'Rebheca Ester(V)'),
+(134, 1, 4, 3, 5, 'qua_m_11_s1', 'Atend. Infantil'),
+(135, 1, 4, 3, 5, 'qua_m_11_s2', 'Atend. Grupo'),
+(136, 1, 4, 3, 5, 'qua_m_11_s3', 'Ana Clara(I)'),
+(137, 1, 4, 3, 5, 'qua_m_11_s4', 'Letícia(II)'),
+(138, 1, 4, 3, 5, 'qua_m_11_s5', 'Rebheca Ester(III)'),
+(139, 1, 4, 3, 5, 'qua_m_11_s6', 'Atend. (IV)'),
+(140, 1, 4, 3, 5, 'qua_m_11_s7', 'Rafysa Mendonça(V)'),
+(141, 2, 5, 3, 5, 'qua_m_14_s1', 'Atend. Infantil'),
+(142, 2, 5, 3, 5, 'qua_m_14_s2', 'Atend. Grupo'),
+(143, 2, 5, 3, 5, 'qua_m_14_s3', 'Neuza Viegas(I)'),
+(144, 2, 5, 3, 5, 'qua_m_14_s4', '(II)'),
+(145, 2, 5, 3, 3, 'qua_m_14_s5', 'Atend. (III)'),
+(146, 2, 5, 3, 5, 'qua_m_14_s6', 'Atend. (IV)'),
+(147, 2, 5, 3, 5, 'qua_m_14_s7', 'Atend. V'),
+(148, 2, 6, 3, 5, 'qua_m_15_s1', 'Arthur Borges(Infantil)'),
+(149, 2, 6, 3, 5, 'qua_m_15_s2', 'Atend. Grupo'),
+(150, 2, 6, 3, 5, 'qua_m_15_s3', 'Lucimar(I)'),
+(151, 2, 6, 3, 5, 'qua_m_15_s4', 'Stella Maria(II)'),
+(152, 2, 6, 3, 5, 'qua_m_15_s5', 'Miriam Thayane (III)'),
+(153, 2, 6, 3, 5, 'qua_m_15_s6', 'Sthefany(IV)'),
+(154, 2, 6, 3, 5, 'qua_m_15_s7', 'Maria do Socorro (V)'),
+(155, 2, 7, 3, 5, 'qua_m_16_s1', 'Wesley Machado(Infantil)'),
+(156, 2, 7, 3, 5, 'qua_m_16_s2', 'Atend. Grupo'),
+(157, 2, 7, 3, 5, 'qua_m_16_s3', 'Rosa Helena(I)'),
+(158, 2, 7, 3, 5, 'qua_m_16_s4', 'Bruna Larissa(II)'),
+(159, 2, 7, 3, 5, 'qua_m_16_s5', 'Samira Pedrolina(III)'),
+(160, 2, 7, 3, 5, 'qua_m_16_s6', 'Andreyna Sousa(IV)'),
+(161, 2, 7, 3, 5, 'qua_m_16_s7', 'Tatiane(V)'),
+(162, 2, 8, 3, 5, 'qua_m_17_s1', 'Atend. Infantil'),
+(163, 2, 8, 3, 5, 'qua_m_17_s2', 'Atend. Grupo'),
+(164, 2, 8, 3, 5, 'qua_m_17_s3', 'Kaylla Fernanda(I)'),
+(165, 2, 8, 3, 5, 'qua_m_17_s4', 'Ivonilson(II)'),
+(166, 2, 8, 3, 5, 'qua_m_17_s5', 'Ana Lycia(III)'),
+(167, 2, 8, 3, 5, 'qua_m_17_s6', 'Gracilene(IV)'),
+(168, 2, 8, 3, 5, 'qua_m_17_s7', 'Maria do Socorro(V)');
 
 -- --------------------------------------------------------
 
@@ -779,7 +835,7 @@ ALTER TABLE `tbl_renda_familiar`
 -- AUTO_INCREMENT de tabela `tbl_sala_reservada`
 --
 ALTER TABLE `tbl_sala_reservada`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_semana`
