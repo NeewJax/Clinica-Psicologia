@@ -13,6 +13,10 @@
     <title>Login do terapeuta - Clínica de psicologia</title>
     <style>
         /* Reset de margens para o elemento body */
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
         body {
             margin: 0;
         }
@@ -79,6 +83,10 @@
             justify-content: center;
             width: 85%;
             /* Reset das margens para evitar interferências */
+        }
+
+        .login-form h1 {
+            text-align: center;
         }
         /* Centraliza o formulário verticalmente */
         .right-login .card-login {
@@ -148,7 +156,7 @@
 
         @media only screen and (max-width: 950px) {
             .card-login {
-                width: 85%;
+                width: 100%;
             }
 
             .right-login {
@@ -183,7 +191,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="main-login">
         <div class="left-login">
@@ -193,7 +200,7 @@
         <div class="right-login">
             <form method="post" class="login-form">
                 <div class="card-login">
-                    <h1>Login do terapeuta</h1>
+                    <h1>Login do Terapeuta</h1>
                     <div class="textfield">
                         <label for="usuario">Usuário</label>
                         <input type="text" name="usuario" placeholder="Usuário" require>

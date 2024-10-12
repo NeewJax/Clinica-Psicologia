@@ -158,6 +158,20 @@ if (isset($_POST['enviar'])) {
             box-sizing: border-box;
         }
 
+        .textfield>select,
+        .textfield-1>select,
+        .textfield-2>select {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            background: #1b1a1a;
+            padding: 10px;
+            color: antiquewhite;
+            font-size: 14px;
+            box-shadow: #1b1a1a;
+            box-sizing: border-box;
+        }
+
         .textfield>label,
         .textfield-1>label,
         .textfield-2>label {
@@ -225,7 +239,7 @@ if (isset($_POST['enviar'])) {
             /* Espaçamento entre a label e o input */
         }
 
-        .textfield-group-3 .textfield-3 input {
+        .textfield-group-3 .textfield-3 input select{
             width: 100%;
             border: none;
             border-radius: 10px;
@@ -260,7 +274,7 @@ if (isset($_POST['enviar'])) {
             /* Espaçamento entre a label e o input */
         }
 
-        .textfield-group-4 .textfield-4 input {
+        .textfield-group-4 .textfield-4 input select {
             width: 100%;
             border: none;
             border-radius: 10px;
@@ -306,8 +320,7 @@ if (isset($_POST['enviar'])) {
             box-sizing: border-box;
             margin-left: 5px;
         }
-
-
+        
         nav {
             background-color: #ffffff;
             color: black;
@@ -319,6 +332,13 @@ if (isset($_POST['enviar'])) {
             width: 50%;
             max-height: 90%;
             cursor: pointer;
+        }
+
+        .optionDisabled {
+            color: red;
+        }
+        button {
+            font-family: Arial, Helvetica, sans-serif;
         }
     </style>
 </head>
@@ -340,7 +360,6 @@ if (isset($_POST['enviar'])) {
 
                 <h1>Cadastro</h1>
                 <form method="post">
-                    
 
                         <div class="textfield">
                             <label for="nome">Nome:</label>
@@ -356,7 +375,7 @@ if (isset($_POST['enviar'])) {
                             <div class="textfield-1">
                                 <label for="sexo">Sexo:</label>
                                 <select id="sexo" name="sexo">
-                                    <option value='' disabled selected></option>
+                                    <option value='' disabled selected>Sexo</option>
                                     <?php
                                         $sql_genero = "SELECT * FROM tbl_genero";
                                         $result_genero = mysqli_query($mysqli, $sql_genero);
@@ -390,7 +409,7 @@ if (isset($_POST['enviar'])) {
                             <div class="textfield-2">
                                 <label for="escolaridade">Escolaridade</label>
                                 <select id="escolaridade" name="escolaridade">
-                                    <option value='' disabled selected></option>
+                                    <option value='' disabled selected>Escolaridade</option>
                                     <?php
                                         $sql_escolaridade = "SELECT * FROM tbl_escolaridade";
                                         $result_escolaridade = mysqli_query($mysqli, $sql_escolaridade);
@@ -414,7 +433,7 @@ if (isset($_POST['enviar'])) {
                             <div class="textfield-2">
                                 <label for="renda familiar">Renda Familiar</label>
                                 <select id="renda_familiar" name="renda_familiar">
-                                        <option value='' disabled selected></option>
+                                        <option value='' disabled selected>Renda Familiar</option>
                                         <?php
                                             $sql_renda_familiar = "SELECT * FROM tbl_renda_familiar";
                                             $result_renda_familiar = mysqli_query($mysqli, $sql_renda_familiar);
@@ -427,12 +446,12 @@ if (isset($_POST['enviar'])) {
                                 </select>
                             </div>
 
-                            <div class="textfield-3">
+                            <div class="textfield-2">
                                 <label for="rg/orgão expedidor">RG Orgão Expedidor</label>
                                 <input type="number" id="rg" name="rg" placeholder="RG ORGÃO EXPEDIDOR" required>
                             </div>
 
-                            <div class="textfield-3">
+                            <div class="textfield-2">
                                 <label for="cpf">CPF</label>
                                 <input type="number" id="cpf" name="cpf" placeholder="CPF" required>
                             </div>
@@ -451,10 +470,10 @@ if (isset($_POST['enviar'])) {
                                 <input type="text" id="estado_civil" name="estado_civil" placeholder="Estado civil" required>
                             </div> -->
 
-                            <div class="textfield-4">
+                            <div class="textfield-2">
                                 <label for="Estado Civil">Estado Civil:</label>
                                 <select id="estado_civil" name="estado_civil">
-                                    <option value='' disabled selected></option>
+                                    <option value='' disabled selected>Estado Civil</option>
                                     <?php
                                         //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
                                         $sql_estado_civil = "SELECT * FROM tbl_estado_civil";
@@ -468,7 +487,7 @@ if (isset($_POST['enviar'])) {
                                 </select>
                             </div>
 
-                            <div class="textfield-4">
+                            <div class="textfield-2">
                                 <Label for=" mora com quem?">Mora Com Quem?</Label>
                                 <input type="text" id="mora_com" name="mora_com" placeholder="Mora Com Quem?" required>
                             </div>
@@ -498,7 +517,7 @@ if (isset($_POST['enviar'])) {
                             </div>
                         </div>
 
-
+                        
                         <div class="textfield-group-5">
                             <div class="textfield-5">
                                 <label for="tel(residencial)">Tel(Residencial)</label>
