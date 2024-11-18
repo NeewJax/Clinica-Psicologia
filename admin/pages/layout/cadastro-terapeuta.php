@@ -137,6 +137,7 @@ if(isset($_POST['criar'])) {
               <ul class="treeview-menu">
                 <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
                 <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
+                <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
@@ -250,10 +251,21 @@ if(isset($_POST['criar'])) {
                     <div class="form-group">
                       <label for="inputDisponibilidade3" class="col-sm-2 control-label">Disponibilidade</label>
                       <div class="col-sm-10">
-                        <select class="form-control" name="disponibilidade" required id="inputDisponibilidade3">
+                      <select class="form-control" name="disponibilidade" required id="inputDisponibilidade3">
+                            <?php
+                                $sql_genero = "SELECT * FROM tbl_disponibilidade";
+                                $result_genero = mysqli_query($mysqli, $sql_genero);
+                                while ($row = mysqli_fetch_assoc($result_genero)) {
+                            ?>
+                                    <option value='<?php echo $row['id'] ?>'> <?php echo $row['disponibilidade'] ?> </option>
+                            <?php
+                                }
+                            ?>
+                        </select>
+                        <!-- <select class="form-control" name="disponibilidade" required id="inputDisponibilidade3">
                             <option value="1">Disponível</option>
                             <option value="2">Indisponível</option>
-                        </select>
+                        </select> -->
                       </div>
                     </div> 
                   </div><!-- /.box-body -->

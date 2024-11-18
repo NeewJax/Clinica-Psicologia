@@ -19,11 +19,10 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
 
         $sql_code = "SELECT * FROM tbl_users WHERE email = '$email' LIMIT 1";
         
-        $sql_query = $mysqli->query($sql_code);
-        //$sql_query = $mysqli->query($sql_code) or die("Falha na execução do codigo SQL: " . $mysqli);
+        //$sql_query = $mysqli->query($sql_code);
+        $sql_query = $mysqli->query($sql_code) or die("Falha na execução do codigo SQL: " . $mysqli);
 
         $quantidade = mysqli_num_rows($sql_query);
-        echo "<script>alert('". $quantidade ."')</script>";
         // FAZENDO A AUTENTICAÇÃO E REDIRECIONANDO PARA O PAINEL
         if ($quantidade == 1) {
             $usuario = $sql_query->fetch_assoc();

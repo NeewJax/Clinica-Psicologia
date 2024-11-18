@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/10/2024 às 16:04
+-- Tempo de geração: 19/11/2024 às 00:53
 -- Versão do servidor: 10.6.15-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -369,7 +369,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (4, 1, 1, 1, 5, 'seg_m_8_s4', 'Eline de Sousa(II)'),
 (5, 1, 1, 1, 5, 'seg_m_8_s5', 'Atend. III'),
 (6, 1, 1, 1, 5, 'seg_m_8_s6', 'Atend. IV'),
-(7, 1, 1, 1, 5, 'seg_m_8_s7', 'Atend. Infantil'),
+(7, 1, 1, 1, 4, 'seg_m_8_s7', 'Atend. Infantil'),
 (8, 1, 2, 1, 5, 'seg_m_9_s1', 'Henrique Gabriel(Infantil)'),
 (9, 1, 2, 1, 5, 'seg_m_9_s2', 'Atend. Grupo'),
 (10, 1, 2, 1, 5, 'seg_m_9_s3', '(I)'),
@@ -382,7 +382,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (17, 1, 3, 1, 5, 'seg_m_10_s3', '(I)'),
 (18, 1, 3, 1, 5, 'seg_m_10_s4', 'Maryana Dállia(II)'),
 (19, 1, 3, 1, 5, 'seg_m_10_s5', 'Yuri(III)'),
-(20, 1, 3, 1, 5, 'seg_m_10_s6', 'Ranilson(IV)'),
+(20, 1, 3, 1, 2, 'seg_m_10_s6', 'Ranilson(IV)'),
 (21, 1, 3, 1, 5, 'seg_m_10_s7', 'Tean Rayzton(V)'),
 (22, 1, 4, 1, 5, 'seg_m_11_s1', 'Luiz Márcio(Infantil)'),
 (23, 1, 4, 1, 5, 'seg_m_11_s2', 'Atend. Grupo'),
@@ -490,7 +490,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (125, 1, 2, 3, 5, 'qua_m_9_s6', 'Atend. (IV)'),
 (126, 1, 2, 3, 5, 'qua_m_9_s7', 'Maria do Socorro(V)'),
 (127, 1, 3, 3, 5, 'qua_m_10_s1', 'Atend. Infantil'),
-(128, 1, 3, 3, 5, 'qua_m_10_s2', 'Atend. Grupo'),
+(128, 1, 3, 3, 2, 'qua_m_10_s2', 'Atend. Grupo'),
 (129, 1, 3, 3, 5, 'qua_m_10_s3', 'Lívia Maria(I)'),
 (130, 1, 3, 3, 5, 'qua_m_10_s4', 'Marcos Aurélio(II)'),
 (131, 1, 3, 3, 5, 'qua_m_10_s5', 'João Pedro(III)'),
@@ -726,7 +726,8 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id`, `nome`, `email`, `senha`, `date`) VALUES
-(1, 'admin', 'admin@gmail.com', '$2y$10$Z3w1Yd9AiDlTUIgSa.rT5eQb.4Brv3pi6f41.gaiVBOSy7zqElSau', '2023-10-27 04:05:17');
+(1, 'admin', 'admin@gmail.com', '$2y$10$Z3w1Yd9AiDlTUIgSa.rT5eQb.4Brv3pi6f41.gaiVBOSy7zqElSau', '2023-10-27 04:05:17'),
+(2, 'admin', 'admin2@gmail.com', '$2y$10$Owb696tNKc1Em28sLASHTuRGxWGev7cb4Yg9Mi60Xdp2SXKwubm8C', '2024-11-18 22:35:51');
 
 -- --------------------------------------------------------
 
@@ -750,7 +751,8 @@ CREATE TABLE `tbl_user_terapeuta` (
 
 INSERT INTO `tbl_user_terapeuta` (`id`, `id_disponibilidade`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
 (2, 1, 'Anderson', 'Anderson', 'andersson@gemail.com', '$2y$10$uf2mzbZ78j2bBtr.eHQyse84b0bJcsVopEvUw.ynd507eYSDtVQQy', '2024-04-07 02:46:11'),
-(3, 1, 'Ana2', 'Ana', 'ana@gmail.com', '$2y$10$Ilhu3M5N8ClJiY9CRD/iV.q4MKYZoKfmuf/QF1LsvJaouonpUCpbS', '2024-09-01 12:11:52');
+(3, 1, 'Ana2', 'Ana', 'ana@gmail.com', '$2y$10$Ilhu3M5N8ClJiY9CRD/iV.q4MKYZoKfmuf/QF1LsvJaouonpUCpbS', '2024-09-01 12:11:52'),
+(4, 1, 'Janna', 'Janna', 'janna@gmail.com', '$2y$10$2yu8zGLg4cF4V8NUvaIYNeTPD446BeJ2eaWhocFDlqoYwIDStI34q', '2024-11-18 23:35:02');
 
 --
 -- Índices para tabelas despejadas
@@ -774,6 +776,12 @@ ALTER TABLE `tbl_consulta`
 ALTER TABLE `tbl_contato`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_contato_paciente` (`id_paciente`);
+
+--
+-- Índices de tabela `tbl_disponibilidade`
+--
+ALTER TABLE `tbl_disponibilidade`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `tbl_endereco`
@@ -868,6 +876,18 @@ ALTER TABLE `tbl_turno`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `tbl_users`
+--
+ALTER TABLE `tbl_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tbl_user_terapeuta`
+--
+ALTER TABLE `tbl_user_terapeuta`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -888,6 +908,12 @@ ALTER TABLE `tbl_consulta`
 --
 ALTER TABLE `tbl_contato`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_disponibilidade`
+--
+ALTER TABLE `tbl_disponibilidade`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_endereco`
@@ -966,6 +992,18 @@ ALTER TABLE `tbl_status_sala`
 --
 ALTER TABLE `tbl_turno`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_users`
+--
+ALTER TABLE `tbl_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_user_terapeuta`
+--
+ALTER TABLE `tbl_user_terapeuta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para tabelas despejadas
