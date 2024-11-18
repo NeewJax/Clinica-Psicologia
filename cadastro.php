@@ -1,30 +1,20 @@
 <?php
 include('db/conexao.php');
-$host = 'localhost';
-$dbname = 'db_psicologia';
-$username = 'root';
-$password = '';
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-} catch (PDOException $e) {
-    die("Error: " . $e->getMessage());
-}
 
 if (isset($_POST['enviar'])) {
     $nome = $_POST['nome'];
-    $sexo = $_POST['sexo'];
+    $id_genero = $_POST['sexo'];
     $idade = $_POST['idade'];
     $nascimento = $_POST['nascimento'];
     $localidade = $_POST['localidade'];
 
-    $escolaridade = $_POST['escolaridade'];
+    $id_escolaridade = $_POST['escolaridade'];
     $profissao = $_POST['profissao'];
-    $renda_familiar = $_POST['renda_familiar'];
+    $id_renda_familiar = $_POST['renda_familiar'];
     $rg = $_POST['rg'];
     $cpf = $_POST['cpf'];
 
-    $estado_civil = $_POST['estado_civil'];
+    $id_estado_civil = $_POST['estado_civil'];
     $composicao_familiar = $_POST['composicao_familiar'];
     $mora_com = $_POST['mora_com'];
     $endereco = $_POST['endereco'];
@@ -37,14 +27,45 @@ if (isset($_POST['enviar'])) {
     $celular = $_POST['celular'];
     $email = $_POST['email'];
 
-    $sql = $pdo->prepare("INSERT INTO tbl_paciente VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $sql->execute(array(
-        $nome, $sexo, $idade, $nascimento, $localidade,
-        $escolaridade, $profissao, $renda_familiar, $rg, $cpf,
-        $estado_civil, $composicao_familiar, $mora_com, $telefone_residencial, $telefone_recado, $celular, $email
-    ));
+    $id_contato = 1;
+    $id_profissao = 1;
+    $id_endereco = 1;
 
-    header('Location: cadastro-sucesso.php');
+    try {
+        //INSERIR CONTATO
+        $mysqli->query("INSERT INTO tbl_contato (id, id_paciente, email, telefone) VALUES (NULL, 1, '$email', '$celular')");
+        $id_contato = $mysqli->insert_id;
+
+        //INSERT PROFISSAO
+        $mysqli->query("INSERT INTO tbl_profissao (id, profissao) VALUES (NULL, '$profissao')");
+        $id_profissao = $mysqli->insert_id;
+
+        //INSERT BAIRRO
+        $mysqli->query("INSERT INTO tbl_bairro (id, bairro) VALUES (NULL, '$bairro')");
+        $id_bairro = $mysqli->insert_id;
+
+        //INSERT LOGRADOURO
+        $mysqli->query("INSERT INTO tbl_logradouro (id, logradouro) VALUES (id, '$localidade')");
+        $id_logradouro = $mysqli->insert_id;
+
+        //INSERT ENDEREÇO
+        $mysqli->query("INSERT INTO tbl_endereco (id, id_paciente, id_bairro, id_logradouro, cep) VALUES (id, 1, $id_bairro, $id_logradouro, '$cep')");
+        $id_endereco = $mysqli->insert_id;
+
+        // INSERIR PACIENTE
+        $mysqli->query("INSERT INTO tbl_paciente (id, nome, nascimento, rg, cpf, id_genero, id_contato, id_escolaridade, id_profissao, id_renda_familiar, id_estado_civil, id_endereco) 
+        VALUES (NULL, '$nome', '$nascimento', $rg, $cpf, $id_genero, $id_contato, $id_escolaridade, $id_profissao, $id_renda_familiar, $id_estado_civil, $id_endereco)");
+        $id_paciente = $mysqli->insert_id;
+
+        //ATUALIZAR TABELAS
+        $mysqli->query("UPDATE tbl_contato SET id_paciente=$id_paciente WHERE id = $id_contato");
+        $mysqli->query("UPDATE tbl_endereco SET id_paciente=$id_paciente WHERE id = $id_endereco");
+
+        header('Location: cadastro-sucesso.php');
+
+    }  catch(Exception $e) {
+        echo "Error: " . $e;
+    }
 }
 ?>
 
@@ -137,6 +158,20 @@ if (isset($_POST['enviar'])) {
             box-sizing: border-box;
         }
 
+        .textfield>select,
+        .textfield-1>select,
+        .textfield-2>select {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            background: #1b1a1a;
+            padding: 10px;
+            color: antiquewhite;
+            font-size: 14px;
+            box-shadow: #1b1a1a;
+            box-sizing: border-box;
+        }
+
         .textfield>label,
         .textfield-1>label,
         .textfield-2>label {
@@ -204,7 +239,7 @@ if (isset($_POST['enviar'])) {
             /* Espaçamento entre a label e o input */
         }
 
-        .textfield-group-3 .textfield-3 input {
+        .textfield-group-3 .textfield-3 input select{
             width: 100%;
             border: none;
             border-radius: 10px;
@@ -239,7 +274,7 @@ if (isset($_POST['enviar'])) {
             /* Espaçamento entre a label e o input */
         }
 
-        .textfield-group-4 .textfield-4 input {
+        .textfield-group-4 .textfield-4 input select {
             width: 100%;
             border: none;
             border-radius: 10px;
@@ -285,8 +320,7 @@ if (isset($_POST['enviar'])) {
             box-sizing: border-box;
             margin-left: 5px;
         }
-
-
+        
         nav {
             background-color: #ffffff;
             color: black;
@@ -298,6 +332,13 @@ if (isset($_POST['enviar'])) {
             width: 50%;
             max-height: 90%;
             cursor: pointer;
+        }
+
+        .optionDisabled {
+            color: red;
+        }
+        button {
+            font-family: Arial, Helvetica, sans-serif;
         }
     </style>
 </head>
@@ -319,7 +360,6 @@ if (isset($_POST['enviar'])) {
 
                 <h1>Cadastro</h1>
                 <form method="post">
-                    
 
                         <div class="textfield">
                             <label for="nome">Nome:</label>
@@ -335,14 +375,13 @@ if (isset($_POST['enviar'])) {
                             <div class="textfield-1">
                                 <label for="sexo">Sexo:</label>
                                 <select id="sexo" name="sexo">
-                                    <option value='' disabled selected></option>
+                                    <option value='' disabled selected>Sexo</option>
                                     <?php
-                                        //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
                                         $sql_genero = "SELECT * FROM tbl_genero";
                                         $result_genero = mysqli_query($mysqli, $sql_genero);
                                         while ($row = mysqli_fetch_assoc($result_genero)) {
                                     ?>
-                                            <option value='<?php echo $row['id'] ?>'> <?php echo $row['genero'] ?> </option>
+                                            <option value='<?php echo $row['id'] ?>'> <?php echo $row['sexo'] ?> </option>
                                     <?php
                                         }
                                     ?>
@@ -370,9 +409,8 @@ if (isset($_POST['enviar'])) {
                             <div class="textfield-2">
                                 <label for="escolaridade">Escolaridade</label>
                                 <select id="escolaridade" name="escolaridade">
-                                    <option value='' disabled selected></option>
+                                    <option value='' disabled selected>Escolaridade</option>
                                     <?php
-                                        //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
                                         $sql_escolaridade = "SELECT * FROM tbl_escolaridade";
                                         $result_escolaridade = mysqli_query($mysqli, $sql_escolaridade);
                                         while ($row = mysqli_fetch_assoc($result_escolaridade)) {
@@ -392,17 +430,28 @@ if (isset($_POST['enviar'])) {
 
 
                         <div class="textfield-group-3">
-                            <div class="textfield-3">
+                            <div class="textfield-2">
                                 <label for="renda familiar">Renda Familiar</label>
-                                <input type="number" id="renda_familiar" name="renda_familiar" placeholder="Renda Familiar" required>
+                                <select id="renda_familiar" name="renda_familiar">
+                                        <option value='' disabled selected>Renda Familiar</option>
+                                        <?php
+                                            $sql_renda_familiar = "SELECT * FROM tbl_renda_familiar";
+                                            $result_renda_familiar = mysqli_query($mysqli, $sql_renda_familiar);
+                                            while($row = mysqli_fetch_assoc($result_renda_familiar)) {
+                                        ?>
+                                                <option value='<?php echo $row['id']?>'> <?php echo $row['renda'] ?> </option>
+                                        <?php
+                                            }
+                                        ?>
+                                </select>
                             </div>
 
-                            <div class="textfield-3">
+                            <div class="textfield-2">
                                 <label for="rg/orgão expedidor">RG Orgão Expedidor</label>
                                 <input type="number" id="rg" name="rg" placeholder="RG ORGÃO EXPEDIDOR" required>
                             </div>
 
-                            <div class="textfield-3">
+                            <div class="textfield-2">
                                 <label for="cpf">CPF</label>
                                 <input type="number" id="cpf" name="cpf" placeholder="CPF" required>
                             </div>
@@ -421,10 +470,10 @@ if (isset($_POST['enviar'])) {
                                 <input type="text" id="estado_civil" name="estado_civil" placeholder="Estado civil" required>
                             </div> -->
 
-                            <div class="textfield-4">
+                            <div class="textfield-2">
                                 <label for="Estado Civil">Estado Civil:</label>
                                 <select id="estado_civil" name="estado_civil">
-                                    <option value='' disabled selected></option>
+                                    <option value='' disabled selected>Estado Civil</option>
                                     <?php
                                         //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
                                         $sql_estado_civil = "SELECT * FROM tbl_estado_civil";
@@ -438,7 +487,7 @@ if (isset($_POST['enviar'])) {
                                 </select>
                             </div>
 
-                            <div class="textfield-4">
+                            <div class="textfield-2">
                                 <Label for=" mora com quem?">Mora Com Quem?</Label>
                                 <input type="text" id="mora_com" name="mora_com" placeholder="Mora Com Quem?" required>
                             </div>
@@ -468,7 +517,7 @@ if (isset($_POST['enviar'])) {
                             </div>
                         </div>
 
-
+                        
                         <div class="textfield-group-5">
                             <div class="textfield-5">
                                 <label for="tel(residencial)">Tel(Residencial)</label>

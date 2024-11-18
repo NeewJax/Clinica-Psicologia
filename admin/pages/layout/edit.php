@@ -9,51 +9,45 @@ $id = $_GET["id"];
 if (isset($_POST["submit"])) {
 
     $nome = $_POST['nome'];
-    $sexo = $_POST['sexo'];
-    $idade = $_POST['idade'];
+    $id_genero = $_POST['sexo'];
     $nascimento = $_POST['nascimento'];
-    $localidade = $_POST['localidade'];
-    $escolaridade = $_POST['escolaridade'];
+    $logradouro = $_POST['localidade'];
+    $id_escolaridade = $_POST['escolaridade'];
     $profissao = $_POST['profissao'];
-    $renda_familiar = $_POST['renda_familiar'];
+    $id_renda_familiar = $_POST['renda_familiar'];
     $rg = $_POST['rg'];
     $cpf = $_POST['cpf'];
-    $estado_civil = $_POST['estado_civil'];
-    $composicao_familiar = $_POST['composicao_familiar'];
-    $mora_com = $_POST['mora_com'];
-    $endereco = $_POST['endereco'];
+    $id_estado_civil = $_POST['estado_civil'];
     $bairro = $_POST['bairro'];
-    $cidade = $_POST['cidade'];
     $cep = $_POST['cep'];
-    $telefone_residencial = $_POST['telefone_residencial'];
-    $telefone_recado = $_POST['telefone_recado'];
-    $celular = $_POST['celular'];
+    $telefone = $_POST['telefone'];
     $email = $_POST['email'];
+    $id_endereco = $_POST['id_endereco'];
+    $id_bairro = $_POST['bairro_id'];
+    $id_logradouro = $_POST['logradouro_id'];
+    $id_profissao = $_POST['profissao_id'];
 
-// Substituir os valores na query SQL
-  $sql = "UPDATE tbl_cadastro SET nome = '$nome', sexo = '$sexo', idade = '$idade', nascimento = '$nascimento', localidade = '$localidade', escolaridade = '$escolaridade', profissao = '$profissao', renda_familiar = '$renda_familiar', rg = '$rg', cpf = '$cpf', estado_civil = '$estado_civil', composicao_familiar = '$composicao_familiar', mora_com = '$mora_com', endereco = '$endereco', bairro = '$bairro', cidade = '$cidade', cep = '$cep', telefone_residencial = '$telefone_residencial', telefone_recado = '$telefone_recado', celular = '$celular', email = '$email' WHERE id = $id";
-  
-  $result = mysqli_query($mysqli, $sql);
-  
-  // // Atualizar os dados na tabela endereco
-  // $estado = $_POST['estado'];
-  // $uf = $_POST['uf'];
-  // $rua = $_POST['rua'];
-  // $numero_casa = $_POST['numero_casa'];
-  
-  // $sql_endereco = "UPDATE endereco SET estado = '$estado', uf = '$uf', cidade = '$cidade', bairro = '$bairro', rua = '$rua', numero_casa = '$numero_casa' WHERE id_endereco = $id_endereco";
-  
-  // $result_endereco = mysqli_query($mysqli, $sql_endereco);
-  
 
-  // if ($result && $result_endereco) {
-  //   header("Location: pacientes.php?msg=Atualização realizada com sucesso");
-  //   exit;
-  // } else {
-  //   echo "Falha: " . mysqli_error($mysqli);
-  // }
 
-  //mysqli_close($mysqli);
+    // Substituir os valores na query SQL
+
+    $mysqli->query("UPDATE tbl_profissao SET profissao = '$profissao' WHERE id = $id_profissao");
+
+    $mysqli->query("UPDATE tbl_logradouro SET logradouro = '$logradouro' WHERE id = $id_logradouro");
+
+    $mysqli->query("UPDATE tbl_contato SET email ='$email', telefone = '$telefone' WHERE id_paciente = $id");
+
+    $mysqli->query("UPDATE tbl_bairro SET bairro = '$bairro' WHERE id = $id_bairro");
+
+    $mysqli->query("UPDATE tbl_endereco SET cep = '$cep' WHERE id = $id_endereco");
+    
+    $mysqli->query("UPDATE tbl_paciente SET nome = '$nome', nascimento = '$nascimento', rg = '$rg', cpf = '$cpf', 
+                                id_genero = $id_genero, 
+                                id_escolaridade = $id_escolaridade,
+                                id_renda_familiar = $id_renda_familiar,
+                                id_estado_civil = $id_estado_civil
+                                WHERE id = $id");
+  
 }
 ?>
 
@@ -279,7 +273,22 @@ if (isset($_POST["submit"])) {
               </div>
               <br>
               <?php
-              $sql = "SELECT * FROM tbl_cadastro WHERE id = $id";
+              $sql = "SELECT pa.id, pa.nome, pa.nascimento, pa.rg, pa.cpf, pa.id_genero, pa.id_escolaridade, pa.id_renda_familiar, 
+                              pa.id_estado_civil, pa.id_endereco, se.sexo, en.id, en.cep, lo.logradouro, lo.id AS logradouro_id,
+                              es.escolaridade, pr.profissao, pr.id AS profissao_id, re.renda, ec.estado_civil, ba.bairro, 
+                              ba.id AS bairro_id, co.telefone, co.email
+                      FROM tbl_paciente AS pa 
+                      INNER JOIN tbl_genero se ON se.id = pa.id_genero
+                      INNER JOIN tbl_endereco en ON en.id = pa.id_endereco
+                      INNER JOIN tbl_logradouro lo ON lo.id = en.id
+                      INNER JOIN tbl_escolaridade es ON es.id = pa.id_escolaridade
+                      INNER JOIN tbl_profissao pr ON pr.id = pa.id_profissao
+                      INNER JOIN tbl_renda_familiar re ON re.id = pa.id_renda_familiar
+                      INNER JOIN tbl_estado_civil ec ON ec.id = pa.id_estado_civil
+                      INNER JOIN tbl_bairro ba ON ba.id = en.id_bairro
+                      INNER JOIN tbl_contato co ON co.id = pa.id_contato
+                      WHERE pa.id = $id";
+                      
               $result = mysqli_query($mysqli, $sql);
               $row = mysqli_fetch_assoc($result);
               ?>
@@ -299,11 +308,23 @@ if (isset($_POST["submit"])) {
 
 
                     <label class="form-label">Sexo:</label>
-                    <input type="text" class="form-control custom-input custom-input" name="sexo" value="<?php echo $row['sexo']; ?>">
+                    <select id="sexo" name="sexo" class="form-control custom-input custom-input">
+                        <option value="<?php echo $row['id_genero']; ?>" selected> <?php echo $row['sexo'] ?> </option>
+                        <?php
+                            $id_genero = $row['id_genero'];
+                            $sql_genero = "SELECT * FROM tbl_genero WHERE id !=  $id_genero";
+                            $result_genero = mysqli_query($mysqli, $sql_genero);
+                            while ($rowSe = mysqli_fetch_assoc($result_genero)) {
+                        ?>
+                                <option value='<?php echo $rowSe['id'] ?>'> <?php echo $rowSe['sexo'] ?> </option>
+                        <?php
+                            }
+                        ?>
+                    </select>
 
 
-                    <label class="form-label">idade:</label>
-                    <input type="text" class="form-control custom-input" name="idade" value="<?php echo $row['idade']; ?>">
+                    <!-- <label class="form-label">idade:</label>
+                    <input type="text" class="form-control custom-input" name="idade" value="<?php echo $row['idade']; ?>"> -->
 
 
                     <label class="form-label">Nascimento:</label>
@@ -311,64 +332,106 @@ if (isset($_POST["submit"])) {
 
 
                     <label class="form-label">Localidade:</label>
-                    <input type="text" class="form-control custom-input" name="localidade" value="<?php echo $row['localidade']; ?>">
+                    <input type="text" class="form-control custom-input" name="localidade" value="<?php echo $row['logradouro']; ?>">
+                    <input type="text" name='logradouro_id' class='id_oculto' value='<?php echo $row['logradouro_id'] ?>'>
 
 
                     <label class="form-label">Escolaridade:</label>
-                    <input type="text" class="form-control custom-input" name="escolaridade" value="<?php echo $row['escolaridade']; ?>">
-
-
-                    <label class="form-label">Escolaridade:</label>
-                    <input type="text" class="form-control custom-input" name="escolaridade" value="<?php echo $row['escolaridade']; ?>">
+                    <select id="escolaridade" name="escolaridade" class="form-control custom-input">
+                        <option value='<?php echo $row['id_escolaridade'] ?>' selected> <?php echo $row['escolaridade'] ?> </option>
+                        <?php
+                            $id_escolaridade = $row['id_escolaridade'];
+                            $sql_escolaridade = "SELECT * FROM tbl_escolaridade WHERE id != $id_escolaridade";
+                            $result_escolaridade = mysqli_query($mysqli, $sql_escolaridade);
+                            while ($rowEs = mysqli_fetch_assoc($result_escolaridade)) {
+                        ?>
+                                <option value='<?php echo $rowEs['id'] ?>'> <?php echo $rowEs['escolaridade'] ?> </option>
+                        <?php
+                            }
+                        ?>
+                    </select>
 
 
                     <label class="form-label">Profissão:</label>
                     <input type="text" class="form-control custom-input" name="profissao" value="<?php echo $row['profissao']; ?>">
+                    <input type="text" name='profissao_id' class='id_oculto' value='<?php echo $row['profissao_id'] ?>'>
+
 
                     <label class="form-label">Renda Familiar</label>
-                    <input type="text" class="id_oculto" name="renda_familiar" value="<?php echo $row['renda_familiar']; ?>">
+                    <select id="renda_familiar" name="renda_familiar" class="form-control custom-input">
+                              <option value='<?php echo $row['id_renda_familiar'] ?>' selected> <?php echo $row['renda'] ?> </option>
+                              <?php
+                                  $id_renda_familiar = $row['id_renda_familiar'];
+                                  $sql_renda_familiar = "SELECT * FROM tbl_renda_familiar WHERE id != $id_renda_familiar";
+                                  $result_renda_familiar = mysqli_query($mysqli, $sql_renda_familiar);
+                                  while($rowRe = mysqli_fetch_assoc($result_renda_familiar)) {
+                              ?>
+                                      <option value='<?php echo $rowRe['id']?>'> <?php echo $rowRe['renda'] ?> </option>
+                              <?php
+                                  }
+                              ?>
+                      </select>
+
 
                     <label class="form-label">RG:</label>
                     <input type="text" class="form-control custom-input" name="rg" value="<?php echo $row['rg']; ?>">
 
+
                     <label class="form-label">CPF:</label>
-                    <input type="text" class="form-control custom-input" maxlength="2" name="cpf" value="<?php echo $row['cpf']; ?>">
+                    <input type="text" class="form-control custom-input" maxlength="11" name="cpf" value="<?php echo $row['cpf']; ?>">
+
 
                     <label class="form-label">Estado Civil:</label>
-                    <input type="text" class="form-control custom-input" name="estado_civil" value="<?php echo $row['estado_civil']; ?>">
+                    <select id="estado_civil" name="estado_civil" class="form-control custom-input">
+                        <option value='<?php echo $row['id_estado_civil'] ?>' selected> <?php echo $row['estado_civil'] ?> </option>
+                        <?php
+                            $id_estado_civil = $row['id_estado_civil'];
+                            $sql_estado_civil = "SELECT * FROM tbl_estado_civil WHERE id != $id_estado_civil";
+                            $result_estado_civil = mysqli_query($mysqli, $sql_estado_civil);
+                            while ($rowEC = mysqli_fetch_assoc($result_estado_civil)) {
+                        ?>
+                                <option value='<?php echo $rowEC['id'] ?>'> <?php echo $rowEC['estado_civil'] ?> </option>
+                        <?php
+                            }
+                        ?>
+                    </select>
 
-                    <label class="form-label">Composição Familiar:</label>
-                    <input type="text" class="form-control custom-input" name="composicao_familiar" value="<?php echo $row['composicao_familiar']; ?>">
 
-                    <label class="form-label">Mora com:</label>
-                    <input type="text" class="form-control custom-input" name="mora_com" value="<?php echo $row['mora_com']; ?>">
+                    <!-- <label class="form-label">Composição Familiar:</label>
+                    <input type="text" class="form-control custom-input" name="composicao_familiar" value="<?php echo $row['composicao_familiar']; ?>"> -->
 
-                    <label class="form-label">Endereço:</label>
-                    <input type="text" class="form-control custom-input" name="endereco" value="<?php echo $row['endereco']; ?>">
-                    <!-- FIM DOS CAMPOS ENDEREÇO -->
+
+                    <!-- <label class="form-label">Mora com:</label>
+                    <input type="text" class="form-control custom-input" name="mora_com" value="<?php echo $row['mora_com']; ?>"> -->
+
+
+                    <!-- <label class="form-label">Endereço:</label>
+                    <input type="text" class="form-control custom-input" name="endereco" value="<?php echo $row['endereco']; ?>"> -->
+                    
+                    <!-- FIM DOS CAMPOS ENDEREÇO  -->
+
+                    <!-- <label class="form-label">Cidade:</label>
+                    <input type="text" class="form-control custom-input" name="cidade" value="<?php echo $row['cidade']; ?>"> -->
 
                     <label class="form-label">Bairro:</label>
                     <input type="text" class="form-control custom-input" name="bairro" value="<?php echo $row['bairro']; ?>">
-
-
-                    <label class="form-label">Cidade:</label>
-                    <input type="text" class="form-control custom-input" name="cidade" value="<?php echo $row['cidade']; ?>">
-
+                    <input type="text" name='bairro_id' class='id_oculto' value='<?php echo $row['bairro_id'] ?>'>
 
                     <label class="form-label">CEP:</label>
                     <input type="text" class="form-control custom-input" name="cep" value="<?php echo $row['cep']; ?>">
+                    <input type="text" name='id_endereco' class='id_oculto' value='<?php echo $row['id_endereco'] ?>'>
 
 
-                    <label class="form-label">Telefone Residencial:</label>
+                    <!-- <label class="form-label">Telefone Residencial:</label>
                     <input type="text" class="form-control custom-input" name="telefone_residencial" value="<?php echo $row['telefone_residencial']; ?>">
 
 
                     <label class="form-label">Telefone Residencial:</label>
-                    <input type="text" class="form-control custom-input" name="telefone_recado" value="<?php echo $row['telefone_recado']; ?>">
+                    <input type="text" class="form-control custom-input" name="telefone_recado" value="<?php echo $row['telefone_recado']; ?>"> -->
 
 
-                    <label class="form-label">Celular:</label>
-                    <input type="text" class="form-control custom-input" name="celular" value="<?php echo $row['celular']; ?>">
+                    <label class="form-label">Telefone:</label>
+                    <input type="text" class="form-control custom-input" name="telefone" value="<?php echo $row['telefone']; ?>">
 
 
                     <label class="form-label">Email:</label>

@@ -203,14 +203,14 @@
       <tbody>
         <?php
             //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-            $sql = "SELECT * FROM tbl_cadastro";
+            $sql = "SELECT p.id, p.nome, p.cpf, c.telefone FROM tbl_paciente p INNER JOIN tbl_contato c ON p.id = c.id_paciente";
             $result = mysqli_query($mysqli, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
         ?>
             <tr>
                 <td><a href="../calendar.php?id=<?php echo $row["id"] ?>"><?php echo $row["nome"] ?></a></td>
                 <td><?php echo $row["cpf"] ?></td>
-                <td><?php echo $row["telefone_residencial"] ?></td>
+                <td><?php echo $row["telefone"] ?></td>
                 <td>
                 <a href="edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
                 <a href="delete-consulta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
