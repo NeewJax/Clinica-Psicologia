@@ -151,7 +151,7 @@ include('../../db/conexao.php');
 <body>
     <div class="container-fluid divForm">
         <div class="divVoltar">
-            <a href="layout/pacientes.php"><i class="bi bi-arrow-left-circle-fill" id="iconeVoltar"></i></a>
+            <a href="../index.php"><i class="bi bi-arrow-left-circle-fill" id="iconeVoltar"></i></a>
         </div>
         <h2>Grade Horária - Quarta-feira</h2>
         <table class="table">
