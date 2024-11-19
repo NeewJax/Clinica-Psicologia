@@ -130,7 +130,7 @@
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
+                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
                 <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
                 <!-- <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
@@ -196,7 +196,7 @@
       <thead class="table-dark">
         <tr>
           <th scope="col">Nome</th>
-          <th scope="col">CPF</th>
+          <th scope="col">Nascimento</th>
           <th scope="col">Telefone</th>
           <th scope="col">Ação</th>
         </tr>
@@ -204,13 +204,13 @@
       <tbody>
         <?php
             //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-            $sql = "SELECT p.id, p.nome, p.cpf, c.telefone FROM tbl_paciente p INNER JOIN tbl_contato c ON p.id = c.id_paciente";
+            $sql = "SELECT p.id, p.nome, p.cpf, p.nascimento, c.telefone FROM tbl_paciente p INNER JOIN tbl_contato c ON p.id = c.id_paciente";
             $result = mysqli_query($mysqli, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
         ?>
             <tr>
                 <td><a href="../calendar.php?id=<?php echo $row["id"] ?>"><?php echo $row["nome"] ?></a></td>
-                <td><?php echo $row["cpf"] ?></td>
+                <td><?php echo $row["nascimento"] ?></td>
                 <td><?php echo $row["telefone"] ?></td>
                 <td>
                 <a href="edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>

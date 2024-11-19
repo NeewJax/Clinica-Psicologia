@@ -161,6 +161,16 @@ include('../../db/conexao.php');
                         <th>Horário</th>
                         <th colspan="7">MANHÃ</th>
                     </tr>
+                    <tr>
+                        <th></th>
+                        <th>s1</th>
+                        <th>s2</th>
+                        <th>s3</th>
+                        <th>s4</th>
+                        <th>s5</th>
+                        <th>s6</th>
+                        <th>s7</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <?php

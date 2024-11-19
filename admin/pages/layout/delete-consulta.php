@@ -2,7 +2,7 @@
 include('../../protect.php');
 include('../../../db/conexao.php');
     $id = $_GET["id"];
-    $sql = "DELETE FROM tbl_cadastro WHERE id = $id";
+    $sql = "DELETE FROM tbl_paciente WHERE id = $id";
     $result = mysqli_query($mysqli, $sql);
 
     if ($result) {

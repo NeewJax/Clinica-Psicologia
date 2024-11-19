@@ -127,7 +127,7 @@
         <a href="../terapeuta/login.php" onclick="redirecionarOutraTela()">
             <div class="card">
                 <img src="img/team-1.jpg" alt="Imagem Terapeuta">
-                <p class="btn-estilizado">Login Terapeuta</p>
+                <p class="btn-estilizado">Login Estagiário</p>
             </div>
         </a>
        

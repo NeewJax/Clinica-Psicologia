@@ -136,7 +136,7 @@ include('../../contador.php');
             </a>
             <ul class="treeview-menu">
               <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-              <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
+              <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
               <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
               <!-- <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
               <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>

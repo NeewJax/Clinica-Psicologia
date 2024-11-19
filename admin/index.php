@@ -141,7 +141,7 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="pages/layout/pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-              <li><a href="pages/layout/terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
+              <li><a href="pages/layout/terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
               <li><a href="pages/reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
               <!-- <li><a href="pages/calendar.php"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
             </ul>
@@ -184,119 +184,9 @@
 
       <!-- Main content -->
       <section class="content">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner">
-                <h3>0</h3>
-                <p>Accounts connected</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-plus"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div><!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-green">
-              <div class="inner">
-                <h3>0<sup style="font-size: 20px">%</sup></h3>
-                <p>Stats from accounts</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div><!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-yellow">
-              <div class="inner">
-                <h3>0</h3>
-                <p>User Registrations</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div><!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-red">
-              <div class="inner">
-                <h3><?php echo $contador; ?></h3>
-                <p>Unique Visitors</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div><!-- ./col -->
-        </div><!-- /.row -->
-        <!-- Main row -->
-        <div class="row">
-          <!-- Left col -->
-
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-5 connectedSortable">
 
 
-            <!-- Chat box -->
-            <div class="box box-success">
-              <div class="box-header">
-                <i class="fa fa-check"></i>
-                <h3 class="box-title">Updates</h3>
-              </div>
-              <div class="box-body chat" id="chat-box">
-                <!-- chat item -->
-                <div class="item">
-                  <img src="dist/img/mclovin.jpg" alt="user image">
-                  <p class="message">
-                    <a class="name">
-                      <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 21:02</small>
-                      Jaax
-                    </a>
-                    Este site foi desenvolvido pela equipe de desenvolvimento da Estácio de Sá
-                  </p>
-                  <!-- ATTACHMENT 
-                        <div class="attachment">
-                          <h4>Attachments:</h4>
-                          <p class="filename">
-                            Theme-thumbnail-image.jpg
-                          </p>
-                          <div class="pull-right">
-                            <button class="btn btn-primary btn-sm btn-flat">Open</button>
-                          </div>
-                        </div> /.attachment -->
-
-                </div><!-- /.item -->
-                <!-- chat item -->
-                <div class="item">
-                  <img src="dist/img/mclovin.jpg" alt="user image">
-                  <p class="message">
-                    <a class="name">
-                      <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 19:02</small>
-                      Jaax
-                    </a>
-                    Seja bem vindo(a) ao painel administrativo da clinica de psicologia
-                  </p>
-                </div><!-- /.item -->
-                <!-- chat item -->
-
-              </div><!-- /.chat -->
-
-            </div><!-- /.box (chat box) -->
-
-          </section><!-- right col -->
-        </div><!-- /.row (main row) -->
-
-      </section><!-- /.content -->
+      </section>
     </div><!-- /.content-wrapper -->
     <footer class="main-footer">
       <strong>CLÍNICA DE PSICOLOGIA <br> Equipe de desenvolvimento da Estácio de Sá | Laboratório de Transformação Digital.</strong>

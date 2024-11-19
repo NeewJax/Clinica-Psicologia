@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/11/2024 às 00:53
+-- Tempo de geração: 20/11/2024 às 00:55
 -- Versão do servidor: 10.6.15-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -291,9 +291,23 @@ INSERT INTO `tbl_paciente` (`id`, `nome`, `nascimento`, `rg`, `cpf`, `id_genero`
 (7, 'Wilson', '2024-08-06', 1234, 98765, 1, 6, 5, 1, 1, 1, 1),
 (9, 'Neymar9', '2024-08-04', 45, 987654321, 1, 10, 4, 4, 5, 2, 2),
 (10, 'Neymar2', '2024-08-04', 45, 987654321, 1, 11, 4, 5, 5, 2, 3),
-(11, 'Neymar2', '2024-08-04', 45, 987654321, 1, 12, 4, 6, 5, 2, 4),
-(12, 'Neymar2', '2024-08-04', 45, 987654321, 1, 13, 4, 7, 5, 2, 5),
-(13, 'Neymar2', '2024-08-04', 45, 987654321, 1, 14, 4, 8, 5, 2, 6);
+(11, 'Neymar2', '2024-08-04', 45, 987654321, 1, 12, 4, 6, 5, 2, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tbl_professor`
+--
+
+CREATE TABLE `tbl_professor` (
+  `id` int(11) NOT NULL,
+  `id_disponibilidade` int(11) UNSIGNED NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `usuario` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -836,6 +850,12 @@ ALTER TABLE `tbl_paciente`
   ADD KEY `fk_paciente_genero` (`id_genero`);
 
 --
+-- Índices de tabela `tbl_professor`
+--
+ALTER TABLE `tbl_professor`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `tbl_profissao`
 --
 ALTER TABLE `tbl_profissao`
@@ -956,6 +976,12 @@ ALTER TABLE `tbl_logradouro`
 --
 ALTER TABLE `tbl_paciente`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_professor`
+--
+ALTER TABLE `tbl_professor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_profissao`

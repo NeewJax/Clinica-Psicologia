@@ -216,7 +216,7 @@ if(isset($_POST['criar'])) {
             <form enctype="multipart/form-data" method="POST">
             <div class="box box-info">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Preencha os dados do terapeuta</h3>
+                  <h3 class="box-title">Preencha os dados do estagiário</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form method="POST" class="form-horizontal">
