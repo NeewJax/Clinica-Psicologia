@@ -137,10 +137,11 @@
             <a href="#">
               <i class="fa fa-gears"></i>
               <span>Gerenciar</span>
-              <span class="label label-primary pull-right">3</span>
+              <span class="label label-primary pull-right"></span>
             </a>
             <ul class="treeview-menu">
               <li><a href="pages/layout/pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
+              <li><a href="pages/layout/professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
               <li><a href="pages/layout/terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
               <li><a href="pages/reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
               <!-- <li><a href="pages/calendar.php"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->

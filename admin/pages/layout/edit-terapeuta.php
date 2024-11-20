@@ -9,13 +9,14 @@ $id = $_GET["id"];
 if (isset($_POST["submit"])) {
 
     $id_disponibilidade = $_POST['disponibilidade'];
+    $id_professor = $_POST['professor'];
     $nome = $_POST['nome'];
     $usuario = $_POST['usuario'];
     $email = $_POST['email'];
 
 
 // Substituir os valores na query SQL
-  $sql = "UPDATE tbl_user_terapeuta SET id_disponibilidade='$id_disponibilidade', nome = '$nome', usuario = '$usuario', email = '$email' WHERE id = $id";
+  $sql = "UPDATE tbl_user_terapeuta SET id_disponibilidade=$id_disponibilidade, id_professor=$id_professor, nome = '$nome', usuario = '$usuario', email = '$email' WHERE id = $id";
   
   $result = mysqli_query($mysqli, $sql);
   
@@ -186,16 +187,21 @@ if (isset($_POST["submit"])) {
             <ul class="treeview-menu">
               <li><a href="../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
             </ul>
+            <ul class="treeview-menu">
+              <li class=""><a href="../../logout.php"><i class="fa fa-dashboard"></i> Sair</a></li>
+            </ul>
           </li>
           <li class="treeview active">
             <a href="#">
               <i class="fa fa-gears"></i>
               <span>Gerenciar</span>
-              <span class="label label-primary pull-right">2</span>
+              <span class="label label-primary pull-right"></span>
             </a>
             <ul class="treeview-menu">
-                <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
+            <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
+              <li><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
+              <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
+              <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
@@ -233,7 +239,7 @@ if (isset($_POST["submit"])) {
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Gerenciar</a></li>
-          <li class="active">Editar Paciente</li>
+          <li class="active">Editar Estagiário</li>
         </ol>
       </section>
 
@@ -246,7 +252,7 @@ if (isset($_POST["submit"])) {
         <!-- Default box -->
         <div class="box">
           <div class="box-header with-border">
-            <h3 class="box-title">PACIENTE</h3>
+            <h3 class="box-title">ESTAGIÁRIO</h3>
             <div class="box-tools pull-right">
               <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
@@ -258,16 +264,16 @@ if (isset($_POST["submit"])) {
 
             <div class="container">
               <div class="text-center mb-4">
-                <h3>Editar cadastro de paciente</h3>
+                <h3>Editar cadastro do estagiário</h3>
                 <p class="text-muted">Clique em "atualizar" para atualizar alguma informação</p>
               </div>
               <br>
               <?php
               $sql = "SELECT tbl_user_terapeuta.*, tbl_disponibilidade.*
-              FROM  tbl_user_terapeuta
-              JOIN tbl_disponibilidade
-              ON tbl_user_terapeuta.id_disponibilidade = tbl_disponibilidade.id 
-              WHERE tbl_user_terapeuta.id = $id";
+                      FROM  tbl_user_terapeuta
+                      JOIN tbl_disponibilidade
+                      ON tbl_user_terapeuta.id_disponibilidade = tbl_disponibilidade.id 
+                      WHERE tbl_user_terapeuta.id = $id";
               $result = mysqli_query($mysqli, $sql);
               $row = mysqli_fetch_assoc($result);
               ?>
@@ -293,41 +299,51 @@ if (isset($_POST["submit"])) {
                     <label class="form-label">Email:</label>
                     <input type="email" class="form-control custom-input" name="email" value="<?php echo $row['email']; ?>">
 
+
+                    <label for="Professor" class="form-label">Professor</label>
+                    <select class="form-control custom-input" name="professor" required>
+                          <?php
+                              $sql_professor_terapeuta = "SELECT p.nome, p.id AS idProfessor FROM tbl_user_terapeuta t
+                                                          INNER JOIN tbl_professor p ON t.id_professor = p.id
+                                                          WHERE t.id = $id";
+                              $result_professor_terapeuta = mysqli_query($mysqli, $sql_professor_terapeuta);
+                              $row_professor_terapeuta = mysqli_fetch_assoc($result_professor_terapeuta);
+                              $id_prof = $row_professor_terapeuta['idProfessor'];
+                          ?>
+                          <option selected ><?php echo $row_professor_terapeuta['nome'] ?></option>
+                          <?php
+                              $sql_professor = "SELECT * FROM tbl_professor 
+                                                WHERE id_disponibilidade = 1 
+                                                AND id != $id_prof;";
+                              $result_professor = mysqli_query($mysqli, $sql_professor);
+                              while ($row_professor = mysqli_fetch_assoc($result_professor)) {
+                          ?>
+                                  <option value='<?php echo $row_professor['id'] ?>'> <?php echo $row_professor['nome'] ?> </option>
+                          <?php
+                              }
+                          ?>
+                    </select>
+
                     <label class="form-label">Disponibilidade:</label>
                     <select class="form-control custom-input" name="disponibilidade" required id="inputDisponibilidade3">
-                            <option value="<?php echo $row['id_disponibilidade'] ?> ">
-                            <?php echo $row['disponibilidade'];?>
-                          </option>
-                            <option 
-                            value=" <?php echo ($row['id_disponibilidade'] == 2) ? '1' : '2' ?>">
-                              <?php echo ($row['id_disponibilidade'] == 2) ? 'Disponível' : 'Indisponível' ?>
-                            </option>
+                        <option value="<?php echo $row['id_disponibilidade'] ?> ">
+                          <?php echo $row['disponibilidade'];?>
+                        </option>
+                        <option value=" <?php echo ($row['id_disponibilidade'] == 2) ? '1' : '2' ?>">
+                            <?php echo ($row['id_disponibilidade'] == 2) ? 'Disponível' : 'Indisponível' ?>
+                        </option>
                     </select>
                     
                     <br>
                     <div>
                       <button type="submit" class="btn btn-success" name="submit">Atualizar</button>
-                      <a href="pacientes.php" class="btn btn-danger">Cancelar</a>
+                      <a href="professores.php" class="btn btn-danger">Cancelar</a>
                     </div>
                   </div>
                 </form> <br>
 
                 <?php
 
-                // $id_aprovacao = $row['id_aprovacao'];
-                // if ($id_aprovacao == 2) {
-                //   echo "<form class='formAprova' action='aprovar.php' method='post'>";
-                //       echo "<input style='display:none' type='number' name='id' value='" . $id . "'>";
-
-                //       echo "<button type='submit' class='btn btn-success'>Aprovar</button>";
-                //   echo "</form>";
-                // } else if ($id_aprovacao == 1){
-                //   echo "<form class='formAprova' action='desaprovar.php' method='post'>";
-                //       echo "<input style='display:none' type='number' name='id' value='" . $id . "'>";
-
-                //       echo "<button type='submit' class='btn btn-danger desaprovar'>Desaprovar</button>";
-                //   echo "</form>";
-                // }
                 ?>
               </div>
             </div>

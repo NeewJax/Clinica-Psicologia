@@ -136,8 +136,8 @@ include('../../contador.php');
             </a>
             <ul class="treeview-menu">
               <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-              <li><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
-              <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
+              <li class="active"><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
+              <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
               <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
               <!-- <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
               <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
@@ -185,14 +185,14 @@ include('../../contador.php');
               echo "<h5 class='box-title' id='msg'>$mensagem</h5><br><br>";
             }
             ?>
-            <h3 class="box-title">ESTAGIÁRIOS</h3>
+            <h3 class="box-title">PROFESSORES</h3>
             <div class="box-tools pull-right">
               <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
           </div>
           <div class="box-body">
-            <a href="cadastro-terapeuta.php">
-              <button class="btn btn-block btn-primary">Cadastrar estagiário</button>
+            <a href="cadastro-professor.php">
+              <button class="btn btn-block btn-primary">Cadastrar professor</button>
             </a>
             <!-- AQUI COMEÇA SUA APLICAÇÃO -->
 
@@ -212,7 +212,7 @@ include('../../contador.php');
                 <tbody>
                   <?php
                   //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-                  $sql = "SELECT * FROM tbl_user_terapeuta";
+                  $sql = "SELECT * FROM tbl_professor";
                   $result = mysqli_query($mysqli, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
                   ?>
@@ -223,8 +223,8 @@ include('../../contador.php');
                       <td><?php echo date('d/m/Y', strtotime($row["date"])); ?></td>
 
                       <td style="background:white">
-                        <a href="edit-terapeuta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
-                        <a href="delete-terapeuta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
+                        <a href="edit-professor.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
+                        <a href="delete-professor.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
                       </td>
                     </tr>
                   <?php

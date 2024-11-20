@@ -126,10 +126,11 @@
               <a href="#">
                 <i class="fa fa-gears"></i>
                 <span>Gerenciar</span>
-                <span class="label label-primary pull-right">2</span>
+                <span class="label label-primary pull-right"></span>
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
+                <li><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
                 <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
                 <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
                 <!-- <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
@@ -214,7 +215,7 @@
                 <td><?php echo $row["telefone"] ?></td>
                 <td>
                 <a href="edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
-                <a href="delete-consulta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
+                <a href="delete-paciente.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
                 </td>
             </tr>
             <!-- <a href="../calendar.php"></a> -->

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20/11/2024 às 00:55
+-- Tempo de geração: 20/11/2024 às 15:26
 -- Versão do servidor: 10.6.15-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -290,8 +290,7 @@ CREATE TABLE `tbl_paciente` (
 INSERT INTO `tbl_paciente` (`id`, `nome`, `nascimento`, `rg`, `cpf`, `id_genero`, `id_contato`, `id_escolaridade`, `id_profissao`, `id_renda_familiar`, `id_estado_civil`, `id_endereco`) VALUES
 (7, 'Wilson', '2024-08-06', 1234, 98765, 1, 6, 5, 1, 1, 1, 1),
 (9, 'Neymar9', '2024-08-04', 45, 987654321, 1, 10, 4, 4, 5, 2, 2),
-(10, 'Neymar2', '2024-08-04', 45, 987654321, 1, 11, 4, 5, 5, 2, 3),
-(11, 'Neymar2', '2024-08-04', 45, 987654321, 1, 12, 4, 6, 5, 2, 4);
+(10, 'Neymar2', '2024-08-04', 45, 987654321, 1, 11, 4, 5, 5, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -308,6 +307,14 @@ CREATE TABLE `tbl_professor` (
   `senha` varchar(255) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbl_professor`
+--
+
+INSERT INTO `tbl_professor` (`id`, `id_disponibilidade`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
+(2, 2, 'Janna', 'Janna', 'janna@gmail.com', '$2y$10$WZZY6qHFlrhaCwf4FOJTnOIRTcptEvKxbYmasxuqLVvkAef3c7FG2', '2024-11-20 14:25:28'),
+(3, 1, 'João', 'João', 'joao@gmail.com', '$2y$10$3AkZqgk22at/HlvSqP57XeUzAsVKJqnHLtB6BSZaXCwMXznHAGERW', '2024-11-20 14:08:53');
 
 -- --------------------------------------------------------
 
@@ -752,6 +759,7 @@ INSERT INTO `tbl_users` (`id`, `nome`, `email`, `senha`, `date`) VALUES
 CREATE TABLE `tbl_user_terapeuta` (
   `id` int(11) NOT NULL,
   `id_disponibilidade` int(11) UNSIGNED NOT NULL,
+  `id_professor` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `usuario` varchar(20) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -763,10 +771,8 @@ CREATE TABLE `tbl_user_terapeuta` (
 -- Despejando dados para a tabela `tbl_user_terapeuta`
 --
 
-INSERT INTO `tbl_user_terapeuta` (`id`, `id_disponibilidade`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
-(2, 1, 'Anderson', 'Anderson', 'andersson@gemail.com', '$2y$10$uf2mzbZ78j2bBtr.eHQyse84b0bJcsVopEvUw.ynd507eYSDtVQQy', '2024-04-07 02:46:11'),
-(3, 1, 'Ana2', 'Ana', 'ana@gmail.com', '$2y$10$Ilhu3M5N8ClJiY9CRD/iV.q4MKYZoKfmuf/QF1LsvJaouonpUCpbS', '2024-09-01 12:11:52'),
-(4, 1, 'Janna', 'Janna', 'janna@gmail.com', '$2y$10$2yu8zGLg4cF4V8NUvaIYNeTPD446BeJ2eaWhocFDlqoYwIDStI34q', '2024-11-18 23:35:02');
+INSERT INTO `tbl_user_terapeuta` (`id`, `id_disponibilidade`, `id_professor`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
+(9, 1, 3, 'Ana', 'Ana', 'ana@gmail.com', '$2y$10$kDsIYtou7voifuJJ7wa34e0v45LNW4JhrT.qni95JBSFOd7hkQz6m', '2024-11-20 14:24:46');
 
 --
 -- Índices para tabelas despejadas
@@ -853,7 +859,8 @@ ALTER TABLE `tbl_paciente`
 -- Índices de tabela `tbl_professor`
 --
 ALTER TABLE `tbl_professor`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_professor_disciplina` (`id_disponibilidade`);
 
 --
 -- Índices de tabela `tbl_profissao`
@@ -905,7 +912,9 @@ ALTER TABLE `tbl_users`
 -- Índices de tabela `tbl_user_terapeuta`
 --
 ALTER TABLE `tbl_user_terapeuta`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_terapeuta_disponibilidade` (`id_disponibilidade`),
+  ADD KEY `fk_terapeuta_professor` (`id_professor`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
@@ -981,7 +990,7 @@ ALTER TABLE `tbl_paciente`
 -- AUTO_INCREMENT de tabela `tbl_professor`
 --
 ALTER TABLE `tbl_professor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_profissao`
@@ -1029,7 +1038,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT de tabela `tbl_user_terapeuta`
 --
 ALTER TABLE `tbl_user_terapeuta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restrições para tabelas despejadas
@@ -1055,6 +1064,12 @@ ALTER TABLE `tbl_paciente`
   ADD CONSTRAINT `fk_paciente_renda_familar` FOREIGN KEY (`id_renda_familiar`) REFERENCES `tbl_renda_familiar` (`id`);
 
 --
+-- Restrições para tabelas `tbl_professor`
+--
+ALTER TABLE `tbl_professor`
+  ADD CONSTRAINT `fk_professor_disciplina` FOREIGN KEY (`id_disponibilidade`) REFERENCES `tbl_disponibilidade` (`id`);
+
+--
 -- Restrições para tabelas `tbl_sala_reservada`
 --
 ALTER TABLE `tbl_sala_reservada`
@@ -1062,6 +1077,13 @@ ALTER TABLE `tbl_sala_reservada`
   ADD CONSTRAINT `fk_sala_reservada_semana` FOREIGN KEY (`id_semana`) REFERENCES `tbl_semana` (`id`),
   ADD CONSTRAINT `fk_sala_reservada_status` FOREIGN KEY (`id_status`) REFERENCES `tbl_status_sala` (`id`),
   ADD CONSTRAINT `fk_sala_reservada_turno` FOREIGN KEY (`id_turno`) REFERENCES `tbl_turno` (`id`);
+
+--
+-- Restrições para tabelas `tbl_user_terapeuta`
+--
+ALTER TABLE `tbl_user_terapeuta`
+  ADD CONSTRAINT `fk_terapeuta_disponibilidade` FOREIGN KEY (`id_disponibilidade`) REFERENCES `tbl_disponibilidade` (`id`),
+  ADD CONSTRAINT `fk_terapeuta_professor` FOREIGN KEY (`id_professor`) REFERENCES `tbl_professor` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

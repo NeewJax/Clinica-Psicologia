@@ -1,17 +1,34 @@
 <?php
 include('../../protect.php');
 include('../../../db/conexao.php');
-include('../../contador.php');
-
 ?>
 
+<?php
+$id = $_GET["id"];
+
+if (isset($_POST["submit"])) {
+
+  $id_disponibilidade = $_POST['disponibilidade'];
+  $nome = $_POST['nome'];
+  $usuario = $_POST['usuario'];
+  $email = $_POST['email'];
+
+
+  $sql = "UPDATE tbl_professor SET id_disponibilidade='$id_disponibilidade', nome = '$nome', usuario = '$usuario', email = '$email' WHERE id = $id";
+  
+  $result = mysqli_query($mysqli, $sql);
+  
+}
+?>
+
+
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CLÍNICA | ADMIN</title>
+  <title>CLINICA | EDITAR CONSULTA</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -27,14 +44,39 @@ include('../../contador.php');
   <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
   <!-- Bootstrap -->
   <link rel="shortcut icon" href="../../../img/favicon.png" type="image/x-icon">
-
-  <!-- Font Awesome -->
   <style>
-    .indisponivel {
-      background-color: lightcoral;
+    div.divForm {
+      width: 100%;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    div.custom {
+      display: flex;
+    }
+
+    div.custom>div.quebraLinha {
+      width: 80%;
+    }
+
+    div.nomeEmail>div.quebraLinha>.custom-input {
+      width: 50%;
+      margin-right: 2%;
+    }
+
+    .custom-input {
+      width: 90%;
+    }
+
+    .id_oculto {
+      display: none;
     }
   </style>
-</head>
+
+  <!-- Font Awesome -->
+
 <body class="hold-transition skin-blue fixed sidebar-mini">
   <!-- Site wrapper -->
   <div class="wrapper">
@@ -45,7 +87,7 @@ include('../../contador.php');
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>CL</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>CLÍ</b>NICA</span>
+        <span class="logo-lg"><b>CLI</b>NICA</span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top" role="navigation">
@@ -105,14 +147,14 @@ include('../../contador.php');
           </div>
         </div>
         <!-- search form -->
-        <!-- <form action="#" method="get" class="sidebar-form">
+        <form action="#" method="get" class="sidebar-form">
           <div class="input-group">
             <input type="text" name="q" class="form-control" placeholder="Search...">
             <span class="input-group-btn">
               <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
             </span>
           </div>
-        </form> -->
+        </form>
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -135,16 +177,33 @@ include('../../contador.php');
               <span class="label label-primary pull-right"></span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-              <li><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
-              <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
-              <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
-              <!-- <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
-              <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
+            <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
+                <li class="active"><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
+                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiário</a></li>
+                <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
+                <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
                 <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
             </ul>
-          </li>
+          </li><!--
+            <li>
+              <a href="../widgets.html">
+                <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dollar"></i>
+                <span>DarkShop</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="../layout/darkshop.php"><i class="fa fa-cart-plus"></i> Store</a></li>
+              </ul>
+            </li>
+           -->
+      </section>
+      <!-- /.sidebar -->
     </aside>
 
     <!-- =============================================== -->
@@ -154,12 +213,12 @@ include('../../contador.php');
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          CLINICA PSICOLOGIA
+          CLÍNICA PSICOLOGIA
         </h1>
         <ol class="breadcrumb">
-          <li><a href="../../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Gerenciar</a></li>
-          <li class="active">Terapeutas</li>
+          <li class="active">Editar Paciente</li>
         </ol>
       </section>
 
@@ -172,66 +231,90 @@ include('../../contador.php');
         <!-- Default box -->
         <div class="box">
           <div class="box-header with-border">
-
-            <style>
-              #msg {
-                color: green;
-              }
-            </style>
-
-            <?php
-            if (isset($_GET['msg'])) {
-              $mensagem = $_GET['msg'];
-              echo "<h5 class='box-title' id='msg'>$mensagem</h5><br><br>";
-            }
-            ?>
-            <h3 class="box-title">ESTAGIÁRIOS</h3>
+            <h3 class="box-title">PACIENTE</h3>
             <div class="box-tools pull-right">
               <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
           </div>
           <div class="box-body">
-            <a href="cadastro-terapeuta.php">
-              <button class="btn btn-block btn-primary">Cadastrar estagiário</button>
-            </a>
+
             <!-- AQUI COMEÇA SUA APLICAÇÃO -->
 
 
-            <div>
+            <div class="container">
+              <div class="text-center mb-4">
+                <h3>Editar cadastro de paciente</h3>
+                <p class="text-muted">Clique em "atualizar" para atualizar alguma informação</p>
+              </div>
+              <br>
+              <?php
+              $sql = "SELECT tbl_professor.*, tbl_disponibilidade.*
+                      FROM  tbl_professor
+                      JOIN tbl_disponibilidade
+                      ON tbl_professor.id_disponibilidade = tbl_disponibilidade.id 
+                      WHERE tbl_professor.id = $id";
+              $result = mysqli_query($mysqli, $sql);
+              $row = mysqli_fetch_assoc($result);
+              ?>
+              <!-- SELECT tbljogadoress.*,tblmodalidade.*, tblposicao.nome_posicao 
+              FROM tbljogadoress
+              JOIN tblposicao ON tbljogadoress.id_posicao = tblposicao.id_posicao 
+              JOIN tblmodalidade ON tblposicao.id_modalidade = tblmodalidade.id_modalidade
+              WHERE idade > 7 AND idade <= 9 -->
 
-              <table class="table table-hover text-center">
-                <thead class="table-dark">
-                  <tr>
-                    <th></th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">Registro</th>
-                    <th scope="col">Ação</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-                  $sql = "SELECT * FROM tbl_user_terapeuta";
-                  $result = mysqli_query($mysqli, $sql);
-                  while ($row = mysqli_fetch_assoc($result)) {
-                  ?>
-                    <tr>
-                    <td><?php echo ($row['id_disponibilidade']==2) ? "❌" : "✔️" ?></td>
-                      <td><?php echo $row["nome"] ?></td>
-                      <td><?php echo $row["email"] ?></td>
-                      <td><?php echo date('d/m/Y', strtotime($row["date"])); ?></td>
+              <div class="container-fluid divForm">
+                <form action="" method="post">
 
-                      <td style="background:white">
-                        <a href="edit-terapeuta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
-                        <a href="delete-terapeuta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
-                      </td>
-                    </tr>
-                  <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
+                  <div class="container-fluid">
+
+                    <label class="form-label">Nome:</label>
+                    <input type="text" class="form-control custom-input" name="nome" value="<?php echo $row['nome']; ?>">
+
+
+                    <label class="form-label">Usuario:</label>
+                    <input type="text" class="form-control custom-input custom-input" name="usuario" value="<?php echo $row['usuario']; ?>">
+
+
+                    <label class="form-label">Email:</label>
+                    <input type="email" class="form-control custom-input" name="email" value="<?php echo $row['email']; ?>">
+
+                    <label class="form-label">Disponibilidade:</label>
+                    <select class="form-control custom-input" name="disponibilidade" required id="inputDisponibilidade3">
+                          <option value="<?php echo $row['id_disponibilidade'] ?> ">
+                            <?php echo $row['disponibilidade'];?>
+                          </option>
+
+                          <option  value=" <?php echo ($row['id_disponibilidade'] == 2) ? '1' : '2' ?>">
+                            <?php echo ($row['id_disponibilidade'] == 2) ? 'Disponível' : 'Indisponível' ?>
+                          </option>
+                    </select>
+                    
+                    <br>
+                    <div>
+                      <button type="submit" class="btn btn-success" name="submit">Atualizar</button>
+                      <a href="professores.php" class="btn btn-danger">Cancelar</a>
+                    </div>
+                  </div>
+                </form> <br>
+
+                <?php
+
+                // $id_aprovacao = $row['id_aprovacao'];
+                // if ($id_aprovacao == 2) {
+                //   echo "<form class='formAprova' action='aprovar.php' method='post'>";
+                //       echo "<input style='display:none' type='number' name='id' value='" . $id . "'>";
+
+                //       echo "<button type='submit' class='btn btn-success'>Aprovar</button>";
+                //   echo "</form>";
+                // } else if ($id_aprovacao == 1){
+                //   echo "<form class='formAprova' action='desaprovar.php' method='post'>";
+                //       echo "<input style='display:none' type='number' name='id' value='" . $id . "'>";
+
+                //       echo "<button type='submit' class='btn btn-danger desaprovar'>Desaprovar</button>";
+                //   echo "</form>";
+                // }
+                ?>
+              </div>
             </div>
 
             <!--AQUI TERMINA SUA APLICAÇÃO! -->

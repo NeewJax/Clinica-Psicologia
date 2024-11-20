@@ -7,12 +7,11 @@
 if(isset($_POST['criar'])) {
     $nome = $_POST['nome'];
     $id_disponibilidade = $_POST['disponibilidade'];
-    $id_professor = $_POST['professor'];
     $usuario = $_POST['usuario'];
     $email = $_POST['email'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-    $mysqli->query("INSERT INTO tbl_user_terapeuta (id, id_disponibilidade, id_professor, nome,usuario, email, senha) VALUES (NULL, $id_disponibilidade, $id_professor, '$nome', '$usuario', '$email', '$senha')");
+    $mysqli->query("INSERT INTO tbl_professor (id, id_disponibilidade, nome,usuario, email, senha) VALUES (NULL, '$id_disponibilidade', '$nome', '$usuario', '$email', '$senha')");
 
 }
 
@@ -140,8 +139,8 @@ if(isset($_POST['criar'])) {
               </a>
               <ul class="treeview-menu">
                 <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-                <li><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
-                <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiário</a></li>
+                <li class="active"><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
+                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiário</a></li>
                 <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
                 <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
@@ -209,7 +208,7 @@ if(isset($_POST['criar'])) {
             ?>
 
 
-              <h3 class="box-title">Cadastramento de estagiários</h3>
+              <h3 class="box-title">Cadastramento de professores</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
               </div>
@@ -221,7 +220,7 @@ if(isset($_POST['criar'])) {
             <form enctype="multipart/form-data" method="POST">
             <div class="box box-info">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Preencha os dados do estagiário</h3>
+                  <h3 class="box-title">Preencha os dados do professor</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form method="POST" class="form-horizontal">
@@ -229,7 +228,7 @@ if(isset($_POST['criar'])) {
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Nome</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nome" required id="inputEmail3" placeholder="Nome do estagiário">
+                        <input type="text" class="form-control" name="nome" required id="inputEmail3" placeholder="Nome do professor">
                       </div>
                     </div>
                     <br>
@@ -253,25 +252,6 @@ if(isset($_POST['criar'])) {
                         <input type="password" class="form-control" name="senha" id="inputPassword3" required placeholder="Senha">
                       </div>
                     </div>
-
-                    <div class="form-group">
-                      <label for="Professor" class="col-sm-2 control-label">Professor</label>
-                      <div class="col-sm-10">
-                      <select class="form-control" name="professor" required>
-                            <option disabled selected >Professor</option>
-                            <?php
-                                $sql_professor = "SELECT * FROM tbl_professor WHERE id_disponibilidade = 1";
-                                $result_professor = mysqli_query($mysqli, $sql_professor);
-                                while ($row_professor = mysqli_fetch_assoc($result_professor)) {
-                            ?>
-                                    <option value='<?php echo $row_professor['id'] ?>'> <?php echo $row_professor['nome'] ?> </option>
-                            <?php
-                                }
-                            ?>
-                        </select>
-                      </div>
-                    </div>
-
                     <div class="form-group">
                       <label for="inputDisponibilidade3" class="col-sm-2 control-label">Disponibilidade</label>
                       <div class="col-sm-10">
@@ -286,15 +266,19 @@ if(isset($_POST['criar'])) {
                                 }
                             ?>
                         </select>
+                        <!-- <select class="form-control" name="disponibilidade" required id="inputDisponibilidade3">
+                            <option value="1">Disponível</option>
+                            <option value="2">Indisponível</option>
+                        </select> -->
                       </div>
                     </div> 
                   </div><!-- /.box-body -->
                   <div class="box-footer">
-                    <a href="terapeutas.php">
+                    <a href="professores.php">
                         <input type="button" class="btn btn-danger" value="Voltar">
                     </a>
 
-                    <button type="submit" name="criar" class="btn btn-success pull-right">Cadastrar estagiário</button>
+                    <button type="submit" name="criar" class="btn btn-success pull-right">Cadastrar professor</button>
                   </div><!-- /.box-footer -->
                 </form>
                 
