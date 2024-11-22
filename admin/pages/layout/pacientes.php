@@ -215,7 +215,7 @@
                 <td><?php echo $row["telefone"] ?></td>
                 <td>
                 <a href="edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
-                <a href="delete-paciente.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
+                <a href="delete/delete-paciente.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
                 </td>
             </tr>
             <!-- <a href="../calendar.php"></a> -->

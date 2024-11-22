@@ -1,17 +1,18 @@
 <?php
-    include('../../protect.php');
-    include('../../../db/conexao.php');
+    include('../../../protect.php');
+    include('../../../../db/conexao.php');
 ?>
 
 <?php
 if(isset($_POST['criar'])) {
     $nome = $_POST['nome'];
     $id_disponibilidade = $_POST['disponibilidade'];
+    $id_professor = $_POST['professor'];
     $usuario = $_POST['usuario'];
     $email = $_POST['email'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-    $mysqli->query("INSERT INTO tbl_professor (id, id_disponibilidade, nome,usuario, email, senha) VALUES (NULL, '$id_disponibilidade', '$nome', '$usuario', '$email', '$senha')");
+    $mysqli->query("INSERT INTO tbl_user_terapeuta (id, id_disponibilidade, id_professor, nome,usuario, email, senha) VALUES (NULL, $id_disponibilidade, $id_professor, '$nome', '$usuario', '$email', '$senha')");
 
 }
 
@@ -19,32 +20,32 @@ if(isset($_POST['criar'])) {
 
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CLÍNICA | ADMIN</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../../../dist/css/skins/_all-skins.min.css">
 
-    <link rel="shortcut icon" href="../../../img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../../img/favicon.png" type="image/x-icon">
   <body class="hold-transition skin-blue fixed sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="../../index.php" class="logo">
+        <a href="../../../index.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>CL</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -65,13 +66,13 @@ if(isset($_POST['criar'])) {
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="../../dist/img/user.jpg" class="user-image" alt="User Image">
+                  <img src="../../../dist/img/user.jpg" class="user-image" alt="User Image">
                   <span class="hidden-xs"><?php echo $_SESSION['nome']; ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="../../dist/img/user.jpg" class="img-circle" alt="User Image">
+                    <img src="../../../dist/img/user.jpg" class="img-circle" alt="User Image">
                     <p>
                         <?php echo $_SESSION['nome']; ?>
                       
@@ -80,7 +81,7 @@ if(isset($_POST['criar'])) {
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-right">
-                      <a href="../../logout.php" class="btn btn-danger">Sair</a>
+                      <a href="../../../logout.php" class="btn btn-danger">Sair</a>
                     </div>
                   </li>
                 </ul>
@@ -100,7 +101,7 @@ if(isset($_POST['criar'])) {
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="../../dist/img/user.jpg" class="img-circle" alt="User Image">
+              <img src="../../../dist/img/user.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
               <p><?php echo $_SESSION['nome']; ?></p>
@@ -128,7 +129,7 @@ if(isset($_POST['criar'])) {
                 <li><a href="../../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
               </ul>
               <ul class="treeview-menu">
-                <li class=""><a href="../../logout.php"><i class="fa fa-dashboard"></i> Sair</a></li>
+                <li class=""><a href="../../../logout.php"><i class="fa fa-dashboard"></i> Sair</a></li>
               </ul>
             </li>
             <li class="treeview active">
@@ -138,31 +139,12 @@ if(isset($_POST['criar'])) {
                 <span class="label label-primary pull-right"></span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-                <li class="active"><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
-                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiário</a></li>
-                <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
-                <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
-                <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
-                <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
+                <li><a href="../pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
+                <li><a href="../professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
+                <li class="active"><a href="../terapeutas.php"><i class="fa fa-plus-square"></i> Estagiário</a></li>
+                <li><a href="../../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
             </ul>
-            </li><!--
-            <li>
-              <a href="../widgets.html">
-                <i class="fa fa-th"></i> <span>Widgets</span> <small class="label pull-right bg-green">new</small>
-              </a>
             </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-dollar"></i>
-                <span>DarkShop</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="../layout/darkshop.php"><i class="fa fa-cart-plus"></i> Store</a></li>
-              </ul>
-            </li>
-           -->
         </section>
         <!-- /.sidebar -->
       </aside>
@@ -208,7 +190,7 @@ if(isset($_POST['criar'])) {
             ?>
 
 
-              <h3 class="box-title">Cadastramento de professores</h3>
+              <h3 class="box-title">Cadastramento de estagiários</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
               </div>
@@ -220,7 +202,7 @@ if(isset($_POST['criar'])) {
             <form enctype="multipart/form-data" method="POST">
             <div class="box box-info">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Preencha os dados do professor</h3>
+                  <h3 class="box-title">Preencha os dados do estagiário</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form method="POST" class="form-horizontal">
@@ -228,7 +210,7 @@ if(isset($_POST['criar'])) {
                     <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">Nome</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nome" required id="inputEmail3" placeholder="Nome do professor">
+                        <input type="text" class="form-control" name="nome" required id="inputEmail3" placeholder="Nome do estagiário">
                       </div>
                     </div>
                     <br>
@@ -252,6 +234,25 @@ if(isset($_POST['criar'])) {
                         <input type="password" class="form-control" name="senha" id="inputPassword3" required placeholder="Senha">
                       </div>
                     </div>
+
+                    <div class="form-group">
+                      <label for="Professor" class="col-sm-2 control-label">Professor</label>
+                      <div class="col-sm-10">
+                      <select class="form-control" name="professor" required>
+                            <option disabled selected >Professor</option>
+                            <?php
+                                $sql_professor = "SELECT * FROM tbl_professor WHERE id_disponibilidade = 1";
+                                $result_professor = mysqli_query($mysqli, $sql_professor);
+                                while ($row_professor = mysqli_fetch_assoc($result_professor)) {
+                            ?>
+                                    <option value='<?php echo $row_professor['id'] ?>'> <?php echo $row_professor['nome'] ?> </option>
+                            <?php
+                                }
+                            ?>
+                        </select>
+                      </div>
+                    </div>
+
                     <div class="form-group">
                       <label for="inputDisponibilidade3" class="col-sm-2 control-label">Disponibilidade</label>
                       <div class="col-sm-10">
@@ -266,19 +267,15 @@ if(isset($_POST['criar'])) {
                                 }
                             ?>
                         </select>
-                        <!-- <select class="form-control" name="disponibilidade" required id="inputDisponibilidade3">
-                            <option value="1">Disponível</option>
-                            <option value="2">Indisponível</option>
-                        </select> -->
                       </div>
                     </div> 
                   </div><!-- /.box-body -->
                   <div class="box-footer">
-                    <a href="professores.php">
+                    <a href="../terapeutas.php">
                         <input type="button" class="btn btn-danger" value="Voltar">
                     </a>
 
-                    <button type="submit" name="criar" class="btn btn-success pull-right">Cadastrar professor</button>
+                    <button type="submit" name="criar" class="btn btn-success pull-right">Cadastrar estagiário</button>
                   </div><!-- /.box-footer -->
                 </form>
                 
@@ -302,16 +299,16 @@ if(isset($_POST['criar'])) {
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.4 -->
-    <script src="../../plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="../../../plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../bootstrap/js/bootstrap.min.js"></script>
     <!-- SlimScroll -->
-    <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="../../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
-    <script src="../../plugins/fastclick/fastclick.min.js"></script>
+    <script src="../../../plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="../../dist/js/app.min.js"></script>
+    <script src="../../../dist/js/app.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
+    <script src="../../../dist/js/demo.js"></script>
   </body>
 </html>

@@ -191,7 +191,7 @@ include('../../contador.php');
             </div>
           </div>
           <div class="box-body">
-            <a href="cadastro-professor.php">
+            <a href="cadastro/cadastro-professor.php">
               <button class="btn btn-block btn-primary">Cadastrar professor</button>
             </a>
             <!-- AQUI COMEÇA SUA APLICAÇÃO -->
@@ -223,8 +223,8 @@ include('../../contador.php');
                       <td><?php echo date('d/m/Y', strtotime($row["date"])); ?></td>
 
                       <td style="background:white">
-                        <a href="edit-professor.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
-                        <a href="delete-professor.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
+                        <a href="edit/edit-professor.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
+                        <a href="delete/delete-professor.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
                       </td>
                     </tr>
                   <?php
