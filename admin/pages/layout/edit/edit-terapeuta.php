@@ -17,9 +17,8 @@ if (isset($_POST["submit"])) {
   //echo "<script>alert('" . $id_disponibilidade ."')</script>";
 
   $sql = "UPDATE tbl_user_terapeuta SET id_disponibilidade=$id_disponibilidade, id_professor=$id_professor, nome = '$nome', usuario = '$usuario', email = '$email' WHERE id = $id";
-  
   $result = mysqli_query($mysqli, $sql);
-
+  header("Location: ../terapeutas.php?msg=Estagiário atualizado com sucesso!");
 }
 ?>
 

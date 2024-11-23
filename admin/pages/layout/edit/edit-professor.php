@@ -15,9 +15,8 @@ if (isset($_POST["submit"])) {
 
 
   $sql = "UPDATE tbl_professor SET id_disponibilidade='$id_disponibilidade', nome = '$nome', usuario = '$usuario', email = '$email' WHERE id = $id";
-  
   $result = mysqli_query($mysqli, $sql);
-  
+  header("Location: ../professores.php?msg=Professor atualizado com sucesso!");
 }
 ?>
 
@@ -43,7 +42,7 @@ if (isset($_POST["submit"])) {
          folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../../dist/css/skins/_all-skins.min.css">
   <!-- Bootstrap -->
-  <link rel="shortcut icon" href="../../../../../img/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../../img/favicon.png" type="image/x-icon">
   <style>
     div.divForm {
       width: 100%;
@@ -326,6 +325,11 @@ if (isset($_POST["submit"])) {
   <script src="../../../dist/js/app.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="../../../dist/js/demo.js"></script>
+  <!-- <script>
+    document.getElementById("submit").addEventListener("click", function() {
+      document.getElementById("cancelar").click();
+    })
+  </script> -->
 
 
 </body>
