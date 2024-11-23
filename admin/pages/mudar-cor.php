@@ -116,12 +116,20 @@ if (isset($_POST['salvar'])) {
         }
 
 
-        .livre {
+        /* .livre {
             background-color: rgb(84, 130, 53);
         }
 
         .livre:hover {
             background-color: rgb(47, 72, 30);
+        } */
+
+        .livre {
+            background-color: white;
+        }
+
+        .livre:hover {
+            background-color: rgb(148, 147, 147);
         }
 
 
@@ -142,13 +150,8 @@ if (isset($_POST['salvar'])) {
             background-color: rgb(0, 109, 148);
         }
 
-
-        .nada {
-            background-color: white;
-        }
-
-        .nada:hover {
-            background-color: rgb(148, 147, 147);
+        .mudar_cor {
+            background-color: lightgray;
         }
     </style>
 </head>
@@ -168,12 +171,22 @@ if (isset($_POST['salvar'])) {
         
 
             <select name="id_status">
-                <option value="<?php echo $row['id_status'] ?>" select>Mudar Cor</option>
-                <option class="reservada" value="1">SALA RESERVADA</option>
+                <option class="mudar_cor" value="<?php echo $row['id_status'] ?>" select>Mudar Cor</option>
+                <?php
+                    $sql_status = "SELECT s.id, s.status FROM tbl_status_sala s";
+                    $result_status = mysqli_query($mysqli, $sql_status);
+                    while ($row_status = mysqli_fetch_assoc($result_status)) {
+                ?>
+                        <option value='<?php echo $row_status['id'] ?>' class='<?php echo $row_status['status'] ?>'> 
+                            <?php echo $row_status['status'] ?> 
+                        </option>
+                <?php
+                    }
+                ?>
+                <!-- <option class="reservada" value="1">SALA RESERVADA</option>
                 <option class="livre" value="2">SALA LIVRE</option>
                 <option class="encaixe" value="3">HORÁRIO DE ENCAIXE</option>
-                <option class="triagem" value="4">TRIAGEM</option>
-                <option class="nada"value="5">DEIXAR EM BRANCO</option>
+                <option class="triagem" value="4">TRIAGEM</option> -->
             </select>
             
 

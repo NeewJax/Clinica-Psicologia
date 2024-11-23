@@ -119,8 +119,8 @@
                 <li><a href="../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
               </ul>
               <ul class="treeview-menu">
-              <li class=""><a href="../../logout.php"><i class="fa fa-dashboard"></i> Sair</a></li>
-            </ul>
+                <li class=""><a href="../../logout.php"><i class="fa fa-dashboard"></i> Sair</a></li>
+              </ul>
             </li>
             <li class="treeview active">
               <a href="#">
