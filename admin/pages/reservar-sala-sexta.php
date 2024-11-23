@@ -72,11 +72,11 @@ include('../../db/conexao.php');
 
 
         td.livre {
-            background-color: rgb(84, 130, 53);
+            background-color: white;
         }
 
         td.livre:hover {
-            background-color: rgb(47, 72, 30);
+            background-color: rgb(148, 147, 147);
         }
 
 
