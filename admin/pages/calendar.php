@@ -14,13 +14,13 @@ if(isset($_POST['enviar'])) {
   $data_consulta = $_POST['data_consulta'];
   $horario = $_POST['horario'];
 
-  $sql_insert = $mysqli->prepare("INSERT INTO tbl_consulta VALUES (NULL, ?,?,?)");
+  $sql_insert = $mysqli->prepare("INSERT INTO tbl_calendario_agendamento VALUES (NULL, ?,?,?)");
   $sql_insert->execute(array($nome_paciente, $data_consulta, $horario));
 }
 
 
             //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-            $sql = "SELECT * FROM tbl_consulta";
+            $sql = "SELECT * FROM tbl_calendario_agendamento";
             $result = mysqli_query($mysqli, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
               $eventDate = new DateTime($row['data_consulta']);

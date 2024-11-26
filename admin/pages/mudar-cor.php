@@ -10,13 +10,39 @@ if(isset($_GET['id'])) {
 }
 
 if (isset($_POST['salvar'])) {
+    $id_terapeuta = $_POST['id_terapeuta'];
+    $id_paciente = $_POST['id_paciente'];
     $id_status = $_POST['id_status'];
-    $sala = $_POST['sala'];
 
-    $mysqli->query("UPDATE tbl_sala_reservada SET sala = '$sala', id_status = $id_status WHERE id = $id");
+    //PEGAR O NOME DO TERAPEUTA
+    $stmt_terapeuta = $mysqli->prepare("SELECT nome FROM tbl_user_terapeuta WHERE id = ?");
+    $stmt_terapeuta->bind_param("i",  $id_terapeuta);
+    $stmt_terapeuta->execute();
+
+    $result_terapeuta = $stmt_terapeuta->get_result();
+    $terapeuta = $result_terapeuta->fetch_assoc();
+    $nome_terapeuta = $terapeuta['nome'] ?? "Desconhecido";
+    $stmt_terapeuta->close();
+    
+
+    //PEGAR O NOME DO PACIENTE
+    $stmt_paciente = $mysqli->prepare("SELECT nome FROM tbl_paciente WHERE id = ?");
+    $stmt_paciente->bind_param("i", $id_paciente);
+    $stmt_paciente->execute();
+
+    $result_paciente = $stmt_paciente->get_result();
+    $paciente = $result_paciente->fetch_assoc();
+    $nome_paciente = $paciente['nome'] ?? "Desconhecido";
+    $stmt_paciente->close();
+
+    $sala =  $nome_terapeuta . " - " . $nome_paciente;
+
+    //ATUALIZAR SALA
+    $stmt_sala_reservada = $mysqli->prepare("UPDATE tbl_sala_reservada SET sala = ?, id_status = ? WHERE id = ?");
+    $stmt_sala_reservada->bind_param("sii", $sala, $id_status, $id);
+    $stmt_sala_reservada->execute();
+    $stmt_sala_reservada->close();
 }
-
-//echo "<script>window.opener.loacation.reload();</script>";
 
 ?>
 
@@ -64,18 +90,24 @@ if (isset($_POST['salvar'])) {
 
         select {
             width: 80%;
-            margin-top: 5%;
             padding: .6%;
             text-align: center;
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
             border-radius: 10px;
-            margin-bottom: 30%;
+            margin-bottom: 10%;
         }
 
         select option {
             font-weight: bold;
             font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .div-button {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         button {
@@ -115,15 +147,6 @@ if (isset($_POST['salvar'])) {
             background-color: rgb(152, 152, 0);
         }
 
-
-        /* .livre {
-            background-color: rgb(84, 130, 53);
-        }
-
-        .livre:hover {
-            background-color: rgb(47, 72, 30);
-        } */
-
         .livre {
             background-color: white;
         }
@@ -153,6 +176,14 @@ if (isset($_POST['salvar'])) {
         .mudar_cor {
             background-color: lightgray;
         }
+        .divSala {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            color:black;
+        }
     </style>
 </head>
 <body>
@@ -165,9 +196,9 @@ if (isset($_POST['salvar'])) {
                 $row = mysqli_fetch_assoc($result);
             ?>
 
-            <div>
-                <input name="sala" value="<?php echo $row['sala'] ?>">
-            </div>
+            <div class="divSala">
+                <h3><?php echo $row['sala'] ?></h3>
+            </div> <br><br>
         
 
             <select name="id_status">
@@ -183,15 +214,43 @@ if (isset($_POST['salvar'])) {
                 <?php
                     }
                 ?>
-                <!-- <option class="reservada" value="1">SALA RESERVADA</option>
-                <option class="livre" value="2">SALA LIVRE</option>
-                <option class="encaixe" value="3">HORÁRIO DE ENCAIXE</option>
-                <option class="triagem" value="4">TRIAGEM</option> -->
+            </select>
+
+            <select name="id_terapeuta">
+                <?php
+                    $sql_terapeta_fixo = "";
+                ?>
+                <?php
+                    $sql_terapeuta = "SELECT t.id, t.nome FROM tbl_user_terapeuta t ORDER BY t.nome";
+                    $result_terapeuta = mysqli_query($mysqli, $sql_terapeuta);
+                    while ($row_terapeuta = mysqli_fetch_assoc($result_terapeuta)) {
+                ?>
+                        <option value='<?php echo $row_terapeuta['id'] ?>' class='livre'> 
+                            <?php echo $row_terapeuta['nome'] ?> 
+                        </option>
+                <?php
+                    }
+                ?>
+            </select>
+
+            <select name="id_paciente">
+                <?php
+                    $sql_paciente = "SELECT p.id, p.nome FROM tbl_paciente p ORDER BY p.nome";
+                    $result_paciente = mysqli_query($mysqli, $sql_paciente);
+                    while ($row_paciente = mysqli_fetch_assoc($result_paciente)) {
+                ?>
+                        <option value='<?php echo $row_paciente['id'] ?>' class='livre'> 
+                            <?php echo $row_paciente['nome'] ?> 
+                        </option>
+                <?php
+                    }
+                ?>
             </select>
             
-
-            <button type="submit" name="salvar" onclick="reloadWindow()">SALVAR</button>
-            <button class="fechar" onclick="closePopup()">FECHAR</button>
+            <div class='div-button'>
+                <button type="submit" name="salvar" onclick="reloadWindow()">SALVAR</button>
+                <button class="fechar" onclick="closePopup()">FECHAR</button>
+            </div>
         </form>
     </div>
     <script>
