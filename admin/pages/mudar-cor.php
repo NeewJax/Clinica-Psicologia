@@ -14,6 +14,7 @@ if (isset($_POST['salvar'])) {
     $id_paciente = $_POST['id_paciente'];
     $id_status = $_POST['id_status'];
 
+    //echo "<script>alert('". $id_terapeuta ."')</script>";
     //PEGAR O NOME DO TERAPEUTA
     $stmt_terapeuta = $mysqli->prepare("SELECT nome FROM tbl_user_terapeuta WHERE id = ?");
     $stmt_terapeuta->bind_param("i",  $id_terapeuta);
@@ -38,8 +39,8 @@ if (isset($_POST['salvar'])) {
     $sala =  $nome_terapeuta . " - " . $nome_paciente;
 
     //ATUALIZAR SALA
-    $stmt_sala_reservada = $mysqli->prepare("UPDATE tbl_sala_reservada SET sala = ?, id_status = ? WHERE id = ?");
-    $stmt_sala_reservada->bind_param("sii", $sala, $id_status, $id);
+    $stmt_sala_reservada = $mysqli->prepare("UPDATE tbl_sala_reservada SET sala = ?, id_status = ?, id_terapeuta = ?, id_paciente = ? WHERE id = ?");
+    $stmt_sala_reservada->bind_param("siiii", $sala, $id_status, $id_terapeuta, $id_paciente, $id);
     $stmt_sala_reservada->execute();
     $stmt_sala_reservada->close();
 }
@@ -218,10 +219,21 @@ if (isset($_POST['salvar'])) {
 
             <select name="id_terapeuta">
                 <?php
-                    $sql_terapeta_fixo = "";
+                    $sql_terapeuta_fixo = "SELECT t.id, t.nome FROM tbl_user_terapeuta t INNER JOIN tbl_sala_reservada s ON s.id_terapeuta = t.id WHERE s.id = $id;";
+                    $result_terapeuta_fixo = mysqli_query($mysqli, $sql_terapeuta_fixo);
+                    $row_terapeuta_fixo = mysqli_fetch_assoc($result_terapeuta_fixo);
+
+                    $nome_terapeuta_fixo = $row_terapeuta_fixo['nome'];
+                    $id_terapeuta_fixo = 0;
+
+                    if(!$row_terapeuta_fixo['nome'] == NULL) {
+                        $id_terapeuta_fixo = $row_terapeuta_fixo['id'];
+                        echo '<option value="' . $id_terapeuta_fixo . '" select> '. $nome_terapeuta_fixo .' </option>';
+                    }
                 ?>
+                    
                 <?php
-                    $sql_terapeuta = "SELECT t.id, t.nome FROM tbl_user_terapeuta t ORDER BY t.nome";
+                    $sql_terapeuta = "SELECT t.id, t.nome FROM tbl_user_terapeuta t WHERE t.id != $id_terapeuta_fixo ORDER BY t.nome";
                     $result_terapeuta = mysqli_query($mysqli, $sql_terapeuta);
                     while ($row_terapeuta = mysqli_fetch_assoc($result_terapeuta)) {
                 ?>
@@ -234,8 +246,22 @@ if (isset($_POST['salvar'])) {
             </select>
 
             <select name="id_paciente">
+            <?php
+                    $sql_paciente_fixo = "SELECT p.id, p.nome FROM tbl_paciente p INNER JOIN tbl_sala_reservada s ON s.id_paciente = p.id WHERE s.id = $id;";
+                    $result_paciente_fixo = mysqli_query($mysqli, $sql_paciente_fixo);
+                    $row_paciente_fixo = mysqli_fetch_assoc($result_paciente_fixo);
+
+                    $nome_paciente_fixo = $row_paciente_fixo['nome'];
+                    $id_paciente_fixo = 0;
+
+                    if(!$row_paciente_fixo['nome'] == NULL) {
+                        $id_paciente_fixo = $row_paciente_fixo['id'];
+                        echo '<option value="' . $id_paciente_fixo . '" select> '. $nome_paciente_fixo .' </option>';
+                    }
+                ?>
+
                 <?php
-                    $sql_paciente = "SELECT p.id, p.nome FROM tbl_paciente p ORDER BY p.nome";
+                    $sql_paciente = "SELECT p.id, p.nome FROM tbl_paciente p WHERE p.id != $id_paciente_fixo  ORDER BY p.nome";
                     $result_paciente = mysqli_query($mysqli, $sql_paciente);
                     while ($row_paciente = mysqli_fetch_assoc($result_paciente)) {
                 ?>

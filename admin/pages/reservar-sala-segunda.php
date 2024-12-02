@@ -197,13 +197,20 @@ include('../../db/conexao.php');
                         ?>
                         <th><?php echo $row_horario['horario'] ?></th>
                             <?php
-                                $sql_sala_reserva = "SELECT s.id, s.sala, s.sala_cod, st.status
+                                $sql_sala_reserva = "SELECT 
+                                                        s.id, 
+                                                        s.sala, 
+                                                        s.sala_cod, 
+                                                        st.status, 
+                                                        IFNULL(t.nome, '') AS nome_terapeita, 
+                                                        IFNULL(p.nome, '') AS nome_paciente
                                                     FROM tbl_sala_reservada s
                                                     INNER JOIN tbl_horario_sala h ON s.id_horario = h.id
                                                     INNER JOIN tbl_status_sala st ON s.id_status = st.id
-                                                    WHERE h.horario = '$horario_da_sala' && s.id_semana = 1
-                                                    ORDER BY s.id;
-                                                    ";
+                                                    LEFT JOIN tbl_user_terapeuta t ON s.id_terapeuta = t.id
+                                                    LEFT JOIN tbl_paciente p ON s.id_paciente = p.id
+                                                    WHERE (h.horario = '$horario_da_sala' AND s.id_semana = 1)
+                                                    ORDER BY s.id;";
                                 $result_reserva = mysqli_query($mysqli, $sql_sala_reserva);
                                 while($row = mysqli_fetch_assoc($result_reserva)) {
                             ?>

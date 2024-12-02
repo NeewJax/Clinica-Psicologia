@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20/11/2024 às 15:26
+-- Tempo de geração: 02/12/2024 às 13:44
 -- Versão do servidor: 10.6.15-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -48,10 +48,10 @@ INSERT INTO `tbl_bairro` (`id`, `bairro`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tbl_consulta`
+-- Estrutura para tabela `tbl_calendario_agendamento`
 --
 
-CREATE TABLE `tbl_consulta` (
+CREATE TABLE `tbl_calendario_agendamento` (
   `id` int(11) UNSIGNED NOT NULL,
   `nome_paciente` varchar(255) NOT NULL,
   `data_consulta` date NOT NULL,
@@ -59,15 +59,25 @@ CREATE TABLE `tbl_consulta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tbl_consulta`
+-- Despejando dados para a tabela `tbl_calendario_agendamento`
 --
 
-INSERT INTO `tbl_consulta` (`id`, `nome_paciente`, `data_consulta`, `horario`) VALUES
-(10, 'Anderson', '0000-00-00', '23:13:00.000000'),
-(11, 'Anderson', '2024-06-30', '01:21:00.000000'),
-(12, 'Teste', '2024-06-23', '09:20:00.000000'),
-(13, 'Reus', '2024-06-13', '08:00:00.000000'),
-(14, 'Wilson', '2024-09-12', '21:58:00.000000');
+INSERT INTO `tbl_calendario_agendamento` (`id`, `nome_paciente`, `data_consulta`, `horario`) VALUES
+(15, '[value-2]', '0000-00-00', '00:00:00.000000'),
+(16, 'Wilson', '2024-11-24', '15:48:00.000000');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tbl_consulta`
+--
+
+CREATE TABLE `tbl_consulta` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `id_terapeuta` int(11) NOT NULL,
+  `id_paciente` int(11) UNSIGNED NOT NULL,
+  `id_sala_reservada` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -288,9 +298,7 @@ CREATE TABLE `tbl_paciente` (
 --
 
 INSERT INTO `tbl_paciente` (`id`, `nome`, `nascimento`, `rg`, `cpf`, `id_genero`, `id_contato`, `id_escolaridade`, `id_profissao`, `id_renda_familiar`, `id_estado_civil`, `id_endereco`) VALUES
-(7, 'Wilson', '2024-08-06', 1234, 98765, 1, 6, 5, 1, 1, 1, 1),
-(9, 'Neymar9', '2024-08-04', 45, 987654321, 1, 10, 4, 4, 5, 2, 2),
-(10, 'Neymar2', '2024-08-04', 45, 987654321, 1, 11, 4, 5, 5, 2, 3);
+(7, 'Wilson', '2024-08-06', 1234, 98765, 1, 6, 5, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -313,8 +321,8 @@ CREATE TABLE `tbl_professor` (
 --
 
 INSERT INTO `tbl_professor` (`id`, `id_disponibilidade`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
-(2, 2, 'Janna', 'Janna', 'janna@gmail.com', '$2y$10$WZZY6qHFlrhaCwf4FOJTnOIRTcptEvKxbYmasxuqLVvkAef3c7FG2', '2024-11-20 14:25:28'),
-(3, 1, 'João', 'João', 'joao@gmail.com', '$2y$10$3AkZqgk22at/HlvSqP57XeUzAsVKJqnHLtB6BSZaXCwMXznHAGERW', '2024-11-20 14:08:53');
+(7, 1, 'Janna', 'Janna', 'janna@gmail.com', '$2y$10$S/yJS4oK/GjgqnAKhAxF6ea3dwzy473etRrZCCg1dX2/bZOx4t6D2', '2024-11-23 12:36:36'),
+(8, 1, 'Carlos', 'Carlos', 'carlos@gmail.com', '$2y$10$ephHJSVmCV3pSbv16q5y9e//utLTZb710trDc2ldbLSQjvu06V2eS', '2024-11-23 12:31:52');
 
 -- --------------------------------------------------------
 
@@ -375,6 +383,8 @@ CREATE TABLE `tbl_sala_reservada` (
   `id_horario` int(11) UNSIGNED NOT NULL,
   `id_semana` int(11) UNSIGNED NOT NULL,
   `id_status` int(11) UNSIGNED NOT NULL,
+  `id_terapeuta` int(11) DEFAULT NULL,
+  `id_paciente` int(11) UNSIGNED DEFAULT NULL,
   `sala_cod` varchar(20) NOT NULL,
   `sala` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -383,287 +393,287 @@ CREATE TABLE `tbl_sala_reservada` (
 -- Despejando dados para a tabela `tbl_sala_reservada`
 --
 
-INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `id_status`, `sala_cod`, `sala`) VALUES
-(1, 1, 1, 1, 4, 'seg_m_8_s1', 'Atend. Infantil'),
-(2, 1, 1, 1, 5, 'seg_m_8_s2', 'Atend. Grupo'),
-(3, 1, 1, 1, 5, 'seg_m_8_s3', 'Atend. I'),
-(4, 1, 1, 1, 5, 'seg_m_8_s4', 'Eline de Sousa(II)'),
-(5, 1, 1, 1, 5, 'seg_m_8_s5', 'Atend. III'),
-(6, 1, 1, 1, 5, 'seg_m_8_s6', 'Atend. IV'),
-(7, 1, 1, 1, 4, 'seg_m_8_s7', 'Atend. Infantil'),
-(8, 1, 2, 1, 5, 'seg_m_9_s1', 'Henrique Gabriel(Infantil)'),
-(9, 1, 2, 1, 5, 'seg_m_9_s2', 'Atend. Grupo'),
-(10, 1, 2, 1, 5, 'seg_m_9_s3', '(I)'),
-(11, 1, 2, 1, 5, 'seg_m_9_s4', 'Jessyea Karina(II)'),
-(12, 1, 2, 1, 5, 'seg_m_9_s5', 'Auana Maria'),
-(13, 1, 2, 1, 1, 'seg_m_9_s6', 'Atend. IV'),
-(14, 1, 2, 1, 5, 'seg_m_9_s7', 'Atend. V'),
-(15, 1, 3, 1, 5, 'seg_m_10_s1', 'Atend. Infantil'),
-(16, 1, 3, 1, 3, 'seg_m_10_s2', 'Atend. Grupo'),
-(17, 1, 3, 1, 5, 'seg_m_10_s3', '(I)'),
-(18, 1, 3, 1, 5, 'seg_m_10_s4', 'Maryana Dállia(II)'),
-(19, 1, 3, 1, 5, 'seg_m_10_s5', 'Yuri(III)'),
-(20, 1, 3, 1, 2, 'seg_m_10_s6', 'Ranilson(IV)'),
-(21, 1, 3, 1, 5, 'seg_m_10_s7', 'Tean Rayzton(V)'),
-(22, 1, 4, 1, 5, 'seg_m_11_s1', 'Luiz Márcio(Infantil)'),
-(23, 1, 4, 1, 5, 'seg_m_11_s2', 'Atend. Grupo'),
-(24, 1, 4, 1, 5, 'seg_m_11_s3', '(I)'),
-(25, 1, 4, 1, 5, 'seg_m_11_s4', 'GiulliaCarolina'),
-(26, 1, 4, 1, 5, 'seg_m_11_s5', 'Ildenize(III)'),
-(27, 1, 4, 1, 5, 'seg_m_11_s6', '(IV)'),
-(28, 1, 4, 1, 5, 'seg_m_11_s7', 'Jenice(V)'),
-(29, 2, 5, 1, 5, 'seg_t_14_s1', 'Atend. Infantil'),
-(30, 2, 5, 1, 5, 'seg_t_14_s2', 'Atend. Grupo'),
-(31, 2, 5, 1, 5, 'seg_t_14_s3', 'Atend. I'),
-(32, 2, 5, 1, 5, 'seg_t_14_s4', 'Eline de Sousa(II)'),
-(33, 2, 5, 1, 5, 'seg_t_14_s5', 'Atend. III'),
-(34, 2, 5, 1, 5, 'seg_t_14_s6', 'Atend. IV'),
-(35, 2, 5, 1, 5, 'seg_t_14_s7', 'Atend. V'),
-(36, 2, 6, 1, 5, 'seg_t_15_s1', 'Henrique Gabriel(Infantil)'),
-(37, 2, 6, 1, 5, 'seg_t_15_s2', 'Atend. Grupo'),
-(38, 2, 6, 1, 5, 'seg_t_15_s3', '(I)'),
-(39, 2, 6, 1, 5, 'seg_t_15_s4', 'Jessyea Karina(II)'),
-(40, 2, 6, 1, 2, 'seg_t_15_s5', 'Auana Maria'),
-(41, 2, 6, 1, 5, 'seg_t_15_s6', 'Atend. IV'),
-(42, 2, 6, 1, 4, 'seg_t_15_s7', 'Atend. V'),
-(43, 2, 7, 1, 5, 'seg_t_16_s1', 'Atend. Infantil'),
-(44, 2, 7, 1, 5, 'seg_t_16_s2', 'Atend. Grupo'),
-(45, 2, 7, 1, 5, 'seg_t_16_s3', '(I)'),
-(46, 2, 7, 1, 5, 'seg_t_16_s4', 'Maryana Dállia(II)'),
-(47, 2, 7, 1, 5, 'seg_t_16_s5', 'Yuri(III)'),
-(48, 2, 7, 1, 5, 'seg_t_16_s6', 'Ranilson(IV)'),
-(49, 2, 7, 1, 5, 'seg_t_16_s7', 'Tean Rayzton(V)'),
-(50, 2, 8, 1, 5, 'seg_t_17_s1', 'Luiz Márcio(Infantil)'),
-(51, 2, 8, 1, 5, 'seg_t_17_s2', 'Atend. Grupo'),
-(52, 2, 8, 1, 5, 'seg_t_17_s3', '(I)'),
-(53, 2, 8, 1, 5, 'seg_t_17_s4', 'Giullia Carolina'),
-(54, 2, 8, 1, 5, 'seg_t_17_s5', 'Ildenize(III)'),
-(55, 2, 8, 1, 5, 'seg_t_17_s6', '(IV)'),
-(56, 2, 8, 1, 5, 'seg_t_17_s7', 'Jenice(V)'),
-(57, 1, 1, 2, 5, 'ter_m_8_s1', 'Kaleu Soares(Infantil)'),
-(58, 1, 1, 2, 5, 'ter_m_8_s2', 'Atend. Grupo'),
-(59, 1, 1, 2, 5, 'ter_m_8_s3', '(I)'),
-(60, 1, 1, 2, 5, 'ter_m_8_s4', 'Leide Furtado(II)'),
-(61, 1, 1, 2, 5, 'ter_m_8_s5', 'Atend. III'),
-(62, 1, 1, 2, 5, 'ter_m_8_s6', 'Atend. IV'),
-(63, 1, 1, 2, 5, 'ter_m_8_s7', 'Atend. V'),
-(64, 1, 2, 2, 5, 'ter_m_9_s1', 'Atend. Infantil'),
-(65, 1, 2, 2, 5, 'ter_m_9_s2', 'Atend. Grupo'),
-(66, 1, 2, 2, 5, 'ter_m_9_s3', 'Rafysa Mendonça(I)'),
-(67, 1, 2, 2, 5, 'ter_m_9_s4', 'Helloiza Vitória(II)'),
-(68, 1, 2, 2, 5, 'ter_m_9_s5', 'Joabe Pereira(III)'),
-(69, 1, 2, 2, 1, 'ter_m_9_s6', 'Atend. IV'),
-(70, 1, 2, 2, 5, 'ter_m_9_s7', 'Denise Aroucha(V)'),
-(71, 1, 3, 2, 5, 'ter_m_10_s1', 'Atend. Infantil'),
-(72, 1, 3, 2, 5, 'ter_m_10_s2', 'Atend. Grupo'),
-(73, 1, 3, 2, 5, 'ter_m_10_s3', 'Lucas Carvalho(I)'),
-(74, 1, 3, 2, 5, 'ter_m_10_s4', 'Larissa Maize(II)'),
-(75, 1, 3, 2, 5, 'ter_m_10_s5', 'Kelly Ingrid(III)'),
-(76, 1, 3, 2, 5, 'ter_m_10_s6', 'Rafaela Fernandes(IV)'),
-(77, 1, 3, 2, 5, 'ter_m_10_s7', 'Kaylane Alves(V)'),
-(78, 1, 4, 2, 5, 'ter_m_11_s1', 'Atend. Infantil'),
-(79, 1, 4, 2, 5, 'ter_m_11_s2', 'Atend. Grupo'),
-(80, 1, 4, 2, 5, 'ter_m_11_s3', '(I)'),
-(81, 1, 4, 2, 5, 'ter_m_11_s4', 'Linda Inês(II)'),
-(82, 1, 4, 2, 5, 'ter_m_11_s5', 'José de Ribamar(III)'),
-(83, 1, 4, 2, 5, 'ter_m_11_s6', 'Atend. IV'),
-(84, 1, 4, 2, 5, 'ter_m_11_s7', 'Guilia Ribeiro(V)'),
-(85, 2, 5, 2, 5, 'ter_t_14_s1', 'Guilherme Santos Ribeiro(Infantil )'),
-(86, 2, 5, 2, 5, 'ter_t_14_s2', 'Atend. Grupo'),
-(87, 2, 5, 2, 5, 'ter_t_14_s3', 'Rosa Helena(I)'),
-(88, 2, 5, 2, 5, 'ter_t_14_s4', 'Ericka Karine(II)'),
-(89, 2, 5, 2, 5, 'ter_t_14_s5', 'Virnna(III)'),
-(90, 2, 5, 2, 5, 'ter_t_14_s6', 'Maria Luíza(IV)'),
-(91, 2, 5, 2, 5, 'ter_t_14_s7', 'Kenya Sousa(V)'),
-(92, 2, 6, 2, 5, 'ter_t_15_s1', 'Talison Michel(Infantil)'),
-(93, 2, 6, 2, 5, 'ter_t_15_s2', 'Claúdia(Grupo)'),
-(94, 2, 6, 2, 4, 'ter_t_15_s3', 'Roseane Sousa(I)'),
-(95, 2, 6, 2, 5, 'ter_t_15_s4', 'Ingrid Gabriele(II)'),
-(96, 2, 6, 2, 5, 'ter_t_15_s5', 'Byanca(III)'),
-(97, 2, 6, 2, 5, 'ter_t_15_s6', 'Adrian Carneiro(IV)'),
-(98, 2, 6, 2, 5, 'ter_t_15_s7', 'Kaylane Alves(V)'),
-(99, 2, 7, 2, 5, 'ter_t_16_s1', 'Ana Beatriz(Infantil)'),
-(100, 2, 7, 2, 5, 'ter_t_16_s2', 'Maria da Conceição(Grupo)'),
-(101, 2, 7, 2, 5, 'ter_t_16_s3', 'Ellen Marjorie (I)'),
-(102, 2, 7, 2, 5, 'ter_t_16_s4', '(II)'),
-(103, 2, 7, 2, 5, 'ter_t_16_s5', 'Tatiane (III)'),
-(104, 2, 7, 2, 5, 'ter_t_16_s6', 'Layanny Magalhães(IV)'),
-(105, 2, 7, 2, 5, 'ter_t_16_s7', 'Luiza Corrêia(V)'),
-(106, 2, 8, 2, 5, 'ter_t_17_s1', 'Letícia(Infantil)'),
-(107, 2, 8, 2, 5, 'ter_t_17_s2', 'Atend. Grupo'),
-(108, 2, 8, 2, 5, 'ter_t_17_s3', '(I)'),
-(109, 2, 8, 2, 5, 'ter_t_17_s4', 'Jorsilma Silveira( II )'),
-(110, 2, 8, 2, 5, 'ter_t_17_s5', 'Carliane Sousa(III)'),
-(111, 2, 8, 2, 5, 'ter_t_17_s6', 'Terezinha de Jesus(IV)'),
-(112, 2, 8, 2, 5, 'ter_t_17_s7', 'Atend. V'),
-(113, 1, 1, 3, 5, 'qua_m_8_s1', 'Atend. Infantil'),
-(114, 1, 1, 3, 5, 'qua_m_8_s2', 'Atend. Grupo'),
-(115, 1, 1, 3, 5, 'qua_m_8_s3', '(I)'),
-(116, 1, 1, 3, 5, 'qua_m_8_s4', '(II)'),
-(117, 1, 1, 3, 5, 'qua_m_8_s5', 'Atend. (III)'),
-(118, 1, 1, 3, 5, 'qua_m_8_s6', 'Atend. (IV)'),
-(119, 1, 1, 3, 5, 'qua_m_8_s7', 'Atend. V'),
-(120, 1, 2, 3, 5, 'qua_m_9_s1', 'Atend. Infantil'),
-(121, 1, 2, 3, 5, 'qua_m_9_s2', 'Atend. Grupo'),
-(122, 1, 2, 3, 5, 'qua_m_9_s3', 'Jorge Luís(I)'),
-(123, 1, 2, 3, 4, 'qua_m_9_s4', 'Leana Michele(II)'),
-(124, 1, 2, 3, 5, 'qua_m_9_s5', 'Atend. (III)'),
-(125, 1, 2, 3, 5, 'qua_m_9_s6', 'Atend. (IV)'),
-(126, 1, 2, 3, 5, 'qua_m_9_s7', 'Maria do Socorro(V)'),
-(127, 1, 3, 3, 5, 'qua_m_10_s1', 'Atend. Infantil'),
-(128, 1, 3, 3, 2, 'qua_m_10_s2', 'Atend. Grupo'),
-(129, 1, 3, 3, 5, 'qua_m_10_s3', 'Lívia Maria(I)'),
-(130, 1, 3, 3, 5, 'qua_m_10_s4', 'Marcos Aurélio(II)'),
-(131, 1, 3, 3, 5, 'qua_m_10_s5', 'João Pedro(III)'),
-(132, 1, 3, 3, 5, 'qua_m_10_s6', 'Atend. (IV)'),
-(133, 1, 3, 3, 1, 'qua_m_10_s7', 'Rebheca Ester(V)'),
-(134, 1, 4, 3, 5, 'qua_m_11_s1', 'Atend. Infantil'),
-(135, 1, 4, 3, 5, 'qua_m_11_s2', 'Atend. Grupo'),
-(136, 1, 4, 3, 5, 'qua_m_11_s3', 'Ana Clara(I)'),
-(137, 1, 4, 3, 5, 'qua_m_11_s4', 'Letícia(II)'),
-(138, 1, 4, 3, 5, 'qua_m_11_s5', 'Rebheca Ester(III)'),
-(139, 1, 4, 3, 5, 'qua_m_11_s6', 'Atend. (IV)'),
-(140, 1, 4, 3, 5, 'qua_m_11_s7', 'Rafysa Mendonça(V)'),
-(141, 2, 5, 3, 5, 'qua_m_14_s1', 'Atend. Infantil'),
-(142, 2, 5, 3, 5, 'qua_m_14_s2', 'Atend. Grupo'),
-(143, 2, 5, 3, 5, 'qua_m_14_s3', 'Neuza Viegas(I)'),
-(144, 2, 5, 3, 5, 'qua_m_14_s4', '(II)'),
-(145, 2, 5, 3, 3, 'qua_m_14_s5', 'Atend. (III)'),
-(146, 2, 5, 3, 5, 'qua_m_14_s6', 'Atend. (IV)'),
-(147, 2, 5, 3, 5, 'qua_m_14_s7', 'Atend. V'),
-(148, 2, 6, 3, 5, 'qua_m_15_s1', 'Arthur Borges(Infantil)'),
-(149, 2, 6, 3, 5, 'qua_m_15_s2', 'Atend. Grupo'),
-(150, 2, 6, 3, 5, 'qua_m_15_s3', 'Lucimar(I)'),
-(151, 2, 6, 3, 5, 'qua_m_15_s4', 'Stella Maria(II)'),
-(152, 2, 6, 3, 5, 'qua_m_15_s5', 'Miriam Thayane (III)'),
-(153, 2, 6, 3, 5, 'qua_m_15_s6', 'Sthefany(IV)'),
-(154, 2, 6, 3, 5, 'qua_m_15_s7', 'Maria do Socorro (V)'),
-(155, 2, 7, 3, 5, 'qua_m_16_s1', 'Wesley Machado(Infantil)'),
-(156, 2, 7, 3, 5, 'qua_m_16_s2', 'Atend. Grupo'),
-(157, 2, 7, 3, 5, 'qua_m_16_s3', 'Rosa Helena(I)'),
-(158, 2, 7, 3, 5, 'qua_m_16_s4', 'Bruna Larissa(II)'),
-(159, 2, 7, 3, 5, 'qua_m_16_s5', 'Samira Pedrolina(III)'),
-(160, 2, 7, 3, 5, 'qua_m_16_s6', 'Andreyna Sousa(IV)'),
-(161, 2, 7, 3, 5, 'qua_m_16_s7', 'Tatiane(V)'),
-(162, 2, 8, 3, 5, 'qua_m_17_s1', 'Atend. Infantil'),
-(163, 2, 8, 3, 5, 'qua_m_17_s2', 'Atend. Grupo'),
-(164, 2, 8, 3, 5, 'qua_m_17_s3', 'Kaylla Fernanda(I)'),
-(165, 2, 8, 3, 5, 'qua_m_17_s4', 'Ivonilson(II)'),
-(166, 2, 8, 3, 5, 'qua_m_17_s5', 'Ana Lycia(III)'),
-(167, 2, 8, 3, 5, 'qua_m_17_s6', 'Gracilene(IV)'),
-(168, 2, 8, 3, 5, 'qua_m_17_s7', 'Maria do Socorro(V)'),
-(169, 1, 1, 4, 3, 'qui_m_8_s1', 'Atend. Infantil'),
-(170, 1, 1, 4, 5, 'qui_m_8_s2', 'Atend. Grupo'),
-(171, 1, 1, 4, 5, 'qui_m_8_s3', '(I)'),
-(172, 1, 1, 4, 1, 'qui_m_8_s4', 'Nicole Maria(II)'),
-(173, 1, 1, 4, 1, 'qui_m_8_s5', 'Atend. (III)'),
-(174, 1, 1, 4, 5, 'qui_m_8_s6', 'Atend. (IV)'),
-(175, 1, 1, 4, 5, 'qui_m_8_s7', 'Atend. V'),
-(176, 1, 2, 4, 5, 'qui_m_9_s1', 'Isabel (Infantil)'),
-(177, 1, 2, 4, 5, 'qui_m_9_s2', 'Atend. Grupo'),
-(178, 1, 2, 4, 5, 'qui_m_9_s3', '(I)'),
-(179, 1, 2, 4, 5, 'qui_m_9_s4', 'Carlos Daniel(II)'),
-(180, 1, 2, 4, 5, 'qui_m_9_s5', 'Atend. (III)'),
-(181, 1, 2, 4, 2, 'qui_m_9_s6', 'Atend. (IV)'),
-(182, 1, 2, 4, 5, 'qui_m_9_s7', 'Atend. V'),
-(183, 1, 3, 4, 5, 'qui_m_10_s1', 'Vitor Daniel (Infantil)'),
-(184, 1, 3, 4, 5, 'qui_m_10_s2', 'Atend. Grupo'),
-(185, 1, 3, 4, 5, 'qui_m_10_s3', '(I)'),
-(186, 1, 3, 4, 5, 'qui_m_10_s4', ' Carlos Eduardo (II)'),
-(187, 1, 3, 4, 5, 'qui_m_10_s5', 'Leonara Verde (III)'),
-(188, 1, 3, 4, 5, 'qui_m_10_s6', 'Olivia Lima (IV)'),
-(189, 1, 3, 4, 4, 'qui_m_10_s7', 'Atend. V'),
-(190, 1, 4, 4, 5, 'qui_m_11_s1', 'Vitor Daniel (Infantil)'),
-(191, 1, 4, 4, 5, 'qui_m_11_s2', 'Atend. Grupo'),
-(192, 1, 4, 4, 5, 'qui_m_11_s3', 'Tony Feitosa (I)'),
-(193, 1, 4, 4, 5, 'qui_m_11_s4', 'Edna Luiza(II)'),
-(194, 1, 4, 4, 5, 'qui_m_11_s5', 'Daliane (III)'),
-(195, 1, 4, 4, 5, 'qui_m_11_s6', 'Jasmine Lima IV)'),
-(196, 1, 4, 4, 5, 'qui_m_11_s7', 'Maria Eduarda(V)'),
-(197, 2, 5, 4, 5, 'qui_t_14_s1', 'Atend. Infantil'),
-(198, 2, 5, 4, 5, 'qui_t_14_s2', 'Atend. Grupo'),
-(199, 2, 5, 4, 5, 'qui_t_14_s3', '(I)'),
-(200, 2, 5, 4, 5, 'qui_t_14_s4', 'Jasmyne Lima(II)'),
-(201, 2, 5, 4, 5, 'qui_t_14_s5', 'Fernanda Ferreira (III)'),
-(202, 2, 5, 4, 5, 'qui_t_14_s6', 'Atend. IV'),
-(203, 2, 5, 4, 1, 'qui_t_14_s7', 'Andréia Luiza(V)'),
-(204, 2, 6, 4, 5, 'qui_t_15_s1', 'Arthur Sousa(Infantil)'),
-(205, 2, 6, 4, 4, 'qui_t_15_s2', 'Atend. Grupo'),
-(206, 2, 6, 4, 5, 'qui_t_15_s3', 'Sthefane Cardoso(I)'),
-(207, 2, 6, 4, 5, 'qui_t_15_s4', 'Lucimar(II)'),
-(208, 2, 6, 4, 2, 'qui_t_15_s5', 'Karla Bianca (III)'),
-(209, 2, 6, 4, 5, 'qui_t_15_s6', 'Cristiano(IV)'),
-(210, 2, 6, 4, 5, 'qui_t_15_s7', 'Sidney Castelo (V)'),
-(211, 2, 7, 4, 5, 'qui_t_16_s1', 'Ronald (Infantil)'),
-(212, 2, 7, 4, 5, 'qui_t_16_s2', 'Iara Tereza(I)'),
-(213, 2, 7, 4, 5, 'qui_t_16_s3', 'Ingrid Luiza(II)'),
-(214, 2, 7, 4, 5, 'qui_t_16_s4', 'Lucimar(II)'),
-(215, 2, 7, 4, 5, 'qui_t_16_s5', 'Henrick Marques(III)'),
-(216, 2, 7, 4, 5, 'qui_t_16_s6', 'Pedro (IV)'),
-(217, 2, 7, 4, 5, 'qui_t_16_s7', 'Josué Saron(V)'),
-(218, 2, 8, 4, 5, 'qui_t_17_s1', 'Samuel  Aquiles(Infantil)'),
-(219, 2, 8, 4, 5, 'qui_t_17_s2', 'Atend. Grupo'),
-(220, 2, 8, 4, 5, 'qui_t_17_s3', 'Sthefany Santos (II)'),
-(221, 2, 8, 4, 5, 'qui_t_17_s4', 'Atend. III'),
-(222, 2, 8, 4, 5, 'qui_t_17_s5', 'Laurinete Cunha(III)'),
-(223, 2, 8, 4, 5, 'qui_t_17_s6', 'Khayllany Barros  (IV)'),
-(224, 2, 8, 4, 5, 'qui_t_17_s7', 'Atend. V'),
-(225, 1, 1, 5, 1, 'sex_m_8_s1', 'Lyandro Nicolas(II)'),
-(226, 1, 1, 5, 5, 'sex_m_8_s2', 'Atend. Grupo'),
-(227, 1, 1, 5, 5, 'sex_m_8_s3', '(I)'),
-(228, 1, 1, 5, 5, 'sex_m_8_s4', '(II)'),
-(229, 1, 1, 5, 5, 'sex_m_8_s5', 'Maria Paula(III)'),
-(230, 1, 1, 5, 5, 'sex_m_8_s6', 'Atend. IV'),
-(231, 1, 1, 5, 5, 'sex_m_8_s7', 'Atend. V'),
-(232, 1, 2, 5, 5, 'sex_m_9_s1', 'Vitória Cleonice (Infantil)'),
-(233, 1, 2, 5, 5, 'sex_m_9_s2', 'Atend. Grupo'),
-(234, 1, 2, 5, 5, 'sex_m_9_s3', 'Rebeca (I)'),
-(235, 1, 2, 5, 3, 'sex_m_9_s4', 'Josenilde de Fátima(II)'),
-(236, 1, 2, 5, 4, 'sex_m_9_s5', 'Valdiléa Garcia(III)'),
-(237, 1, 2, 5, 1, 'sex_m_9_s6', 'Francisca de Souza (IV)'),
-(238, 1, 2, 5, 5, 'sex_m_9_s7', 'Keillayne Pereira(V)'),
-(239, 1, 3, 5, 5, 'sex_m_10_s1', 'Atend. Infantil'),
-(240, 1, 3, 5, 5, 'sex_m_10_s2', 'Grupo'),
-(241, 1, 3, 5, 5, 'sex_m_10_s3', 'Letícia(I)'),
-(242, 1, 3, 5, 5, 'sex_m_10_s4', 'Lívia Maria(II)'),
-(243, 1, 3, 5, 5, 'sex_m_10_s5', 'Brennda Raquel(III)'),
-(244, 1, 3, 5, 5, 'sex_m_10_s6', 'Lauany Costa(IV)'),
-(245, 1, 3, 5, 5, 'sex_m_10_s7', 'Jenice Raimunda(V)'),
-(246, 1, 4, 5, 5, 'sex_m_11_s1', 'Atend. Infantil'),
-(247, 1, 4, 5, 5, 'sex_m_11_s2', 'Atend. Grupo'),
-(248, 1, 4, 5, 5, 'sex_m_11_s3', 'Edna Luisa(I)'),
-(249, 1, 4, 5, 5, 'sex_m_11_s4', 'Carlos Eduardo(II)'),
-(250, 1, 4, 5, 5, 'sex_m_11_s5', 'Atend. III'),
-(251, 1, 4, 5, 5, 'sex_m_11_s6', 'Atend. IV'),
-(252, 1, 4, 5, 5, 'sex_m_11_s7', 'Nicole Silva(V)'),
-(253, 2, 5, 5, 5, 'sex_t_14_s1', 'José Heitor (Infantil)'),
-(254, 2, 5, 5, 5, 'sex_t_14_s2', 'Atend. Grupo'),
-(255, 2, 5, 5, 5, 'sex_t_14_s3', 'Carlos Daniel(I)'),
-(256, 2, 5, 5, 4, 'sex_t_14_s4', 'João Manoel(II)'),
-(257, 2, 5, 5, 5, 'sex_t_14_s5', 'Taina Larissa(III)'),
-(258, 2, 5, 5, 5, 'sex_t_14_s6', 'Atend. IV'),
-(259, 2, 5, 5, 1, 'sex_t_14_s7', 'Maria Eduarda(V)'),
-(260, 2, 6, 5, 5, 'sex_t_15_s1', 'Pedro Jorge(Infantil)'),
-(261, 2, 6, 5, 5, 'sex_t_15_s2', 'Atend. Grupo'),
-(262, 2, 6, 5, 5, 'sex_t_15_s3', 'Francisca Mendes(I)'),
-(263, 2, 6, 5, 5, 'sex_t_15_s4', 'Eduardo (II)'),
-(264, 2, 6, 5, 5, 'sex_t_15_s5', 'Evilly Cristine(III)'),
-(265, 2, 6, 5, 5, 'sex_t_15_s6', 'Paulo Rogério(IV)'),
-(266, 2, 6, 5, 5, 'sex_t_15_s7', 'Andressa Santos(V)'),
-(267, 2, 7, 5, 5, 'sex_t_16_s1', 'Victor Daniel (Infantil)'),
-(268, 2, 7, 5, 5, 'sex_t_16_s2', 'Atend. Grupo'),
-(269, 2, 7, 5, 5, 'sex_t_16_s3', 'Cristiano Benígno(I)'),
-(270, 2, 7, 5, 5, 'sex_t_16_s4', 'Elisamara Sousa(II)'),
-(271, 2, 7, 5, 5, 'sex_t_16_s5', 'Jessica Karina (III)'),
-(272, 2, 7, 5, 5, 'sex_t_16_s6', 'Anny Michelle(IV)'),
-(273, 2, 7, 5, 5, 'sex_t_16_s7', 'Kelly Derlainny(V)'),
-(274, 2, 8, 5, 5, 'sex_t_17_s1', 'Eloah  Gabrielle(Infantil)'),
-(275, 2, 8, 5, 5, 'sex_t_17_s2', 'Atend. Grupo'),
-(276, 2, 8, 5, 5, 'sex_t_17_s3', 'Samira Pedrolina(I)'),
-(277, 2, 8, 5, 5, 'sex_t_17_s4', 'Gydeon Sousa(II)'),
-(278, 2, 8, 5, 5, 'sex_t_17_s5', 'José Henrique(III)'),
-(279, 2, 8, 5, 5, 'sex_t_17_s6', 'Atend. IV'),
-(280, 2, 8, 5, 5, 'sex_t_17_s7', 'Andreyna Sousa (V)');
+INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `id_status`, `id_terapeuta`, `id_paciente`, `sala_cod`, `sala`) VALUES
+(1, 1, 1, 1, 1, 12, 7, 'seg_m_8_s1', 'Lucio - Wilson'),
+(2, 1, 1, 1, 2, NULL, NULL, 'seg_m_8_s2', '---'),
+(3, 1, 1, 1, 3, 12, 7, 'seg_m_8_s3', 'Lucio - Wilson'),
+(4, 1, 1, 1, 2, NULL, NULL, 'seg_m_8_s4', '---'),
+(5, 1, 1, 1, 4, NULL, NULL, 'seg_m_8_s5', '---'),
+(6, 1, 1, 1, 2, NULL, NULL, 'seg_m_8_s6', '---'),
+(7, 1, 1, 1, 4, NULL, NULL, 'seg_m_8_s7', '---'),
+(8, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s1', '---'),
+(9, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s2', '---'),
+(10, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s3', '---'),
+(11, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s4', '---'),
+(12, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s5', '---'),
+(13, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s6', '---'),
+(14, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s7', '---'),
+(15, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s1', '---'),
+(16, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s2', '---'),
+(17, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s3', '---'),
+(18, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s4', '---'),
+(19, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s5', '---'),
+(20, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s6', '---'),
+(21, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s7', '---'),
+(22, 1, 4, 1, 2, NULL, NULL, 'seg_m_11_s1', '---'),
+(23, 1, 4, 1, 2, NULL, NULL, 'seg_m_11_s2', '---'),
+(24, 1, 4, 1, 2, NULL, NULL, 'seg_m_11_s3', '---'),
+(25, 1, 4, 1, 2, NULL, NULL, 'seg_m_11_s4', '---'),
+(26, 1, 4, 1, 2, NULL, NULL, 'seg_m_11_s5', '---'),
+(27, 1, 4, 1, 2, NULL, NULL, 'seg_m_11_s6', '---'),
+(28, 1, 4, 1, 2, NULL, NULL, 'seg_m_11_s7', '---'),
+(29, 2, 5, 1, 2, NULL, NULL, 'seg_t_14_s1', '---'),
+(30, 2, 5, 1, 2, NULL, NULL, 'seg_t_14_s2', '---'),
+(31, 2, 5, 1, 2, NULL, NULL, 'seg_t_14_s3', '---'),
+(32, 2, 5, 1, 2, NULL, NULL, 'seg_t_14_s4', '---'),
+(33, 2, 5, 1, 2, NULL, NULL, 'seg_t_14_s5', '---'),
+(34, 2, 5, 1, 2, NULL, NULL, 'seg_t_14_s6', '---'),
+(35, 2, 5, 1, 2, NULL, NULL, 'seg_t_14_s7', '---'),
+(36, 2, 6, 1, 2, NULL, NULL, 'seg_t_15_s1', '---'),
+(37, 2, 6, 1, 2, NULL, NULL, 'seg_t_15_s2', '---'),
+(38, 2, 6, 1, 2, NULL, NULL, 'seg_t_15_s3', '---'),
+(39, 2, 6, 1, 2, NULL, NULL, 'seg_t_15_s4', '---'),
+(40, 2, 6, 1, 2, NULL, NULL, 'seg_t_15_s5', '---'),
+(41, 2, 6, 1, 2, NULL, NULL, 'seg_t_15_s6', '---'),
+(42, 2, 6, 1, 2, NULL, NULL, 'seg_t_15_s7', '---'),
+(43, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s1', '---'),
+(44, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s2', '---'),
+(45, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s3', '---'),
+(46, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s4', '---'),
+(47, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s5', '---'),
+(48, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s6', '---'),
+(49, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s7', '---'),
+(50, 2, 8, 1, 2, NULL, NULL, 'seg_t_17_s1', '---'),
+(51, 2, 8, 1, 2, NULL, NULL, 'seg_t_17_s2', '---'),
+(52, 2, 8, 1, 2, NULL, NULL, 'seg_t_17_s3', '---'),
+(53, 2, 8, 1, 2, NULL, NULL, 'seg_t_17_s4', '---'),
+(54, 2, 8, 1, 2, NULL, NULL, 'seg_t_17_s5', '---'),
+(55, 2, 8, 1, 2, NULL, NULL, 'seg_t_17_s6', '---'),
+(56, 2, 8, 1, 2, NULL, NULL, 'seg_t_17_s7', '---'),
+(57, 1, 1, 2, 2, NULL, NULL, 'ter_m_8_s1', '---'),
+(58, 1, 1, 2, 2, NULL, NULL, 'ter_m_8_s2', '---'),
+(59, 1, 1, 2, 2, NULL, NULL, 'ter_m_8_s3', '---'),
+(60, 1, 1, 2, 2, NULL, NULL, 'ter_m_8_s4', '---'),
+(61, 1, 1, 2, 2, NULL, NULL, 'ter_m_8_s5', '---'),
+(62, 1, 1, 2, 1, NULL, NULL, 'ter_m_8_s6', '---'),
+(63, 1, 1, 2, 2, NULL, NULL, 'ter_m_8_s7', '---'),
+(64, 1, 2, 2, 2, NULL, NULL, 'ter_m_9_s1', '---'),
+(65, 1, 2, 2, 2, NULL, NULL, 'ter_m_9_s2', '---'),
+(66, 1, 2, 2, 2, NULL, NULL, 'ter_m_9_s3', '---'),
+(67, 1, 2, 2, 2, NULL, NULL, 'ter_m_9_s4', '---'),
+(68, 1, 2, 2, 3, NULL, NULL, 'ter_m_9_s5', '---'),
+(69, 1, 2, 2, 2, NULL, NULL, 'ter_m_9_s6', '---'),
+(70, 1, 2, 2, 2, NULL, NULL, 'ter_m_9_s7', '---'),
+(71, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s1', '---'),
+(72, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s2', '---'),
+(73, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s3', '---'),
+(74, 1, 3, 2, 4, NULL, NULL, 'ter_m_10_s4', '---'),
+(75, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s5', '---'),
+(76, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s6', '---'),
+(77, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s7', '---'),
+(78, 1, 4, 2, 2, NULL, NULL, 'ter_m_11_s1', '---'),
+(79, 1, 4, 2, 2, NULL, NULL, 'ter_m_11_s2', '---'),
+(80, 1, 4, 2, 2, NULL, NULL, 'ter_m_11_s3', '---'),
+(81, 1, 4, 2, 2, NULL, NULL, 'ter_m_11_s4', '---'),
+(82, 1, 4, 2, 2, NULL, NULL, 'ter_m_11_s5', '---'),
+(83, 1, 4, 2, 2, NULL, NULL, 'ter_m_11_s6', '---'),
+(84, 1, 4, 2, 2, NULL, NULL, 'ter_m_11_s7', '---'),
+(85, 2, 5, 2, 2, NULL, NULL, 'ter_t_14_s1', '---'),
+(86, 2, 5, 2, 2, NULL, NULL, 'ter_t_14_s2', '---'),
+(87, 2, 5, 2, 2, NULL, NULL, 'ter_t_14_s3', '---'),
+(88, 2, 5, 2, 2, NULL, NULL, 'ter_t_14_s4', '---'),
+(89, 2, 5, 2, 2, NULL, NULL, 'ter_t_14_s5', '---'),
+(90, 2, 5, 2, 2, NULL, NULL, 'ter_t_14_s6', '---'),
+(91, 2, 5, 2, 2, NULL, NULL, 'ter_t_14_s7', '---'),
+(92, 2, 6, 2, 2, NULL, NULL, 'ter_t_15_s1', '---'),
+(93, 2, 6, 2, 2, NULL, NULL, 'ter_t_15_s2', '---'),
+(94, 2, 6, 2, 2, NULL, NULL, 'ter_t_15_s3', '---'),
+(95, 2, 6, 2, 2, NULL, NULL, 'ter_t_15_s4', '---'),
+(96, 2, 6, 2, 2, NULL, NULL, 'ter_t_15_s5', '---'),
+(97, 2, 6, 2, 2, NULL, NULL, 'ter_t_15_s6', '---'),
+(98, 2, 6, 2, 2, NULL, NULL, 'ter_t_15_s7', '---'),
+(99, 2, 7, 2, 2, NULL, NULL, 'ter_t_16_s1', '---'),
+(100, 2, 7, 2, 2, NULL, NULL, 'ter_t_16_s2', '---'),
+(101, 2, 7, 2, 2, NULL, NULL, 'ter_t_16_s3', '---'),
+(102, 2, 7, 2, 2, NULL, NULL, 'ter_t_16_s4', '---'),
+(103, 2, 7, 2, 2, NULL, NULL, 'ter_t_16_s5', '---'),
+(104, 2, 7, 2, 2, NULL, NULL, 'ter_t_16_s6', '---'),
+(105, 2, 7, 2, 2, NULL, NULL, 'ter_t_16_s7', '---'),
+(106, 2, 8, 2, 2, NULL, NULL, 'ter_t_17_s1', '---'),
+(107, 2, 8, 2, 2, NULL, NULL, 'ter_t_17_s2', '---'),
+(108, 2, 8, 2, 2, NULL, NULL, 'ter_t_17_s3', '---'),
+(109, 2, 8, 2, 2, NULL, NULL, 'ter_t_17_s4', '---'),
+(110, 2, 8, 2, 2, NULL, NULL, 'ter_t_17_s5', '---'),
+(111, 2, 8, 2, 2, NULL, NULL, 'ter_t_17_s6', '---'),
+(112, 2, 8, 2, 2, NULL, NULL, 'ter_t_17_s7', '---'),
+(113, 1, 1, 3, 2, NULL, NULL, 'qua_m_8_s1', '---'),
+(114, 1, 1, 3, 2, NULL, NULL, 'qua_m_8_s2', '---'),
+(115, 1, 1, 3, 2, NULL, NULL, 'qua_m_8_s3', '---'),
+(116, 1, 1, 3, 2, NULL, NULL, 'qua_m_8_s4', '---'),
+(117, 1, 1, 3, 2, NULL, NULL, 'qua_m_8_s5', '---'),
+(118, 1, 1, 3, 2, NULL, NULL, 'qua_m_8_s6', '---'),
+(119, 1, 1, 3, 2, NULL, NULL, 'qua_m_8_s7', '---'),
+(120, 1, 2, 3, 2, NULL, NULL, 'qua_m_9_s1', '---'),
+(121, 1, 2, 3, 2, NULL, NULL, 'qua_m_9_s2', '---'),
+(122, 1, 2, 3, 2, NULL, NULL, 'qua_m_9_s3', '---'),
+(123, 1, 2, 3, 2, NULL, NULL, 'qua_m_9_s4', '---'),
+(124, 1, 2, 3, 2, NULL, NULL, 'qua_m_9_s5', '---'),
+(125, 1, 2, 3, 2, NULL, NULL, 'qua_m_9_s6', '---'),
+(126, 1, 2, 3, 2, NULL, NULL, 'qua_m_9_s7', '---'),
+(127, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s1', '---'),
+(128, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s2', '---'),
+(129, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s3', '---'),
+(130, 1, 3, 3, 3, NULL, NULL, 'qua_m_10_s4', '---'),
+(131, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s5', '---'),
+(132, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s6', '---'),
+(133, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s7', '---'),
+(134, 1, 4, 3, 2, NULL, NULL, 'qua_m_11_s1', '---'),
+(135, 1, 4, 3, 2, NULL, NULL, 'qua_m_11_s2', '---'),
+(136, 1, 4, 3, 2, NULL, NULL, 'qua_m_11_s3', '---'),
+(137, 1, 4, 3, 2, NULL, NULL, 'qua_m_11_s4', '---'),
+(138, 1, 4, 3, 2, NULL, NULL, 'qua_m_11_s5', '---'),
+(139, 1, 4, 3, 2, NULL, NULL, 'qua_m_11_s6', '---'),
+(140, 1, 4, 3, 2, NULL, NULL, 'qua_m_11_s7', '---'),
+(141, 2, 5, 3, 2, NULL, NULL, 'qua_m_14_s1', '---'),
+(142, 2, 5, 3, 2, NULL, NULL, 'qua_m_14_s2', '---'),
+(143, 2, 5, 3, 2, NULL, NULL, 'qua_m_14_s3', '---'),
+(144, 2, 5, 3, 2, NULL, NULL, 'qua_m_14_s4', '---'),
+(145, 2, 5, 3, 2, NULL, NULL, 'qua_m_14_s5', '---'),
+(146, 2, 5, 3, 2, NULL, NULL, 'qua_m_14_s6', '---'),
+(147, 2, 5, 3, 2, NULL, NULL, 'qua_m_14_s7', '---'),
+(148, 2, 6, 3, 2, NULL, NULL, 'qua_m_15_s1', '---'),
+(149, 2, 6, 3, 2, NULL, NULL, 'qua_m_15_s2', '---'),
+(150, 2, 6, 3, 2, NULL, NULL, 'qua_m_15_s3', '---'),
+(151, 2, 6, 3, 2, NULL, NULL, 'qua_m_15_s4', '---'),
+(152, 2, 6, 3, 2, NULL, NULL, 'qua_m_15_s5', '---'),
+(153, 2, 6, 3, 4, NULL, NULL, 'qua_m_15_s6', '---'),
+(154, 2, 6, 3, 2, NULL, NULL, 'qua_m_15_s7', '---'),
+(155, 2, 7, 3, 2, NULL, NULL, 'qua_m_16_s1', '---'),
+(156, 2, 7, 3, 2, NULL, NULL, 'qua_m_16_s2', '---'),
+(157, 2, 7, 3, 2, NULL, NULL, 'qua_m_16_s3', '---'),
+(158, 2, 7, 3, 2, NULL, NULL, 'qua_m_16_s4', '---'),
+(159, 2, 7, 3, 2, NULL, NULL, 'qua_m_16_s5', '---'),
+(160, 2, 7, 3, 2, NULL, NULL, 'qua_m_16_s6', '---'),
+(161, 2, 7, 3, 2, NULL, NULL, 'qua_m_16_s7', '---'),
+(162, 2, 8, 3, 2, NULL, NULL, 'qua_m_17_s1', '---'),
+(163, 2, 8, 3, 2, NULL, NULL, 'qua_m_17_s2', '---'),
+(164, 2, 8, 3, 2, NULL, NULL, 'qua_m_17_s3', '---'),
+(165, 2, 8, 3, 2, NULL, NULL, 'qua_m_17_s4', '---'),
+(166, 2, 8, 3, 2, NULL, NULL, 'qua_m_17_s5', '---'),
+(167, 2, 8, 3, 2, NULL, NULL, 'qua_m_17_s6', '---'),
+(168, 2, 8, 3, 2, NULL, NULL, 'qua_m_17_s7', '---'),
+(169, 1, 1, 4, 2, NULL, NULL, 'qui_m_8_s1', '---'),
+(170, 1, 1, 4, 2, NULL, NULL, 'qui_m_8_s2', '---'),
+(171, 1, 1, 4, 2, NULL, NULL, 'qui_m_8_s3', '---'),
+(172, 1, 1, 4, 2, NULL, NULL, 'qui_m_8_s4', '---'),
+(173, 1, 1, 4, 2, NULL, NULL, 'qui_m_8_s5', '---'),
+(174, 1, 1, 4, 2, NULL, NULL, 'qui_m_8_s6', '---'),
+(175, 1, 1, 4, 2, NULL, NULL, 'qui_m_8_s7', '---'),
+(176, 1, 2, 4, 2, NULL, NULL, 'qui_m_9_s1', '---'),
+(177, 1, 2, 4, 2, NULL, NULL, 'qui_m_9_s2', '---'),
+(178, 1, 2, 4, 2, NULL, NULL, 'qui_m_9_s3', '---'),
+(179, 1, 2, 4, 2, NULL, NULL, 'qui_m_9_s4', '---'),
+(180, 1, 2, 4, 2, NULL, NULL, 'qui_m_9_s5', '---'),
+(181, 1, 2, 4, 2, NULL, NULL, 'qui_m_9_s6', '---'),
+(182, 1, 2, 4, 2, NULL, NULL, 'qui_m_9_s7', '---'),
+(183, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s1', '---'),
+(184, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s2', '---'),
+(185, 1, 3, 4, 4, NULL, NULL, 'qui_m_10_s3', '---'),
+(186, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s4', '---'),
+(187, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s5', '---'),
+(188, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s6', '---'),
+(189, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s7', '---'),
+(190, 1, 4, 4, 2, NULL, NULL, 'qui_m_11_s1', '---'),
+(191, 1, 4, 4, 2, NULL, NULL, 'qui_m_11_s2', '---'),
+(192, 1, 4, 4, 2, NULL, NULL, 'qui_m_11_s3', '---'),
+(193, 1, 4, 4, 2, NULL, NULL, 'qui_m_11_s4', '---'),
+(194, 1, 4, 4, 2, NULL, NULL, 'qui_m_11_s5', '---'),
+(195, 1, 4, 4, 2, NULL, NULL, 'qui_m_11_s6', '---'),
+(196, 1, 4, 4, 2, NULL, NULL, 'qui_m_11_s7', '---'),
+(197, 2, 5, 4, 2, NULL, NULL, 'qui_t_14_s1', '---'),
+(198, 2, 5, 4, 2, NULL, NULL, 'qui_t_14_s2', '---'),
+(199, 2, 5, 4, 2, NULL, NULL, 'qui_t_14_s3', '---'),
+(200, 2, 5, 4, 2, NULL, NULL, 'qui_t_14_s4', '---'),
+(201, 2, 5, 4, 2, NULL, NULL, 'qui_t_14_s5', '---'),
+(202, 2, 5, 4, 2, NULL, NULL, 'qui_t_14_s6', '---'),
+(203, 2, 5, 4, 2, NULL, NULL, 'qui_t_14_s7', '---'),
+(204, 2, 6, 4, 2, NULL, NULL, 'qui_t_15_s1', '---'),
+(205, 2, 6, 4, 2, NULL, NULL, 'qui_t_15_s2', '---'),
+(206, 2, 6, 4, 2, NULL, NULL, 'qui_t_15_s3', '---'),
+(207, 2, 6, 4, 2, NULL, NULL, 'qui_t_15_s4', '---'),
+(208, 2, 6, 4, 2, NULL, NULL, 'qui_t_15_s5', '---'),
+(209, 2, 6, 4, 2, NULL, NULL, 'qui_t_15_s6', '---'),
+(210, 2, 6, 4, 2, NULL, NULL, 'qui_t_15_s7', '---'),
+(211, 2, 7, 4, 2, NULL, NULL, 'qui_t_16_s1', '---'),
+(212, 2, 7, 4, 2, NULL, NULL, 'qui_t_16_s2', '---'),
+(213, 2, 7, 4, 2, NULL, NULL, 'qui_t_16_s3', '---'),
+(214, 2, 7, 4, 2, NULL, NULL, 'qui_t_16_s4', '---'),
+(215, 2, 7, 4, 2, NULL, NULL, 'qui_t_16_s5', '---'),
+(216, 2, 7, 4, 2, NULL, NULL, 'qui_t_16_s6', '---'),
+(217, 2, 7, 4, 2, NULL, NULL, 'qui_t_16_s7', '---'),
+(218, 2, 8, 4, 2, NULL, NULL, 'qui_t_17_s1', '---'),
+(219, 2, 8, 4, 2, NULL, NULL, 'qui_t_17_s2', '---'),
+(220, 2, 8, 4, 2, NULL, NULL, 'qui_t_17_s3', '---'),
+(221, 2, 8, 4, 2, NULL, NULL, 'qui_t_17_s4', '---'),
+(222, 2, 8, 4, 2, NULL, NULL, 'qui_t_17_s5', '---'),
+(223, 2, 8, 4, 2, NULL, NULL, 'qui_t_17_s6', '---'),
+(224, 2, 8, 4, 2, NULL, NULL, 'qui_t_17_s7', '---'),
+(225, 1, 1, 5, 2, NULL, NULL, 'sex_m_8_s1', '---'),
+(226, 1, 1, 5, 2, NULL, NULL, 'sex_m_8_s2', '---'),
+(227, 1, 1, 5, 2, NULL, NULL, 'sex_m_8_s3', '---'),
+(228, 1, 1, 5, 2, NULL, NULL, 'sex_m_8_s4', '---'),
+(229, 1, 1, 5, 2, NULL, NULL, 'sex_m_8_s5', '---'),
+(230, 1, 1, 5, 2, NULL, NULL, 'sex_m_8_s6', '---'),
+(231, 1, 1, 5, 1, NULL, NULL, 'sex_m_8_s7', '---'),
+(232, 1, 2, 5, 2, NULL, NULL, 'sex_m_9_s1', '---'),
+(233, 1, 2, 5, 2, NULL, NULL, 'sex_m_9_s2', '---'),
+(234, 1, 2, 5, 2, NULL, NULL, 'sex_m_9_s3', '---'),
+(235, 1, 2, 5, 2, NULL, NULL, 'sex_m_9_s4', '---'),
+(236, 1, 2, 5, 2, NULL, NULL, 'sex_m_9_s5', '---'),
+(237, 1, 2, 5, 2, NULL, NULL, 'sex_m_9_s6', '---'),
+(238, 1, 2, 5, 4, NULL, NULL, 'sex_m_9_s7', '---'),
+(239, 1, 3, 5, 2, NULL, NULL, 'sex_m_10_s1', '---'),
+(240, 1, 3, 5, 2, NULL, NULL, 'sex_m_10_s2', '---'),
+(241, 1, 3, 5, 2, NULL, NULL, 'sex_m_10_s3', '---'),
+(242, 1, 3, 5, 2, NULL, NULL, 'sex_m_10_s4', '---'),
+(243, 1, 3, 5, 3, NULL, NULL, 'sex_m_10_s5', '---'),
+(244, 1, 3, 5, 2, NULL, NULL, 'sex_m_10_s6', '---'),
+(245, 1, 3, 5, 2, NULL, NULL, 'sex_m_10_s7', '---'),
+(246, 1, 4, 5, 2, NULL, NULL, 'sex_m_11_s1', '---'),
+(247, 1, 4, 5, 2, NULL, NULL, 'sex_m_11_s2', '---'),
+(248, 1, 4, 5, 2, NULL, NULL, 'sex_m_11_s3', '---'),
+(249, 1, 4, 5, 2, NULL, NULL, 'sex_m_11_s4', '---'),
+(250, 1, 4, 5, 2, NULL, NULL, 'sex_m_11_s5', '---'),
+(251, 1, 4, 5, 2, NULL, NULL, 'sex_m_11_s6', '---'),
+(252, 1, 4, 5, 2, NULL, NULL, 'sex_m_11_s7', '---'),
+(253, 2, 5, 5, 2, NULL, NULL, 'sex_t_14_s1', '---'),
+(254, 2, 5, 5, 2, NULL, NULL, 'sex_t_14_s2', '---'),
+(255, 2, 5, 5, 2, NULL, NULL, 'sex_t_14_s3', '---'),
+(256, 2, 5, 5, 2, NULL, NULL, 'sex_t_14_s4', '---'),
+(257, 2, 5, 5, 2, NULL, NULL, 'sex_t_14_s5', '---'),
+(258, 2, 5, 5, 2, NULL, NULL, 'sex_t_14_s6', '---'),
+(259, 2, 5, 5, 2, NULL, NULL, 'sex_t_14_s7', '---'),
+(260, 2, 6, 5, 2, NULL, NULL, 'sex_t_15_s1', '---'),
+(261, 2, 6, 5, 2, NULL, NULL, 'sex_t_15_s2', '---'),
+(262, 2, 6, 5, 2, NULL, NULL, 'sex_t_15_s3', '---'),
+(263, 2, 6, 5, 2, NULL, NULL, 'sex_t_15_s4', '---'),
+(264, 2, 6, 5, 2, NULL, NULL, 'sex_t_15_s5', '---'),
+(265, 2, 6, 5, 2, NULL, NULL, 'sex_t_15_s6', '---'),
+(266, 2, 6, 5, 2, NULL, NULL, 'sex_t_15_s7', '---'),
+(267, 2, 7, 5, 2, NULL, NULL, 'sex_t_16_s1', '---'),
+(268, 2, 7, 5, 2, NULL, NULL, 'sex_t_16_s2', '---'),
+(269, 2, 7, 5, 2, NULL, NULL, 'sex_t_16_s3', '---'),
+(270, 2, 7, 5, 2, NULL, NULL, 'sex_t_16_s4', '---'),
+(271, 2, 7, 5, 2, NULL, NULL, 'sex_t_16_s5', '---'),
+(272, 2, 7, 5, 2, NULL, NULL, 'sex_t_16_s6', '---'),
+(273, 2, 7, 5, 2, NULL, NULL, 'sex_t_16_s7', '---'),
+(274, 2, 8, 5, 2, NULL, NULL, 'sex_t_17_s1', '---'),
+(275, 2, 8, 5, 2, NULL, NULL, 'sex_t_17_s2', '---'),
+(276, 2, 8, 5, 2, NULL, NULL, 'sex_t_17_s3', '---'),
+(277, 2, 8, 5, 2, NULL, NULL, 'sex_t_17_s4', '---'),
+(278, 2, 8, 5, 2, NULL, NULL, 'sex_t_17_s5', '---'),
+(279, 2, 8, 5, 2, NULL, NULL, 'sex_t_17_s6', '---'),
+(280, 2, 8, 5, 2, NULL, NULL, 'sex_t_17_s7', '---');
 
 -- --------------------------------------------------------
 
@@ -706,8 +716,7 @@ INSERT INTO `tbl_status_sala` (`id`, `status`) VALUES
 (1, 'reservada'),
 (2, 'livre'),
 (3, 'encaixe'),
-(4, 'triagem'),
-(5, 'nada');
+(4, 'triagem');
 
 -- --------------------------------------------------------
 
@@ -772,7 +781,8 @@ CREATE TABLE `tbl_user_terapeuta` (
 --
 
 INSERT INTO `tbl_user_terapeuta` (`id`, `id_disponibilidade`, `id_professor`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
-(9, 1, 3, 'Ana', 'Ana', 'ana@gmail.com', '$2y$10$kDsIYtou7voifuJJ7wa34e0v45LNW4JhrT.qni95JBSFOd7hkQz6m', '2024-11-20 14:24:46');
+(11, 1, 8, 'Ana', 'Ana', 'ana@gmail.com', '$2y$10$CmaboCUJgwHSzAEhCXXTieUq.0eVC/h4OqPynnHHQ22HZ06SM6/nq', '2024-11-23 12:37:55'),
+(12, 1, 8, 'Lucio', 'Lucio', 'lucio@gmail.com', '$2y$10$2Q5mYPGSNsqcwa57zxo1Iu6uxGq7vQlbenN9cXGazS.fO5aaTyZx2', '2024-11-24 18:00:17');
 
 --
 -- Índices para tabelas despejadas
@@ -785,10 +795,19 @@ ALTER TABLE `tbl_bairro`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `tbl_calendario_agendamento`
+--
+ALTER TABLE `tbl_calendario_agendamento`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `tbl_consulta`
 --
 ALTER TABLE `tbl_consulta`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_consulta_terapeuta` (`id_terapeuta`),
+  ADD KEY `fk_consulta_paciente` (`id_paciente`),
+  ADD KEY `fk_consulta_sala_reservada` (`id_sala_reservada`);
 
 --
 -- Índices de tabela `tbl_contato`
@@ -879,10 +898,12 @@ ALTER TABLE `tbl_renda_familiar`
 --
 ALTER TABLE `tbl_sala_reservada`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_sala_reservada_turno` (`id_turno`),
-  ADD KEY `fk_sala_reservada_horario` (`id_horario`),
-  ADD KEY `fk_sala_reservada_status` (`id_status`),
-  ADD KEY `fk_sala_reservada_semana` (`id_semana`);
+  ADD KEY `fk_reserva_sala_turno` (`id_turno`),
+  ADD KEY `fk_reserva_sala_horario` (`id_horario`),
+  ADD KEY `fk_reserva_sala_semana` (`id_semana`),
+  ADD KEY `fk_reserva_sala_status` (`id_status`),
+  ADD KEY `fk_reserva_sala_paciente` (`id_paciente`),
+  ADD KEY `fk_reserva_sala_terapeuta` (`id_terapeuta`);
 
 --
 -- Índices de tabela `tbl_semana`
@@ -927,10 +948,16 @@ ALTER TABLE `tbl_bairro`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT de tabela `tbl_calendario_agendamento`
+--
+ALTER TABLE `tbl_calendario_agendamento`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT de tabela `tbl_consulta`
 --
 ALTER TABLE `tbl_consulta`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_contato`
@@ -990,7 +1017,7 @@ ALTER TABLE `tbl_paciente`
 -- AUTO_INCREMENT de tabela `tbl_professor`
 --
 ALTER TABLE `tbl_professor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_profissao`
@@ -1003,12 +1030,6 @@ ALTER TABLE `tbl_profissao`
 --
 ALTER TABLE `tbl_renda_familiar`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de tabela `tbl_sala_reservada`
---
-ALTER TABLE `tbl_sala_reservada`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=281;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_semana`
@@ -1038,11 +1059,19 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT de tabela `tbl_user_terapeuta`
 --
 ALTER TABLE `tbl_user_terapeuta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restrições para tabelas despejadas
 --
+
+--
+-- Restrições para tabelas `tbl_consulta`
+--
+ALTER TABLE `tbl_consulta`
+  ADD CONSTRAINT `fk_consulta_paciente` FOREIGN KEY (`id_paciente`) REFERENCES `tbl_paciente` (`id`),
+  ADD CONSTRAINT `fk_consulta_sala_reservada` FOREIGN KEY (`id_sala_reservada`) REFERENCES `tbl_sala_reservada` (`id`),
+  ADD CONSTRAINT `fk_consulta_terapeuta` FOREIGN KEY (`id_terapeuta`) REFERENCES `tbl_user_terapeuta` (`id`);
 
 --
 -- Restrições para tabelas `tbl_endereco`
@@ -1064,26 +1093,15 @@ ALTER TABLE `tbl_paciente`
   ADD CONSTRAINT `fk_paciente_renda_familar` FOREIGN KEY (`id_renda_familiar`) REFERENCES `tbl_renda_familiar` (`id`);
 
 --
--- Restrições para tabelas `tbl_professor`
---
-ALTER TABLE `tbl_professor`
-  ADD CONSTRAINT `fk_professor_disciplina` FOREIGN KEY (`id_disponibilidade`) REFERENCES `tbl_disponibilidade` (`id`);
-
---
 -- Restrições para tabelas `tbl_sala_reservada`
 --
 ALTER TABLE `tbl_sala_reservada`
-  ADD CONSTRAINT `fk_sala_reservada_horario` FOREIGN KEY (`id_horario`) REFERENCES `tbl_horario_sala` (`id`),
-  ADD CONSTRAINT `fk_sala_reservada_semana` FOREIGN KEY (`id_semana`) REFERENCES `tbl_semana` (`id`),
-  ADD CONSTRAINT `fk_sala_reservada_status` FOREIGN KEY (`id_status`) REFERENCES `tbl_status_sala` (`id`),
-  ADD CONSTRAINT `fk_sala_reservada_turno` FOREIGN KEY (`id_turno`) REFERENCES `tbl_turno` (`id`);
-
---
--- Restrições para tabelas `tbl_user_terapeuta`
---
-ALTER TABLE `tbl_user_terapeuta`
-  ADD CONSTRAINT `fk_terapeuta_disponibilidade` FOREIGN KEY (`id_disponibilidade`) REFERENCES `tbl_disponibilidade` (`id`),
-  ADD CONSTRAINT `fk_terapeuta_professor` FOREIGN KEY (`id_professor`) REFERENCES `tbl_professor` (`id`);
+  ADD CONSTRAINT `fk_reserva_sala_horario` FOREIGN KEY (`id_horario`) REFERENCES `tbl_horario_sala` (`id`),
+  ADD CONSTRAINT `fk_reserva_sala_paciente` FOREIGN KEY (`id_paciente`) REFERENCES `tbl_paciente` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `fk_reserva_sala_semana` FOREIGN KEY (`id_semana`) REFERENCES `tbl_semana` (`id`),
+  ADD CONSTRAINT `fk_reserva_sala_status` FOREIGN KEY (`id_status`) REFERENCES `tbl_status_sala` (`id`),
+  ADD CONSTRAINT `fk_reserva_sala_terapeuta` FOREIGN KEY (`id_terapeuta`) REFERENCES `tbl_user_terapeuta` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `fk_reserva_sala_turno` FOREIGN KEY (`id_turno`) REFERENCES `tbl_turno` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
