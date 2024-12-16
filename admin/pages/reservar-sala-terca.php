@@ -251,10 +251,6 @@ include('../../db/conexao.php');
         <?php
             }
         ?>
-        
-        // if(!popup) {
-        //     location.reload()
-        // }
     </script>
 </body>
 </html>

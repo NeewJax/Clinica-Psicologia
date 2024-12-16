@@ -10,8 +10,8 @@ if(isset($_GET['id'])) {
 }
 
 if (isset($_POST['salvar'])) {
-    $id_terapeuta = $_POST['id_terapeuta'];
-    $id_paciente = $_POST['id_paciente'];
+    $id_terapeuta = $_POST['id_terapeuta'] ?? NULL;
+    $id_paciente = $_POST['id_paciente'] ?? NULL;
     $id_status = $_POST['id_status'];
 
     //echo "<script>alert('". $id_terapeuta ."')</script>";
@@ -39,8 +39,21 @@ if (isset($_POST['salvar'])) {
     $sala =  $nome_terapeuta . " - " . $nome_paciente;
 
     //ATUALIZAR SALA
-    $stmt_sala_reservada = $mysqli->prepare("UPDATE tbl_sala_reservada SET sala = ?, id_status = ?, id_terapeuta = ?, id_paciente = ? WHERE id = ?");
-    $stmt_sala_reservada->bind_param("siiii", $sala, $id_status, $id_terapeuta, $id_paciente, $id);
+    $stmt_sala_reservada = $mysqli->prepare("UPDATE tbl_sala_reservada 
+                                            SET sala = ?, 
+                                            id_status = ?, 
+                                            id_terapeuta = ?, 
+                                            id_paciente = ? 
+                                            WHERE id = ?");
+    $stmt_sala_reservada->bind_param("siiii", 
+                                    $sala, 
+                                    $id_status, 
+                                    $id_terapeuta !== null ? $id_terapeuta : null, 
+                                    $id_paciente !== null ? $id_paciente : null, 
+                                    $id);
+    if($id_terapeuta === null) $stmt_sala_reservada->bind_param("i", null);
+    if($id_paciente === null) $stmt_sala_reservada->bind_param("i", null);
+
     $stmt_sala_reservada->execute();
     $stmt_sala_reservada->close();
 }
@@ -192,25 +205,34 @@ if (isset($_POST['salvar'])) {
         <form action="" method="post">
 
             <?php
-                $sql = "SELECT id, sala, id_status FROM tbl_sala_reservada WHERE id = $id";
-                $result = mysqli_query($mysqli, $sql);
-                $row = mysqli_fetch_assoc($result);
+                $sql_sala_status_name_sala = "SELECT id, sala, id_status FROM tbl_sala_reservada WHERE id = $id";
+                $stmt_sala_status_name_sala = $mysqli->prepare($sql_sala_status_name_sala);
+                $stmt_sala_status_name_sala->execute();
+
+                $stmt_sala_status_name_sala_result = $stmt_sala_status_name_sala->get_result();
+                $sala_status = $stmt_sala_status_name_sala_result->fetch_assoc();
+                $name_sala = $sala_status['sala'];
+                $sala_id = $sala_status['id_status'];
             ?>
 
             <div class="divSala">
-                <h3><?php echo $row['sala'] ?></h3>
+                <h3><?php echo $name_sala ?></h3>
             </div> <br><br>
         
 
             <select name="id_status">
-                <option class="mudar_cor" value="<?php echo $row['id_status'] ?>" select>Mudar Cor</option>
+                <option class="mudar_cor" value="<?php echo $sala_id ?>" selected>Mudar Cor</option>
                 <?php
-                    $sql_status = "SELECT s.id, s.status FROM tbl_status_sala s";
-                    $result_status = mysqli_query($mysqli, $sql_status);
-                    while ($row_status = mysqli_fetch_assoc($result_status)) {
+                    $sql_sala_status = "SELECT s.id, s.status FROM tbl_status_sala s";
+                    $stmt_sala_status = $mysqli->prepare($sql_sala_status);
+                    $stmt_sala_status->execute();
+                    $stmt_sala_status_result = $stmt_sala_status->get_result();
+
+                    //$result_status = mysqli_query($mysqli, $sql_status);
+                    while ($sala_status_row = $stmt_sala_status_result->fetch_assoc()) {
                 ?>
-                        <option value='<?php echo $row_status['id'] ?>' class='<?php echo $row_status['status'] ?>'> 
-                            <?php echo $row_status['status'] ?> 
+                        <option value='<?php echo $sala_status_row['id'] ?>' class='<?php echo $sala_status_row['status'] ?>'> 
+                            <?php echo $sala_status_row['status'] ?> 
                         </option>
                 <?php
                     }
@@ -229,6 +251,8 @@ if (isset($_POST['salvar'])) {
                     if(!$row_terapeuta_fixo['nome'] == NULL) {
                         $id_terapeuta_fixo = $row_terapeuta_fixo['id'];
                         echo '<option value="' . $id_terapeuta_fixo . '" select> '. $nome_terapeuta_fixo .' </option>';
+                    } else if($name_sala == '---') {
+                        echo '<option value="' . NULL . '" select> </option>';
                     }
                 ?>
                     
@@ -257,6 +281,8 @@ if (isset($_POST['salvar'])) {
                     if(!$row_paciente_fixo['nome'] == NULL) {
                         $id_paciente_fixo = $row_paciente_fixo['id'];
                         echo '<option value="' . $id_paciente_fixo . '" select> '. $nome_paciente_fixo .' </option>';
+                    } else if($name_sala == '---') {
+                        echo '<option value="' . NULL . '" select> </option>';
                     }
                 ?>
 

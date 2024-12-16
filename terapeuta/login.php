@@ -20,22 +20,16 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
         // FAZENDO A AUTENTICAÇÃO E REDIRECIONANDO PARA O PAINEL
         if ($quantidade == 1) {
             $usuario = $sql_query->fetch_assoc();
-            // if (!isset($_SESSION)) {
-            //     session_start();
-            // }
-                if (password_verify($senha, $usuario['senha'])) {
-                    // session_start();
-                    // $_SESSION['id'] = $usuario['id'];
-                    // $_SESSION['nome'] = $usuario['nome'];
+            if (password_verify($senha, $usuario['senha'])) {
+                
+                session_start();
 
-                    //header("Location: admin/index.php");
-                    //exit();
-                    echo "<script>alert('Logado com sucesso')</script>";
-                }
-            // $_SESSION['id'] = $usuario['id'];
-            //  $_SESSION['nome'] = $usuario['nome'];
+                $_SESSION['id'] = $usuario['id'];
+                $_SESSION['nome'] = $usuario['nome'];
 
-            //header("Location: admin/index.php");
+                header("Location: ./index.php");
+            }
+
         } else {
             // SERIALIZA A STRING INVALID PARA RETORNAR NO FORM DE HTML
             $invalid = "Ops... e-mail ou senha incorretos!";
@@ -258,7 +252,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
     </div>
     <script>
           function redirecionarParaOutraTela() {
-        window.location.href = '../tela-escolha-login/homeLogin.html';
+        window.location.href = './index.php';
     }
     </script>
     <!-- <div>
