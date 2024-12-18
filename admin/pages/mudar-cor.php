@@ -10,8 +10,8 @@ if(isset($_GET['id'])) {
 }
 
 if (isset($_POST['salvar'])) {
-    $id_terapeuta = $_POST['id_terapeuta'] ?? NULL;
-    $id_paciente = $_POST['id_paciente'] ?? NULL;
+    $id_terapeuta = $_POST['id_terapeuta'];
+    $id_paciente = $_POST['id_paciente'];
     $id_status = $_POST['id_status'];
 
     //echo "<script>alert('". $id_terapeuta ."')</script>";
@@ -22,7 +22,7 @@ if (isset($_POST['salvar'])) {
 
     $result_terapeuta = $stmt_terapeuta->get_result();
     $terapeuta = $result_terapeuta->fetch_assoc();
-    $nome_terapeuta = $terapeuta['nome'] ?? "Desconhecido";
+    $nome_terapeuta = $terapeuta['nome'] ?? "";
     $stmt_terapeuta->close();
     
 
@@ -33,26 +33,27 @@ if (isset($_POST['salvar'])) {
 
     $result_paciente = $stmt_paciente->get_result();
     $paciente = $result_paciente->fetch_assoc();
-    $nome_paciente = $paciente['nome'] ?? "Desconhecido";
+    $nome_paciente = $paciente['nome'] ?? "";
     $stmt_paciente->close();
 
     $sala =  $nome_terapeuta . " - " . $nome_paciente;
 
     //ATUALIZAR SALA
+    $id_terapeuta_bind = $id_terapeuta != null ? $id_terapeuta : null;
+    $id_paciente_bind = $id_paciente != null ? $id_paciente : null;
+
     $stmt_sala_reservada = $mysqli->prepare("UPDATE tbl_sala_reservada 
-                                            SET sala = ?, 
-                                            id_status = ?, 
+                                            SET id_status = ?, 
                                             id_terapeuta = ?, 
-                                            id_paciente = ? 
+                                            id_paciente = ?,
+                                            sala = ? 
                                             WHERE id = ?");
-    $stmt_sala_reservada->bind_param("siiii", 
-                                    $sala, 
+    $stmt_sala_reservada->bind_param("iiisi",  
                                     $id_status, 
-                                    $id_terapeuta !== null ? $id_terapeuta : null, 
-                                    $id_paciente !== null ? $id_paciente : null, 
+                                    $id_terapeuta_bind, 
+                                    $id_paciente_bind,
+                                    $sala,
                                     $id);
-    if($id_terapeuta === null) $stmt_sala_reservada->bind_param("i", null);
-    if($id_paciente === null) $stmt_sala_reservada->bind_param("i", null);
 
     $stmt_sala_reservada->execute();
     $stmt_sala_reservada->close();
@@ -242,6 +243,14 @@ if (isset($_POST['salvar'])) {
             <select name="id_terapeuta">
                 <?php
                     $sql_terapeuta_fixo = "SELECT t.id, t.nome FROM tbl_user_terapeuta t INNER JOIN tbl_sala_reservada s ON s.id_terapeuta = t.id WHERE s.id = $id;";
+                    // $stmt_terapeuta_fixo = $mysqli->prepare($sql_terapeuta_fixo);
+                    // $stmt_terapeuta_fixo->execute();
+                    // $stmt_terapeuta_fixo_result = $stmt_terapeuta_fixo_result->get_result();
+                    // $terapeuta_fixo = $stmt_terapeuta_fixo_result->fetch_assoc();
+                    // $id_nome_terapeuta_fixo = $terapeuta_fixo['id'] ?? "";
+                    // $nome_terapeuta_fixo = $terapeuta_fixo['nome'] ?? "";
+
+
                     $result_terapeuta_fixo = mysqli_query($mysqli, $sql_terapeuta_fixo);
                     $row_terapeuta_fixo = mysqli_fetch_assoc($result_terapeuta_fixo);
 
