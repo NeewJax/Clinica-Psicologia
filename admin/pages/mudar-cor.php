@@ -206,8 +206,9 @@ if (isset($_POST['salvar'])) {
         <form action="" method="post">
 
             <?php
-                $sql_sala_status_name_sala = "SELECT id, sala, id_status FROM tbl_sala_reservada WHERE id = $id";
+                $sql_sala_status_name_sala = "SELECT id, sala, id_status FROM tbl_sala_reservada WHERE id = ?";
                 $stmt_sala_status_name_sala = $mysqli->prepare($sql_sala_status_name_sala);
+                $stmt_sala_status_name_sala->bind_param("i", $id);
                 $stmt_sala_status_name_sala->execute();
 
                 $stmt_sala_status_name_sala_result = $stmt_sala_status_name_sala->get_result();
@@ -217,23 +218,26 @@ if (isset($_POST['salvar'])) {
             ?>
 
             <div class="divSala">
-                <h3><?php echo $name_sala ?></h3>
+                <h3><?php echo htmlspecialchars($name_sala) ?></h3>
             </div> <br><br>
         
 
             <select name="id_status">
-                <option class="mudar_cor" value="<?php echo $sala_id ?>" selected>Mudar Cor</option>
+                <option class="mudar_cor" value="<?php echo htmlspecialchars($sala_id) ?>" selected>Mudar cor</option>
                 <?php
                     $sql_sala_status = "SELECT s.id, s.status FROM tbl_status_sala s";
                     $stmt_sala_status = $mysqli->prepare($sql_sala_status);
                     $stmt_sala_status->execute();
                     $stmt_sala_status_result = $stmt_sala_status->get_result();
 
-                    //$result_status = mysqli_query($mysqli, $sql_status);
+                    
                     while ($sala_status_row = $stmt_sala_status_result->fetch_assoc()) {
                 ?>
-                        <option value='<?php echo $sala_status_row['id'] ?>' class='<?php echo $sala_status_row['status'] ?>'> 
-                            <?php echo $sala_status_row['status'] ?> 
+                        <option value='<?php echo htmlspecialchars($sala_status_row['id']) ?>' 
+                                class='<?php echo htmlspecialchars($sala_status_row['status']) ?>'>
+
+                            <?php echo htmlspecialchars($sala_status_row['status']) ?> 
+                            
                         </option>
                 <?php
                     }
@@ -242,36 +246,45 @@ if (isset($_POST['salvar'])) {
 
             <select name="id_terapeuta">
                 <?php
-                    $sql_terapeuta_fixo = "SELECT t.id, t.nome FROM tbl_user_terapeuta t INNER JOIN tbl_sala_reservada s ON s.id_terapeuta = t.id WHERE s.id = $id;";
-                    // $stmt_terapeuta_fixo = $mysqli->prepare($sql_terapeuta_fixo);
-                    // $stmt_terapeuta_fixo->execute();
-                    // $stmt_terapeuta_fixo_result = $stmt_terapeuta_fixo_result->get_result();
-                    // $terapeuta_fixo = $stmt_terapeuta_fixo_result->fetch_assoc();
-                    // $id_nome_terapeuta_fixo = $terapeuta_fixo['id'] ?? "";
-                    // $nome_terapeuta_fixo = $terapeuta_fixo['nome'] ?? "";
+                    $sql_terapeuta_fixo = "SELECT t.id, t.nome 
+                                            FROM tbl_user_terapeuta t 
+                                            INNER JOIN tbl_sala_reservada s 
+                                            ON s.id_terapeuta = t.id 
+                                            WHERE s.id = ?";
+
+                    $stmt_terapeuta_fixo = $mysqli->prepare($sql_terapeuta_fixo);
+                    $stmt_terapeuta_fixo->bind_param("i", $id);
+                    $stmt_terapeuta_fixo->execute();
+                    $stmt_terapeuta_fixo_result = $stmt_terapeuta_fixo->get_result();
+                    $terapeuta_fixo = $stmt_terapeuta_fixo_result->fetch_assoc();
+
+                    $id_terapeuta_fixo = $terapeuta_fixo["id"] ?? 0;
+                    $nome_terapeuta_fixo = $terapeuta_fixo['nome'] ?? "";
 
 
-                    $result_terapeuta_fixo = mysqli_query($mysqli, $sql_terapeuta_fixo);
-                    $row_terapeuta_fixo = mysqli_fetch_assoc($result_terapeuta_fixo);
-
-                    $nome_terapeuta_fixo = $row_terapeuta_fixo['nome'];
-                    $id_terapeuta_fixo = 0;
-
-                    if(!$row_terapeuta_fixo['nome'] == NULL) {
-                        $id_terapeuta_fixo = $row_terapeuta_fixo['id'];
-                        echo '<option value="' . $id_terapeuta_fixo . '" select> '. $nome_terapeuta_fixo .' </option>';
+                    if(!is_null($nome_terapeuta_fixo) && $nome_terapeuta_fixo != "") {
+                        $id_terapeuta_fixo = $terapeuta_fixo['id'];
+                        echo '<option value="' . htmlspecialchars($id_terapeuta_fixo) . '" select> '. htmlspecialchars($nome_terapeuta_fixo) .' </option>';
                     } else if($name_sala == '---') {
                         echo '<option value="' . NULL . '" select> </option>';
                     }
                 ?>
                     
                 <?php
-                    $sql_terapeuta = "SELECT t.id, t.nome FROM tbl_user_terapeuta t WHERE t.id != $id_terapeuta_fixo ORDER BY t.nome";
-                    $result_terapeuta = mysqli_query($mysqli, $sql_terapeuta);
-                    while ($row_terapeuta = mysqli_fetch_assoc($result_terapeuta)) {
+                    $sql_terapeuta = "SELECT t.id, t.nome 
+                                        FROM tbl_user_terapeuta t 
+                                        WHERE t.id != ? 
+                                        ORDER BY t.nome";
+
+                    $stmt_terapeuta = $mysqli->prepare($sql_terapeuta);
+                    $stmt_terapeuta->bind_param("i", $id_terapeuta_fixo);
+                    $stmt_terapeuta->execute();
+                    $stmt_terapeuta_result = $stmt_terapeuta->get_result();
+
+                    while ($terapeuta = $stmt_terapeuta_result->fetch_assoc()) {
                 ?>
-                        <option value='<?php echo $row_terapeuta['id'] ?>' class='livre'> 
-                            <?php echo $row_terapeuta['nome'] ?> 
+                        <option value='<?php echo htmlspecialchars($terapeuta['id']) ?>' class='livre'> 
+                            <?php echo htmlspecialchars($terapeuta['nome']) ?> 
                         </option>
                 <?php
                     }
@@ -280,28 +293,44 @@ if (isset($_POST['salvar'])) {
 
             <select name="id_paciente">
             <?php
-                    $sql_paciente_fixo = "SELECT p.id, p.nome FROM tbl_paciente p INNER JOIN tbl_sala_reservada s ON s.id_paciente = p.id WHERE s.id = $id;";
-                    $result_paciente_fixo = mysqli_query($mysqli, $sql_paciente_fixo);
-                    $row_paciente_fixo = mysqli_fetch_assoc($result_paciente_fixo);
+                    $sql_paciente_fixo = "SELECT p.id, p.nome 
+                                        FROM tbl_paciente p 
+                                        INNER JOIN tbl_sala_reservada s 
+                                        ON s.id_paciente = p.id 
+                                        WHERE s.id = ?";
 
-                    $nome_paciente_fixo = $row_paciente_fixo['nome'];
-                    $id_paciente_fixo = 0;
+                    $stmt_paciente_fixo = $mysqli->prepare($sql_paciente_fixo);
+                    $stmt_paciente_fixo->bind_param("i", $id);
+                    $stmt_paciente_fixo->execute();
+                    $stmt_paciente_fixo_result = $stmt_paciente_fixo->get_result();
+                    $paciente_fixo = $stmt_paciente_fixo_result->fetch_assoc();
 
-                    if(!$row_paciente_fixo['nome'] == NULL) {
-                        $id_paciente_fixo = $row_paciente_fixo['id'];
-                        echo '<option value="' . $id_paciente_fixo . '" select> '. $nome_paciente_fixo .' </option>';
+                    $id_paciente_fixo = $paciente_fixo["id"] ?? 0;
+                    $nome_paciente_fixo = $paciente_fixo["nome"] ?? "";
+
+                    if(!is_null($nome_paciente_fixo) && $nome_paciente_fixo != "") {
+                        $id_paciente_fixo = $paciente_fixo["id"];
+                        echo '<option value="' . htmlspecialchars($id_paciente_fixo) . '" select> '. htmlspecialchars($nome_paciente_fixo) .' </option>';
                     } else if($name_sala == '---') {
                         echo '<option value="' . NULL . '" select> </option>';
                     }
                 ?>
 
                 <?php
-                    $sql_paciente = "SELECT p.id, p.nome FROM tbl_paciente p WHERE p.id != $id_paciente_fixo  ORDER BY p.nome";
-                    $result_paciente = mysqli_query($mysqli, $sql_paciente);
-                    while ($row_paciente = mysqli_fetch_assoc($result_paciente)) {
+                    $sql_paciente = "SELECT p.id, p.nome 
+                                        FROM tbl_paciente p 
+                                        WHERE p.id != ? 
+                                        ORDER BY p.nome";
+
+                    $stmt_paciente = $mysqli->prepare($sql_paciente);
+                    $stmt_paciente->bind_param("i", $id_paciente_fixo);
+                    $stmt_paciente->execute();
+                    $stmt_paciente_result = $stmt_paciente->get_result();
+                    
+                    while ($paciente = $stmt_paciente_result->fetch_assoc()) {
                 ?>
-                        <option value='<?php echo $row_paciente['id'] ?>' class='livre'> 
-                            <?php echo $row_paciente['nome'] ?> 
+                        <option value='<?php echo $paciente['id'] ?>' class='livre'> 
+                            <?php echo $paciente['nome'] ?> 
                         </option>
                 <?php
                     }
