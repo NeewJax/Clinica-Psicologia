@@ -30,36 +30,62 @@ if (isset($_POST['enviar'])) {
     $id_contato = 1;
     $id_profissao = 1;
     $id_endereco = 1;
+    $id_paciente = 1;
 
     try {
         //INSERIR CONTATO
-        $mysqli->query("INSERT INTO tbl_contato (id, id_paciente, email, telefone) VALUES (NULL, 1, '$email', '$celular')");
+        $stmt_id_contato = $mysqli->prepare("INSERT INTO tbl_contato (id, id_paciente, email, telefone) VALUES (NULL, ?, ?, ?)");
+        $stmt_id_contato->bind_param("iss", $id_paciente, $email, $celular);
+        $stmt_id_contato->execute();
         $id_contato = $mysqli->insert_id;
+        $stmt_id_contato->close();
 
         //INSERT PROFISSAO
-        $mysqli->query("INSERT INTO tbl_profissao (id, profissao) VALUES (NULL, '$profissao')");
+        $stmt_id_profissao = $mysqli->prepare("INSERT INTO tbl_profissao (id, profissao) VALUES (NULL, ?)");
+        $stmt_id_profissao->bind_param("s", $profissao);
+        $stmt_id_profissao->execute();
         $id_profissao = $mysqli->insert_id;
+        $stmt_id_profissao->close();
 
         //INSERT BAIRRO
-        $mysqli->query("INSERT INTO tbl_bairro (id, bairro) VALUES (NULL, '$bairro')");
+        $stmt_id_bairro = $mysqli->prepare("INSERT INTO tbl_bairro (id, bairro) VALUES (NULL, ?)");
+        $stmt_id_bairro->bind_param("s", $bairro);
+        $stmt_id_bairro->execute();
         $id_bairro = $mysqli->insert_id;
+        $stmt_id_bairro->close();
 
         //INSERT LOGRADOURO
-        $mysqli->query("INSERT INTO tbl_logradouro (id, logradouro) VALUES (id, '$localidade')");
+        $stmt_id_logradouro = $mysqli->prepare("INSERT INTO tbl_logradouro (id, logradouro) VALUES (NULL, ?)");
+        $stmt_id_logradouro->bind_param("s", $localidade);
+        $stmt_id_logradouro->execute();
         $id_logradouro = $mysqli->insert_id;
+        $stmt_id_logradouro->close();
 
         //INSERT ENDEREÇO
-        $mysqli->query("INSERT INTO tbl_endereco (id, id_paciente, id_bairro, id_logradouro, cep) VALUES (id, 1, $id_bairro, $id_logradouro, '$cep')");
+        $stmt_id_endereco = $mysqli->prepare("INSERT INTO tbl_endereco (id, id_paciente, id_bairro, id_logradouro, cep) VALUES (NULL, ?, ?, ?, ?)");
+        $stmt_id_endereco->bind_param("iiis", $id_paciente, $id_bairro, $id_logradouro, $cep);
+        $stmt_id_endereco->execute();
         $id_endereco = $mysqli->insert_id;
+        $stmt_id_endereco->close();
 
         // INSERIR PACIENTE
-        $mysqli->query("INSERT INTO tbl_paciente (id, nome, nascimento, rg, cpf, id_genero, id_contato, id_escolaridade, id_profissao, id_renda_familiar, id_estado_civil, id_endereco) 
-        VALUES (NULL, '$nome', '$nascimento', $rg, $cpf, $id_genero, $id_contato, $id_escolaridade, $id_profissao, $id_renda_familiar, $id_estado_civil, $id_endereco)");
+        $stmt_id_paciente = $mysqli->prepare("INSERT INTO tbl_paciente (id, nome, nascimento, rg, cpf, id_genero, id_contato, id_escolaridade, id_profissao, id_renda_familiar, id_estado_civil, id_endereco) 
+        VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt_id_paciente->bind_param("ssiiiiiiiii", $nome, $nascimento, $rg, $cpf, $id_genero, $id_contato, $id_escolaridade, $id_profissao, $id_renda_familiar, $id_estado_civil, $id_endereco);
+        $stmt_id_paciente->execute();
         $id_paciente = $mysqli->insert_id;
+        $stmt_id_paciente->close();
 
         //ATUALIZAR TABELAS
-        $mysqli->query("UPDATE tbl_contato SET id_paciente=$id_paciente WHERE id = $id_contato");
-        $mysqli->query("UPDATE tbl_endereco SET id_paciente=$id_paciente WHERE id = $id_endereco");
+        $stmt_update_contato = $mysqli->prepare("UPDATE tbl_contato SET id_paciente = ? WHERE id = ?");
+        $stmt_update_contato->bind_param("ii", $id_paciente, $id_contato);
+        $stmt_update_contato->execute();
+        $stmt_update_contato->close();
+
+        $stmt_update_contato = $mysqli->prepare("UPDATE tbl_endereco SET id_paciente = ? WHERE id = ?");
+        $stmt_update_contato->bind_param("ii", $id_paciente, $id_endereco);
+        $stmt_update_contato->execute();
+        $stmt_update_contato->close();
 
         header('Location: cadastro-sucesso.php');
 
