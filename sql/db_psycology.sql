@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/12/2024 às 13:44
+-- Tempo de geração: 28/02/2025 às 01:17
 -- Versão do servidor: 10.6.15-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -43,7 +43,17 @@ INSERT INTO `tbl_bairro` (`id`, `bairro`) VALUES
 (4, 'Peras'),
 (5, 'Maças'),
 (6, 'Maças'),
-(7, 'Goiabas');
+(7, 'Goiabas'),
+(8, 'Goiabas'),
+(9, 'Roberto Silva'),
+(10, 'Roberto Silva'),
+(11, 'Roberto Silva'),
+(12, 'Roberto Silva'),
+(13, 'Roberto Silva'),
+(14, 'Roberto Silva'),
+(15, 'Roberto Silva'),
+(16, 'Roberto Silva'),
+(17, 'Roberto Silva');
 
 -- --------------------------------------------------------
 
@@ -104,7 +114,17 @@ INSERT INTO `tbl_contato` (`id`, `id_paciente`, `email`, `telefone`) VALUES
 (11, 10, 'andre@gmail.com', '23423432'),
 (12, 11, 'andre@gmail.com', '23423432'),
 (13, 12, 'andre@gmail.com', '23423432'),
-(14, 13, 'andre@gmail.com', '23423432');
+(14, 13, 'andre@gmail.com', '23423432'),
+(15, 14, 'mara@gmail.com', '23423432'),
+(16, 15, 'lucas@gmail.com', '(91)91128-9126'),
+(17, 1, 'lucas@gmail.com', '(91)91128-9126'),
+(18, 1, 'lucas@gmail.com', '(91)91128-9126'),
+(19, 1, 'lucas@gmail.com', '(91)91128-9126'),
+(20, 1, 'lucas@gmail.com', '(91)91128-9126'),
+(21, 1, 'lucas@gmail.com', '(91)91128-9126'),
+(22, 1, 'lucas@gmail.com', '(91)91128-9126'),
+(23, 21, 'lucas@gmail.com', '(91)91128-9126'),
+(24, 22, 'lucas@gmail.com', '(91)91128-9126');
 
 -- --------------------------------------------------------
 
@@ -149,7 +169,11 @@ INSERT INTO `tbl_endereco` (`id`, `id_paciente`, `id_bairro`, `id_logradouro`, `
 (3, 1, 4, 4, '65071-14'),
 (4, 1, 5, 5, '65071-14'),
 (5, 12, 6, 6, '65071-14'),
-(6, 13, 7, 7, '65071-14');
+(6, 13, 7, 7, '65071-14'),
+(7, 14, 8, 8, '65071-12'),
+(8, 15, 9, 9, '68970-97'),
+(9, 21, 16, 16, '68970970'),
+(10, 22, 17, 17, '68970970');
 
 -- --------------------------------------------------------
 
@@ -270,7 +294,17 @@ INSERT INTO `tbl_logradouro` (`id`, `logradouro`) VALUES
 (4, 'Localidade'),
 (5, 'Localidade'),
 (6, 'Localidade'),
-(7, 'Localidade');
+(7, 'Localidade'),
+(8, 'Localidade'),
+(9, 'Localidade'),
+(10, 'Localidade'),
+(11, 'Localidade'),
+(12, 'Localidade'),
+(13, 'Localidade'),
+(14, 'Localidade'),
+(15, 'Localidade'),
+(16, 'Localidade'),
+(17, 'Localidade');
 
 -- --------------------------------------------------------
 
@@ -298,7 +332,9 @@ CREATE TABLE `tbl_paciente` (
 --
 
 INSERT INTO `tbl_paciente` (`id`, `nome`, `nascimento`, `rg`, `cpf`, `id_genero`, `id_contato`, `id_escolaridade`, `id_profissao`, `id_renda_familiar`, `id_estado_civil`, `id_endereco`) VALUES
-(7, 'Wilson', '2024-08-06', 1234, 98765, 1, 6, 5, 1, 1, 1, 1);
+(7, 'Wilson', '2024-08-06', 1234, 98765, 1, 6, 5, 1, 1, 1, 1),
+(14, 'Mara', '1990-12-04', 1234, 2147483647, 2, 15, 11, 9, 3, 2, 7),
+(22, 'Lucas', '1997-10-10', 1234, 2147483647, 1, 24, 7, 18, 2, 2, 10);
 
 -- --------------------------------------------------------
 
@@ -347,7 +383,17 @@ INSERT INTO `tbl_profissao` (`id`, `profissao`) VALUES
 (5, 'Médico'),
 (6, 'Médico'),
 (7, 'Médico'),
-(8, 'Médico');
+(8, 'Médico'),
+(9, 'Médica'),
+(10, 'Engenheiro Civil'),
+(11, 'Engenheiro Civil'),
+(12, 'Engenheiro Civil'),
+(13, 'Engenheiro Civil'),
+(14, 'Engenheiro Civil'),
+(15, 'Engenheiro Civil'),
+(16, 'Engenheiro Civil'),
+(17, 'Engenheiro Civil'),
+(18, 'Engenheiro Civil');
 
 -- --------------------------------------------------------
 
@@ -396,16 +442,16 @@ CREATE TABLE `tbl_sala_reservada` (
 INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `id_status`, `id_terapeuta`, `id_paciente`, `sala_cod`, `sala`) VALUES
 (1, 1, 1, 1, 1, 12, 7, 'seg_m_8_s1', 'Lucio - Wilson'),
 (2, 1, 1, 1, 2, NULL, NULL, 'seg_m_8_s2', '---'),
-(3, 1, 1, 1, 3, 12, 7, 'seg_m_8_s3', 'Lucio - Wilson'),
+(3, 1, 1, 1, 4, 11, 22, 'seg_m_8_s3', 'Ana - Lucas'),
 (4, 1, 1, 1, 2, NULL, NULL, 'seg_m_8_s4', '---'),
-(5, 1, 1, 1, 4, NULL, NULL, 'seg_m_8_s5', '---'),
+(5, 1, 1, 1, 3, 11, 7, 'seg_m_8_s5', 'Ana - Wilson'),
 (6, 1, 1, 1, 2, NULL, NULL, 'seg_m_8_s6', '---'),
-(7, 1, 1, 1, 4, NULL, NULL, 'seg_m_8_s7', '---'),
+(7, 1, 1, 1, 1, 11, 14, 'seg_m_8_s7', 'Ana - Mara'),
 (8, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s1', '---'),
-(9, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s2', '---'),
-(10, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s3', '---'),
-(11, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s4', '---'),
-(12, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s5', '---'),
+(9, 1, 2, 1, 2, 11, 14, 'seg_m_9_s2', 'Ana - Mara'),
+(10, 1, 2, 1, 1, 12, 7, 'seg_m_9_s3', 'Lucio - Wilson'),
+(11, 1, 2, 1, 1, 11, 7, 'seg_m_9_s4', 'Ana - Wilson'),
+(12, 1, 2, 1, 2, 11, 7, 'seg_m_9_s5', 'Ana - Wilson'),
 (13, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s6', '---'),
 (14, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s7', '---'),
 (15, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s1', '---'),
@@ -413,7 +459,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (17, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s3', '---'),
 (18, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s4', '---'),
 (19, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s5', '---'),
-(20, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s6', '---'),
+(20, 1, 3, 1, 2, 11, 14, 'seg_m_10_s6', 'Ana - Mara'),
 (21, 1, 3, 1, 2, NULL, NULL, 'seg_m_10_s7', '---'),
 (22, 1, 4, 1, 2, NULL, NULL, 'seg_m_11_s1', '---'),
 (23, 1, 4, 1, 2, NULL, NULL, 'seg_m_11_s2', '---'),
@@ -455,7 +501,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (59, 1, 1, 2, 2, NULL, NULL, 'ter_m_8_s3', '---'),
 (60, 1, 1, 2, 2, NULL, NULL, 'ter_m_8_s4', '---'),
 (61, 1, 1, 2, 2, NULL, NULL, 'ter_m_8_s5', '---'),
-(62, 1, 1, 2, 1, NULL, NULL, 'ter_m_8_s6', '---'),
+(62, 1, 1, 2, 1, 12, 7, 'ter_m_8_s6', 'Lucio - Wilson'),
 (63, 1, 1, 2, 2, NULL, NULL, 'ter_m_8_s7', '---'),
 (64, 1, 2, 2, 2, NULL, NULL, 'ter_m_9_s1', '---'),
 (65, 1, 2, 2, 2, NULL, NULL, 'ter_m_9_s2', '---'),
@@ -467,7 +513,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (71, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s1', '---'),
 (72, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s2', '---'),
 (73, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s3', '---'),
-(74, 1, 3, 2, 4, NULL, NULL, 'ter_m_10_s4', '---'),
+(74, 1, 3, 2, 1, 11, 7, 'ter_m_10_s4', 'Ana - Wilson'),
 (75, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s5', '---'),
 (76, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s6', '---'),
 (77, 1, 3, 2, 2, NULL, NULL, 'ter_m_10_s7', '---'),
@@ -523,7 +569,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (127, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s1', '---'),
 (128, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s2', '---'),
 (129, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s3', '---'),
-(130, 1, 3, 3, 3, NULL, NULL, 'qua_m_10_s4', '---'),
+(130, 1, 3, 3, 3, 12, 14, 'qua_m_10_s4', 'Lucio - Mara'),
 (131, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s5', '---'),
 (132, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s6', '---'),
 (133, 1, 3, 3, 2, NULL, NULL, 'qua_m_10_s7', '---'),
@@ -578,7 +624,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (182, 1, 2, 4, 2, NULL, NULL, 'qui_m_9_s7', '---'),
 (183, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s1', '---'),
 (184, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s2', '---'),
-(185, 1, 3, 4, 4, NULL, NULL, 'qui_m_10_s3', '---'),
+(185, 1, 3, 4, 4, 11, 7, 'qui_m_10_s3', 'Ana - Wilson'),
 (186, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s4', '---'),
 (187, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s5', '---'),
 (188, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s6', '---'),
@@ -945,7 +991,7 @@ ALTER TABLE `tbl_user_terapeuta`
 -- AUTO_INCREMENT de tabela `tbl_bairro`
 --
 ALTER TABLE `tbl_bairro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_calendario_agendamento`
@@ -963,7 +1009,7 @@ ALTER TABLE `tbl_consulta`
 -- AUTO_INCREMENT de tabela `tbl_contato`
 --
 ALTER TABLE `tbl_contato`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_disponibilidade`
@@ -975,7 +1021,7 @@ ALTER TABLE `tbl_disponibilidade`
 -- AUTO_INCREMENT de tabela `tbl_endereco`
 --
 ALTER TABLE `tbl_endereco`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_escolaridade`
@@ -1005,25 +1051,25 @@ ALTER TABLE `tbl_horario_sala`
 -- AUTO_INCREMENT de tabela `tbl_logradouro`
 --
 ALTER TABLE `tbl_logradouro`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_paciente`
 --
 ALTER TABLE `tbl_paciente`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_professor`
 --
 ALTER TABLE `tbl_professor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_profissao`
 --
 ALTER TABLE `tbl_profissao`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_renda_familiar`
@@ -1059,7 +1105,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT de tabela `tbl_user_terapeuta`
 --
 ALTER TABLE `tbl_user_terapeuta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restrições para tabelas despejadas

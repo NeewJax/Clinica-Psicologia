@@ -190,7 +190,7 @@
                             <i class="fas fa-cog"></i> Gerenciar
                         </a>
                         <ul class="submenu">
-                            <li><a href="#">Reservar Sala</a></li>
+                            <li><a href="reserva_sala/reservar-sala-segunda.php">Reservar Sala</a></li>
                         </ul>
                     </li>
                 </ul>
