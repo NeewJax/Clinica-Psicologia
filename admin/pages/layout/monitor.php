@@ -137,13 +137,9 @@ include('../../contador.php');
             <ul class="treeview-menu">
               <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
               <li><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
-              <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
-              <li><a href="monitor.php"><i class="fa fa-plus-square"></i> Monitor</a></li>
+              <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
+              <li class="active"><a href="monitor.php"><i class="fa fa-plus-square"></i>Monitor</a></li>
               <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
-              <!-- <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
-              <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
-                <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
-                <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
             </ul>
           </li>
     </aside>
@@ -186,14 +182,14 @@ include('../../contador.php');
               echo "<h5 class='box-title' id='msg'>$mensagem</h5><br><br>";
             }
             ?>
-            <h3 class="box-title">ESTAGIÁRIOS</h3>
+            <h3 class="box-title">MONITORES</h3>
             <div class="box-tools pull-right">
               <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
           </div>
           <div class="box-body">
-            <a href="cadastro/cadastro-terapeuta.php">
-              <button class="btn btn-block btn-primary">Cadastrar estagiário</button>
+            <a href="cadastro/cadastro-monitor.php">
+              <button class="btn btn-block btn-primary">Cadastrar monitor</button>
             </a>
             <!-- AQUI COMEÇA SUA APLICAÇÃO -->
 
@@ -213,7 +209,7 @@ include('../../contador.php');
                 <tbody>
                   <?php
                   //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-                  $sql = "SELECT * FROM tbl_user_terapeuta";
+                  $sql = "SELECT * FROM tbl_monitor";
                   $result = mysqli_query($mysqli, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
                   ?>
