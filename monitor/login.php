@@ -11,7 +11,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
         $email = $mysqli->real_escape_string($_POST['email']);
         $senha = $mysqli->real_escape_string($_POST['senha']);
 
-        $sql_code = "SELECT * FROM tbl_user_terapeuta WHERE email = '$email' LIMIT 1";
+        $sql_code = "SELECT * FROM tbl_monitor WHERE email = '$email' LIMIT 1";
         
         //$sql_query = $mysqli->query($sql_code);
         $sql_query = $mysqli->query($sql_code) or die("Falha na execução do codigo SQL: " . $mysqli);
@@ -235,7 +235,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
         <div class="right-login">
             <form method="POST" class="login-form">
                 <div class="card-login">
-                    <h1>Login do Terapeuta</h1>
+                    <h1>Login do Monitor</h1>
                     <div class="textfield">
                         <label for="usuario">Email</label>
                         <input type="email" name="email" placeholder="E-mail" require>
