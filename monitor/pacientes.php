@@ -136,9 +136,9 @@
               <span class="label label-primary pull-right"></span>
             </a>
             <ul class="treeview-menu">
-                <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
-                <li><a href="reserva_sala/reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
+              <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
+              <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
+              <li><a href="./reserva_sala/reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
               <!-- <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
               <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
@@ -185,9 +185,60 @@
               echo "<h5 class='box-title' id='msg'>$mensagem</h5><br><br>";
             }
             ?>
-
+            <h3 class="box-title">ESTAGIÁRIOS</h3>
+            <div class="box-tools pull-right">
+              <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+            </div>
           </div>
-        </div>
+          <div class="box-body">
+            <a href="../cadastro.php">
+              <button class="btn btn-block btn-primary">Cadastrar paciente</button>
+            </a>
+            <!-- AQUI COMEÇA SUA APLICAÇÃO -->
+
+
+            <div>
+
+              <table class="table table-hover text-center">
+                <thead class="table-dark">
+                  <tr>
+                    <th> </th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Nascimento</th>
+                    <th scope="col">Telefone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <?php
+                    //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
+                    $sql = "SELECT p.id, p.nome, p.cpf, p.nascimento, c.telefone FROM tbl_paciente p INNER JOIN tbl_contato c ON p.id = c.id_paciente";
+                    $result = mysqli_query($mysqli, $sql);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                    <tr>
+                        <td></td>
+                        <td><a href="../calendar.php?id=<?php echo $row["id"] ?>"><?php echo $row["nome"] ?></a></td>
+                        <td><?php echo $row["nascimento"] ?></td>
+                        <td><?php echo $row["telefone"] ?></td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <!-- <a href="../calendar.php"></a> -->
+                <?php
+                    }
+                ?>
+                </tbody>
+              </table>
+            </div>
+
+            <!--AQUI TERMINA SUA APLICAÇÃO! -->
+
+          </div><!-- /.box-body -->
+          <div class="box-footer">
+
+          </div><!-- /.box-footer-->
+        </div><!-- /.box -->
 
       </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
