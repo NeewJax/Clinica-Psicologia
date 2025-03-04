@@ -158,13 +158,13 @@ include('../../db/conexao.php');
                     </tr>
                     <tr>
                         <th></th>
-                        <th>s1</th>
-                        <th>s2</th>
-                        <th>s3</th>
-                        <th>s4</th>
-                        <th>s5</th>
-                        <th>s6</th>
-                        <th>s7</th>
+                        <th>sala 1</th>
+                        <th>sala 2</th>
+                        <th>sala 3</th>
+                        <th>sala 4</th>
+                        <th>sala 5</th>
+                        <th>sala 6</th>
+                        <th>sala 7</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -67,16 +67,16 @@ session_destroy();
                         <small>Rua Grande, 1455 - Diamante, São Luís - MA</small>
                     </a>
                 </div>
-                <div class="h-100 d-inline-flex align-items-center py-3">
+                <!-- <div class="h-100 d-inline-flex align-items-center py-3">
                     <small class="far fa-clock text-primary me-2"></small>
                     <small>Segunda - Sexta: 08:00 - 21:00</small>
-                </div>
+                </div> -->
             </div>
             <div class="col-lg-5 px-5 text-end">
-                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                <!-- <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                     <small class="fa fa-phone-alt text-primary me-2"></small>
                     <small>0800 880 6767 | 4003-6767</small>
-                </div>
+                </div> -->
                 <div class="h-100 d-inline-flex align-items-center">
                     <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href="https://www.facebook.com/br.estacio" target="_blank"><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href="https://linktr.ee/psicoestacioslz" target="_blank"><i class="fas fa-paperclip"></i></a>
@@ -119,10 +119,10 @@ session_destroy();
                         <a href="#contato" class="dropdown-item">Contato</a>
                     </div>
                 </div>
-                <a href="tela-escolha-login/homeLogin.php" class="nav-item nav-link">Login</a>
+                <!-- <a href="tela-escolha-login/homeLogin.php" class="nav-item nav-link">Login</a> -->
             </div>
         
-            <a href="paciente/login.php" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">AGENDE SUA CONSULTA<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="tela-escolha-login/homeLogin.php" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">FAÇA SEU LOGIN<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->

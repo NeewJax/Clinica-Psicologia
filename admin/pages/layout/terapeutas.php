@@ -138,8 +138,8 @@ include('../../contador.php');
               <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
               <li><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
               <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
-              <li><a href="monitor.php"><i class="fa fa-plus-square"></i> Monitor</a></li>
-              <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
+              <li><a href="monitor.php"><i class="fa fa-plus-square"></i> Monitores</a></li>
+              <li><a href="../reserva_sala/reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
               <!-- <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
               <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
                 <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>

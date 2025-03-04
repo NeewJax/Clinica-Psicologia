@@ -1,5 +1,5 @@
 <?php
-include('../../db/conexao.php');
+include('../../../db/conexao.php');
 ?>
 
 <?php

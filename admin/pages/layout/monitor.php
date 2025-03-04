@@ -138,8 +138,8 @@ include('../../contador.php');
               <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
               <li><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
               <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
-              <li class="active"><a href="monitor.php"><i class="fa fa-plus-square"></i>Monitor</a></li>
-              <li><a href="../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
+              <li class="active"><a href="monitor.php"><i class="fa fa-plus-square"></i>Monitores</a></li>
+              <li><a href="../reserva_sala/reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
             </ul>
           </li>
     </aside>
@@ -220,8 +220,8 @@ include('../../contador.php');
                       <td><?php echo date('d/m/Y', strtotime($row["date"])); ?></td>
 
                       <td style="background:white">
-                        <a href="edit/edit-terapeuta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
-                        <a href="delete/delete-terapeuta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
+                        <a href="edit/edit-monitor.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
+                        <a href="delete/delete-monitor.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-remove"></i></a>
                       </td>
                     </tr>
                   <?php

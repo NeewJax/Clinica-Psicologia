@@ -143,8 +143,8 @@
               <li><a href="pages/layout/pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
               <li><a href="pages/layout/professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
               <li><a href="pages/layout/terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
-              <li><a href="pages/layout/monitor.php"><i class="fa fa-plus-square"></i> Monitor</a></li>
-              <li><a href="pages/reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
+              <li><a href="pages/layout/monitor.php"><i class="fa fa-plus-square"></i> Monitores</a></li>
+              <li><a href="pages/reserva_sala/reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
               <!-- <li><a href="pages/calendar.php"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
             </ul>
           </li>

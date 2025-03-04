@@ -14,9 +14,9 @@ if (isset($_POST["submit"])) {
   $email = $_POST['email'];
 
 
-  $sql = "UPDATE tbl_professor SET id_disponibilidade='$id_disponibilidade', nome = '$nome', usuario = '$usuario', email = '$email' WHERE id = $id";
+  $sql = "UPDATE tbl_monitor SET id_disponibilidade='$id_disponibilidade', nome = '$nome', usuario = '$usuario', email = '$email' WHERE id = $id";
   $result = mysqli_query($mysqli, $sql);
-  header("Location: ../professores.php?msg=Professor atualizado com sucesso!");
+  header("Location: ../monitor.php?msg=Professor atualizado com sucesso!");
 }
 ?>
 
@@ -200,9 +200,9 @@ if (isset($_POST["submit"])) {
               </a>
               <ul class="treeview-menu">
                 <li><a href="../pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-                <li class="active"><a href="../professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
+                <li><a href="../professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
                 <li><a href="../terapeutas.php"><i class="fa fa-plus-square"></i> Estagiário</a></li>
-                <li><a href="../monitor.php"><i class="fa fa-plus-square"></i> Monitores</a></li>
+                <li class="active"><a href="../monitor.php"><i class="fa fa-plus-square"></i> Monitores</a></li>
                 <li><a href="../../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
             </ul>
             </li>
@@ -252,11 +252,11 @@ if (isset($_POST["submit"])) {
               </div>
               <br>
               <?php
-              $sql = "SELECT tbl_professor.*, tbl_disponibilidade.*
-                      FROM  tbl_professor
+              $sql = "SELECT tbl_monitor.*, tbl_disponibilidade.*
+                      FROM  tbl_monitor
                       JOIN tbl_disponibilidade
-                      ON tbl_professor.id_disponibilidade = tbl_disponibilidade.id 
-                      WHERE tbl_professor.id = $id";
+                      ON tbl_monitor.id_disponibilidade = tbl_disponibilidade.id 
+                      WHERE tbl_monitor.id = $id";
               $result = mysqli_query($mysqli, $sql);
               $row = mysqli_fetch_assoc($result);
               ?>
@@ -291,7 +291,7 @@ if (isset($_POST["submit"])) {
                     <br>
                     <div>
                       <button type="submit" class="btn btn-success" name="submit">Atualizar</button>
-                      <a href="../professores.php" class="btn btn-danger">Cancelar</a>
+                      <a href="../monitor.php" class="btn btn-danger">Cancelar</a>
                     </div>
                   </div>
                 </form> <br>

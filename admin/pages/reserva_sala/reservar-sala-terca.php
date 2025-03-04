@@ -1,6 +1,6 @@
 <?php
 
-include('../../db/conexao.php');
+include('../../../db/conexao.php');
 
 ?>
 
@@ -12,7 +12,8 @@ include('../../db/conexao.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="shortcut icon" href="../../img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../img/favicon.png" type="image/x-icon">
+    <title>Reserva de sala</title>
     <style>
         * {
             font-family: Arial, Helvetica, sans-serif;
@@ -152,7 +153,7 @@ include('../../db/conexao.php');
         <div class="divVoltar">
             <a href="../index.php"><i class="bi bi-arrow-left-circle-fill" id="iconeVoltar"></i></a>
         </div>
-        <h2>Grade Horária - Quinta-feira</h2>
+        <h2>Grade Horária - Terça-feira</h2>
         <table class="table">
             <form action="" method="post">
                 <thead class="table-dark">
@@ -162,13 +163,13 @@ include('../../db/conexao.php');
                     </tr>
                     <tr>
                         <th></th>
-                        <th>s1</th>
-                        <th>s2</th>
-                        <th>s3</th>
-                        <th>s4</th>
-                        <th>s5</th>
-                        <th>s6</th>
-                        <th>s7</th>
+                        <th>sala 1</th>
+                        <th>sala 2</th>
+                        <th>sala 3</th>
+                        <th>sala 4</th>
+                        <th>sala 5</th>
+                        <th>sala 6</th>
+                        <th>sala 7</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -200,7 +201,7 @@ include('../../db/conexao.php');
                                                     FROM tbl_sala_reservada s
                                                     INNER JOIN tbl_horario_sala h ON s.id_horario = h.id
                                                     INNER JOIN tbl_status_sala st ON s.id_status = st.id
-                                                    WHERE h.horario = '$horario_da_sala' && s.id_semana = 4
+                                                    WHERE h.horario = '$horario_da_sala' && s.id_semana = 2
                                                     ORDER BY s.id;
                                                     ";
                                 $result_reserva = mysqli_query($mysqli, $sql_sala_reserva);
@@ -228,9 +229,9 @@ include('../../db/conexao.php');
     <footer class="container-fluid">
         <nav>
             <a href="reservar-sala-segunda.php">seg</a>
-            <a href="reservar-sala-terca.php">ter</a>
+            <a href="reservar-sala-terca.php" id="selected">ter</a>
             <a href="reservar-sala-quarta.php">qua</a>
-            <a href="reservar-sala-quinta.php" id="selected">qui</a>
+            <a href="reservar-sala-quinta.php">qui</a>
             <a href="reservar-sala-sexta.php">sex</a>
         </nav>
     </footer>
@@ -238,7 +239,7 @@ include('../../db/conexao.php');
 
         var popup;
         <?php
-            $sql_sala_cod = "SELECT id, sala_cod FROM tbl_sala_reservada WHERE id_semana = 4";
+            $sql_sala_cod = "SELECT id, sala_cod FROM tbl_sala_reservada WHERE id_semana = 2";
             $resut_sala_cod = mysqli_query($mysqli, $sql_sala_cod);
             while($row_sala_cod = mysqli_fetch_assoc($resut_sala_cod)) {
         ?>

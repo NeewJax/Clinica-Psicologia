@@ -205,10 +205,10 @@ if (isset($_POST["submit"])) {
             </a>
             <ul class="treeview-menu">
                 <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
-                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Terapeutas</a></li>
-                <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
-                <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
-                <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
+                <li><a href="professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
+                <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiário</a></li>
+                <li><a href="monitor.php"><i class="fa fa-plus-square"></i> Monitores</a></li>
+                <li><a href="../reserva_sala/reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
             </ul>
           </li><!--
             <li>
