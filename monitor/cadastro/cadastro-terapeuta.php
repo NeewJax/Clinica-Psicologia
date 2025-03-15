@@ -23,7 +23,7 @@ if(isset($_POST['criar'])) {
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CLÍNICA | ADMIN</title>
+    <title>CLÍNICA | Monitor</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -135,7 +135,7 @@ if(isset($_POST['criar'])) {
                 <li class=""><a href="../../index.php"><i class="fa fa-dashboard"></i> Sair</a></li>
               </ul>
             </li>
-            <li class="treeview active">
+            <li class="treeview">
               <a href="#">
                 <i class="fa fa-gears"></i>
                 <span>Gerenciar</span>

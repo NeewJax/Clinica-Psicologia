@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/02/2025 às 01:17
+-- Tempo de geração: 15/03/2025 às 14:56
 -- Versão do servidor: 10.6.15-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -53,7 +53,15 @@ INSERT INTO `tbl_bairro` (`id`, `bairro`) VALUES
 (14, 'Roberto Silva'),
 (15, 'Roberto Silva'),
 (16, 'Roberto Silva'),
-(17, 'Roberto Silva');
+(17, 'Roberto Silva'),
+(18, 'Goiabas'),
+(19, 'Goiabas'),
+(20, 'Goiabas'),
+(21, 'Goiabas'),
+(22, 'Goiabas'),
+(23, 'Goiabas'),
+(24, 'Goiabas'),
+(25, 'Goiabas');
 
 -- --------------------------------------------------------
 
@@ -124,7 +132,15 @@ INSERT INTO `tbl_contato` (`id`, `id_paciente`, `email`, `telefone`) VALUES
 (21, 1, 'lucas@gmail.com', '(91)91128-9126'),
 (22, 1, 'lucas@gmail.com', '(91)91128-9126'),
 (23, 21, 'lucas@gmail.com', '(91)91128-9126'),
-(24, 22, 'lucas@gmail.com', '(91)91128-9126');
+(24, 22, 'lucas@gmail.com', '(91)91128-9126'),
+(25, 23, 'julio@gmail.com', '23423432'),
+(26, 1, 'julio@gmail.com', '23423432'),
+(27, 1, 'julio@gmail.com', '23423432'),
+(28, 24, 'julio@gmail.com', '23423432'),
+(29, 25, 'julio@gmail.com', '23423432'),
+(30, 1, 'rafael@gmail.com', '(91)91128-9126'),
+(31, 1, 'rafael@gmail.com', '(91)91128-9126'),
+(32, 26, 'rafael@gmail.com', '(91)91128-9126');
 
 -- --------------------------------------------------------
 
@@ -173,7 +189,15 @@ INSERT INTO `tbl_endereco` (`id`, `id_paciente`, `id_bairro`, `id_logradouro`, `
 (7, 14, 8, 8, '65071-12'),
 (8, 15, 9, 9, '68970-97'),
 (9, 21, 16, 16, '68970970'),
-(10, 22, 17, 17, '68970970');
+(10, 22, 17, 17, '68970970'),
+(11, 23, 18, 18, '68970-97'),
+(12, 1, 19, 19, '68970-97'),
+(13, 1, 20, 20, '68970-97'),
+(14, 24, 21, 21, '68970-97'),
+(15, 25, 22, 22, '68970-97'),
+(16, 1, 23, 23, '68971970'),
+(17, 1, 24, 24, '68971970'),
+(18, 26, 25, 25, '68971970');
 
 -- --------------------------------------------------------
 
@@ -304,7 +328,57 @@ INSERT INTO `tbl_logradouro` (`id`, `logradouro`) VALUES
 (14, 'Localidade'),
 (15, 'Localidade'),
 (16, 'Localidade'),
-(17, 'Localidade');
+(17, 'Localidade'),
+(18, 'Localidade'),
+(19, 'Localidade'),
+(20, 'Localidade'),
+(21, 'Localidade'),
+(22, 'Localidade'),
+(23, 'Localidade'),
+(24, 'Localidade'),
+(25, 'Localidade');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tbl_maturidade`
+--
+
+CREATE TABLE `tbl_maturidade` (
+  `id` int(11) NOT NULL,
+  `maturidade` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbl_maturidade`
+--
+
+INSERT INTO `tbl_maturidade` (`id`, `maturidade`) VALUES
+(1, 'Adulto'),
+(2, 'Criança');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tbl_monitor`
+--
+
+CREATE TABLE `tbl_monitor` (
+  `id` int(11) NOT NULL,
+  `id_disponibilidade` int(11) UNSIGNED NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `usuario` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `tbl_monitor`
+--
+
+INSERT INTO `tbl_monitor` (`id`, `id_disponibilidade`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
+(2, 1, 'Robson', 'Robson', 'robson@gmail.com', '$2y$10$7AdwqFWt0RzAsxTN/vV3MeRWhcQeDbYcs3xp6lP9dDZy62QPZHCB.', '2025-03-04 14:12:48');
 
 -- --------------------------------------------------------
 
@@ -324,17 +398,21 @@ CREATE TABLE `tbl_paciente` (
   `id_profissao` int(11) UNSIGNED NOT NULL,
   `id_renda_familiar` int(11) UNSIGNED NOT NULL,
   `id_estado_civil` int(11) UNSIGNED NOT NULL,
-  `id_endereco` int(11) UNSIGNED NOT NULL
+  `id_endereco` int(11) UNSIGNED NOT NULL,
+  `id_maturidade` int(11) NOT NULL,
+  `nome_responsavel` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `tbl_paciente`
 --
 
-INSERT INTO `tbl_paciente` (`id`, `nome`, `nascimento`, `rg`, `cpf`, `id_genero`, `id_contato`, `id_escolaridade`, `id_profissao`, `id_renda_familiar`, `id_estado_civil`, `id_endereco`) VALUES
-(7, 'Wilson', '2024-08-06', 1234, 98765, 1, 6, 5, 1, 1, 1, 1),
-(14, 'Mara', '1990-12-04', 1234, 2147483647, 2, 15, 11, 9, 3, 2, 7),
-(22, 'Lucas', '1997-10-10', 1234, 2147483647, 1, 24, 7, 18, 2, 2, 10);
+INSERT INTO `tbl_paciente` (`id`, `nome`, `nascimento`, `rg`, `cpf`, `id_genero`, `id_contato`, `id_escolaridade`, `id_profissao`, `id_renda_familiar`, `id_estado_civil`, `id_endereco`, `id_maturidade`, `nome_responsavel`) VALUES
+(7, 'Pedro', '2024-08-06', 1234, 98765, 1, 6, 5, 1, 1, 1, 1, 1, ''),
+(14, 'Mara', '1990-12-04', 1234, 2147483647, 2, 15, 11, 9, 3, 2, 7, 1, ''),
+(22, 'Lucas', '1997-10-10', 1234, 2147483647, 1, 24, 7, 18, 2, 2, 10, 1, ''),
+(25, 'Júlio', '1990-03-19', 1234, 2147483647, 1, 29, 13, 23, 3, 2, 15, 1, ''),
+(26, 'Lúcia', '2019-03-10', 423423, 2147483647, 2, 32, 1, 26, 2, 2, 18, 2, 'Rafael');
 
 -- --------------------------------------------------------
 
@@ -393,7 +471,15 @@ INSERT INTO `tbl_profissao` (`id`, `profissao`) VALUES
 (15, 'Engenheiro Civil'),
 (16, 'Engenheiro Civil'),
 (17, 'Engenheiro Civil'),
-(18, 'Engenheiro Civil');
+(18, 'Engenheiro Civil'),
+(19, 'Engenheiro Civil'),
+(20, 'Engenheiro Civil'),
+(21, 'Engenheiro Civil'),
+(22, 'Engenheiro Civil'),
+(23, 'Engenheiro Civil'),
+(24, 'Engenheiro Civil'),
+(25, 'Engenheiro Civil'),
+(26, 'Engenheiro Civil');
 
 -- --------------------------------------------------------
 
@@ -448,7 +534,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (6, 1, 1, 1, 2, NULL, NULL, 'seg_m_8_s6', '---'),
 (7, 1, 1, 1, 1, 11, 14, 'seg_m_8_s7', 'Ana - Mara'),
 (8, 1, 2, 1, 2, NULL, NULL, 'seg_m_9_s1', '---'),
-(9, 1, 2, 1, 2, 11, 14, 'seg_m_9_s2', 'Ana - Mara'),
+(9, 1, 2, 1, 3, 11, 22, 'seg_m_9_s2', 'Ana - Lucas'),
 (10, 1, 2, 1, 1, 12, 7, 'seg_m_9_s3', 'Lucio - Wilson'),
 (11, 1, 2, 1, 1, 11, 7, 'seg_m_9_s4', 'Ana - Wilson'),
 (12, 1, 2, 1, 2, 11, 7, 'seg_m_9_s5', 'Ana - Wilson'),
@@ -486,7 +572,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (44, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s2', '---'),
 (45, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s3', '---'),
 (46, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s4', '---'),
-(47, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s5', '---'),
+(47, 2, 7, 1, 3, 11, 14, 'seg_t_16_s5', 'Ana - Mara'),
 (48, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s6', '---'),
 (49, 2, 7, 1, 2, NULL, NULL, 'seg_t_16_s7', '---'),
 (50, 2, 8, 1, 2, NULL, NULL, 'seg_t_17_s1', '---'),
@@ -622,7 +708,7 @@ INSERT INTO `tbl_sala_reservada` (`id`, `id_turno`, `id_horario`, `id_semana`, `
 (180, 1, 2, 4, 2, NULL, NULL, 'qui_m_9_s5', '---'),
 (181, 1, 2, 4, 2, NULL, NULL, 'qui_m_9_s6', '---'),
 (182, 1, 2, 4, 2, NULL, NULL, 'qui_m_9_s7', '---'),
-(183, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s1', '---'),
+(183, 1, 3, 4, 3, 11, 22, 'qui_m_10_s1', 'Ana - Lucas'),
 (184, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s2', '---'),
 (185, 1, 3, 4, 4, 11, 7, 'qui_m_10_s3', 'Ana - Wilson'),
 (186, 1, 3, 4, 2, NULL, NULL, 'qui_m_10_s4', '---'),
@@ -827,8 +913,9 @@ CREATE TABLE `tbl_user_terapeuta` (
 --
 
 INSERT INTO `tbl_user_terapeuta` (`id`, `id_disponibilidade`, `id_professor`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
-(11, 1, 8, 'Ana', 'Ana', 'ana@gmail.com', '$2y$10$CmaboCUJgwHSzAEhCXXTieUq.0eVC/h4OqPynnHHQ22HZ06SM6/nq', '2024-11-23 12:37:55'),
-(12, 1, 8, 'Lucio', 'Lucio', 'lucio@gmail.com', '$2y$10$2Q5mYPGSNsqcwa57zxo1Iu6uxGq7vQlbenN9cXGazS.fO5aaTyZx2', '2024-11-24 18:00:17');
+(11, 1, 8, 'Ana', 'Ana', 'ana@gmail.com', '$2y$10$CmaboCUJgwHSzAEhCXXTieUq.0eVC/h4OqPynnHHQ22HZ06SM6/nq', '2025-03-04 12:40:11'),
+(12, 1, 8, 'Lucio', 'Lucio', 'lucio@gmail.com', '$2y$10$2Q5mYPGSNsqcwa57zxo1Iu6uxGq7vQlbenN9cXGazS.fO5aaTyZx2', '2024-11-24 18:00:17'),
+(15, 1, 7, 'Rafael', 'Rafael', 'rafael@gmail.com', '$2y$10$/5SzdUkS1JqBr/zDDTUU4evTtLFh3vpcG1p4vsI/qPVoLy0pyB/LW', '2025-03-02 12:40:30');
 
 --
 -- Índices para tabelas despejadas
@@ -908,6 +995,19 @@ ALTER TABLE `tbl_logradouro`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `tbl_maturidade`
+--
+ALTER TABLE `tbl_maturidade`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `tbl_monitor`
+--
+ALTER TABLE `tbl_monitor`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_monitor_disponibilidadee` (`id_disponibilidade`);
+
+--
 -- Índices de tabela `tbl_paciente`
 --
 ALTER TABLE `tbl_paciente`
@@ -918,7 +1018,8 @@ ALTER TABLE `tbl_paciente`
   ADD KEY `fk_paciente_escolaridade` (`id_escolaridade`),
   ADD KEY `fk_paciente_profissao` (`id_profissao`),
   ADD KEY `fk_paciente_endereco` (`id_endereco`),
-  ADD KEY `fk_paciente_genero` (`id_genero`);
+  ADD KEY `fk_paciente_genero` (`id_genero`),
+  ADD KEY `fk_paciente_maturidade` (`id_maturidade`);
 
 --
 -- Índices de tabela `tbl_professor`
@@ -991,7 +1092,7 @@ ALTER TABLE `tbl_user_terapeuta`
 -- AUTO_INCREMENT de tabela `tbl_bairro`
 --
 ALTER TABLE `tbl_bairro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_calendario_agendamento`
@@ -1009,7 +1110,7 @@ ALTER TABLE `tbl_consulta`
 -- AUTO_INCREMENT de tabela `tbl_contato`
 --
 ALTER TABLE `tbl_contato`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_disponibilidade`
@@ -1021,7 +1122,7 @@ ALTER TABLE `tbl_disponibilidade`
 -- AUTO_INCREMENT de tabela `tbl_endereco`
 --
 ALTER TABLE `tbl_endereco`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_escolaridade`
@@ -1051,13 +1152,25 @@ ALTER TABLE `tbl_horario_sala`
 -- AUTO_INCREMENT de tabela `tbl_logradouro`
 --
 ALTER TABLE `tbl_logradouro`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_maturidade`
+--
+ALTER TABLE `tbl_maturidade`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_monitor`
+--
+ALTER TABLE `tbl_monitor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_paciente`
 --
 ALTER TABLE `tbl_paciente`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_professor`
@@ -1069,7 +1182,7 @@ ALTER TABLE `tbl_professor`
 -- AUTO_INCREMENT de tabela `tbl_profissao`
 --
 ALTER TABLE `tbl_profissao`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_renda_familiar`
@@ -1105,7 +1218,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT de tabela `tbl_user_terapeuta`
 --
 ALTER TABLE `tbl_user_terapeuta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restrições para tabelas despejadas
@@ -1127,6 +1240,12 @@ ALTER TABLE `tbl_endereco`
   ADD CONSTRAINT `fk_endereco_bairro` FOREIGN KEY (`id_bairro`) REFERENCES `tbl_bairro` (`id`);
 
 --
+-- Restrições para tabelas `tbl_monitor`
+--
+ALTER TABLE `tbl_monitor`
+  ADD CONSTRAINT `fk_monitor_disponibilidadee` FOREIGN KEY (`id_disponibilidade`) REFERENCES `tbl_disponibilidade` (`id`);
+
+--
 -- Restrições para tabelas `tbl_paciente`
 --
 ALTER TABLE `tbl_paciente`
@@ -1135,8 +1254,15 @@ ALTER TABLE `tbl_paciente`
   ADD CONSTRAINT `fk_paciente_escolaridade` FOREIGN KEY (`id_escolaridade`) REFERENCES `tbl_escolaridade` (`id`),
   ADD CONSTRAINT `fk_paciente_estado_civil` FOREIGN KEY (`id_estado_civil`) REFERENCES `tbl_estado_civil` (`id`),
   ADD CONSTRAINT `fk_paciente_genero` FOREIGN KEY (`id_genero`) REFERENCES `tbl_genero` (`id`),
+  ADD CONSTRAINT `fk_paciente_maturidade` FOREIGN KEY (`id_maturidade`) REFERENCES `tbl_maturidade` (`id`),
   ADD CONSTRAINT `fk_paciente_profissao` FOREIGN KEY (`id_profissao`) REFERENCES `tbl_profissao` (`id`),
   ADD CONSTRAINT `fk_paciente_renda_familar` FOREIGN KEY (`id_renda_familiar`) REFERENCES `tbl_renda_familiar` (`id`);
+
+--
+-- Restrições para tabelas `tbl_professor`
+--
+ALTER TABLE `tbl_professor`
+  ADD CONSTRAINT `fk_professor_disponibilidade` FOREIGN KEY (`id_disponibilidade`) REFERENCES `tbl_disponibilidade` (`id`);
 
 --
 -- Restrições para tabelas `tbl_sala_reservada`
@@ -1148,6 +1274,12 @@ ALTER TABLE `tbl_sala_reservada`
   ADD CONSTRAINT `fk_reserva_sala_status` FOREIGN KEY (`id_status`) REFERENCES `tbl_status_sala` (`id`),
   ADD CONSTRAINT `fk_reserva_sala_terapeuta` FOREIGN KEY (`id_terapeuta`) REFERENCES `tbl_user_terapeuta` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `fk_reserva_sala_turno` FOREIGN KEY (`id_turno`) REFERENCES `tbl_turno` (`id`);
+
+--
+-- Restrições para tabelas `tbl_user_terapeuta`
+--
+ALTER TABLE `tbl_user_terapeuta`
+  ADD CONSTRAINT `fk_terapeuta_disponibilidade` FOREIGN KEY (`id_disponibilidade`) REFERENCES `tbl_disponibilidade` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -96,8 +96,6 @@ if (isset($_POST['enviar'])) {
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 

@@ -457,7 +457,7 @@ session_destroy();
                     <h5 class="text-light mb-4">Endereço</h5>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Rua Grande, 1455 - Diamante</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(98) 3214-6455</p>
-                    <p class="mb-2">🧠 <a href="login.php" class="no-link-style"> Boa consulta</a></p>
+                    <p class="mb-2">🧠 Boa consulta</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>

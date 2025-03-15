@@ -11,7 +11,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CLÍNICA | Terapeuta</title>
+  <title>CLÍNICA | Monitor</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
@@ -69,7 +69,7 @@
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <img src="../../dist/img/user.jpg" class="img-circle" alt="User Image">
+                  <img src="../admin/dist/img/user.jpg" class="img-circle" alt="User Image">
                   <p>
                     <?php echo $_SESSION['nome']; ?>
 
@@ -129,7 +129,18 @@
               <li class=""><a href="../index.php"><i class="fa fa-dashboard"></i> Sair</a></li>
             </ul>
           </li>
-          <li class="treeview active">
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-gears"></i>
+              <span>Cadastrar paciente</span>
+              <span class="label label-primary pull-right"></span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="cadastro/cadastrar-paciente-adulto.php"><i class="fa fa-plus-square"></i> Adulto</a></li>
+                <li><a href="cadastro/cadastrar-paciente-crianca.php"><i class="fa fa-plus-square"></i> Criança</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
             <a href="#">
               <i class="fa fa-gears"></i>
               <span>Gerenciar</span>
@@ -139,10 +150,6 @@
                 <li><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
                 <li><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
                 <li><a href="reserva_sala/reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
-              <!-- <li><a href="../calendar.html"><i class="fa fa-plus-square"></i> Calendário de Consultas</a></li> -->
-              <!-- <li><a href="afiliadosAprovados.php"><i class="fa fa-plus-square"></i> Afiliados Aprovados</a></li>
-                <li><a href="noticias.php"><i class="fa fa-plus-square"></i> Notícias</a></li>
-                <li><a href="videos.php"><i class="fa fa-plus-square"></i> Vídeos</a></li> -->
             </ul>
           </li>
     </aside>

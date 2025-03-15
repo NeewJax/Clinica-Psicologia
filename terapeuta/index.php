@@ -69,7 +69,7 @@
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <img src="../../dist/img/user.jpg" class="img-circle" alt="User Image">
+                  <img src="../admin/dist/img/user.jpg" class="img-circle" alt="User Image">
                   <p>
                     <?php echo $_SESSION['nome']; ?>
 

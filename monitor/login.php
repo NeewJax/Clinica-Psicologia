@@ -45,7 +45,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="../img/favicon.ico" rel="icon">
-    <title>Login do terapeuta - Clínica de psicologia</title>
+    <title>Login do Monitor - Clínica de psicologia</title>
     <style>
         /* Reset de margens para o elemento body */
         * {

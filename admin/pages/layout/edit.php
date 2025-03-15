@@ -47,6 +47,8 @@ if (isset($_POST["submit"])) {
                                 id_renda_familiar = $id_renda_familiar,
                                 id_estado_civil = $id_estado_civil
                                 WHERE id = $id");
+
+    header('Location: pacientes.php');
   
 }
 ?>
@@ -110,7 +112,6 @@ if (isset($_POST["submit"])) {
 <body class="hold-transition skin-blue fixed sidebar-mini">
   <!-- Site wrapper -->
   <div class="wrapper">
-
     <header class="main-header">
       <!-- Logo -->
       <a href="../../index.php" class="logo">
