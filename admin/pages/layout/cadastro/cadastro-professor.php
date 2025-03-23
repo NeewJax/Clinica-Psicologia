@@ -131,6 +131,17 @@ if(isset($_POST['criar'])) {
                 <li class=""><a href="../../../logout.php"><i class="fa fa-dashboard"></i> Sair</a></li>
               </ul>
             </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-gears"></i>
+                <span>Cadastrar paciente</span>
+                <span class="label label-primary pull-right"></span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="cadastrar-paciente-adulto.php"><i class="fa fa-plus-square"></i> Adulto</a></li>
+                  <li><a href="cadastrar-paciente-crianca.php"><i class="fa fa-plus-square"></i> Criança</a></li>
+              </ul>
+            </li>
             <li class="treeview active">
               <a href="#">
                 <i class="fa fa-gears"></i>
