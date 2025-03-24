@@ -1,6 +1,7 @@
 <?php
 
 include('../../../db/conexao.php');
+include('../../../admin/protect.php');
 
 ?>
 
@@ -214,17 +215,17 @@ include('../../../db/conexao.php');
                                 $result_reserva = mysqli_query($mysqli, $sql_sala_reserva);
                                 while($row = mysqli_fetch_assoc($result_reserva)) {
                             ?>
-                            <td
-                            name="<?php echo $row['sala_cod'] ?>"
-                                    id="<?php echo $row['sala_cod'] ?>"
-                                    class="<?php echo $row['status'] ?>"
-                            >
-                            <?php echo $row['sala'] ?>
-                            </td>
-                            <?php
-                              }
-                            ?>
-                            <tr>
+                                <td
+                                name="<?php echo $row['sala_cod'] ?>"
+                                        id="<?php echo $row['sala_cod'] ?>"
+                                        class="<?php echo $row['status'] ?>"
+                                >
+                                    <?php echo $row['sala'] ?>
+                                </td>
+                                <?php
+                                }
+                                ?>
+                                <tr>
                             <?php
                                 }
                             ?>

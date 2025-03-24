@@ -1,6 +1,7 @@
 <?php
 
 include('../../../db/conexao.php');
+include('../../../admin/protect.php');
 
 ?>
 

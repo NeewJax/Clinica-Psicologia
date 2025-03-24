@@ -214,7 +214,7 @@ if (isset($_POST["submit"])) {
                 <li class="active"><a href="../professores.php"><i class="fa fa-plus-square"></i> Professores</a></li>
                 <li><a href="../terapeutas.php"><i class="fa fa-plus-square"></i> Estagiário</a></li>
                 <li><a href="../monitor.php"><i class="fa fa-plus-square"></i> Monitores</a></li>
-                <li><a href="../../reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
+                <li><a href="../../reserva_sala/reservar-sala-segunda.php"><i class="fa fa-plus-square"></i> Reservar Sala</a></li>
             </ul>
             </li>
         </section>

@@ -92,7 +92,7 @@
     </header>
     <main>
         <div class="container-fluid">
-          <img src="img/home/sucesso.png" alt="">
+          <img src="../img/sucesso.png" alt="">
           <p>Tudo certo!</p>
           <h2>Cadastro realizado com sucesso.</h2>
           <div class="ok-btn">
