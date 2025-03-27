@@ -4,16 +4,24 @@
 ?>
 
 <?php
-if(isset($_POST['criar'])) {
-    $nome = $_POST['nome'];
-    $id_disponibilidade = $_POST['disponibilidade'];
-    $id_professor = $_POST['professor'];
-    $usuario = $_POST['usuario'];
-    $email = $_POST['email'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+try {
 
-    $mysqli->query("INSERT INTO tbl_user_terapeuta (id, id_disponibilidade, id_professor, nome,usuario, email, senha) VALUES (NULL, $id_disponibilidade, $id_professor, '$nome', '$usuario', '$email', '$senha')");
-    header('Location: ../terapeutas.php');
+  if(isset($_POST['criar'])) {
+    if(!empty($_POST['professor'])) {
+      $nome = $_POST['nome'];
+      $id_disponibilidade = $_POST['disponibilidade'];
+      $id_professor = $_POST['professor'];
+      $usuario = $_POST['usuario'];
+      $email = $_POST['email'];
+      $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+  
+      $mysqli->query("INSERT INTO tbl_user_terapeuta (id, id_disponibilidade, id_professor, nome,usuario, email, senha) VALUES (NULL, $id_disponibilidade, $id_professor, '$nome', '$usuario', '$email', '$senha')");
+      header('Location: ../terapeutas.php');
+    }
+}
+
+} catch(Exception $e) {
+  echo "Error" . $e;
 }
 
 ?>

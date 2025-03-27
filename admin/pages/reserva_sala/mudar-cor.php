@@ -13,52 +13,89 @@ if(isset($_GET['id'])) {
 if (isset($_POST['salvar'])) {
 
     try {
-        $id_terapeuta = !empty($_POST['id_terapeuta']) ? $_POST['id_terapeuta'] : NULL;
-        $id_paciente = !empty($_POST['id_paciente']) ? $_POST['id_paciente'] : NULL;
-        $id_status = $_POST['id_status'];
+        if(!empty($_POST['id_terapeuta']) && !empty($_POST['id_paciente'])) {
+            $id_terapeuta = !empty($_POST['id_terapeuta']) ? $_POST['id_terapeuta'] : NULL;
+            $id_paciente = !empty($_POST['id_paciente']) ? $_POST['id_paciente'] : NULL;
+            $id_status = $_POST['id_status'];
+    
+            //PEGAR O NOME DO TERAPEUTA
+            $stmt_terapeuta = $mysqli->prepare("SELECT nome FROM tbl_user_terapeuta WHERE id = ?");
+            $stmt_terapeuta->bind_param("i",  $id_terapeuta);
+            $stmt_terapeuta->execute();
+    
+            $result_terapeuta = $stmt_terapeuta->get_result();
+            $terapeuta = $result_terapeuta->fetch_assoc();
+            $nome_terapeuta = $terapeuta['nome'] ?? "-";
+            $stmt_terapeuta->close();
+            
+    
+            //PEGAR O NOME DO PACIENTE
+            $stmt_paciente = $mysqli->prepare("SELECT nome FROM tbl_paciente WHERE id = ?");
+            $stmt_paciente->bind_param("i", $id_paciente);
+            $stmt_paciente->execute();
+    
+            $result_paciente = $stmt_paciente->get_result();
+            $paciente = $result_paciente->fetch_assoc();
+            $nome_paciente = $paciente['nome'] ?? "-";
+            $stmt_paciente->close();
+    
+            $sala =  $nome_terapeuta . " - " . $nome_paciente;
+    
+            //ATUALIZAR SALA
+            $id_terapeuta_bind = $id_terapeuta != null ? $id_terapeuta : null;
+            $id_paciente_bind = $id_paciente != null ? $id_paciente : null;
+    
+            $stmt_sala_reservada = $mysqli->prepare("UPDATE tbl_sala_reservada 
+                                                    SET id_status = ?, 
+                                                    id_terapeuta = ?, 
+                                                    id_paciente = ?,
+                                                    sala = ? 
+                                                    WHERE id = ?");
+            $stmt_sala_reservada->bind_param("iiisi",  
+                                            $id_status, 
+                                            $id_terapeuta_bind, 
+                                            $id_paciente_bind,
+                                            $sala,
+                                            $id);
+    
+            $stmt_sala_reservada->execute();
+            $stmt_sala_reservada->close();
+    
+    
+            // INSERIR DADOS NO TBL_SALA_RESERVADA_HISTORICO
+            $stmt_sala_reservada_dados = $mysqli->prepare("SELECT * FROM tbl_sala_reservada WHERE id = ?");
+            $stmt_sala_reservada_dados->bind_param("i", $id);
+            $stmt_sala_reservada_dados->execute();
+    
+            $result_sala_reservada_dados = $stmt_sala_reservada_dados->get_result();
+            $sala_reservada_dados = $result_sala_reservada_dados->fetch_assoc();
+            $id_turno = $sala_reservada_dados['id_turno'];
+            $id_horario = $sala_reservada_dados['id_horario'];
+            $id_semana = $sala_reservada_dados['id_semana'];
+            $id_status = $sala_reservada_dados['id_status'];
+            $id_terapeuta = $sala_reservada_dados['id_terapeuta'];
+            $id_paciente = $sala_reservada_dados['id_paciente'];
+            $sala_cod = $sala_reservada_dados['sala_cod'];
+            $sala = $sala_reservada_dados['sala'];
+            $stmt_sala_reservada_dados->close();
+    
+            $stmt_sala_reservada_historico = $mysqli->prepare("INSERT INTO tbl_sala_reservada_historico 
+            (id_turno, id_horario, id_semana, id_status, id_terapeuta, id_paciente, sala_cod, sala) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt_sala_reservada_historico->bind_param("iiiiiiss",
+                                                    $id_turno,
+                                                    $id_horario,
+                                                    $id_semana,
+                                                    $id_status,
+                                                    $id_terapeuta,
+                                                    $id_paciente,
+                                                    $sala_cod,
+                                                    $sala
+            );
+            $stmt_sala_reservada_historico->execute();
+            $stmt_sala_reservada_historico->close();
+        }
 
-        //PEGAR O NOME DO TERAPEUTA
-        $stmt_terapeuta = $mysqli->prepare("SELECT nome FROM tbl_user_terapeuta WHERE id = ?");
-        $stmt_terapeuta->bind_param("i",  $id_terapeuta);
-        $stmt_terapeuta->execute();
-
-        $result_terapeuta = $stmt_terapeuta->get_result();
-        $terapeuta = $result_terapeuta->fetch_assoc();
-        $nome_terapeuta = $terapeuta['nome'] ?? "-";
-        $stmt_terapeuta->close();
-        
-
-        //PEGAR O NOME DO PACIENTE
-        $stmt_paciente = $mysqli->prepare("SELECT nome FROM tbl_paciente WHERE id = ?");
-        $stmt_paciente->bind_param("i", $id_paciente);
-        $stmt_paciente->execute();
-
-        $result_paciente = $stmt_paciente->get_result();
-        $paciente = $result_paciente->fetch_assoc();
-        $nome_paciente = $paciente['nome'] ?? "-";
-        $stmt_paciente->close();
-
-        $sala =  $nome_terapeuta . " - " . $nome_paciente;
-
-        //ATUALIZAR SALA
-        $id_terapeuta_bind = $id_terapeuta != null ? $id_terapeuta : null;
-        $id_paciente_bind = $id_paciente != null ? $id_paciente : null;
-
-        $stmt_sala_reservada = $mysqli->prepare("UPDATE tbl_sala_reservada 
-                                                SET id_status = ?, 
-                                                id_terapeuta = ?, 
-                                                id_paciente = ?,
-                                                sala = ? 
-                                                WHERE id = ?");
-        $stmt_sala_reservada->bind_param("iiisi",  
-                                        $id_status, 
-                                        $id_terapeuta_bind, 
-                                        $id_paciente_bind,
-                                        $sala,
-                                        $id);
-
-        $stmt_sala_reservada->execute();
-        $stmt_sala_reservada->close();
     } catch(Exception $e) {
         echo "Error " . $e;
     }
