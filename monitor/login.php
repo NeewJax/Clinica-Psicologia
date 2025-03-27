@@ -1,4 +1,7 @@
 <?php
+session_start();
+session_destroy();
+
 include('../db/conexao.php');
 
 if (isset($_POST['email']) || isset($_POST['senha'])) {

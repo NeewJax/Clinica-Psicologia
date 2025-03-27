@@ -178,14 +178,14 @@ if (isset($_POST["submit"])) {
           </div>
         </div>
         <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
+        <!-- <form action="#" method="get" class="sidebar-form">
           <div class="input-group">
             <input type="text" name="q" class="form-control" placeholder="Search...">
             <span class="input-group-btn">
               <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
             </span>
           </div>
-        </form>
+        </form> -->
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -197,12 +197,25 @@ if (isset($_POST["submit"])) {
             <ul class="treeview-menu">
               <li><a href="../../index.php"><i class="fa fa-dashboard"></i> Home</a></li>
             </ul>
+            <ul class="treeview-menu">
+              <li class=""><a href="../../logout.php"><i class="fa fa-dashboard"></i> Sair</a></li>
+            </ul>
           </li>
+          <li class="treeview">
+              <a href="#">
+                <i class="fa fa-gears"></i>
+                <span>Cadastrar paciente</span>
+                <span class="label label-primary pull-right"></span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="cadastro/cadastrar-paciente-adulto.php"><i class="fa fa-plus-square"></i> Adulto</a></li>
+                  <li><a href="cadastro/cadastrar-paciente-crianca.php"><i class="fa fa-plus-square"></i> Criança</a></li>
+              </ul>
+            </li>
           <li class="treeview active">
             <a href="#">
               <i class="fa fa-gears"></i>
               <span>Gerenciar</span>
-              <span class="label label-primary pull-right">2</span>
             </a>
             <ul class="treeview-menu">
                 <li class="active"><a href="pacientes.php"><i class="fa fa-plus-square"></i> Pacientes</a></li>
@@ -281,7 +294,7 @@ if (isset($_POST["submit"])) {
                       FROM tbl_paciente AS pa 
                       INNER JOIN tbl_genero se ON se.id = pa.id_genero
                       INNER JOIN tbl_endereco en ON en.id = pa.id_endereco
-                      INNER JOIN tbl_logradouro lo ON lo.id = en.id
+                      INNER JOIN tbl_logradouro lo ON lo.id = en.id_logradouro
                       INNER JOIN tbl_escolaridade es ON es.id = pa.id_escolaridade
                       INNER JOIN tbl_profissao pr ON pr.id = pa.id_profissao
                       INNER JOIN tbl_renda_familiar re ON re.id = pa.id_renda_familiar

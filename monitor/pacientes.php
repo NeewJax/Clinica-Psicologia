@@ -42,7 +42,7 @@
 
     <header class="main-header">
       <!-- Logo -->
-      <a href="../../index.php" class="logo">
+      <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>CL</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -198,9 +198,9 @@
             </div>
           </div>
           <div class="box-body">
-            <a href="../cadastro.php">
+            <!-- <a href="../cadastro.php">
               <button class="btn btn-block btn-primary">Cadastrar paciente</button>
-            </a>
+            </a> -->
             <!-- AQUI COMEÇA SUA APLICAÇÃO -->
 
 

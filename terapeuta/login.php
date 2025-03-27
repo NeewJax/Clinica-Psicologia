@@ -1,4 +1,7 @@
 <?php
+session_start();
+session_destroy();
+
 include('../db/conexao.php');
 
 if (isset($_POST['email']) || isset($_POST['senha'])) {
@@ -251,9 +254,9 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
         </div>
     </div>
     <script>
-          function redirecionarParaOutraTela() {
-        window.location.href = './../tela-escolha-login/homeLogin.php';
-    }
+        function redirecionarParaOutraTela() {
+            window.location.href = './../tela-escolha-login/homeLogin.php';
+        }
     </script>
     <!-- <div>
         <script src="script.js"></script>
