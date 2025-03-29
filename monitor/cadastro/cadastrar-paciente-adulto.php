@@ -31,13 +31,12 @@
     $id_contato = 1;
     $id_profissao = 1;
     $id_endereco = 1;
-    $id_paciente = 1;
     $id_maturidade = 1;
 
     try {
         //INSERIR CONTATO
-        $stmt_id_contato = $mysqli->prepare("INSERT INTO tbl_contato (id, id_paciente, email, telefone) VALUES (NULL, ?, ?, ?)");
-        $stmt_id_contato->bind_param("iss", $id_paciente, $email, $celular);
+        $stmt_id_contato = $mysqli->prepare("INSERT INTO tbl_contato (id, email, telefone) VALUES (NULL, ?, ?)");
+        $stmt_id_contato->bind_param("ss", $email, $celular);
         $stmt_id_contato->execute();
         $id_contato = $mysqli->insert_id;
         $stmt_id_contato->close();
@@ -64,8 +63,8 @@
         $stmt_id_logradouro->close();
 
         //INSERT ENDEREÇO
-        $stmt_id_endereco = $mysqli->prepare("INSERT INTO tbl_endereco (id, id_paciente, id_bairro, id_logradouro, cep) VALUES (NULL, ?, ?, ?, ?)");
-        $stmt_id_endereco->bind_param("iiis", $id_paciente, $id_bairro, $id_logradouro, $cep);
+        $stmt_id_endereco = $mysqli->prepare("INSERT INTO tbl_endereco (id, id_bairro, id_logradouro, cep) VALUES (NULL, ?, ?, ?)");
+        $stmt_id_endereco->bind_param("iis", $id_bairro, $id_logradouro, $cep);
         $stmt_id_endereco->execute();
         $id_endereco = $mysqli->insert_id;
         $stmt_id_endereco->close();
@@ -79,15 +78,15 @@
         $stmt_id_paciente->close();
 
         //ATUALIZAR TABELAS
-        $stmt_update_contato = $mysqli->prepare("UPDATE tbl_contato SET id_paciente = ? WHERE id = ?");
-        $stmt_update_contato->bind_param("ii", $id_paciente, $id_contato);
-        $stmt_update_contato->execute();
-        $stmt_update_contato->close();
+        // $stmt_update_contato = $mysqli->prepare("UPDATE tbl_contato SET id_paciente = ? WHERE id = ?");
+        // $stmt_update_contato->bind_param("ii", $id_paciente, $id_contato);
+        // $stmt_update_contato->execute();
+        // $stmt_update_contato->close();
 
-        $stmt_update_contato = $mysqli->prepare("UPDATE tbl_endereco SET id_paciente = ? WHERE id = ?");
-        $stmt_update_contato->bind_param("ii", $id_paciente, $id_endereco);
-        $stmt_update_contato->execute();
-        $stmt_update_contato->close();
+        // $stmt_update_contato = $mysqli->prepare("UPDATE tbl_endereco SET id_paciente = ? WHERE id = ?");
+        // $stmt_update_contato->bind_param("ii", $id_paciente, $id_endereco);
+        // $stmt_update_contato->execute();
+        // $stmt_update_contato->close();
 
         header('Location: ../cadastro-sucesso.php');
 
