@@ -4,52 +4,72 @@
 ?>
 
 <?php
-$id = $_GET["id"];
 
-if (isset($_POST["submit"])) {
+try {
 
-    $nome = $_POST['nome'];
-    $id_genero = $_POST['sexo'];
-    $nascimento = $_POST['nascimento'];
-    $logradouro = $_POST['localidade'];
-    $id_escolaridade = $_POST['escolaridade'];
-    $profissao = $_POST['profissao'];
-    $id_renda_familiar = $_POST['renda_familiar'];
-    $rg = $_POST['rg'];
-    $cpf = $_POST['cpf'];
-    $id_estado_civil = $_POST['estado_civil'];
-    $bairro = $_POST['bairro'];
-    $cep = $_POST['cep'];
-    $telefone = $_POST['telefone'];
-    $email = $_POST['email'];
-    $id_endereco = $_POST['id_endereco'];
-    $id_bairro = $_POST['bairro_id'];
-    $id_logradouro = $_POST['logradouro_id'];
-    $id_profissao = $_POST['profissao_id'];
+  $id = $_GET["id"];
+
+  if (isset($_POST["submit"])) {
+
+      // PEGAR DADOS DA TBL_PACIENTE
+      $sql_paciente_data = "SELECT p.id_contato FROM tbl_paciente p WHERE id = ?";
+      $stmt_paciente_data = $mysqli->prepare($sql_paciente_data);
+      $stmt_paciente_data->bind_param("i", $id);
+      $stmt_paciente_data->execute();
+      $stmt_paciente_data_result = $stmt_paciente_data->get_result();
+      $paciente_data = $stmt_paciente_data_result->fetch_assoc();
+
+      //PEGAR ID_CONTATO
+      $id_contato = $paciente_data["id_contato"];
+
+      $nome = $_POST['nome'];
+      $id_genero = $_POST['sexo'];
+      $nascimento = $_POST['nascimento'];
+      $logradouro = $_POST['localidade'];
+      $id_escolaridade = $_POST['escolaridade'];
+      $profissao = $_POST['profissao'];
+      $id_renda_familiar = $_POST['renda_familiar'];
+      $rg = $_POST['rg'];
+      $cpf = $_POST['cpf'];
+      $id_estado_civil = $_POST['estado_civil'];
+      $bairro = $_POST['bairro'];
+      $cep = $_POST['cep'];
+      $telefone_residencial = $_POST['telefone_residencial'];
+      $telefone_recado = $_POST['telefone_recado'];
+      $celular = $_POST['celular'];
+      $email = $_POST['email'];
+      $id_endereco = $_POST['id_endereco'];
+      $id_bairro = $_POST['bairro_id'];
+      $id_logradouro = $_POST['logradouro_id'];
+      $id_profissao = $_POST['profissao_id'];
 
 
 
-    // Substituir os valores na query SQL
+      // Substituir os valores na query SQL
 
-    $mysqli->query("UPDATE tbl_profissao SET profissao = '$profissao' WHERE id = $id_profissao");
+      $mysqli->query("UPDATE tbl_profissao SET profissao = '$profissao' WHERE id = $id_profissao");
 
-    $mysqli->query("UPDATE tbl_logradouro SET logradouro = '$logradouro' WHERE id = $id_logradouro");
+      $mysqli->query("UPDATE tbl_logradouro SET logradouro = '$logradouro' WHERE id = $id_logradouro");
 
-    $mysqli->query("UPDATE tbl_contato SET email ='$email', telefone = '$telefone' WHERE id_paciente = $id");
+      $mysqli->query("UPDATE tbl_contato SET email ='$email', telefone_residencial = '$telefone_residencial', telefone_recado = '$telefone_recado', celular = '$celular' WHERE id = $id_contato");
 
-    $mysqli->query("UPDATE tbl_bairro SET bairro = '$bairro' WHERE id = $id_bairro");
+      $mysqli->query("UPDATE tbl_bairro SET bairro = '$bairro' WHERE id = $id_bairro");
 
-    $mysqli->query("UPDATE tbl_endereco SET cep = '$cep' WHERE id = $id_endereco");
+      $mysqli->query("UPDATE tbl_endereco SET cep = '$cep' WHERE id = $id_endereco");
+      
+      $mysqli->query("UPDATE tbl_paciente SET nome = '$nome', nascimento = '$nascimento', rg = '$rg', cpf = '$cpf', 
+                                  id_genero = $id_genero, 
+                                  id_escolaridade = $id_escolaridade,
+                                  id_renda_familiar = $id_renda_familiar,
+                                  id_estado_civil = $id_estado_civil
+                                  WHERE id = $id");
+
+      header('Location: pacientes.php');
     
-    $mysqli->query("UPDATE tbl_paciente SET nome = '$nome', nascimento = '$nascimento', rg = '$rg', cpf = '$cpf', 
-                                id_genero = $id_genero, 
-                                id_escolaridade = $id_escolaridade,
-                                id_renda_familiar = $id_renda_familiar,
-                                id_estado_civil = $id_estado_civil
-                                WHERE id = $id");
+  }
 
-    header('Location: pacientes.php');
-  
+} catch(Exception $e) {
+  echo "Error " . $e;
 }
 ?>
 
@@ -290,7 +310,7 @@ if (isset($_POST["submit"])) {
               $sql = "SELECT pa.id, pa.nome, pa.nascimento, pa.rg, pa.cpf, pa.id_genero, pa.id_escolaridade, pa.id_renda_familiar, 
                               pa.id_estado_civil, pa.id_endereco, se.sexo, en.id, en.cep, lo.logradouro, lo.id AS logradouro_id,
                               es.escolaridade, pr.profissao, pr.id AS profissao_id, re.renda, ec.estado_civil, ba.bairro, 
-                              ba.id AS bairro_id, co.telefone, co.email
+                              ba.id AS bairro_id, co.telefone_residencial, co.telefone_recado, co.celular, co.email
                       FROM tbl_paciente AS pa 
                       INNER JOIN tbl_genero se ON se.id = pa.id_genero
                       INNER JOIN tbl_endereco en ON en.id = pa.id_endereco
@@ -436,16 +456,16 @@ if (isset($_POST["submit"])) {
                     <input type="text" name='id_endereco' class='id_oculto' value='<?php echo $row['id_endereco'] ?>'>
 
 
-                    <!-- <label class="form-label">Telefone Residencial:</label>
+                    <label class="form-label">Telefone Residencial:</label>
                     <input type="text" class="form-control custom-input" name="telefone_residencial" value="<?php echo $row['telefone_residencial']; ?>">
 
 
-                    <label class="form-label">Telefone Residencial:</label>
-                    <input type="text" class="form-control custom-input" name="telefone_recado" value="<?php echo $row['telefone_recado']; ?>"> -->
+                    <label class="form-label">Telefone Recado:</label>
+                    <input type="text" class="form-control custom-input" name="telefone_recado" value="<?php echo $row['telefone_recado']; ?>">
 
 
-                    <label class="form-label">Telefone:</label>
-                    <input type="text" class="form-control custom-input" name="telefone" value="<?php echo $row['telefone']; ?>">
+                    <label class="form-label">Celular:</label>
+                    <input type="text" class="form-control custom-input" name="celular" value="<?php echo $row['celular']; ?>">
 
 
                     <label class="form-label">Email:</label>

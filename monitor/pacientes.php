@@ -218,7 +218,7 @@
                 <tbody>
                 <?php
                     //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-                    $sql = "SELECT p.id, p.nome, p.cpf, p.nascimento, c.telefone FROM tbl_paciente p INNER JOIN tbl_contato c ON p.id_contato = c.id";
+                    $sql = "SELECT p.id, p.nome, p.cpf, p.nascimento, c.celular FROM tbl_paciente p INNER JOIN tbl_contato c ON p.id_contato = c.id";
                     $result = mysqli_query($mysqli, $sql);
                     while ($row = mysqli_fetch_assoc($result)) {
                 ?>
@@ -226,7 +226,7 @@
                         <td></td>
                         <td><?php echo $row["nome"] ?></td>
                         <td><?php echo date('d/m/Y', strtotime($row["nascimento"])) ?></td>
-                        <td><?php echo $row["telefone"] ?></td>
+                        <td><?php echo $row["celular"] ?></td>
                         <td>
 
                         </td>

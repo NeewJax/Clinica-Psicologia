@@ -21,7 +21,6 @@
     $id_estado_civil = $_POST['estado_civil'];
     $composicao_familiar = $_POST['composicao_familiar'];
     $mora_com = $_POST['mora_com'];
-    //$endereco = $_POST['endereco'];
     $bairro = $_POST['bairro'];
 
     $cidade = $_POST['cidade'];
@@ -31,16 +30,16 @@
     $celular = $_POST['celular'];
     $email = $_POST['email'];
 
-    $id_contato = 1;
-    $id_profissao = 1;
-    $id_endereco = 1;
-    $id_paciente = 1;
+    //$id_contato = 1;
+    //$id_profissao = 1;
+    //$id_endereco = 1;
+    //$id_paciente = 1;
     $id_maturidade = 1;
 
     try {
         //INSERIR CONTATO
-        $stmt_id_contato = $mysqli->prepare("INSERT INTO tbl_contato (id, email, telefone) VALUES (NULL, ?, ?)");
-        $stmt_id_contato->bind_param("ss", $email, $celular);
+        $stmt_id_contato = $mysqli->prepare("INSERT INTO tbl_contato (id, email, telefone_residencial, telefone_recado, celular) VALUES (NULL, ?, ?, ?, ?)");
+        $stmt_id_contato->bind_param("ssss", $email, $telefone_residencial, $telefone_recado, $celular);
         $stmt_id_contato->execute();
         $id_contato = $mysqli->insert_id;
         $stmt_id_contato->close();

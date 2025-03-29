@@ -96,7 +96,7 @@
           <p>Tudo certo!</p>
           <h2>Cadastro realizado com sucesso.</h2>
           <div class="ok-btn">
-          <a href="index.php" class="btn btn-success">OK</a>
+          <a href="pacientes.php" class="btn btn-success">OK</a>
         </div>
   </div>
     </main>

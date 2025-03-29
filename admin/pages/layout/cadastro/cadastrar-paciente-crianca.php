@@ -32,15 +32,15 @@
     $celular = $_POST['celular'];
     $email = $_POST['email'];
 
-    $id_contato = 1;
-    $id_profissao = 1;
-    $id_endereco = 1;
+    // $id_contato = 1;
+    // $id_profissao = 1;
+    // $id_endereco = 1;
     $id_maturidade = 2;
 
     try {
         //INSERIR CONTATO
-        $stmt_id_contato = $mysqli->prepare("INSERT INTO tbl_contato (id, email, telefone) VALUES (NULL, ?, ?)");
-        $stmt_id_contato->bind_param("ss", $email, $celular);
+        $stmt_id_contato = $mysqli->prepare("INSERT INTO tbl_contato (id, email, telefone_residencial, telefone_recado, celular) VALUES (NULL, ?, ?, ?, ?)");
+        $stmt_id_contato->bind_param("ssss", $email, $telefone_residencial, $telefone_recado, $celular);
         $stmt_id_contato->execute();
         $id_contato = $mysqli->insert_id;
         $stmt_id_contato->close();
