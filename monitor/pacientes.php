@@ -1,7 +1,7 @@
 <?php
-  include('../db/conexao.php');
-  include('../admin/protect.php');
-  include ('../admin/contador.php');
+include('../db/conexao.php');
+include('../admin/protect.php');
+include('../admin/contador.php');
 
 ?>
 
@@ -16,7 +16,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
   <link rel="stylesheet" href="../admin/bootstrap/css/bootstrap.min.css">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -36,6 +36,7 @@
     }
   </style>
 </head>
+
 <body class="hold-transition skin-blue fixed sidebar-mini">
   <!-- Site wrapper -->
   <div class="wrapper">
@@ -136,8 +137,8 @@
               <span class="label label-primary pull-right"></span>
             </a>
             <ul class="treeview-menu">
-                <li><a href="cadastro/cadastrar-paciente-adulto.php"><i class="fa fa-plus-square"></i> Adulto</a></li>
-                <li><a href="cadastro/cadastrar-paciente-crianca.php"><i class="fa fa-plus-square"></i> Criança</a></li>
+              <li><a href="cadastro/cadastrar-paciente-adulto.php"><i class="fa fa-plus-square"></i> Adulto</a></li>
+              <li><a href="cadastro/cadastrar-paciente-crianca.php"><i class="fa fa-plus-square"></i> Criança</a></li>
             </ul>
           </li>
           <li class="treeview active">
@@ -213,28 +214,34 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Nascimento</th>
                     <th scope="col">Telefone</th>
+                    <th scope="col">Ação</th>
                   </tr>
                 </thead>
                 <tbody>
-                <?php
-                    //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-                    $sql = "SELECT p.id, p.nome, p.cpf, p.nascimento, c.celular FROM tbl_paciente p INNER JOIN tbl_contato c ON p.id_contato = c.id";
-                    $result = mysqli_query($mysqli, $sql);
-                    while ($row = mysqli_fetch_assoc($result)) {
-                ?>
+                  <?php
+                  //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
+                  $sql = "SELECT p.id, p.nome, p.cpf, p.nascimento, c.celular FROM tbl_paciente p INNER JOIN tbl_contato c ON p.id_contato = c.id";
+                  $result = mysqli_query($mysqli, $sql);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                  ?>
                     <tr>
-                        <td></td>
-                        <td><?php echo $row["nome"] ?></td>
-                        <td><?php echo date('d/m/Y', strtotime($row["nascimento"])) ?></td>
-                        <td><?php echo $row["celular"] ?></td>
-                        <td>
-
-                        </td>
+                      <td></td>
+                      <td><?php echo $row["nome"] ?></td>
+                      <td><?php echo date('d/m/Y', strtotime($row["nascimento"])) ?></td>
+                      <td><?php echo $row["celular"] ?></td>
+                      <td>
+                        <a href="edit/edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#modalDelete">
+                          <span class="open-modal" data-id="<?php echo $row["id"] ?>">
+                            <i class="fa fa-remove"></i>
+                          </span>
+                        </a>
+                      </td>
                     </tr>
                     <!-- <a href="../calendar.php"></a> -->
-                <?php
-                    }
-                ?>
+                  <?php
+                  }
+                  ?>
                 </tbody>
               </table>
             </div>
@@ -250,9 +257,35 @@
       </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" style="font-weight:bold;font-size:140%;">DELETAR PACIENTE</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Tem certeza que deseja deletar este paciente?
+            <p id="modal-id" style="color:white;font-size:130%"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+            <a id="modal-link" href="#"><button type="button" class="btn btn-primary">Sim</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer class="main-footer">
       <strong>CLÍNICA DE PSICOLOGIA <br> Equipe de desenvolvimento da Estácio de Sá | Laboratório de Transformação Digital.</strong>
     </footer>
+  </div>
+
+  <footer class="main-footer">
+    <strong>CLÍNICA DE PSICOLOGIA <br> Equipe de desenvolvimento da Estácio de Sá | Laboratório de Transformação Digital.</strong>
+  </footer>
   </div><!-- ./wrapper -->
 
   <!-- jQuery 2.1.4 -->
@@ -268,7 +301,20 @@
   <!-- AdminLTE for demo purposes -->
   <script src="../admin/dist/js/demo.js"></script>
 
+  <script>
+    const buttons = document.querySelectorAll('.open-modal');
+    const modalLink = document.getElementById('modal-link');
+    const modalId = document.getElementById('modal-id');
 
+    buttons.forEach(button => {
+      button.addEventListener('click', function() {
+        let id = this.getAttribute('data-id');
+        modalId.textContent = id;
+        modalLink.href = "delete/delete-paciente.php?id=" + id;
+
+      });
+    });
+  </script>
 </body>
 
 </html>
