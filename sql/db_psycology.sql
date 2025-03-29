@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/03/2025 às 01:26
+-- Tempo de geração: 29/03/2025 às 15:09
 -- Versão do servidor: 10.6.15-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -48,7 +48,11 @@ INSERT INTO `tbl_bairro` (`id`, `bairro`) VALUES
 (9, 'Goiabas'),
 (10, 'Goiabas'),
 (11, 'Goiabas'),
-(12, 'Goiabas');
+(12, 'Goiabas'),
+(13, 'Goiabas'),
+(14, 'Maças'),
+(15, 'Maças'),
+(16, 'Roberto Silva');
 
 -- --------------------------------------------------------
 
@@ -85,16 +89,18 @@ CREATE TABLE `tbl_consulta` (
 CREATE TABLE `tbl_contato` (
   `id` int(11) UNSIGNED NOT NULL,
   `email` varchar(50) NOT NULL,
-  `telefone` varchar(20) NOT NULL
+  `telefone_residencial` varchar(20) NOT NULL,
+  `telefone_recado` varchar(20) NOT NULL,
+  `celular` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `tbl_contato`
 --
 
-INSERT INTO `tbl_contato` (`id`, `email`, `telefone`) VALUES
-(11, 'rafael@gmail.com', '(91)91128-9126'),
-(12, 'rafael@gmail.com', '(91)91128-9126');
+INSERT INTO `tbl_contato` (`id`, `email`, `telefone_residencial`, `telefone_recado`, `celular`) VALUES
+(15, 'rafael@gmail.com', '44354423424', '3432432432', '(91)91128-9111'),
+(16, 'rafael@gmail.com', '44354423424', '3432432432', '(91)91128-9111');
 
 -- --------------------------------------------------------
 
@@ -134,7 +140,11 @@ CREATE TABLE `tbl_endereco` (
 
 INSERT INTO `tbl_endereco` (`id`, `id_bairro`, `id_logradouro`, `cep`) VALUES
 (9, 11, 44, '68970970'),
-(10, 12, 45, '68970970');
+(10, 12, 45, '68970970'),
+(11, 13, 46, '68970970'),
+(12, 14, 47, '68970970'),
+(13, 15, 48, '68970970'),
+(14, 16, 49, '68970970');
 
 -- --------------------------------------------------------
 
@@ -260,7 +270,11 @@ INSERT INTO `tbl_logradouro` (`id`, `logradouro`) VALUES
 (42, 'Localidade'),
 (43, 'Localidade'),
 (44, 'Localidade'),
-(45, 'Localidade');
+(45, 'Localidade'),
+(46, 'Localidade'),
+(47, 'Localidade'),
+(48, 'Localidade'),
+(49, 'Localidade');
 
 -- --------------------------------------------------------
 
@@ -332,8 +346,8 @@ CREATE TABLE `tbl_paciente` (
 --
 
 INSERT INTO `tbl_paciente` (`id`, `nome`, `nascimento`, `rg`, `cpf`, `id_genero`, `id_contato`, `id_escolaridade`, `id_profissao`, `id_renda_familiar`, `id_estado_civil`, `id_endereco`, `id_maturidade`, `nome_responsavel`) VALUES
-(9, 'Rafael', '1995-03-28', 32432432, 1234567, 1, 11, 3, 45, 2, 2, 9, 1, ''),
-(10, 'Rafaela', '2015-03-20', 32432432, 1234567, 2, 12, 1, 46, 3, 2, 10, 2, 'Rafael');
+(13, 'Rafael', '1995-02-25', 32432432, 1234567, 1, 15, 9, 49, 4, 2, 13, 1, ''),
+(14, 'Rafaela', '2015-03-12', 32432432, 1234567, 2, 16, 7, 50, 2, 3, 14, 2, 'Rafael');
 
 -- --------------------------------------------------------
 
@@ -385,7 +399,11 @@ INSERT INTO `tbl_profissao` (`id`, `profissao`) VALUES
 (43, 'Engenheiro Civil'),
 (44, 'Engenheiro Civil'),
 (45, 'Engenheiro Civil'),
-(46, 'Engenheiro Civil');
+(46, 'Engenheiro Civil'),
+(47, 'Engenheiro Civil'),
+(48, 'Engenheiro Civil'),
+(49, 'Engenheiro Civil'),
+(50, 'Engenheiro Civil');
 
 -- --------------------------------------------------------
 
@@ -1031,7 +1049,7 @@ ALTER TABLE `tbl_user_terapeuta`
 -- AUTO_INCREMENT de tabela `tbl_bairro`
 --
 ALTER TABLE `tbl_bairro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_calendario_agendamento`
@@ -1049,7 +1067,7 @@ ALTER TABLE `tbl_consulta`
 -- AUTO_INCREMENT de tabela `tbl_contato`
 --
 ALTER TABLE `tbl_contato`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_disponibilidade`
@@ -1061,7 +1079,7 @@ ALTER TABLE `tbl_disponibilidade`
 -- AUTO_INCREMENT de tabela `tbl_endereco`
 --
 ALTER TABLE `tbl_endereco`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_escolaridade`
@@ -1091,7 +1109,7 @@ ALTER TABLE `tbl_horario_sala`
 -- AUTO_INCREMENT de tabela `tbl_logradouro`
 --
 ALTER TABLE `tbl_logradouro`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_maturidade`
@@ -1109,7 +1127,7 @@ ALTER TABLE `tbl_monitor`
 -- AUTO_INCREMENT de tabela `tbl_paciente`
 --
 ALTER TABLE `tbl_paciente`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_professor`
@@ -1121,7 +1139,7 @@ ALTER TABLE `tbl_professor`
 -- AUTO_INCREMENT de tabela `tbl_profissao`
 --
 ALTER TABLE `tbl_profissao`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_renda_familiar`
