@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/03/2025 às 15:09
+-- Tempo de geração: 31/03/2025 às 02:32
 -- Versão do servidor: 10.6.15-MariaDB
 -- Versão do PHP: 8.2.0
 
@@ -31,28 +31,6 @@ CREATE TABLE `tbl_bairro` (
   `id` int(11) UNSIGNED NOT NULL,
   `bairro` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `tbl_bairro`
---
-
-INSERT INTO `tbl_bairro` (`id`, `bairro`) VALUES
-(1, 'bairro2'),
-(2, 'Goiabas'),
-(3, 'Goiabas'),
-(4, 'Goiabas'),
-(5, 'Maças'),
-(6, 'Maças'),
-(7, 'Goiabas'),
-(8, 'Goiabas'),
-(9, 'Goiabas'),
-(10, 'Goiabas'),
-(11, 'Goiabas'),
-(12, 'Goiabas'),
-(13, 'Goiabas'),
-(14, 'Maças'),
-(15, 'Maças'),
-(16, 'Roberto Silva');
 
 -- --------------------------------------------------------
 
@@ -94,14 +72,6 @@ CREATE TABLE `tbl_contato` (
   `celular` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `tbl_contato`
---
-
-INSERT INTO `tbl_contato` (`id`, `email`, `telefone_residencial`, `telefone_recado`, `celular`) VALUES
-(15, 'rafael@gmail.com', '44354423424', '3432432432', '(91)91128-9111'),
-(16, 'rafael@gmail.com', '44354423424', '3432432432', '(91)91128-9111');
-
 -- --------------------------------------------------------
 
 --
@@ -133,18 +103,6 @@ CREATE TABLE `tbl_endereco` (
   `id_logradouro` int(11) UNSIGNED NOT NULL,
   `cep` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `tbl_endereco`
---
-
-INSERT INTO `tbl_endereco` (`id`, `id_bairro`, `id_logradouro`, `cep`) VALUES
-(9, 11, 44, '68970970'),
-(10, 12, 45, '68970970'),
-(11, 13, 46, '68970970'),
-(12, 14, 47, '68970970'),
-(13, 15, 48, '68970970'),
-(14, 16, 49, '68970970');
 
 -- --------------------------------------------------------
 
@@ -254,28 +212,6 @@ CREATE TABLE `tbl_logradouro` (
   `logradouro` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `tbl_logradouro`
---
-
-INSERT INTO `tbl_logradouro` (`id`, `logradouro`) VALUES
-(34, 'São Raimundo'),
-(35, 'Localidade'),
-(36, 'Localidade'),
-(37, 'Localidade'),
-(38, 'Localidade'),
-(39, 'Localidade'),
-(40, 'Localidade'),
-(41, 'Localidade'),
-(42, 'Localidade'),
-(43, 'Localidade'),
-(44, 'Localidade'),
-(45, 'Localidade'),
-(46, 'Localidade'),
-(47, 'Localidade'),
-(48, 'Localidade'),
-(49, 'Localidade');
-
 -- --------------------------------------------------------
 
 --
@@ -311,13 +247,6 @@ CREATE TABLE `tbl_monitor` (
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `tbl_monitor`
---
-
-INSERT INTO `tbl_monitor` (`id`, `id_disponibilidade`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
-(1, 1, 'robson', 'robson', 'robson@gmail.com', '$2y$10$rafRb/ZepQwuWQgnb4xb7enl62fowKuns9CEiljHSLaI5qB/IuH7.', '2025-03-27 02:34:03');
-
 -- --------------------------------------------------------
 
 --
@@ -341,14 +270,6 @@ CREATE TABLE `tbl_paciente` (
   `nome_responsavel` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `tbl_paciente`
---
-
-INSERT INTO `tbl_paciente` (`id`, `nome`, `nascimento`, `rg`, `cpf`, `id_genero`, `id_contato`, `id_escolaridade`, `id_profissao`, `id_renda_familiar`, `id_estado_civil`, `id_endereco`, `id_maturidade`, `nome_responsavel`) VALUES
-(13, 'Rafael', '1995-02-25', 32432432, 1234567, 1, 15, 9, 49, 4, 2, 13, 1, ''),
-(14, 'Rafaela', '2015-03-12', 32432432, 1234567, 2, 16, 7, 50, 2, 3, 14, 2, 'Rafael');
-
 -- --------------------------------------------------------
 
 --
@@ -365,13 +286,6 @@ CREATE TABLE `tbl_professor` (
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `tbl_professor`
---
-
-INSERT INTO `tbl_professor` (`id`, `id_disponibilidade`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
-(1, 2, 'Carlos', 'Carlos', 'carlos@gmail.com', '$2y$10$G.QTLzhTrOLl6kZZz3YVBepgH3vrXKMo0c9ehNinPbpIPu.0TNiey', '2025-03-27 11:40:00');
-
 -- --------------------------------------------------------
 
 --
@@ -382,28 +296,6 @@ CREATE TABLE `tbl_profissao` (
   `id` int(11) UNSIGNED NOT NULL,
   `profissao` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `tbl_profissao`
---
-
-INSERT INTO `tbl_profissao` (`id`, `profissao`) VALUES
-(35, 'Engenheiro Civil'),
-(36, 'Engenheiro Civil'),
-(37, 'Engenheiro Civil'),
-(38, 'Engenheiro Civil'),
-(39, 'Engenheiro Civil'),
-(40, 'Engenheiro Civil'),
-(41, 'Engenheiro Civil'),
-(42, 'Engenheiro Civil'),
-(43, 'Engenheiro Civil'),
-(44, 'Engenheiro Civil'),
-(45, 'Engenheiro Civil'),
-(46, 'Engenheiro Civil'),
-(47, 'Engenheiro Civil'),
-(48, 'Engenheiro Civil'),
-(49, 'Engenheiro Civil'),
-(50, 'Engenheiro Civil');
 
 -- --------------------------------------------------------
 
@@ -749,14 +641,6 @@ CREATE TABLE `tbl_sala_reservada_historico` (
   `sala` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `tbl_sala_reservada_historico`
---
-
-INSERT INTO `tbl_sala_reservada_historico` (`id`, `id_turno`, `id_horario`, `id_semana`, `id_status`, `id_terapeuta`, `id_paciente`, `sala_cod`, `sala`) VALUES
-(1, 1, 2, 1, 2, 1, NULL, 'seg_m_9_s1', 'Ana - Pedro'),
-(2, 1, 2, 1, 2, 1, NULL, 'seg_m_9_s6', 'Ana - Pedro');
-
 -- --------------------------------------------------------
 
 --
@@ -856,13 +740,6 @@ CREATE TABLE `tbl_user_terapeuta` (
   `senha` varchar(255) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `tbl_user_terapeuta`
---
-
-INSERT INTO `tbl_user_terapeuta` (`id`, `id_disponibilidade`, `id_professor`, `nome`, `usuario`, `email`, `senha`, `date`) VALUES
-(1, 1, 1, 'Ana', 'Ana', 'ana@gmail.com', '$2y$10$kJ0PoKvqBCrx0.1Rh87o/eeOwM8J.ImWp6xWslE1Ze/g0Q0I0jaGK', '2025-03-27 12:19:10');
 
 --
 -- Índices para tabelas despejadas
@@ -1049,7 +926,7 @@ ALTER TABLE `tbl_user_terapeuta`
 -- AUTO_INCREMENT de tabela `tbl_bairro`
 --
 ALTER TABLE `tbl_bairro`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_calendario_agendamento`
@@ -1067,7 +944,7 @@ ALTER TABLE `tbl_consulta`
 -- AUTO_INCREMENT de tabela `tbl_contato`
 --
 ALTER TABLE `tbl_contato`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_disponibilidade`
@@ -1079,7 +956,7 @@ ALTER TABLE `tbl_disponibilidade`
 -- AUTO_INCREMENT de tabela `tbl_endereco`
 --
 ALTER TABLE `tbl_endereco`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_escolaridade`
@@ -1109,7 +986,7 @@ ALTER TABLE `tbl_horario_sala`
 -- AUTO_INCREMENT de tabela `tbl_logradouro`
 --
 ALTER TABLE `tbl_logradouro`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_maturidade`
@@ -1121,25 +998,25 @@ ALTER TABLE `tbl_maturidade`
 -- AUTO_INCREMENT de tabela `tbl_monitor`
 --
 ALTER TABLE `tbl_monitor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_paciente`
 --
 ALTER TABLE `tbl_paciente`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_professor`
 --
 ALTER TABLE `tbl_professor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_profissao`
 --
 ALTER TABLE `tbl_profissao`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_renda_familiar`
@@ -1181,7 +1058,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT de tabela `tbl_user_terapeuta`
 --
 ALTER TABLE `tbl_user_terapeuta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para tabelas despejadas

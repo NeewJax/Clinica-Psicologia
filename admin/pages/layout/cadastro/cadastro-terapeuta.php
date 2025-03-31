@@ -276,7 +276,7 @@ try {
                     <div class="form-group">
                       <label for="inputDisponibilidade3" class="col-sm-2 control-label">Disponibilidade</label>
                       <div class="col-sm-10">
-                      <select class="form-control" name="disponibilidade" required id="inputDisponibilidade3">
+                      <select class="form-control" name="disponibilidade" required id="inputDisponibilidade3" required>
                             <?php
                                 $sql_disponibilidade = "SELECT * FROM tbl_disponibilidade";
                                 $result_disponibilidade = mysqli_query($mysqli, $sql_disponibilidade);

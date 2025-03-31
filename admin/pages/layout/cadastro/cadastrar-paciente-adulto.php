@@ -5,38 +5,35 @@
 
 <?php
 
-  if (isset($_POST['enviar'])) {
-    $nome = $_POST['nome'];
-    $id_genero = $_POST['sexo'];
-    $idade = $_POST['idade'];
-    $nascimento = $_POST['nascimento'];
-    $localidade = $_POST['localidade'];
+try {
 
-    $id_escolaridade = $_POST['escolaridade'];
-    $profissao = $_POST['profissao'];
-    $id_renda_familiar = $_POST['renda_familiar'];
-    $rg = $_POST['rg'];
-    $cpf = $_POST['cpf'];
+    if (isset($_POST['enviar'])) {
 
-    $id_estado_civil = $_POST['estado_civil'];
-    $composicao_familiar = $_POST['composicao_familiar'];
-    $mora_com = $_POST['mora_com'];
-    $bairro = $_POST['bairro'];
+        $nome = $_POST['nome'];
+        $id_genero = $_POST['sexo'];
+        $idade = $_POST['idade'];
+        $nascimento = $_POST['nascimento'];
+        $localidade = $_POST['localidade'];
 
-    $cidade = $_POST['cidade'];
-    $cep = $_POST['cep'];
-    $telefone_residencial = $_POST['telefone_residencial'];
-    $telefone_recado = $_POST['telefone_recado'];
-    $celular = $_POST['celular'];
-    $email = $_POST['email'];
+        $id_escolaridade = $_POST['escolaridade'];
+        $profissao = $_POST['profissao'];
+        $id_renda_familiar = $_POST['renda_familiar'];
+        $rg = $_POST['rg'];
+        $cpf = $_POST['cpf'];
 
-    //$id_contato = 1;
-    //$id_profissao = 1;
-    //$id_endereco = 1;
-    //$id_paciente = 1;
-    $id_maturidade = 1;
+        $id_estado_civil = $_POST['estado_civil'];
+        $composicao_familiar = $_POST['composicao_familiar'];
+        $mora_com = $_POST['mora_com'];
+        $bairro = $_POST['bairro'];
 
-    try {
+        $cidade = $_POST['cidade'];
+        $cep = $_POST['cep'];
+        $telefone_residencial = $_POST['telefone_residencial'];
+        $telefone_recado = $_POST['telefone_recado'];
+        $celular = $_POST['celular'];
+        $email = $_POST['email'];
+
+        $id_maturidade = 1;
         //INSERIR CONTATO
         $stmt_id_contato = $mysqli->prepare("INSERT INTO tbl_contato (id, email, telefone_residencial, telefone_recado, celular) VALUES (NULL, ?, ?, ?, ?)");
         $stmt_id_contato->bind_param("ssss", $email, $telefone_residencial, $telefone_recado, $celular);
@@ -80,22 +77,12 @@
         $id_paciente = $mysqli->insert_id;
         $stmt_id_paciente->close();
 
-        //ATUALIZAR TABELAS
-        // $stmt_update_contato = $mysqli->prepare("UPDATE tbl_contato SET id_paciente = ? WHERE id = ?");
-        // $stmt_update_contato->bind_param("ii", $id_paciente, $id_contato);
-        // $stmt_update_contato->execute();
-        // $stmt_update_contato->close();
-
-        // $stmt_update_contato = $mysqli->prepare("UPDATE tbl_endereco SET id_paciente = ? WHERE id = ?");
-        // $stmt_update_contato->bind_param("ii", $id_paciente, $id_endereco);
-        // $stmt_update_contato->execute();
-        // $stmt_update_contato->close();
-
         header('Location: cadastro-sucesso.php');
 
-    }  catch(Exception $e) {
-        echo "Error: " . $e;
     }
+        
+}  catch(Exception $e) {
+    echo "Error: " . $e->getMessage();
 }
 
 ?>
@@ -167,10 +154,10 @@
         <h2>Cadastro de Paciente - Adulto</h2>
         <form method="post">
             <label>Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Nome" required required>
+            <input type="text" id="nome" name="nome" placeholder="Nome" required>
             
             <label for="sexo">Sexo:</label>
-            <select id="sexo" name="sexo">
+            <select id="sexo" name="sexo" required>
                 <option value='' disabled selected>Sexo</option>
                 <?php
                     $sql_genero = "SELECT * FROM tbl_genero";
@@ -193,7 +180,7 @@
             <input type="text" id="localidade" name="localidade" placeholder="Localidade" required>
             
             <label for="escolaridade">Escolaridade</label>
-            <select id="escolaridade" name="escolaridade">
+            <select id="escolaridade" name="escolaridade" required>
                 <option value='' disabled selected>Escolaridade</option>
                 <?php
                     $sql_escolaridade = "SELECT * FROM tbl_escolaridade";
@@ -210,7 +197,7 @@
             <input type="text" id="profissao" name="profissao" placeholder="Profissão" required>
             
             <label>Renda Familiar:</label>
-            <select id="renda_familiar" name="renda_familiar">
+            <select id="renda_familiar" name="renda_familiar" required>
                     <option value='' disabled selected>Renda Familiar</option>
                     <?php
                         $sql_renda_familiar = "SELECT * FROM tbl_renda_familiar";
@@ -233,8 +220,8 @@
             <input type="text" id="composicao_familiar" name="composicao_familiar" placeholder="Composição familiar" required>
             
             <label>Estado Civil:</label>
-            <select id="estado_civil" name="estado_civil">
-                <option value='' disabled selected>Estado Civil</option>
+            <select id="estado_civil" name="estado_civil" required>
+                <option value="" disabled selected>Estado Civil</option>
                 <?php
                     $sql_estado_civil = "SELECT * FROM tbl_estado_civil";
                     $result_estado_civil = mysqli_query($mysqli, $sql_estado_civil);

@@ -3,6 +3,13 @@ include('../db/conexao.php');
 include('../admin/protect.php');
 include('../admin/contador.php');
 
+$where = "";
+$busca = isset($_GET['busca']) ? $_GET['busca'] : '';
+
+if (!empty($busca)) {
+  $where = "WHERE p.nome LIKE '%" . mysqli_real_escape_string($mysqli, $busca) . "%'";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -199,60 +206,68 @@ include('../admin/contador.php');
             </div>
           </div>
           <div class="box-body">
-            <!-- <a href="../cadastro.php">
-              <button class="btn btn-block btn-primary">Cadastrar paciente</button>
-            </a> -->
-            <!-- AQUI COMEÇA SUA APLICAÇÃO -->
+            <!--BUSCAR -->
+            <form method="GET">
+              <input type="text" name="busca" placeholder="Buscar usuário..." style="padding:0.5%;margin-left:3%;" value="<?php echo htmlspecialchars($busca); ?>">
+              <button class="btn btn-primary" type="submit">Buscar</button>
+            </form>
+            <div class="box-body">
+              <!-- AQUI COMEÇA SUA APLICAÇÃO -->
 
+              <div>
 
-            <div>
-
-              <table class="table table-hover text-center">
-                <thead class="table-dark">
-                  <tr>
-                    <th> </th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Nascimento</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Ação</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-                  $sql = "SELECT p.id, p.nome, p.cpf, p.nascimento, c.celular FROM tbl_paciente p INNER JOIN tbl_contato c ON p.id_contato = c.id";
-                  $result = mysqli_query($mysqli, $sql);
-                  while ($row = mysqli_fetch_assoc($result)) {
-                  ?>
+                <table class="table table-hover text-center">
+                  <thead class="table-dark">
                     <tr>
-                      <td></td>
-                      <td><?php echo $row["nome"] ?></td>
-                      <td><?php echo date('d/m/Y', strtotime($row["nascimento"])) ?></td>
-                      <td><?php echo $row["celular"] ?></td>
-                      <td>
-                        <a href="edit/edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
-                        <a href="#" data-toggle="modal" data-target="#modalDelete">
-                          <span class="open-modal" data-id="<?php echo $row["id"] ?>">
-                            <i class="fa fa-remove"></i>
-                          </span>
-                        </a>
-                      </td>
+                      <th> </th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Nascimento</th>
+                      <th scope="col">Telefone</th>
+                      <th scope="col">Ação</th>
                     </tr>
-                    <!-- <a href="../calendar.php"></a> -->
-                  <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    <?php
+                    //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
+                    $sql = "SELECT p.id, p.nome, p.cpf, p.nascimento, c.celular 
+                  FROM tbl_paciente p 
+                  INNER JOIN tbl_contato c 
+                  ON p.id_contato = c.id 
+                  $where
+                  ORDER BY id DESC 
+                  LIMIT 8";
+                    $result = mysqli_query($mysqli, $sql);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                      <tr>
+                        <td></td>
+                        <td><?php echo $row["nome"] ?></td>
+                        <td><?php echo date('d/m/Y', strtotime($row["nascimento"])) ?></td>
+                        <td><?php echo $row["celular"] ?></td>
+                        <td>
+                          <a href="edit/edit.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
+                          <a href="#" data-toggle="modal" data-target="#modalDelete">
+                            <span class="open-modal" data-id="<?php echo $row["id"] ?>">
+                              <i class="fa fa-remove"></i>
+                            </span>
+                          </a>
+                        </td>
+                      </tr>
+                      <!-- <a href="../calendar.php"></a> -->
+                    <?php
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
 
-            <!--AQUI TERMINA SUA APLICAÇÃO! -->
+              <!--AQUI TERMINA SUA APLICAÇÃO! -->
 
-          </div><!-- /.box-body -->
-          <div class="box-footer">
+            </div><!-- /.box-body -->
+            <div class="box-footer">
 
-          </div><!-- /.box-footer-->
-        </div><!-- /.box -->
+            </div><!-- /.box-footer-->
+          </div><!-- /.box -->
 
       </section><!-- /.content -->
     </div><!-- /.content-wrapper -->

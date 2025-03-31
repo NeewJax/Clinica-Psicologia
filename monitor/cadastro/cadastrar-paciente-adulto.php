@@ -167,7 +167,7 @@
             <input type="text" id="nome" name="nome" placeholder="Nome" required required>
             
             <label for="sexo">Sexo:</label>
-            <select id="sexo" name="sexo">
+            <select id="sexo" name="sexo" required>
                 <option value='' disabled selected>Sexo</option>
                 <?php
                     $sql_genero = "SELECT * FROM tbl_genero";
@@ -190,7 +190,7 @@
             <input type="text" id="localidade" name="localidade" placeholder="Localidade" required>
             
             <label for="escolaridade">Escolaridade</label>
-            <select id="escolaridade" name="escolaridade">
+            <select id="escolaridade" name="escolaridade" required>
                 <option value='' disabled selected>Escolaridade</option>
                 <?php
                     $sql_escolaridade = "SELECT * FROM tbl_escolaridade";
@@ -207,7 +207,7 @@
             <input type="text" id="profissao" name="profissao" placeholder="Profissão" required>
             
             <label>Renda Familiar:</label>
-            <select id="renda_familiar" name="renda_familiar">
+            <select id="renda_familiar" name="renda_familiar" required>
                     <option value='' disabled selected>Renda Familiar</option>
                     <?php
                         $sql_renda_familiar = "SELECT * FROM tbl_renda_familiar";
@@ -230,7 +230,7 @@
             <input type="text" id="composicao_familiar" name="composicao_familiar" placeholder="Composição familiar" required>
             
             <label>Estado Civil:</label>
-            <select id="estado_civil" name="estado_civil">
+            <select id="estado_civil" name="estado_civil" required>
                 <option value='' disabled selected>Estado Civil</option>
                 <?php
                     $sql_estado_civil = "SELECT * FROM tbl_estado_civil";

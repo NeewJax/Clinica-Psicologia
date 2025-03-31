@@ -3,6 +3,13 @@ include('../../protect.php');
 include('../../../db/conexao.php');
 include('../../contador.php');
 
+$where = "";
+$busca = isset($_GET['busca']) ? $_GET['busca'] : '';
+
+if (!empty($busca)) {
+  $where = "WHERE p.nome LIKE '%" . mysqli_real_escape_string($mysqli, $busca) . "%'";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -193,13 +200,16 @@ include('../../contador.php');
               <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             </div>
           </div>
+
+          <!--BUSCAR -->
+          <form method="GET">
+            <input type="text" name="busca" placeholder="Buscar usuário..." style="padding:0.5%;margin-left:3%;" value="<?php echo htmlspecialchars($busca); ?>">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+          </form>
           <div class="box-body">
 
             <!-- AQUI COMEÇA SUA APLICAÇÃO -->
-
-
             <div>
-
               <table class="table table-hover text-center">
                 <thead class="table-dark">
                   <tr>
@@ -212,7 +222,12 @@ include('../../contador.php');
                 <tbody>
                   <?php
                   //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-                  $sql = "SELECT p.id, p.nome, p.cpf, p.nascimento, c.celular FROM tbl_paciente p INNER JOIN tbl_contato c ON p.id_contato = c.id";
+                  $sql = "SELECT p.id, p.nome, p.cpf, p.nascimento, c.celular 
+                  FROM tbl_paciente p 
+                  INNER JOIN tbl_contato c ON p.id_contato = c.id 
+                  $where
+                  ORDER BY id DESC  
+                  LIMIT 8";
                   $result = mysqli_query($mysqli, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
                   ?>

@@ -3,6 +3,13 @@ include('../../protect.php');
 include('../../../db/conexao.php');
 include('../../contador.php');
 
+$where = "";
+$busca = isset($_GET['busca']) ? $_GET['busca'] : '';
+
+if (!empty($busca)) {
+  $where = "WHERE nome LIKE '%" . mysqli_real_escape_string($mysqli, $busca) . "%'";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -207,6 +214,11 @@ include('../../contador.php');
             <a href="cadastro/cadastro-terapeuta.php">
               <button class="btn btn-block btn-primary">Cadastrar estagiário</button>
             </a>
+            <!--BUSCAR --> <br>
+            <form method="GET">
+              <input type="text" name="busca" placeholder="Buscar usuário..." style="padding:0.5%;margin-left:3%;" value="<?php echo htmlspecialchars($busca); ?>">
+              <button class="btn btn-primary" type="submit">Buscar</button>
+            </form>
             <!-- AQUI COMEÇA SUA APLICAÇÃO -->
 
 
@@ -225,7 +237,7 @@ include('../../contador.php');
                 <tbody>
                   <?php
                   //$sql = "SELECT * FROM filiais WHERE id_aprovacao = 2";
-                  $sql = "SELECT * FROM tbl_user_terapeuta";
+                  $sql = "SELECT * FROM tbl_user_terapeuta $where ORDER BY id DESC LIMIT 8";
                   $result = mysqli_query($mysqli, $sql);
                   while ($row = mysqli_fetch_assoc($result)) {
                   ?>
