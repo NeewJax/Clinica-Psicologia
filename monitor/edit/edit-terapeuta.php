@@ -8,15 +8,25 @@ $id = $_GET["id"];
 
 if (isset($_POST["submit"])) {
 
+  $sql_terapeuta_data = "SELECT senha FROM tbl_user_terapeuta WHERE id = ?";
+  $stmt_terapeuta_data = $mysqli->prepare($sql_terapeuta_data);
+  $stmt_terapeuta_data->bind_param("i", $id);
+  $stmt_terapeuta_data->execute();
+  $stmt_terapeuta_data_result = $stmt_terapeuta_data->get_result();
+  $terapeuta_data = $stmt_terapeuta_data_result->fetch_assoc();
+
+  $terapeuta_senha = $terapeuta_data["senha"];
+
   $id_disponibilidade = $_POST['disponibilidade'];
   $id_professor = $_POST['professor'];
   $nome = $_POST['nome'];
   $usuario = $_POST['usuario'];
   $email = $_POST['email'];
+  $senha = empty($_POST['senha']) ? $terapeuta_senha : password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
   //echo "<script>alert('" . $id_disponibilidade ."')</script>";
 
-  $sql = "UPDATE tbl_user_terapeuta SET id_disponibilidade=$id_disponibilidade, id_professor=$id_professor, nome = '$nome', usuario = '$usuario', email = '$email' WHERE id = $id";
+  $sql = "UPDATE tbl_user_terapeuta SET id_disponibilidade=$id_disponibilidade, id_professor=$id_professor, nome = '$nome', usuario = '$usuario', email = '$email', senha='$senha' WHERE id = $id";
   $result = mysqli_query($mysqli, $sql);
   header("Location: ../terapeutas.php?msg=Estagiário atualizado com sucesso!");
 }
@@ -287,6 +297,9 @@ if (isset($_POST["submit"])) {
 
                         <label class="form-label">Email:</label>
                         <input type="email" class="form-control custom-input" name="email" value="<?php echo $row['email']; ?>">
+
+                        <label class="form-label">Senha:</label>
+                        <input type="password" class="form-control custom-input" name="senha" placeholder="senha" value="">
 
 
                         <label for="Professor" class="form-label">Professor</label>

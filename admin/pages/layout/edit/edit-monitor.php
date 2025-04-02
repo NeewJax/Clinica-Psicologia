@@ -8,13 +8,23 @@ $id = $_GET["id"];
 
 if (isset($_POST["submit"])) {
 
+  $sql_monitor_data = "SELECT senha FROM tbl_monitor WHERE id = ?";
+  $stmt_monitor_data = $mysqli->prepare($sql_monitor_data);
+  $stmt_monitor_data->bind_param("i", $id);
+  $stmt_monitor_data->execute();
+  $stmt_monitor_data_result = $stmt_monitor_data->get_result();
+  $monitor_data = $stmt_monitor_data_result->fetch_assoc();
+
+  $monitor_senha = $monitor_data["senha"];
+
   $id_disponibilidade = $_POST['disponibilidade'];
   $nome = $_POST['nome'];
   $usuario = $_POST['usuario'];
   $email = $_POST['email'];
+  $senha = empty($_POST['senha']) ? $monitor_senha : password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
 
-  $sql = "UPDATE tbl_monitor SET id_disponibilidade='$id_disponibilidade', nome = '$nome', usuario = '$usuario', email = '$email' WHERE id = $id";
+  $sql = "UPDATE tbl_monitor SET id_disponibilidade='$id_disponibilidade', nome = '$nome', usuario = '$usuario', email = '$email', senha = '$senha' WHERE id = $id";
   $result = mysqli_query($mysqli, $sql);
   header("Location: ../monitor.php?msg=Professor atualizado com sucesso!");
 }
@@ -287,6 +297,9 @@ if (isset($_POST["submit"])) {
 
                     <label class="form-label">Email:</label>
                     <input type="email" class="form-control custom-input" name="email" value="<?php echo $row['email']; ?>">
+
+                    <label class="form-label">Senha:</label>
+                    <input type="password" class="form-control custom-input" name="senha" placeholder="senha" value="">
 
                     <label class="form-label">Disponibilidade:</label>
                     <select class="form-control custom-input" name="disponibilidade" required id="inputDisponibilidade3">
