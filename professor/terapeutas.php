@@ -3,11 +3,13 @@ include('../db/conexao.php');
 include('../admin/protect.php');
 include('../admin/contador.php');
 
-$where = "";
+$id = $_SESSION['id'];
+
+$where = "WHERE id_professor = $id";
 $busca = isset($_GET['busca']) ? $_GET['busca'] : '';
 
 if (!empty($busca)) {
-  $where = "WHERE nome LIKE '%" . mysqli_real_escape_string($mysqli, $busca) . "%'";
+  $where = "WHERE id_professor = $id AND nome LIKE '%" . mysqli_real_escape_string($mysqli, $busca) . "%'";
 }
 
 ?>
@@ -133,7 +135,7 @@ if (!empty($busca)) {
               <span class="label label-primary pull-right"></span>
             </a>
             <ul class="treeview-menu">
-              <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Estagiários</a></li>
+              <li class="active"><a href="terapeutas.php"><i class="fa fa-plus-square"></i> Meus estagiários</a></li>
             </ul>
           </li>
     </aside>
@@ -182,10 +184,10 @@ if (!empty($busca)) {
             </div>
           </div>
           <div class="box-body">
-            <a href="cadastro/cadastro-terapeuta.php">
+            <!-- <a href="cadastro/cadastro-terapeuta.php">
               <button class="btn btn-block btn-primary">Cadastrar estagiário</button>
-            </a>
-            <!--BUSCAR --> <br>
+            </a> -->
+            <!--BUSCAR -->
             <form method="GET">
               <input type="text" name="busca" placeholder="Buscar usuário..." style="padding:0.5%;margin-left:3%;" value="<?php echo htmlspecialchars($busca); ?>">
               <button class="btn btn-primary" type="submit">Buscar</button>
@@ -218,11 +220,6 @@ if (!empty($busca)) {
 
                       <td style="background:white">
                         <a href="edit/edit-terapeuta.php?id=<?php echo $row["id"] ?>" class="link-dark"><i class="fa fa-edit"></i></a>
-                        <!-- <a href="#" data-toggle="modal" data-target="#modalDelete">
-                          <span class="open-modal" data-id="<?php echo $row["id"] ?>">
-                            <i class="fa fa-remove"></i>
-                          </span>
-                        </a> -->
                       </td>
                     </tr>
                   <?php
