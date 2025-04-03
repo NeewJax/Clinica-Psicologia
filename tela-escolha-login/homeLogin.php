@@ -137,6 +137,13 @@
                 <p class="btn-estilizado">Login Monitor</p>
             </div>
         </a>
+
+        <a href="../professor/login.php">
+            <div class="card">
+                <img src="img/team-2.jpg" alt="Imagem Monitor">
+                <p class="btn-estilizado">Login Professor</p>
+            </div>
+        </a>
     </div>
     <script>
         function redirecionarOutraTela(){
